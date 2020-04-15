@@ -29,6 +29,31 @@ export const signIn = (credentials) => {
     }
 }
 
+export const authProfileLoad = (user) => {
+  // getFirebase is to communicate with our firebase project to sign a use
+  return (dispatch, getState, {_, getFirestore}) => {
+      // this variable will have a reference to our database
+      const firestore = getFirestore();
+      firestore
+      .collection('UserTypes')
+      .doc(user.uid)
+      .get()
+      .then((doc) => {
+          const currProfile = doc.data()
+          if (currProfile.userType === "Company") {
+              return firestore.collection('Companies').doc(user.uid).get()
+          } else {
+              return firestore.collection('Users').doc(user.uid).get()
+          }
+      }).then((doc) => {
+          const currProfile = doc.data()
+          dispatch({ type: 'PROFILE_LOAD_SUCCESS', currProfile})
+      }).catch((err) => {
+          dispatch({type: 'PROFILE_LOAD_ERROR', err })
+      })
+  }
+}
+
 export const signOut = () => {
   return (dispatch, getState) => {
     firebase

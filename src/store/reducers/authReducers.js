@@ -21,6 +21,19 @@ const authReducer = (state = initState, action) => {
                 ...state,
                 authError: action.err.message // add autherror in addition to the currennt state to the auth property in the root reducer
             }
+        case 'PROFILE_LOAD_SUCCESS':
+            console.log("profile loaded successfully")
+            return {
+                ...state,
+                authError: null,
+                currProfile: action.currProfile
+            }
+        case 'PROFILE_LOAD_ERROR':
+            console.log("profile load error")
+            return {
+                ...state,
+                authError: action.err.message // add autherror in addition to the currennt state to the auth property in the root reducer
+            }
         case 'SIGNOUT_SUCCESS':
             console.log("signout success")
             return {
