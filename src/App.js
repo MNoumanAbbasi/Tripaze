@@ -9,10 +9,20 @@ import SignUpCompany from './components/auth/SignUpCompany';
 import CreateTrip from './components/trips/CreateTrip';
 import SignUpChoice from './components/auth/SignUpChoice';
 import CompanyProfile from './components/companyProfile/CompanyProfile';
+import firebase from 'firebase';
+import { connect } from 'react-redux'
+import { authProfileLoad } from './store/actions/authActions'
 
 // switch ensures that only one route is loaded at  a time
-
 class App extends Component {
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.props.authProfileLoad(user);
+      } 
+    })
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -34,4 +44,10 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    authProfileLoad: (user) => dispatch(authProfileLoad(user)) // pass this to the actions
+  }
+}
+
+export default connect(null, mapDispatchToProps) (App)
