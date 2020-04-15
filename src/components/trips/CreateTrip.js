@@ -32,7 +32,7 @@ export class CreateTrip extends Component {
         // console.log(this.state)
         
         // calls the createTrip function in mapDispatchToProps which in turn calls dispatch with an action of createTrip that handles the asynch request. This request is then sent to the reducer for dispatch 
-        this.props.createTrip(this.state);
+        this.props.createTrip(this.state, this.props.profile.currProfile);
         // this.props.history.push('/');
     }
 
@@ -41,7 +41,6 @@ export class CreateTrip extends Component {
     render() {
 
         const { profile } = this.props;
-
         const currProfile = profile.currProfile ? profile.currProfile : null;
         const ans = !currProfile || currProfile.type !== "Company";
         if (ans) {
@@ -128,7 +127,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
     return {
       // so when we call props.createTrip, it's gonna perform a dispatch using the asynch middleware createTrip in src/store/actions
-      createTrip: (trip) => dispatch(createTrip(trip))
+      createTrip: (trip, profile) => dispatch(createTrip(trip, profile))
     }
   }
   

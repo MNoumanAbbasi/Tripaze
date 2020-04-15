@@ -8,20 +8,20 @@ import GuestUserLinks from './GuestUserLinks'
 import { connect } from 'react-redux' // note: we do not need firebaseConnect here since we do not need to be in connect to firestore. We need to just connect to our redux state
 
  const Navbar = (props) => {
-     const { auth, profile } = props;
+    const { auth, profile } = props;
 
-     const currProfile = profile.currProfile ? profile.currProfile : null
-     var links;
+    const currProfile = profile.currProfile ? profile.currProfile : null
+    var links;
 
+    links = <GuestUserLinks/>
     if (auth.uid && currProfile) {
          if (currProfile.type === "Company") {
             links = <SignedInCompanyLinks profile={currProfile}/>
         } else {
             links = <SignedInUserLinks profile={currProfile}/>
          }
-     } else {
-        links = <GuestUserLinks/>
-     }
+     } 
+     
      return (
         // all classnames are through material UI. Link is to homepage
         <nav className="nav-wrapper grey darken-3">

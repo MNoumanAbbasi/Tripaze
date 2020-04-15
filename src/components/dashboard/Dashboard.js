@@ -4,18 +4,20 @@ import TripsList from '../trips/TripsList'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { firestoreConnect } from 'react-redux-firebase' // higher order
-// import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 // 6 columns on medium and 12 column on small screens
 class Dashboard extends Component {
     render() {
         // console.log(this.props)
-        const { trips } = this.props;
+        const { trips, profile, auth } = this.props;
 
-        // TODO
-        // if (auth.uid is a company id) {
-        //     <Redirect to={'/companyprofile/' + auth.uid}/>
-        // }
+        const currProfile = profile.currProfile ? profile.currProfile : null
+
+        if (currProfile && currProfile.type === "Company") {
+            return <Redirect to={"/companyprofile/" + auth.uid} />
+        } 
+
         return (
             <div className="dashboard container">
                 <div className="row">
@@ -32,10 +34,11 @@ class Dashboard extends Component {
 }
 // Map state from store to props in component
 const mapStateToProps = (state) => {
-    console.log("Dashboard",state)
+    // console.log("Dashboard",state)
     return {
         trips: state.firestore.ordered.Trips, 
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
+        profile: state.auth
     }
 }
 

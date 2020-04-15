@@ -16,7 +16,6 @@ import { signOut } from '../../store/actions/authActions'
             </NavLink></li>
             <li><a onClick={props.signOut}>Sign Out</a></li>
         </ul>              
-
      )
  }
 
