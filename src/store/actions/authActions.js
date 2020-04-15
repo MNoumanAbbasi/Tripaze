@@ -96,3 +96,30 @@ export const signUpUser = (newUser) => {
       });
   };
 };
+
+// newCompany contains all the information obtained from the sign up form
+export const signUpCompany = (newUser) => {
+  return (dispatch, getState, { getFirestore }) => {
+      var uid;
+      const firestore = getFirestore();
+      firebase.auth().createUserWithEmailAndPassword(
+      newUser.email,
+      newUser.password,
+      ).then(resp => {
+          // Note: we are not using add over here like we did for creating trips because we want to assign the id given by firebase auth (i.e. resp.user.uid)
+          uid = resp.user.uid;
+          return firestore.collection('UserTypes').doc(uid).set({
+              userType: "Company"
+          })
+      }).then(resp => {
+          // Note: we are not using add over here like we did for creating trips because we want to assign the id given by firebase auth (i.e. resp.user.uid)
+          return firestore.collection('Companies').doc(uid).set({
+              companyName: newUser.companyName,
+              contact: newUser.contact,
+              type: "Company"
+          })
+      }).then(() => {
+          dispatch({ type: 'SIGNUP_SUCCESS'})
+      })
+    }
+  };
