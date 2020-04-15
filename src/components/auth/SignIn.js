@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { compose } from 'redux'
 import { signIn } from '../../store/actions/authActions'
 import { Redirect } from 'react-router-dom'
 import { firestoreConnect } from 'react-redux-firebase' // higher order
@@ -71,11 +70,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-// TODO: Remove firestoreConnect
-export default compose(
-    connect(mapStateToProps, mapDispatchToProps),
-    // Whenever the user sign in, we import the Users data base with it.
-    firestoreConnect([
-        { collection: 'Users'}
-    ]) 
-)(SignIn)
+export default connect(mapStateToProps, mapDispatchToProps) (SignIn)
