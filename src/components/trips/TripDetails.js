@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
-import { Redirect } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
 
 
 
@@ -10,7 +10,7 @@ import { Redirect } from 'react-router-dom'
 // class trip-details is from our own css
 // taking props to know which trip to load
 function TripDetails(props) {
-    const { trip, auth } = props // getting trip category from props
+    const { trip } = props // getting trip category from props
 
     // TODO
     // if (auth.uid is a company id) {

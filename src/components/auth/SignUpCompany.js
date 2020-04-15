@@ -57,6 +57,12 @@ export class SignUpCompany extends Component {
                     <div className="input-field">
                         <button className="btn blue lighten-1 z-depth-1">Sign Up</button>
                     </div>
+                    
+                    {/* To display sign up error */}
+                    <div className="red-text center">
+                        { authError ? <p>{authError}</p> : null}
+                    </div>
+
                 </form>
             </div>
         )

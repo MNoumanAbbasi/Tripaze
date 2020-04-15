@@ -19,7 +19,7 @@ import { connect } from 'react-redux' // note: we do not need firebaseConnect he
         links = <SignedInUserLinks profile={currProfile}/>
      }
      else if (auth.uid && currProfile) {
-         if (currProfile.type == "Company") {
+         if (currProfile.type === "Company") {
             links = <SignedInCompanyLinks profile={currProfile}/>
         } else {
             links = <SignedInUserLinks profile={currProfile}/>

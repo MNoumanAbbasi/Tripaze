@@ -11,7 +11,7 @@ const TripsList = ({trips}) => {
             { trips && trips.map(trip => {
                 return (
                     <Link to={'/trip/' + trip.id} key={trip.id}>
-                    <TripCard trip = {trip} />
+                    <TripCard trip={trip} />
                     </Link>
                 )
             })}

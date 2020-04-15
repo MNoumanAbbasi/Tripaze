@@ -4,13 +4,13 @@ import TripsList from '../trips/TripsList'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { firestoreConnect } from 'react-redux-firebase' // higher order
-import { Redirect } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
 
 // 6 columns on medium and 12 column on small screens
 class Dashboard extends Component {
     render() {
         // console.log(this.props)
-        const { trips, auth } = this.props;
+        const { trips } = this.props;
 
         // TODO
         // if (auth.uid is a company id) {

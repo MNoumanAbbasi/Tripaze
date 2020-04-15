@@ -40,10 +40,10 @@ export class CreateTrip extends Component {
     
     render() {
 
-        const { auth, profile } = this.props;
+        const { profile } = this.props;
 
         const currProfile = profile.currProfile ? profile.currProfile : null;
-        const ans = !currProfile || currProfile.type != "Company";
+        const ans = !currProfile || currProfile.type !== "Company";
         if (ans) {
             return <Redirect to='/'/>
         }

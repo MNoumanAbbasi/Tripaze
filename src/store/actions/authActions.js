@@ -7,7 +7,7 @@ export const signIn = (credentials) => {
         const firestore = getFirestore();
         var uid;
         firebase
-        auth().signInWithEmailAndPassword(
+        .auth().signInWithEmailAndPassword(
             credentials.email,  
             credentials.password
         ).then((returnedUser) => {
@@ -15,7 +15,7 @@ export const signIn = (credentials) => {
             return firestore.collection('UserTypes').doc(returnedUser.user.uid).get()
         }).then((doc) => {
             const currProfile = doc.data()
-            if (currProfile.userType == "Company") {
+            if (currProfile.userType === "Company") {
                 return firestore.collection('Companies').doc(uid).get()
             } else {
                 return firestore.collection('Users').doc(uid).get()
