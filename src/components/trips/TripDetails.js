@@ -26,7 +26,7 @@ function TripDetails(props) {
                     </div>
                     <div className="card-action grey lighten-4 grey-text">
                         <div> Company:
-                            <Link to={'/companyProfile/'+trip.companyId} key={trip.companyId}>
+                            <Link to={'/companyProfile/'+trip.companyId}>
                                 {" " + trip.companyName}
                             </Link>
                         </div>

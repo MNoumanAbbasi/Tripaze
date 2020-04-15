@@ -27,7 +27,7 @@ const store = createStore(
 
 //construct required properties
 const profileSpecificProps = {
-    userProfile: 'Users',
+    userProfile: 'UserTypes',
     useFirestoreForProfile: true,
     enableRedirectHandling: false,
     resetBeforeLogin: false

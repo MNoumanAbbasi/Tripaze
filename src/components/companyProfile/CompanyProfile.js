@@ -3,7 +3,6 @@ import TripsList from '../trips/TripsList'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { firestoreConnect } from 'react-redux-firebase' // higher order
-import { Redirect } from 'react-router-dom'
 import { db } from '../../config/fbConfig'
 
 // 6 columns on medium and 12 column on small screens
@@ -32,12 +31,11 @@ class CompanyProfile extends Component {
 
     render() {
         // console.log(this.props)
-        const { trips, profile, uid } = this.props;
+        const { trips, uid } = this.props;
 
-        const currProfile = profile.currProfile ? profile.currProfile : null;
         var tripsFiltered = null
         if (trips) 
-            tripsFiltered = trips.filter(trip => (trip.companyId == uid))
+            tripsFiltered = trips.filter(trip => (trip.companyId === uid))
         
         return (
             <div className="dashboard container">

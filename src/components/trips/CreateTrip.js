@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createTrip } from '../../store/actions/tripActions'
 import { Redirect } from 'react-router-dom'
-import { NavLink } from 'react-router-dom'
 
 
 // all css are from the materialized CSS class
