@@ -10,9 +10,7 @@ const TripsList = ({trips}) => {
             {/* If we have trips, then map. Otherwise don't */}
             { trips && trips.map(trip => {
                 return (
-                    <Link to={'/trip/' + trip.id} key={trip.id}>
                     <TripCard trip={trip} />
-                    </Link>
                 )
             })}
         </div>
