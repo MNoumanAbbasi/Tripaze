@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import { signUpCompany } from '../../store/actions/authActions'
 
 // TODO: CHANGE THIS TO MAKE IT A USER
 // all css are from the materialized CSS class
-export class SignUpUser extends Component {
+export class SignUpCompany extends Component {
     state = {
         email: '',
         password: '',
@@ -21,13 +22,13 @@ export class SignUpUser extends Component {
     handleSubmit = (e) => {
         // dont want the default action of page being reloaded
         e.preventDefault();
-        console.log(this.state)
+        this.props.signUp(this.state)
     }
 
     
     
     render() {
-        const { auth } = this.props
+        const { auth, authError } = this.props
 
         if (auth.uid) {
             return <Redirect to='/'/>
@@ -38,8 +39,12 @@ export class SignUpUser extends Component {
                 <form onSubmit={this.handleSubmit} className="white">
                     <h5 className="gre-text text-darken-3">Sign Up as Company</h5>
                     <div className="input-field">
-                        <label htmlFor="userName">Username</label>
-                        <input type="text" id="userName" onChange={this.handleChange}/>
+                        <label htmlFor="companyName">Company Name</label>
+                        <input type="text" id="companyName" onChange={this.handleChange}/>
+                    </div>
+                    <div className="input-field">
+                        <label htmlFor="contact">Contact Number</label>
+                        <input type="number" id="contact" onChange={this.handleChange}/>
                     </div>
                     <div className="input-field">
                         <label htmlFor="email">Email</label>
@@ -60,8 +65,15 @@ export class SignUpUser extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
+        authError: state.auth.authError
     }
 }
 
-export default connect(mapStateToProps)(SignUpUser)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signUp: (newUser) => dispatch(signUpCompany(newUser))
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(SignUpCompany)

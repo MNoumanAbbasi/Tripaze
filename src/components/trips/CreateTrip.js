@@ -33,18 +33,20 @@ export class CreateTrip extends Component {
         
         // calls the createTrip function in mapDispatchToProps which in turn calls dispatch with an action of createTrip that handles the asynch request. This request is then sent to the reducer for dispatch 
         this.props.createTrip(this.state);
-        this.props.history.push('/');
+        // this.props.history.push('/');
     }
 
     
     
     render() {
 
-        const { auth } = this.props;
-        // TODO route guarding
-        // if (auth.uid is not company id) {
-        //     <Redirect to='/'/>
-        // }
+        const { auth, profile } = this.props;
+
+        const currProfile = profile.currProfile ? profile.currProfile : null;
+        const ans = !currProfile || currProfile.type != "Company";
+        if (ans) {
+            return <Redirect to='/'/>
+        }
         return (
             <div className="container">
                 <form onSubmit={this.handleSubmit} className="white">
@@ -118,7 +120,8 @@ export class CreateTrip extends Component {
 const mapStateToProps = (state) => {
     console.log(state);
     return {
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
+        profile: state.auth
     }
 }
 

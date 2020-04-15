@@ -71,10 +71,10 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
+// TODO: Remove firestoreConnect
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
-    // tells us which collections to connect to in our firebase project whenever this component, namely dashboard, is active
-    // Whenever collection trip is changed, it would call the firestore reducer which would update the state of this firestore
+    // Whenever the user sign in, we import the Users data base with it.
     firestoreConnect([
         { collection: 'Users'}
     ]) 

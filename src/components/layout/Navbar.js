@@ -3,6 +3,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import SignedInUserLinks from './SignedInUserLinks'
+import SignedInCompanyLinks from './SignedInCompanyLinks'
 import GuestUserLinks from './GuestUserLinks'
 import { connect } from 'react-redux' // note: we do not need firebaseConnect here since we do not need to be in connect to firestore. We need to just connect to our redux state
 
@@ -10,7 +11,22 @@ import { connect } from 'react-redux' // note: we do not need firebaseConnect he
      const { auth, profile } = props;
      // if auth id exists then you know that the user is signed in
      // TODO: Check if the user is company or a user
-     const links = auth.uid ? <SignedInUserLinks profile={profile}/> : <GuestUserLinks/>
+     var currProfile = profile.currProfile ? profile.currProfile : null
+     var links;
+
+     // TODO: FIX THIS GAAD
+     if (auth.uid && !currProfile) {
+        links = <SignedInUserLinks profile={currProfile}/>
+     }
+     else if (auth.uid && currProfile) {
+         if (currProfile.type == "Company") {
+            links = <SignedInCompanyLinks profile={currProfile}/>
+        } else {
+            links = <SignedInUserLinks profile={currProfile}/>
+         }
+     } else {
+        links = <GuestUserLinks/>
+     }
      return (
         // all classnames are through material UI. Link is to homepage
         <nav className="nav-wrapper grey darken-3">
@@ -24,10 +40,9 @@ import { connect } from 'react-redux' // note: we do not need firebaseConnect he
  }
 
  const mapStateToProps = (state) => {
-    console.log(state)
     return {
         auth: state.firebase.auth, 
-        profile: state.firebase.profile
+        profile: state.auth
     }
 }  
 

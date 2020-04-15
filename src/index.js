@@ -26,8 +26,7 @@ const store = createStore(
 
 //construct required properties
 const profileSpecificProps = {
-    userProfile: 'UserTypes',
-    // userProfile: 'company',
+    userProfile: 'Users',
     useFirestoreForProfile: true,
     enableRedirectHandling: false,
     resetBeforeLogin: false
@@ -46,10 +45,11 @@ const rrfProps = {
 // This is to ensure that the website does not show wrong links when the firebase authentication has not been loaded
 function AuthIsLoaded({ children }) {
     const auth = useSelector(state => state.firebase.auth)
-    if (!isLoaded(auth)) return <div>Loading Screen...</div>;
+    const profile = useSelector(state => state.auth)
+    if (!isLoaded(auth) || !isLoaded(profile)) return <div>Loading Screen...</div>;
         return children
 }
-
+  
 ReactDOM.render(
     <Provider store={store}> 
         <ReactReduxFirebaseProvider {...rrfProps}> 

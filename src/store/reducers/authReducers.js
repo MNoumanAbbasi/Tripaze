@@ -10,10 +10,10 @@ const authReducer = (state = initState, action) => {
     switch(action.type){
         case 'SIGNIN_SUCCESS':
             console.log("sign in success")
-            console.log("asdl", state)
             return {
                 ...state,
-                authError: null
+                authError: null,
+                currProfile: action.currProfile
             }
         case 'SIGNIN_ERROR':
             console.log("sign in error")
@@ -23,7 +23,10 @@ const authReducer = (state = initState, action) => {
             }
         case 'SIGNOUT_SUCCESS':
             console.log("signout success")
-            return state
+            return {
+                ...state,
+                currProfile: null,
+            }
         case 'SIGNUP_SUCCESS':
             console.log("sign up success")
             return {
