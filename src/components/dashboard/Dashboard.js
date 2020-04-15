@@ -32,7 +32,7 @@ class Dashboard extends Component {
 }
 // Map state from store to props in component
 const mapStateToProps = (state) => {
-    // console.log("Dashboard",state)
+    console.log("Dashboard",state)
     return {
         trips: state.firestore.ordered.Trips, 
         auth: state.firebase.auth
