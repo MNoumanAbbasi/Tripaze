@@ -24,7 +24,10 @@ class App extends Component {
   }
 
   render() {
-    return (
+    const { profileLoading } = this.props
+    if (profileLoading)
+      return <div>Loading Screen...</div>;
+    else return (
       <BrowserRouter>
         <div className="App">
           <Navbar/>
@@ -44,10 +47,16 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+     profileLoading: state.auth.profileLoading
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     authProfileLoad: (user) => dispatch(authProfileLoad(user)) // pass this to the actions
   }
 }
 
-export default connect(null, mapDispatchToProps) (App)
+export default connect(mapStateToProps, mapDispatchToProps) (App)

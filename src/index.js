@@ -46,9 +46,10 @@ const rrfProps = {
 // This is to ensure that the website does not show wrong links when the firebase authentication has not been loaded
 function AuthIsLoaded({ children }) {
     const auth = useSelector(state => state.firebase.auth)
-    const profile = useSelector(state => state.auth.currProfile)
-    if (!isLoaded(auth) || !isLoaded(profile)) return <div>Loading Screen...</div>;
-        return children
+    if (!isLoaded(auth))
+        return <div>Loading Screen...</div>; 
+    else 
+        return children;
 }
   
 ReactDOM.render(

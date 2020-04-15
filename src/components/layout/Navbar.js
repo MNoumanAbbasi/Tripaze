@@ -9,16 +9,11 @@ import { connect } from 'react-redux' // note: we do not need firebaseConnect he
 
  const Navbar = (props) => {
      const { auth, profile } = props;
-     // if auth id exists then you know that the user is signed in
-     // TODO: Check if the user is company or a user
-     var currProfile = profile.currProfile ? profile.currProfile : null
+
+     const currProfile = profile.currProfile ? profile.currProfile : null
      var links;
 
-     // TODO: FIX THIS GAAD
-     if (auth.uid && !currProfile) {
-        links = <SignedInUserLinks profile={currProfile}/>
-     }
-     else if (auth.uid && currProfile) {
+    if (auth.uid && currProfile) {
          if (currProfile.type === "Company") {
             links = <SignedInCompanyLinks profile={currProfile}/>
         } else {

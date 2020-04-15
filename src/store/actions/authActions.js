@@ -33,6 +33,7 @@ export const authProfileLoad = (user) => {
   // getFirebase is to communicate with our firebase project to sign a use
   return (dispatch, getState, {_, getFirestore}) => {
       // this variable will have a reference to our database
+      dispatch({ type: 'PROFILE_LOADING' })
       const firestore = getFirestore();
       firestore
       .collection('UserTypes')
