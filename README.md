@@ -14,3 +14,5 @@ npm install
 ```
 
 Start the project with: `npm start`.
+
+Also install Eslint and Prettier extensions in VSCode for coding style.
