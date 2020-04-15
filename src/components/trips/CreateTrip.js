@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createTrip } from '../../store/actions/tripActions'
 import { Redirect } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 
 // all css are from the materialized CSS class
@@ -33,7 +34,7 @@ export class CreateTrip extends Component {
         
         // calls the createTrip function in mapDispatchToProps which in turn calls dispatch with an action of createTrip that handles the asynch request. This request is then sent to the reducer for dispatch 
         this.props.createTrip(this.state, this.props.profile.currProfile);
-        // this.props.history.push('/');
+        this.props.history.push('/');
     }
 
     
