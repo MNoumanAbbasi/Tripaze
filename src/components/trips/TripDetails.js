@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
+import { NavLink } from 'react-router-dom'
 // import { Redirect } from 'react-router-dom'
 
 
@@ -24,7 +25,11 @@ function TripDetails(props) {
                         <span className="card-title">{trip.title}</span>
                     </div>
                     <div className="card-action grey lighten-4 grey-text">
-                        <div>Company: {trip.company}</div>
+                        <div> Company:
+                            <NavLink to={'/companyProfile/'+trip.companyId}>
+                                {" " + trip.companyName}
+                            </NavLink>
+                        </div>
                         <div>Cost: Rs. {trip.price}</div>
                         <div>To: {trip.destinations}</div>
                         <div>On: {trip.departureDate}</div>
