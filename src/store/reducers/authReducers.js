@@ -1,6 +1,7 @@
 // for intial state when app starts
 const initState = {
-    authError: null
+    authError: null,
+    currProfile: null,
 }
 
 
@@ -13,13 +14,12 @@ const authReducer = (state = initState, action) => {
             return {
                 ...state,
                 authError: null,
-                currProfile: action.currProfile
             }
         case 'SIGNIN_ERROR':
             console.log("sign in error")
             return {
                 ...state,
-                authError: action.err.message // add autherror in addition to the currennt state to the auth property in the root reducer
+                authError: action.err.message, // add autherror in addition to the currennt state to the auth property in the root reducer
             }
         case 'PROFILE_LOAD_SUCCESS':
             console.log("profile loaded successfully")
@@ -32,7 +32,8 @@ const authReducer = (state = initState, action) => {
             console.log("profile load error")
             return {
                 ...state,
-                authError: action.err.message // add autherror in addition to the currennt state to the auth property in the root reducer
+                authError: action.err.message, // add autherror in addition to the currennt state to the auth property in the root reducer
+                currProfile: null,
             }
         case 'SIGNOUT_SUCCESS':
             console.log("signout success")

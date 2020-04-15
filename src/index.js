@@ -11,7 +11,6 @@ import { createFirestoreInstance, getFirestore, reduxFirestore } from 'redux-fir
 import { ReactReduxFirebaseProvider, getFirebase, isLoaded } from 'react-redux-firebase'
 import fbConfig from './config/fbConfig'
 import firebase from 'firebase/app'
-import { signIn } from './store/actions/authActions'
 
 
 // Multiple reducers for multiple actions
@@ -44,25 +43,10 @@ const rrfProps = {
     createFirestoreInstance
 };
 
-const authListener = (() => {
-    console.log('asd')
-    return ((dispatch) => {
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                const firestore = getFirestore();
-                dispatch(signIn(user))
-                console.log('user changed..', user.uid);
-            }
-        });
-    })  
-})
-
-authListener();
-
 // This is to ensure that the website does not show wrong links when the firebase authentication has not been loaded
 function AuthIsLoaded({ children }) {
     const auth = useSelector(state => state.firebase.auth)
-    const profile = useSelector(state => state.auth)
+    const profile = useSelector(state => state.auth.currProfile)
     if (!isLoaded(auth) || !isLoaded(profile)) return <div>Loading Screen...</div>;
         return children
 }
