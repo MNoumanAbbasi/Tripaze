@@ -2,15 +2,15 @@
 
 CS 360: Software Engineering course project
 
-## Dependencies:
-Install the following libraries for this to work:
+## Getting started (for devs)
 
-npm install react-router-dom
+Clone the repositry.  
+Run the following commands. This will download all dependencies.
 
-npm install redux react-redux
+```npm
+$ npm install -g npm@latest  # or, npm install -g npm@latest --prefix "C:\Program Files\nodejs"
+$ rm -rf node_modules        # or, `cmd /c rmdir /s /q node_modules` on Windows
+$ npm install
+```
 
-npm install redux-thunk
-
-npm install firebase
-
-npm install react-redux-firebase redux-firestore
+Start the project with: `npm start`.
