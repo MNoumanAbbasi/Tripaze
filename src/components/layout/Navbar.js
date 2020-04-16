@@ -24,7 +24,9 @@ const Navbar = (props) => {
     // all classnames are through material UI. Link is to homepage
     <nav className="nav-wrapper grey darken-3">
       <div className="container">
-        <img className="logo" src={logo} alt="logo" />
+        <Link to="/">
+          <img className="logo" src={logo} alt="logo" />
+        </Link>
         {links}
       </div>
     </nav>
