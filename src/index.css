@@ -1,6 +1,5 @@
 html {
   min-height: 100%;
-  
 }
 
 body {
@@ -20,24 +19,32 @@ form {
   margin-top: 60px;
 }
 
-form  button, form h5 {
+form button,
+form h5 {
   margin: 20px 0;
 }
 
+.nav-wrapper .container .logo {
+  position: absolute;
+  top: -5px;
+  width: 200px;
+  height: 70px;
+}
+
 /* For lines when you click on a form */
-input[type=text]:not(.browser-default):focus:not([readonly]),
-input[type=date]:not(.browser-default):focus:not([readonly]),
-input[type=email]:not(.browser-default):focus:not([readonly]),
-input[type=password]:not(.browser-default):focus:not([readonly]),
-textarea.materialize-textarea:focus:not([readonly]){
-  border-color: #42a5f5	;
+input[type='text']:not(.browser-default):focus:not([readonly]),
+input[type='date']:not(.browser-default):focus:not([readonly]),
+input[type='email']:not(.browser-default):focus:not([readonly]),
+input[type='password']:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+  border-color: #42a5f5;
   box-shadow: none;
 }
 
-input[type=text]:not(.browser-default):focus:not([readonly]) + label,
+input[type='text']:not(.browser-default):focus:not([readonly]) + label,
 textarea.materialize-textarea:focus:not([readonly]) + label,
-input[type=email]:not(.browser-default):focus:not([readonly]) + label,
-input[type=date]:not(.browser-default):focus:not([readonly]) + label,
-input[type=password]:not(.browser-default):focus:not([readonly]) + label{
-  color: #42a5f5	 !important;
+input[type='email']:not(.browser-default):focus:not([readonly]) + label,
+input[type='date']:not(.browser-default):focus:not([readonly]) + label,
+input[type='password']:not(.browser-default):focus:not([readonly]) + label {
+  color: #42a5f5 !important;
 }
