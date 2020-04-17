@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import Navbar  from './components/layout/Navbar'
+import Navbar from './components/layout/Navbar'
 import Dashboard from './components/dashboard/Dashboard'
 import TripDetails from './components/trips/TripDetails'
 import SignIn from './components/auth/SignIn';
@@ -12,6 +12,7 @@ import CompanyProfile from './components/companyProfile/CompanyProfile';
 import firebase from 'firebase';
 import { connect } from 'react-redux'
 import { authProfileLoad } from './store/actions/authActions'
+import "./App.css";
 
 // switch ensures that only one route is loaded at  a time
 class App extends Component {
@@ -19,7 +20,7 @@ class App extends Component {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.props.authProfileLoad(user);
-      } 
+      }
     })
   }
 
@@ -30,16 +31,16 @@ class App extends Component {
     else return (
       <BrowserRouter>
         <div className="App">
-          <Navbar/>
+          <Navbar />
           <Switch>
-            <Route exact path='/' component={Dashboard}/>
-            <Route path='/signin' component={SignIn}/>
-            <Route path='/signupuser' component={SignUpUser}/>
-            <Route path='/signupcompany' component={SignUpCompany}/>
-            <Route path='/createtrip' component={CreateTrip}/>
-            <Route path='/trip/:id' component={TripDetails}/>
-            <Route path='/signupchoice' component={SignUpChoice}/>
-            <Route path='/companyprofile/:id' component={CompanyProfile}/>
+            <Route exact path='/' component={Dashboard} />
+            <Route path='/signin' component={SignIn} />
+            <Route path='/signupuser' component={SignUpUser} />
+            <Route path='/signupcompany' component={SignUpCompany} />
+            <Route path='/createtrip' component={CreateTrip} />
+            <Route path='/trip/:id' component={TripDetails} />
+            <Route path='/signupchoice' component={SignUpChoice} />
+            <Route path='/companyprofile/:id' component={CompanyProfile} />
           </Switch>
         </div>
       </BrowserRouter>
@@ -49,7 +50,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-     profileLoading: state.auth.profileLoading
+    profileLoading: state.auth.profileLoading
   }
 }
 
@@ -59,4 +60,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (App)
+export default connect(mapStateToProps, mapDispatchToProps)(App)
