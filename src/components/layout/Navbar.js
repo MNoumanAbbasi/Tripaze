@@ -52,3 +52,4 @@ const mapStateToProps = (state) => {
 
 // Exporting to be used in app.js
 export default connect(mapStateToProps)(Navbar);
+
