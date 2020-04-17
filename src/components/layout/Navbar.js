@@ -10,6 +10,7 @@ import logo from '../../logo.png';
 
 const Navbar = (props) => {
   const { auth, profile } = props;
+  
   let links = <GuestUserLinks />;
 
   if (auth.uid && profile.currProfile) {
