@@ -15,6 +15,8 @@ import { authProfileLoad } from './store/actions/authActions'
 
 // switch ensures that only one route is loaded at  a time
 class App extends Component {
+
+  // Whenever authentication change, mount the profile
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
@@ -23,6 +25,7 @@ class App extends Component {
     })
   }
 
+  // Note: Switch prevents the page from reloading and React intercepts to redirect on the client side (SPA behaviour)
   render() {
     const { profileLoading } = this.props
     if (profileLoading)
@@ -31,7 +34,7 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Navbar/>
-          <Switch>
+          <Switch> 
             <Route exact path='/' component={Dashboard}/>
             <Route path='/signin' component={SignIn}/>
             <Route path='/signupuser' component={SignUpUser}/>

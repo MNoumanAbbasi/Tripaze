@@ -21,7 +21,7 @@ export class CreateTrip extends Component {
 
     handleChange = (e) => {
         this.setState({
-            // is an email being entered or a password?
+            // store the input on form fields on the state
             [e.target.id]: e.target.value
         })
     }
