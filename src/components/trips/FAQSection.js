@@ -24,9 +24,6 @@ const FAQ = (props) => {
       </button>
       <p className="question">{props.question}</p>
       <p className="answer">{props.answer}</p>
-      <button onClick={() => props.removeFaq(props.question, props.answer)}>
-        Remove
-      </button>
     </div>
   );
 };
