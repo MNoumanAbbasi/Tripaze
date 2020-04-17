@@ -20,7 +20,7 @@ const FAQ = (props) => {
         className="remove-btn float-right"
         onClick={() => props.removeFaq(props.question, props.answer)}
       >
-        Remove
+        <i className="material-icons">cancel</i>
       </button>
       <p className="question">{props.question}</p>
       <p className="answer">{props.answer}</p>
