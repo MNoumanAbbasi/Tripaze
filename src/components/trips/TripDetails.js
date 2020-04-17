@@ -1,8 +1,9 @@
-import React from "react";
-import { connect } from "react-redux";
-import { firestoreConnect } from "react-redux-firebase";
-import { compose } from "redux";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import { compose } from 'redux';
+import { Link } from 'react-router-dom';
+import FAQSection from './FAQSection';
 // import { Redirect } from 'react-router-dom'
 
 // class container section is material
@@ -24,10 +25,10 @@ function TripDetails(props) {
           </div>
           <div className="card-action grey lighten-4 grey-text">
             <div>
-              {" "}
+              {' '}
               Company:
-              <Link to={"/companyProfile/" + trip.companyId}>
-                {" " + trip.companyName}
+              <Link to={'/companyProfile/' + trip.companyId}>
+                {' ' + trip.companyName}
               </Link>
             </div>
             <div>Cost: Rs. {trip.price}</div>
@@ -37,6 +38,7 @@ function TripDetails(props) {
             <div>Description: {trip.description}</div>
             <div>Attractions: {trip.attraction}</div>
           </div>
+          <FAQSection />
         </div>
       </div>
     );
@@ -52,7 +54,7 @@ function TripDetails(props) {
 
 // ownProps are the props of the component before we attach anything to it
 const mapStateToProps = (state, ownProps) => {
-  console.log("trip", state);
+  console.log('trip', state);
   const id = ownProps.match.params.id;
   const trips = state.firestore.data.Trips; // using data instead of ordered here since we are interested in referencing specific trips (hash table)
   const trip = trips ? trips[id] : null; // if there are any projects, find the project with the given data
@@ -64,5 +66,5 @@ const mapStateToProps = (state, ownProps) => {
 
 export default compose(
   connect(mapStateToProps),
-  firestoreConnect([{ collection: "Trips" }])
+  firestoreConnect([{ collection: 'Trips' }])
 )(TripDetails);
