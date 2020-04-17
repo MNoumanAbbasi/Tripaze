@@ -24,7 +24,9 @@ const FAQ = (props) => {
       </button>
       <p className="question">{props.question}</p>
       <p className="answer">{props.answer}</p>
-      {/* <button onClick={props.removeFaq}>Remove</button> */}
+      <button onClick={() => props.removeFaq(props.question, props.answer)}>
+        Remove
+      </button>
     </div>
   );
 };
@@ -68,7 +70,6 @@ const FAQSection = (props) => {
     setFAQs([...FAQs, newFaq]);
     setIsAddFAQState(false);
   };
-
   const removeFaq = (question, answer) => {
     setFAQs(
       FAQs.filter((faq) => faq.question !== question && faq.answer !== answer)
