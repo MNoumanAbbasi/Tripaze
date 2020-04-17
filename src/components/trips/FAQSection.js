@@ -16,26 +16,20 @@ const sampleQuestions = [
 const FAQ = (props) => {
   return (
     <div className="faq">
-<<<<<<< HEAD
       <button
         className="remove-btn float-right"
         onClick={() => props.removeFaq(props.question, props.answer)}
       >
         <i className="material-icons">cancel</i>
       </button>
-=======
->>>>>>> Added FAQSection
       <p className="question">{props.question}</p>
       <p className="answer">{props.answer}</p>
+      {/* <button onClick={props.removeFaq}>Remove</button> */}
     </div>
   );
 };
 
 const AddNewFAQForm = (props) => {
-<<<<<<< HEAD
-=======
-  const [dest, setDest] = useState('')
->>>>>>> Added FAQSection
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
   const handleSubmit = (event) => {
@@ -58,11 +52,7 @@ const AddNewFAQForm = (props) => {
           onChange={(event) => setAnswer(event.target.value)}
           required
         />
-<<<<<<< HEAD
         <button className="dark-button">Submit</button>
-=======
-        <button>Submit</button>
->>>>>>> Added FAQSection
       </form>
     </div>
   );
@@ -78,40 +68,30 @@ const FAQSection = (props) => {
     setFAQs([...FAQs, newFaq]);
     setIsAddFAQState(false);
   };
-<<<<<<< HEAD
+
   const removeFaq = (question, answer) => {
     setFAQs(
       FAQs.filter((faq) => faq.question !== question && faq.answer !== answer)
     );
   };
-=======
->>>>>>> Added FAQSection
 
   // Button to display (add new or cancel) based on if add new faq form is open or not
   let button;
   if (isAddFAQState) {
     button = (
-<<<<<<< HEAD
       <button
         className="cancelButton light-button"
         onClick={() => setIsAddFAQState(false)}
       >
-=======
-      <button className="cancelButton" onClick={() => setIsAddFAQState(false)}>
->>>>>>> Added FAQSection
         Cancel
       </button>
     );
   } else {
     button = (
-<<<<<<< HEAD
       <button
         className="addNewButton dark-button"
         onClick={() => setIsAddFAQState(true)}
       >
-=======
-      <button className="addNewButton" onClick={() => setIsAddFAQState(true)}>
->>>>>>> Added FAQSection
         Add Question
       </button>
     );
@@ -121,11 +101,7 @@ const FAQSection = (props) => {
     <div className="FAQSection">
       <p className="heading">FAQ Section</p>
       {FAQs.map((faq) => {
-<<<<<<< HEAD
         return <FAQ key={faq.question} {...faq} removeFaq={removeFaq} />;
-=======
-        return <FAQ key={faq.question} {...faq} />;
->>>>>>> Added FAQSection
       })}
       {isAddFAQState && <AddNewFAQForm onSubmit={addNewFaq} />}
       {button}
