@@ -33,7 +33,7 @@ const GuestUserLinks = () => {
                 <li class="nav-item">
                     <NavLink to="/signin" class="nav-link">
                         <button
-                            class="btn btn-secondary signin-button mr-lg-3 my-2 my-lg-0 form-rounded"
+                            class="btn btn-secondary light-button mr-lg-3 my-2 my-lg-0 form-rounded"
                             type="button"
                         >
                             SIGN IN

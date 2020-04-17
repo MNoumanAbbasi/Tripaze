@@ -18,12 +18,12 @@ const FAQ = (props) => {
     <div className="faq">
       <p className="question">{props.question}</p>
       <p className="answer">{props.answer}</p>
+      {/* <button onClick={props.removeFaq}>Remove</button> */}
     </div>
   );
 };
 
 const AddNewFAQForm = (props) => {
-  const [dest, setDest] = useState('')
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
   const handleSubmit = (event) => {
@@ -46,7 +46,7 @@ const AddNewFAQForm = (props) => {
           onChange={(event) => setAnswer(event.target.value)}
           required
         />
-        <button>Submit</button>
+        <button className="dark-button">Submit</button>
       </form>
     </div>
   );
@@ -62,18 +62,27 @@ const FAQSection = (props) => {
     setFAQs([...FAQs, newFaq]);
     setIsAddFAQState(false);
   };
+  // const removeFaq = () => {
+    
+  // }
 
   // Button to display (add new or cancel) based on if add new faq form is open or not
   let button;
   if (isAddFAQState) {
     button = (
-      <button className="cancelButton" onClick={() => setIsAddFAQState(false)}>
+      <button
+        className="cancelButton light-button"
+        onClick={() => setIsAddFAQState(false)}
+      >
         Cancel
       </button>
     );
   } else {
     button = (
-      <button className="addNewButton" onClick={() => setIsAddFAQState(true)}>
+      <button
+        className="addNewButton dark-button"
+        onClick={() => setIsAddFAQState(true)}
+      >
         Add Question
       </button>
     );
