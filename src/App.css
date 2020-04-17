@@ -69,6 +69,7 @@
   color: #808080;
 }
 
+/* Change btn to body since Open Sans is the default for all components */
 .btn {
   font-family: 'Open Sans';
 }
@@ -94,10 +95,28 @@
   background-color: #ffffff;
 }
 
-.signin-button {
+.dark-button {
+  border: 0px;
+  background-color: #00a99d;
+  border-radius: 20px; /* Making border radius */
+  width: auto; /* Making auto-sizable width */
+  height: auto; /* Making auto-sizable height */
+  padding: 5px 15px 5px 15px; /* Making space around letters */
+  font-size: 18px; /* Changing font size */
+  color: #ffffff;
+}
+
+.light-button {
   border: 1px solid #00a99d;
   background-color: #ffffff;
+  border-radius: 20px; /* Making border radius */
+  padding: 5px 15px 5px 15px; /* Making space around letters */
+  font-size: 18px; /* Changing font size */
   color: #00a99d;
+}
+
+.faq {
+  border: 1px solid;
 }
 
 @media only screen and (max-width: 990px) {
