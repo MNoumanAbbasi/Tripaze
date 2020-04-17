@@ -72,6 +72,10 @@
   border: 1px solid;
 }
 
+.float-right {
+  float: right;
+}
+
 @media only screen and (max-width: 990px) {
   ul.navbar-nav.navbar-fonts {
     display: flow-root;
