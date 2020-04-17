@@ -18,7 +18,9 @@ const FAQ = (props) => {
     <div className="faq">
       <p className="question">{props.question}</p>
       <p className="answer">{props.answer}</p>
-      {/* <button onClick={props.removeFaq}>Remove</button> */}
+      <button onClick={() => props.removeFaq(props.question, props.answer)}>
+        Remove
+      </button>
     </div>
   );
 };
@@ -62,9 +64,11 @@ const FAQSection = (props) => {
     setFAQs([...FAQs, newFaq]);
     setIsAddFAQState(false);
   };
-  // const removeFaq = () => {
-    
-  // }
+  const removeFaq = (question, answer) => {
+    setFAQs(
+      FAQs.filter((faq) => faq.question !== question && faq.answer !== answer)
+    );
+  };
 
   // Button to display (add new or cancel) based on if add new faq form is open or not
   let button;
@@ -92,7 +96,7 @@ const FAQSection = (props) => {
     <div className="FAQSection">
       <p className="heading">FAQ Section</p>
       {FAQs.map((faq) => {
-        return <FAQ key={faq.question} {...faq} />;
+        return <FAQ key={faq.question} {...faq} removeFaq={removeFaq} />;
       })}
       {isAddFAQState && <AddNewFAQForm onSubmit={addNewFaq} />}
       {button}
