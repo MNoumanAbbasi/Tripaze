@@ -10,7 +10,8 @@ import logo from '../../logo.png';
 
 const Navbar = (props) => {
   const { auth, profile } = props;
-  var links = <GuestUserLinks />;
+  
+  let links = <GuestUserLinks />;
 
   if (auth.uid && profile.currProfile) {
     if (profile.currProfile.type === 'Company') {
@@ -21,14 +22,24 @@ const Navbar = (props) => {
   }
 
   return (
-    // all classnames are through material UI. Link is to homepage
-    <nav className="nav-wrapper grey darken-3">
-      <div className="container">
-        <Link to="/">
-          <img className="logo" src={logo} alt="logo" />
-        </Link>
-        {links}
-      </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <Link to="/" class="navbar-brand">
+        <img src={logo} className="brand-logo left logo" />
+      </Link>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      {links}
+
     </nav>
   );
 };
@@ -42,3 +53,4 @@ const mapStateToProps = (state) => {
 
 // Exporting to be used in app.js
 export default connect(mapStateToProps)(Navbar);
+
