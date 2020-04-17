@@ -49,6 +49,7 @@ const authReducer = (state = initState, action) => {
             console.log("signout success")
             return {
                 ...state,
+                profile: null,
                 currProfile: null,
             }
         case 'SIGNUP_SUCCESS':

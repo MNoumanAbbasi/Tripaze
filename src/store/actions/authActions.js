@@ -45,14 +45,16 @@ export const authProfileLoad = (user) => {
   }
 }
 
-export const signOut = () => {
+export const signOut = (history) => {
   return (dispatch, getState) => {
     firebase
       .auth()
       .signOut()
       .then(() => {
         dispatch({ type: 'SIGNOUT_SUCCESS' });
-      });
+      }).then(() => {
+        history.push('/') // to redirect to homepage upon sign out
+      })
   };
 };
 
