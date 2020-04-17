@@ -48,6 +48,10 @@
   font-family: 'Open Sans';
 }
 
+button {
+  cursor: pointer; /* changes cursor to hand */
+}
+
 .dark-button {
   border: 0px;
   background-color: #00a99d;
