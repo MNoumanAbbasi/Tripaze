@@ -10,17 +10,7 @@ export const signIn = (credentials) => {
         .auth().signInWithEmailAndPassword(
             credentials.email,  
             credentials.password
-        ).then((returnedUser) => {
-            uid = returnedUser.user.uid
-            return firestore.collection('UserTypes').doc(returnedUser.user.uid).get()
-        }).then((doc) => {
-            const currProfile = doc.data()
-            if (currProfile.userType === "Company") {
-                return firestore.collection('Companies').doc(uid).get()
-            } else {
-                return firestore.collection('Users').doc(uid).get()
-            }
-        }).then((doc) => {
+        ).then((doc) => {
             const currProfile = doc.data()
             dispatch({ type: 'SIGNIN_SUCCESS', currProfile})
         }).catch((err) => {
