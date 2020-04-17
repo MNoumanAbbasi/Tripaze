@@ -16,11 +16,14 @@ const sampleQuestions = [
 const FAQ = (props) => {
   return (
     <div className="faq">
-      <p className="question">{props.question}</p>
-      <p className="answer">{props.answer}</p>
-      <button onClick={() => props.removeFaq(props.question, props.answer)}>
+      <button
+        className="remove-btn float-right"
+        onClick={() => props.removeFaq(props.question, props.answer)}
+      >
         Remove
       </button>
+      <p className="question">{props.question}</p>
+      <p className="answer">{props.answer}</p>
     </div>
   );
 };
