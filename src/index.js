@@ -1,23 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import { createStore, applyMiddleware, compose } from 'redux';
-import rootReducer from './store/reducers/rootReducer';
-import { Provider, useSelector } from 'react-redux';
-import thunk from 'redux-thunk';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import { createStore, applyMiddleware, compose } from "redux";
+import rootReducer from "./store/reducers/rootReducer";
+import { Provider, useSelector } from "react-redux";
+import thunk from "redux-thunk";
 import {
   createFirestoreInstance,
   getFirestore,
   reduxFirestore,
-} from 'redux-firestore';
+} from "redux-firestore";
 import {
   ReactReduxFirebaseProvider,
   getFirebase,
   isLoaded,
-} from 'react-redux-firebase';
-import fbConfig from './config/fbConfig';
-import firebase from 'firebase/app';
+} from "react-redux-firebase";
+import fbConfig from "./config/fbConfig";
+import firebase from "firebase/app";
 
 // Multiple reducers for multiple actions
 // Thunk with extra arguments takes in an object
@@ -32,7 +32,7 @@ const store = createStore(
 
 //construct required properties
 const profileSpecificProps = {
-  userProfile: 'UserTypes',
+  userProfile: "UserTypes",
   useFirestoreForProfile: true,
   enableRedirectHandling: false,
   resetBeforeLogin: false,
@@ -63,7 +63,7 @@ ReactDOM.render(
       </AuthIsLoaded>
     </ReactReduxFirebaseProvider>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // serviceWorker.unregister();
