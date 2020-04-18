@@ -31,28 +31,8 @@ export class SignIn extends Component {
     }
 
     return (
-      // <div className="container">
-      //   <form onSubmit={this.handleSubmit} className="white">
-      //     <h5 className="gre-text text-darken-3">Sign In</h5>
-      //     <div className="input-field">
-      //       <label htmlFor="email">Email</label>
-      //       <input type="email" id="email" onChange={this.handleChange} />
-      //     </div>
-      //     <div className="input-field">
-      //       <label htmlFor="password">Password</label>
-      //       <input type="password" id="password" onChange={this.handleChange} />
-      //     </div>
-      //     <div className="input-field">
-      //       <button className="btn blue lighten-1 z-depth-1">Sign In</button>
-      //       <div className="red-text center">
-      //         {authError ? <p>{authError}</p> : null}
-      //       </div>
-      //     </div>
-      //   </form>
-      // </div>
-
       <div className="row m-0 signin-page ">
-        <div className="col-lg-3  signin-form ">
+        <div className="col-lg-3  signin-form signin-margin">
           <form onSubmit={this.handleSubmit} className="change-font-opensans ">
             <h3 class="mt-20 mb-4 text-center">Sign In</h3>
 

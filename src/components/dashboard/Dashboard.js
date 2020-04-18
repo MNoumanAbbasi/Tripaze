@@ -21,7 +21,7 @@ class Dashboard extends Component {
 
     if (isInitialized) {
       return (
-        <div className="container">
+        <div className="container cardslist-margin">
           <TripsList trips={trips} />
         </div>
       );

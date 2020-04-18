@@ -47,6 +47,10 @@
   border-radius: 20px;
 }
 
+.cardslist-margin {
+  margin-top: 5rem !important;
+}
+
 .card-img-top {
   border-top-left-radius: inherit;
   border-top-right-radius: inherit;
@@ -92,6 +96,10 @@
 
 .signin-form {
   background-color: #ffffff;
+}
+
+.signin-margin {
+  margin-top: 7rem !important;
 }
 
 .signin-button {
