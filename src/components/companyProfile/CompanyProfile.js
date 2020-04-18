@@ -8,7 +8,8 @@ import { firestoreConnect } from "react-redux-firebase"; // higher order
 class CompanyProfile extends Component {
   render() {
     const { trips, company, profile, isLoading } = this.props;
-    if (trips && company && !isLoading) {
+    const isInitialized = !isLoading && trips && company;
+    if (isInitialized) {
       return (
         <div className="dashboard container">
           <h5 className="gre-text text-darken-3">
@@ -29,7 +30,6 @@ class CompanyProfile extends Component {
 
 // Map state from store to props in component
 const mapStateToProps = (state, ownProps) => {
-  console.log("State", state);
   const id = ownProps.match.params.id;
   const companies = state.firestore.data.Companies; // using data instead of ordered here since we are interested in referencing specific trips (hash table)
   const company = companies ? companies[id] : null;
@@ -41,7 +41,7 @@ const mapStateToProps = (state, ownProps) => {
     trips: state.firestore.ordered.Trips,
     company: company,
     profile: state.firebase.profile,
-    isLoading: isLoading,
+    isLoading: isLoading, // all must be loaded
   };
 };
 

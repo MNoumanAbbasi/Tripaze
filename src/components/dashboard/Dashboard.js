@@ -11,16 +11,14 @@ class Dashboard extends Component {
   render() {
     // console.log(this.props)
     const { trips, profile, auth, isLoading } = this.props;
+    const isInitialized = trips && !isLoading;
 
     // If company is logged in, redirect to company profile
     if (profile && profile.type === "Company") {
       return <Redirect to={"/companyprofile/" + auth.uid} />;
     }
 
-    if (isLoading && isLoading.Trips) {
-      // to show page reload while trips are being requested
-      return <div>Loading...</div>;
-    } else {
+    if (isInitialized) {
       return (
         <div className="dashboard container">
           <div className="row">
@@ -33,17 +31,24 @@ class Dashboard extends Component {
           </div>
         </div>
       );
+    } else {
+      // to show page reload while trips are being requested
+      return <div>Loading...</div>;
     }
   }
 }
 // Map state from store to props in component
 const mapStateToProps = (state) => {
   console.log("Dashboard", state);
+  const requests = state.firestore.status.requesting;
+  const isLoading = requests
+    ? Object.values(requests).some((value) => value === true)
+    : null;
   return {
     trips: state.firestore.ordered.Trips,
     auth: state.firebase.auth,
     profile: state.auth.currProfile,
-    isLoading: state.firestore.status.requesting,
+    isLoading: isLoading,
   };
 };
 
