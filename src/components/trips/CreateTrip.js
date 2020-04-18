@@ -3,12 +3,12 @@ import { connect } from "react-redux";
 import { createTrip } from "../../store/actions/tripActions";
 import { Redirect } from "react-router-dom";
 import { profileType } from "../../Helpers";
-
+import DestinationSection from "./DestinationSection";
 // all css are from the materialized CSS class
 export class CreateTrip extends Component {
   state = {
     title: "",
-    destinations: "",
+    destinations: [],
     departureLoc: "",
     departureDate: "",
     duration: 0,
@@ -50,10 +50,11 @@ export class CreateTrip extends Component {
             <input type="text" id="title" onChange={this.handleChange} />
           </div>
 
-          <div className="input-field">
+          {/* <div className="input-field">
             <label htmlFor="destinations">Destinations</label>
             <input type="text" id="destinations" onChange={this.handleChange} />
-          </div>
+          </div> */}
+          <DestinationSection />
 
           <div className="input-field">
             <label htmlFor="departureLoc">Departure Location</label>
