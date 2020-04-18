@@ -13,6 +13,7 @@ import firebase from "firebase";
 import { connect } from "react-redux";
 import { authProfileLoad } from "./store/actions/authActions";
 import "./App.css";
+import SearchResults from "./components/SearchResults/SearchResults";
 
 // switch ensures that only one route is loaded at  a time
 class App extends Component {
@@ -39,6 +40,7 @@ class App extends Component {
               <Route path="/signupcompany" component={SignUpCompany} />
               <Route path="/createtrip" component={CreateTrip} />
               <Route path="/trip/:id" component={TripDetails} />
+              <Route path="/searchResults/:dest" component={SearchResults} />
               <Route path="/signupchoice" component={SignUpChoice} />
               <Route path="/companyprofile/:id" component={CompanyProfile} />
             </Switch>
