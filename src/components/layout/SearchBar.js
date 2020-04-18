@@ -8,6 +8,22 @@ export class SearchBar extends Component {
     destinations: "",
   };
 
+  componentWillMount() {
+    this.unlisten = this.props.history.listen((location, action) => {
+      console.log("on route change", location);
+      if (!location.pathname.startsWith("/searchResults")) {
+        this.setState({
+          // store the input on form fields on the state
+          destinations: "",
+        });
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    this.unlisten();
+  }
+
   handleChange = (e) => {
     this.setState({
       // store the input on form fields on the state
@@ -23,6 +39,8 @@ export class SearchBar extends Component {
   };
 
   render() {
+    console.log(this.props.location);
+
     return (
       <form
         onSubmit={(e) => {
@@ -36,6 +54,7 @@ export class SearchBar extends Component {
           placeholder="Search trips..."
           aria-label="Search"
           id="destinations"
+          value={this.state.destinations}
           onChange={this.handleChange}
         />
 
