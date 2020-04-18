@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { signIn } from "../../store/actions/authActions";
-import { Redirect } from "react-router-dom";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { signIn } from '../../store/actions/authActions';
+import { Redirect } from 'react-router-dom';
 
 // all css are from the materialized CSS class
 export class SignIn extends Component {
   state = {
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   };
 
   handleChange = (e) => {
@@ -31,24 +31,77 @@ export class SignIn extends Component {
     }
 
     return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit} className="white">
-          <h5 className="gre-text text-darken-3">Sign In</h5>
-          <div className="input-field">
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" onChange={this.handleChange} />
-          </div>
-          <div className="input-field">
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" onChange={this.handleChange} />
-          </div>
-          <div className="input-field">
-            <button className="btn blue lighten-1 z-depth-1">Sign In</button>
-            <div className="red-text center">
-              {authError ? <p>{authError}</p> : null}
+      // <div className="container">
+      //   <form onSubmit={this.handleSubmit} className="white">
+      //     <h5 className="gre-text text-darken-3">Sign In</h5>
+      //     <div className="input-field">
+      //       <label htmlFor="email">Email</label>
+      //       <input type="email" id="email" onChange={this.handleChange} />
+      //     </div>
+      //     <div className="input-field">
+      //       <label htmlFor="password">Password</label>
+      //       <input type="password" id="password" onChange={this.handleChange} />
+      //     </div>
+      //     <div className="input-field">
+      //       <button className="btn blue lighten-1 z-depth-1">Sign In</button>
+      //       <div className="red-text center">
+      //         {authError ? <p>{authError}</p> : null}
+      //       </div>
+      //     </div>
+      //   </form>
+      // </div>
+
+      <div className="row m-0 signin-page ">
+        <div className="col-lg-3  signin-form ">
+          <form onSubmit={this.handleSubmit} className="change-font-opensans ">
+            <h3 class="mt-20 mb-4 text-center">Sign In</h3>
+
+            <div>
+              <input
+                onChange={this.handleChange}
+                type="email"
+                id="email"
+                class="form-control mb-4"
+                placeholder="Email address"
+                required
+                autofocus
+              />
             </div>
-          </div>
-        </form>
+
+            <div class="form-label-group">
+              <input
+                onChange={this.handleChange}
+                type="password"
+                id="password"
+                class="form-control mb-4"
+                placeholder="Password"
+                required
+              />
+            </div>
+
+            <a href="" class="">
+              Forgot Password?
+            </a>
+
+            <div class="custom-control custom-checkbox mb-3">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="customCheck1"
+              />
+              <label class="custom-control-label" for="customCheck1">
+                Remember password
+              </label>
+            </div>
+            <button
+              class="btn btn-lg signin-button form-rounded btn-block text-uppercase"
+              type="submit"
+            >
+              Sign in
+            </button>
+          </form>
+        </div>
+        <div className="col-lg-9 signin-background"></div>
       </div>
     );
   }
