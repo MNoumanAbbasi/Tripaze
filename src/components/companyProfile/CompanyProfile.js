@@ -3,13 +3,12 @@ import TripsList from "../trips/TripsList";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase"; // higher order
-import { db } from "../../config/fbConfig";
 
 // 6 columns on medium and 12 column on small screens
 class CompanyProfile extends Component {
   render() {
-    const { trips, company, profile } = this.props;
-    if (trips && company && profile) {
+    const { trips, company, profile, isLoading } = this.props;
+    if (trips && company && !isLoading) {
       return (
         <div className="dashboard container">
           <h5 className="gre-text text-darken-3">
@@ -30,13 +29,19 @@ class CompanyProfile extends Component {
 
 // Map state from store to props in component
 const mapStateToProps = (state, ownProps) => {
+  console.log("State", state);
   const id = ownProps.match.params.id;
   const companies = state.firestore.data.Companies; // using data instead of ordered here since we are interested in referencing specific trips (hash table)
   const company = companies ? companies[id] : null;
+  const requests = state.firestore.status.requesting;
+  const isLoading = requests
+    ? Object.values(requests).some((value) => value === true)
+    : null;
   return {
     trips: state.firestore.ordered.Trips,
     company: company,
     profile: state.firebase.profile,
+    isLoading: isLoading,
   };
 };
 
