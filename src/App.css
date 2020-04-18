@@ -20,6 +20,15 @@
   border-radius: 30px;
 }
 
+.adjusted-form {
+  margin-top: 0 !important;
+  padding: 0%;
+}
+
+.adjusted-btn {
+  margin: 0 0;
+}
+
 .change-color {
   background-color: #00a99d;
   border-radius: 20px; /* Making border radius */

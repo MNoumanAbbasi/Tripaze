@@ -5,30 +5,14 @@ import { withRouter, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { signOut } from "../../store/actions/authActions";
 import { compose } from "redux";
+import SearchBar from "./SearchBar";
 
 // this is a functional component, not a class, so we need to pass the props as argument
 const SignedInUserLinks = (props) => {
   const initial = props.profile ? props.profile.userName : null;
   return (
     <div class="collapse navbar-collapse " id="navbarSupportedContent">
-      <div class="navbar-nav input-group form-group w-50 ml-auto mr-auto ">
-        <input
-          class="form-control form-rounded "
-          type="search"
-          placeholder="Search trips..."
-          aria-label="Search"
-        />
-
-        <div class="input-group-append">
-          <button
-            class="btn btn-secondary change-color border-0 form-rounded"
-            type="button"
-          >
-            <i class="fa fa-search"></i>
-          </button>
-        </div>
-      </div>
-
+      <SearchBar />
       <ul class="navbar-nav navbar-fonts justify-content-end">
         <li class="nav-item">
           <NavLink to="/" class="nav-link">
