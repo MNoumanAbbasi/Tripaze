@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { firestoreConnect, isLoaded } from "react-redux-firebase"; // higher order
 import { Redirect } from "react-router-dom";
+import { profileType } from "../../Helpers";
 
 // 6 columns on medium and 12 column on small screens
 class Dashboard extends Component {
@@ -14,7 +15,7 @@ class Dashboard extends Component {
     const isInitialized = trips && !isLoading;
 
     // If company is logged in, redirect to company profile
-    if (profile && profile.type === "Company") {
+    if (profileType(auth, profile) === "Company") {
       return <Redirect to={"/companyprofile/" + auth.uid} />;
     }
 

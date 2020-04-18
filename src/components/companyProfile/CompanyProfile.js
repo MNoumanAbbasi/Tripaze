@@ -40,7 +40,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     trips: state.firestore.ordered.Trips,
     company: company,
-    profile: state.firebase.profile,
+    profile: state.auth.currProfile,
     isLoading: isLoading, // all must be loaded
   };
 };
