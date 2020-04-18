@@ -8,7 +8,7 @@ import { firestoreConnect } from "react-redux-firebase"; // higher order
 class SearchResults extends Component {
   render() {
     const { trips, isLoading } = this.props;
-    const isInitialized = !isLoading && trips && company;
+    const isInitialized = !isLoading && trips;
     if (isInitialized) {
       return (
         <div className="dashboard container">
