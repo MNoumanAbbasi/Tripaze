@@ -13,7 +13,7 @@ const SignedInCompanyLinks = (props) => {
     <div class="collapse navbar-collapse " id="navbarSupportedContent">
       <ul class="navbar-nav navbar-fonts ml-auto justify-content-end">
         <li class="nav-item">
-          <NavLink to="/reatetrip" class="nav-link">
+          <NavLink to="/createtrip" class="nav-link">
             Create Trip
           </NavLink>
         </li>
