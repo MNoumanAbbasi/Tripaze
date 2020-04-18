@@ -8,17 +8,26 @@ import { firestoreConnect } from "react-redux-firebase"; // higher order
 class SearchResults extends Component {
   render() {
     const { trips, isLoading } = this.props;
+    console.log("Trips", trips);
     const isInitialized = !isLoading && trips;
     if (isInitialized) {
-      return (
-        <div className="dashboard container">
-          <div className="row">
-            <div className="col s12 m6">
-              <TripsList trips={trips} />
+      if (trips.length > 0) {
+        return (
+          <div className="dashboard container">
+            <div className="row">
+              <div className="col s12 m6">
+                <TripsList trips={trips} />
+              </div>
             </div>
           </div>
-        </div>
-      );
+        );
+      } else {
+        return (
+          <div>
+            No trips found with destination "{this.props.match.params.dest}"
+          </div>
+        );
+      }
     } else {
       return <div>Loading...</div>;
     }
