@@ -12,9 +12,8 @@ class Dashboard extends Component {
     // console.log(this.props)
     const { trips, profile, auth } = this.props;
 
-    const currProfile = profile.currProfile ? profile.currProfile : null;
-
-    if (currProfile && currProfile.type === "Company") {
+    // If company is logged in, redirect to company profile
+    if (profile && profile.type === "Company") {
       return <Redirect to={"/companyprofile/" + auth.uid} />;
     }
 
@@ -34,11 +33,11 @@ class Dashboard extends Component {
 }
 // Map state from store to props in component
 const mapStateToProps = (state) => {
-  console.log("Dashboard", state);
+  //   console.log("Dashboard", state);
   return {
     trips: state.firestore.ordered.Trips,
     auth: state.firebase.auth,
-    profile: state.auth,
+    profile: state.auth.currProfile,
   };
 };
 

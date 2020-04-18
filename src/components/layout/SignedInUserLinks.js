@@ -9,7 +9,6 @@ import { compose } from "redux";
 // this is a functional component, not a class, so we need to pass the props as argument
 const SignedInUserLinks = (props) => {
   const initial = props.profile ? props.profile.userName : null;
-  console.log(props);
   return (
     <div class="collapse navbar-collapse " id="navbarSupportedContent">
       <div class="navbar-nav input-group form-group w-50 ml-auto mr-auto ">

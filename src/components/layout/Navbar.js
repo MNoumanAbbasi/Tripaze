@@ -14,14 +14,12 @@ const Navbar = (props) => {
   let links = <GuestUserLinks />;
 
   if (auth.uid && profile.currProfile) {
-    console.log("ASD");
     if (profile.currProfile.type === "Company") {
       links = <SignedInCompanyLinks profile={profile.currProfile} />;
     } else {
       links = <SignedInUserLinks profile={profile.currProfile} />;
     }
   }
-  console.log("Links", links);
   return (
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <Link to="/" class="navbar-brand">
