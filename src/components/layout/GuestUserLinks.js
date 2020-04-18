@@ -2,28 +2,12 @@
 
 import React from "react";
 import { NavLink } from "react-router-dom";
+import SearchBar from "./SearchBar";
 
 const GuestUserLinks = () => {
   return (
     <div class="collapse navbar-collapse " id="navbarSupportedContent">
-      <div class="navbar-nav input-group form-group w-50 ml-auto mr-auto ">
-        <input
-          class="form-control form-rounded "
-          type="search"
-          placeholder="Search trips..."
-          aria-label="Search"
-        />
-
-        <div class="input-group-append">
-          <button
-            class="btn btn-secondary change-color border-0 form-rounded"
-            type="button"
-          >
-            <i class="fa fa-search"></i>
-          </button>
-        </div>
-      </div>
-
+      <SearchBar />
       <ul class="navbar-nav navbar-fonts justify-content-end">
         <li class="nav-item">
           <NavLink to="/signin" class="nav-link">
