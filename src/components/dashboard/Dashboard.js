@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import Notifications from "./Notifications";
-import TripsList from "../trips/TripsList";
-import { connect } from "react-redux";
-import { compose } from "redux";
-import { firestoreConnect, isLoaded } from "react-redux-firebase"; // higher order
-import { Redirect } from "react-router-dom";
-import { profileType } from "../../Helpers";
+import React, { Component } from 'react';
+import Notifications from './Notifications';
+import TripsList from '../trips/TripsList';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { firestoreConnect, isLoaded } from 'react-redux-firebase'; // higher order
+import { Redirect } from 'react-router-dom';
+import { profileType } from '../../Helpers';
 
 // 6 columns on medium and 12 column on small screens
 class Dashboard extends Component {
@@ -15,21 +15,14 @@ class Dashboard extends Component {
     const isInitialized = trips && !isLoading;
 
     // If company is logged in, redirect to company profile
-    if (profileType(auth, profile) === "Company") {
-      return <Redirect to={"/companyprofile/" + auth.uid} />;
+    if (profileType(auth, profile) === 'Company') {
+      return <Redirect to={'/companyprofile/' + auth.uid} />;
     }
 
     if (isInitialized) {
       return (
-        <div className="dashboard container">
-          <div className="row">
-            <div className="col s12 m6">
-              <TripsList trips={trips} />
-            </div>
-            <div className="col s12 m5 offset-m1">
-              <Notifications />
-            </div>
-          </div>
+        <div className="container">
+          <TripsList trips={trips} />
         </div>
       );
     } else {
@@ -40,7 +33,7 @@ class Dashboard extends Component {
 }
 // Map state from store to props in component
 const mapStateToProps = (state) => {
-  console.log("Dashboard", state);
+  console.log('Dashboard', state);
   const requests = state.firestore.status.requesting;
   const isLoading = requests
     ? Object.values(requests).some((value) => value === true)
@@ -57,5 +50,5 @@ export default compose(
   connect(mapStateToProps),
   // tells us which collections to connect to in our firebase project whenever this component, namely dashboard, is active
   // Whenever collection trip is changed, it would call the firestore reducer which would update the state of this firestore
-  firestoreConnect([{ collection: "Trips" }])
+  firestoreConnect([{ collection: 'Trips' }])
 )(Dashboard);
