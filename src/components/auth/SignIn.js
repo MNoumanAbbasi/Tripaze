@@ -24,7 +24,7 @@ export class SignIn extends Component {
   };
 
   render() {
-    const { auth } = this.props;
+    const { auth, authError } = this.props;
 
     if (auth.uid) {
       return <Redirect to="/" />;
@@ -73,12 +73,17 @@ export class SignIn extends Component {
                 Remember password
               </label>
             </div>
-            <button
-              class="btn btn-lg signin-button form-rounded btn-block text-uppercase"
-              type="submit"
-            >
-              Sign in
-            </button>
+            <div className="input-field">
+              <button
+                class="btn btn-lg signin-button form-rounded btn-block text-uppercase"
+                type="submit"
+              >
+                Sign in
+              </button>
+              <div className="red-text center">
+                {authError ? <p>{authError}</p> : null}
+              </div>
+            </div>
           </form>
         </div>
         <div className="col-lg-9 signin-background"></div>
