@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Notifications from './Notifications';
 import TripsList from '../trips/TripsList';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -20,6 +19,7 @@ class Dashboard extends Component {
     }
 
     if (isInitialized) {
+      console.log('Trippy', trips);
       return (
         <div className="container cardslist-margin">
           <TripsList trips={trips} />
@@ -33,7 +33,7 @@ class Dashboard extends Component {
 }
 // Map state from store to props in component
 const mapStateToProps = (state) => {
-  console.log('Dashboard', state);
+  // console.log('Dashboard', state);
   const requests = state.firestore.status.requesting;
   const isLoading = requests
     ? Object.values(requests).some((value) => value === true)

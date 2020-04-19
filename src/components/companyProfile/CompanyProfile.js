@@ -1,8 +1,9 @@
-import React, { Component } from "react";
-import TripsList from "../trips/TripsList";
-import { connect } from "react-redux";
-import { compose } from "redux";
-import { firestoreConnect } from "react-redux-firebase"; // higher order
+import React, { Component } from 'react';
+import TripsList from '../trips/TripsList';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase'; // higher order
+import ReviewSection from './ReviewSection';
 
 // 6 columns on medium and 12 column on small screens
 class CompanyProfile extends Component {
@@ -20,6 +21,10 @@ class CompanyProfile extends Component {
               <TripsList trips={trips} />
             </div>
           </div>
+          <ReviewSection
+            companyID={this.props.match.params.id}
+            reviews={this.props.reviews}
+          />
         </div>
       );
     } else {
@@ -42,6 +47,7 @@ const mapStateToProps = (state, ownProps) => {
     company: company,
     profile: state.auth.currProfile,
     isLoading: isLoading, // all must be loaded
+    reviews: state.firestore.ordered.Reviews,
   };
 };
 
@@ -51,9 +57,13 @@ export default compose(
   // Whenever collection trip is changed, it would call the firestore reducer which would update the state of this firestore
   firestoreConnect((props) => [
     {
-      collection: "Trips",
-      where: [["companyId", "==", props.match.params.id]],
+      collection: 'Trips',
+      where: [['companyId', '==', props.match.params.id]],
     },
-    { collection: "Companies", doc: props.match.params.id },
+    { collection: 'Companies', doc: props.match.params.id },
+    {
+      collection: 'Reviews',
+      where: [['companyID', '==', props.match.params.id]],
+    },
   ])
 )(CompanyProfile);
