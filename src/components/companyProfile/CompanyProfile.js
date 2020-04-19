@@ -16,10 +16,8 @@ class CompanyProfile extends Component {
           <h5 className="gre-text text-darken-3">
             Company Profile: {company.companyName}
           </h5>
-          <div className="row">
-            <div className="col s12 m6">
-              <TripsList trips={trips} />
-            </div>
+          <div className="container cardslist-margin">
+            <TripsList trips={trips} />
           </div>
           <ReviewSection
             companyID={this.props.match.params.id}
