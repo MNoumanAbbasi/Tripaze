@@ -4,6 +4,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { Link } from 'react-router-dom';
 import FAQSection from './FAQSection';
+import EditTrip from './EditTrip';
 // import { Redirect } from 'react-router-dom'
 
 // class container section is material
@@ -11,7 +12,7 @@ import FAQSection from './FAQSection';
 // taking props to know which trip to load
 function TripDetails(props) {
   const { trip } = props; // getting trip category from props
-
+  console.log('det', trip);
   // TODO
   // if (auth.uid is a company id) {
   //      show trip details page from company perspective
@@ -39,6 +40,13 @@ function TripDetails(props) {
             <div>Attractions: {trip.attraction}</div>
           </div>
           <FAQSection />
+          <button
+            onClick={() =>
+              props.history.push('/edittrip/' + props.match.params.id)
+            }
+          >
+            Edit Trip
+          </button>
         </div>
       </div>
     );
