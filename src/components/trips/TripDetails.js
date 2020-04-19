@@ -12,7 +12,7 @@ import EditTrip from './EditTrip';
 // taking props to know which trip to load
 function TripDetails(props) {
   const { trip, isLoading, profile, auth } = props; // getting trip category from props
-  const isInitialized = !isLoading && profile && trip;
+  const isInitialized = !isLoading && trip;
 
   if (!isInitialized) {
     return <div>Loading...</div>;
