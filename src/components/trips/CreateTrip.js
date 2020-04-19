@@ -40,7 +40,7 @@ export class CreateTrip extends Component {
     const { auth, profile, isLoading } = this.props;
     const isInitialized = !isLoading && profile && auth;
 
-    if (isInitialized & (profileType(auth, profile) !== 'Company')) {
+    if (isInitialized && profileType(auth, profile) !== 'Company') {
       return <Redirect to="/" />;
     }
 

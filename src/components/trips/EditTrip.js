@@ -63,7 +63,7 @@ export class EditTrip extends Component {
     console.log(this.state);
     const isInitialized = !isLoading && trip;
 
-    if (!isLoading & (profileType(auth, profile) !== 'Company')) {
+    if (!isLoading && profileType(auth, profile) !== 'Company') {
       return <Redirect to="/" />;
     }
 
