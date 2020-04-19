@@ -62,8 +62,8 @@ export class EditTrip extends Component {
     const { trip, profile, isLoading, auth } = this.props;
     console.log(this.state);
     const isInitialized = !isLoading && trip;
-
-    if (!isLoading && profileType(auth, profile) !== 'Company') {
+    const adminMode = auth.uid === trip.companyId;
+    if (!isLoading && !adminMode) {
       return <Redirect to="/" />;
     }
 
