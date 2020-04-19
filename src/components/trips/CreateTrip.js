@@ -1,22 +1,22 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { createTrip } from "../../store/actions/tripActions";
-import { Redirect } from "react-router-dom";
-import { profileType } from "../../Helpers";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { createTrip } from '../../store/actions/tripActions';
+import { Redirect } from 'react-router-dom';
+import { profileType } from '../../Helpers';
 
 // all css are from the materialized CSS class
 export class CreateTrip extends Component {
   state = {
-    title: "",
-    destinations: "",
-    departureLoc: "",
-    departureDate: "",
+    title: '',
+    destinations: '',
+    departureLoc: '',
+    departureDate: '',
     duration: 0,
     price: 0,
     capacity: 0,
-    description: "",
-    attraction: "",
-    image: "",
+    description: '',
+    attraction: '',
+    image: '',
   };
 
   handleChange = (e) => {
@@ -33,13 +33,19 @@ export class CreateTrip extends Component {
 
     // calls the createTrip function in mapDispatchToProps which in turn calls dispatch with an action of createTrip that handles the asynch request. This request is then sent to the reducer for dispatch
     this.props.createTrip(this.state, this.props.profile);
-    this.props.history.push("/");
+    this.props.history.push('/');
   };
 
   render() {
-    const { auth, profile } = this.props;
-    if (profileType(auth, profile) !== "Company") {
+    const { auth, profile, isLoading } = this.props;
+    const isInitialized = !isLoading && profile && auth;
+
+    if (isInitialized && profileType(auth, profile) !== 'Company') {
       return <Redirect to="/" />;
+    }
+
+    if (!isInitialized) {
+      return <div>Loading...</div>;
     }
     return (
       <div className="container">

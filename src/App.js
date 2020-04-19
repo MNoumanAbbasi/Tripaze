@@ -1,19 +1,20 @@
-import React, { Component } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Navbar from "./components/layout/Navbar";
-import Dashboard from "./components/dashboard/Dashboard";
-import TripDetails from "./components/trips/TripDetails";
-import SignIn from "./components/auth/SignIn";
-import SignUpUser from "./components/auth/SignUpUser";
-import SignUpCompany from "./components/auth/SignUpCompany";
-import CreateTrip from "./components/trips/CreateTrip";
-import SignUpChoice from "./components/auth/SignUpChoice";
-import CompanyProfile from "./components/companyProfile/CompanyProfile";
-import firebase from "firebase";
-import { connect } from "react-redux";
-import { authProfileLoad } from "./store/actions/authActions";
-import "./App.css";
-import SearchResults from "./components/SearchResults/SearchResults";
+import React, { Component } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Navbar from './components/layout/Navbar';
+import Dashboard from './components/dashboard/Dashboard';
+import TripDetails from './components/trips/TripDetails';
+import SignIn from './components/auth/SignIn';
+import SignUpUser from './components/auth/SignUpUser';
+import SignUpCompany from './components/auth/SignUpCompany';
+import CreateTrip from './components/trips/CreateTrip';
+import SignUpChoice from './components/auth/SignUpChoice';
+import CompanyProfile from './components/companyProfile/CompanyProfile';
+import firebase from 'firebase';
+import { connect } from 'react-redux';
+import { authProfileLoad } from './store/actions/authActions';
+import './App.css';
+import SearchResults from './components/SearchResults/SearchResults';
+import EditTrip from './components/trips/EditTrip';
 
 // switch ensures that only one route is loaded at  a time
 class App extends Component {
@@ -40,6 +41,7 @@ class App extends Component {
               <Route path="/signupcompany" component={SignUpCompany} />
               <Route path="/createtrip" component={CreateTrip} />
               <Route path="/trip/:id" component={TripDetails} />
+              <Route path="/edittrip/:id" component={EditTrip} />
               <Route path="/searchResults/:dest" component={SearchResults} />
               <Route path="/signupchoice" component={SignUpChoice} />
               <Route path="/companyprofile/:id" component={CompanyProfile} />

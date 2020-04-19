@@ -25,7 +25,7 @@ const TripCard = ({ trip }) => {
           </h6>
           <h6 className="ml-3 change-font">
             <i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>
-            {trip.duration}
+            {trip.duration + ' days'}
           </h6>
           <hr></hr>
           <div>
