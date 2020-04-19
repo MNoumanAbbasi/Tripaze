@@ -3,14 +3,20 @@ import { connect } from 'react-redux';
 import { addReview, deleteReview } from '../../store/actions/reviewActions';
 
 const Review = (props) => {
-  return (
-    <div className="reviewSection">
+  let button = null;
+  if (props.profileType == 'User' && props.profileID == props.userID) {
+    button = (
       <button
         className="remove-btn float-right"
         onClick={() => props.removeReview(props.id)}
       >
         <i className="material-icons">cancel</i>
       </button>
+    );
+  }
+  return (
+    <div className="reviewSection">
+      {button}
       <h5 className="userName">{props.userName}</h5>
       <p className="review">{props.review}</p>
       <p className="rating">{props.rating}</p>
@@ -59,12 +65,6 @@ const ReviewSection = (props) => {
     setIsAddReviewState(false);
   };
   const removeReview = (id) => {
-    // setReviews(
-    //   reviews.filter(
-    //     (currReview) =>
-    //       currReview.review !== review && currReview.rating !== rating
-    //   )
-    // );
     props.deleteReview(id);
   };
 
@@ -79,6 +79,8 @@ const ReviewSection = (props) => {
         Cancel
       </button>
     );
+  } else if (props.profileType == 'Guest') {
+    button = null;
   } else {
     button = (
       <button
@@ -99,6 +101,8 @@ const ReviewSection = (props) => {
             key={currReview.id}
             {...currReview}
             removeReview={removeReview}
+            profileType={props.profileType}
+            profileID={props.id}
           />
         );
       })}

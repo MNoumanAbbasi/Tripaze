@@ -4,13 +4,15 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase'; // higher order
 import ReviewSection from './ReviewSection';
+import { profileType } from '../../Helpers';
 
 // 6 columns on medium and 12 column on small screens
 class CompanyProfile extends Component {
   render() {
-    const { trips, company, profile, isLoading } = this.props;
-    const isInitialized = !isLoading && trips && company;
+    const { trips, company, profile, isLoading, reviews, auth } = this.props;
+    const isInitialized = !isLoading && trips && company && auth;
     if (isInitialized) {
+      const currProfileType = profileType(auth, profile);
       return (
         <div className="dashboard container">
           <h5 className="gre-text text-darken-3">
@@ -21,7 +23,9 @@ class CompanyProfile extends Component {
           </div>
           <ReviewSection
             companyID={this.props.match.params.id}
-            reviews={this.props.reviews}
+            reviews={reviews}
+            profileType={currProfileType}
+            id={auth.uid}
           />
         </div>
       );
@@ -43,6 +47,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     trips: state.firestore.ordered.Trips,
     company: company,
+    auth: state.firebase.auth,
     profile: state.auth.currProfile,
     isLoading: isLoading, // all must be loaded
     reviews: state.firestore.ordered.Reviews,
