@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { addReview } from '../../store/actions/reviewActions';
+import { addReview, deleteReview } from '../../store/actions/reviewActions';
 
 const Review = (props) => {
   return (
@@ -65,7 +65,7 @@ const ReviewSection = (props) => {
     //       currReview.review !== review && currReview.rating !== rating
     //   )
     // );
-    console.log(id);
+    props.deleteReview(id);
   };
 
   // Button to display (add new or cancel) based on if add new faq form is open or not
@@ -112,6 +112,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     // so when we call props.createTrip, it's gonna perform a dispatch using the asynch middleware createTrip in src/store/actions
     addReview: (review, companyID) => dispatch(addReview(review, companyID)),
+    deleteReview: (reviewID) => dispatch(deleteReview(reviewID)),
   };
 };
 
