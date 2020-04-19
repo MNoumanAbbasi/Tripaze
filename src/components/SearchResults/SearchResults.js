@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import TripsList from "../trips/TripsList";
-import { connect } from "react-redux";
-import { compose } from "redux";
-import { firestoreConnect } from "react-redux-firebase"; // higher order
+import React, { Component } from 'react';
+import TripsList from '../trips/TripsList';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase'; // higher order
 
 // 6 columns on medium and 12 column on small screens
 class SearchResults extends Component {
   render() {
     const { trips, isLoading } = this.props;
-    console.log("Trips", trips);
+    console.log('Trips', trips);
     const isInitialized = !isLoading && trips;
     if (isInitialized) {
       if (trips.length > 0) {
@@ -35,8 +35,7 @@ class SearchResults extends Component {
 }
 
 // Map state from store to props in component
-const mapStateToProps = (state, ownProps) => {
-  const id = ownProps.match.params.id;
+const mapStateToProps = (state) => {
   const requests = state.firestore.status.requesting;
   const isLoading = requests
     ? Object.values(requests).some((value) => value === true)
@@ -54,8 +53,8 @@ export default compose(
   // Whenever collection trip is changed, it would call the firestore reducer which would update the state of this firestore
   firestoreConnect((props) => [
     {
-      collection: "Trips",
-      where: [["destinations", "==", props.match.params.dest]],
+      collection: 'Trips',
+      where: [['destinations', '==', props.match.params.dest]],
     },
   ])
 )(SearchResults);

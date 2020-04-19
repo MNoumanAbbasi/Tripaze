@@ -1,5 +1,3 @@
-import TripsList from '../../components/trips/TripsList';
-
 export const createTrip = (trip, currProfile) => {
   // we want to return a function and halt the action dispatch until the function finishes
   // dispatch is the funciton that dispatches an action to the reducer
