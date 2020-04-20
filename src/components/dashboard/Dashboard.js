@@ -5,6 +5,8 @@ import { compose } from 'redux';
 import { firestoreConnect, isLoaded } from 'react-redux-firebase'; // higher order
 import { Redirect } from 'react-router-dom';
 import { profileType } from '../../Helpers';
+import logo_wt from '../../Images/logo-without-text.jpg';
+import background from '../../Images/HomepageImage.jpg';
 
 // 6 columns on medium and 12 column on small screens
 class Dashboard extends Component {
@@ -21,8 +23,17 @@ class Dashboard extends Component {
     if (isInitialized) {
       console.log('Trippy', trips);
       return (
-        <div className="container cardslist-margin">
-          <TripsList trips={trips} />
+        <div className="homePage">
+          <img src={background} className="home-cover"></img>
+          <hr className="greenline"></hr>
+          <div className="row -5 col-lg-10 container banner">
+            <h1 className="home-heading">ALL TRIPS</h1>
+            <hr className="underline"></hr>
+            <img src={logo_wt} className="logo-no-text"></img>
+          </div>
+          <div className="container cardslist-margin">
+            <TripsList trips={trips} />
+          </div>
         </div>
       );
     } else {

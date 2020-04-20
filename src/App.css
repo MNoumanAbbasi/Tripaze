@@ -142,3 +142,48 @@
     flex-direction: row !important;
   }
 }
+
+/* Home Page elements */
+.home-cover {
+  width: 100%;
+  max-height: auto;
+}
+
+.greenline {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 20px;
+  background-color: green;
+  opacity: 0.5;
+}
+
+.banner {
+  margin-left: 140px;
+  margin-top: 4rem;
+  height: 3rem;
+  display: inline-flex;
+}
+
+.home-heading {
+  font-size: 2em;
+  color: #585858;
+  top: 70rem;
+  left: 200rem;
+}
+
+.logo-no-text {
+  margin-top: 0rem;
+  margin-left: 40rem;
+  top: 0%;
+  float: right;
+}
+
+.underline {
+  margin-top: 3rem;
+  margin-left: -9rem;
+  width: 20vh;
+  height: 0.2vw;
+  background-color: green;
+  opacity: 0.5;
+}
