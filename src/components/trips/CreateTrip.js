@@ -1,44 +1,16 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 3c88dd1... Edited file
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createTrip } from '../../store/actions/tripActions';
 import { Redirect } from 'react-router-dom';
 import { profileType } from '../../Helpers';
-<<<<<<< HEAD
-
-// all css are from the materialized CSS class
-export class CreateTrip extends Component {
-  state = {
-    title: '',
-    destinations: '',
-    departureLoc: '',
-    departureDate: '',
-=======
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { createTrip } from "../../store/actions/tripActions";
-import { Redirect } from "react-router-dom";
-import { profileType } from "../../Helpers";
-import DestinationSection from "./DestinationSection";
-=======
 import DestinationSection from './DestinationSection';
->>>>>>> 3c88dd1... Edited file
 // all css are from the materialized CSS class
 export class CreateTrip extends Component {
   state = {
     title: '',
     destinations: [],
-<<<<<<< HEAD
-    departureLoc: "",
-    departureDate: "",
->>>>>>> b2e3103... Added storing destinations as array
-=======
     departureLoc: '',
     departureDate: '',
->>>>>>> 3c88dd1... Edited file
     duration: 0,
     price: 0,
     capacity: 0,
@@ -65,15 +37,10 @@ export class CreateTrip extends Component {
   };
 
   render() {
-<<<<<<< HEAD
     const { auth, profile, isLoading } = this.props;
     const isInitialized = !isLoading && profile && auth;
 
     if (isInitialized && profileType(auth, profile) !== 'Company') {
-=======
-    const { auth, profile } = this.props;
-    if (profileType(auth, profile) !== 'Company') {
->>>>>>> 3c88dd1... Edited file
       return <Redirect to="/" />;
     }
 
