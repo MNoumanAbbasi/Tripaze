@@ -79,7 +79,7 @@ const ReviewSection = (props) => {
         Cancel
       </button>
     );
-  } else if (props.profileType == 'Guest') {
+  } else if (props.profileType !== 'User') {
     button = null;
   } else {
     button = (
