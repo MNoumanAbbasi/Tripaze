@@ -1,5 +1,4 @@
 // CHANGE THIS FILE WITH TRIPAZE API
-
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';

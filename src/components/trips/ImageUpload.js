@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import storage from 'firebase';
+import storage from '../../config/fbConfig';
 class ImageUpload extends Component {
   construct(props) {
     //super(props);
@@ -14,26 +14,18 @@ class ImageUpload extends Component {
       this.setState(() => ({ image }));
     }
   };
-  handleUpload = () => {
+  handleUpload = (e) => {
+    e.preventDefault();
     const { image } = this.state;
     var imgName = image.name;
-    const uploadTask = storage.ref('images/pic').put(image);
+    const uploadTask = storage.ref(`images/${imgName}`).put(image);
     uploadTask.on(
       'state_changed',
       (snapshot) => {}, //Progress
       (error) => {
         //Error function
         console.log(error);
-      },
-      () => {
-        storage
-          .ref('images')
-          .child(imgName)
-          .getDownloadUrl()
-          .then((url) => {
-            console.log(url);
-          });
-      } //Complete
+      }
     );
   };
   render() {
