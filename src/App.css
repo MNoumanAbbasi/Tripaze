@@ -160,30 +160,31 @@
 
 .banner {
   margin-left: 140px;
-  margin-top: 4rem;
+  margin-top: 2rem;
   height: 3rem;
   display: inline-flex;
+  width: 75%;
 }
 
 .home-heading {
   font-size: 2em;
   color: #585858;
-  top: 70rem;
+  margin-top: 2rem;
   left: 200rem;
+  font-weight: 630;
 }
 
 .logo-no-text {
   margin-top: 0rem;
-  margin-left: 40rem;
   top: 0%;
-  float: right;
+  /* float: right; */
 }
 
 .underline {
-  margin-top: 3rem;
+  margin-top: 5rem;
   margin-left: -9rem;
   width: 20vh;
-  height: 0.2vw;
+  height: 0.25vw;
   background-color: green;
   opacity: 0.5;
 }
