@@ -13,12 +13,8 @@ class SearchResults extends Component {
     if (isInitialized) {
       if (trips.length > 0) {
         return (
-          <div className="dashboard container">
-            <div className="row">
-              <div className="col s12 m6">
-                <TripsList trips={trips} />
-              </div>
-            </div>
+          <div className="container cardslist-margin">
+            <TripsList trips={trips} />
           </div>
         );
       } else {
