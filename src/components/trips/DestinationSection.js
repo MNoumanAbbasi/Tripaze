@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-const sampleDestination = ["Gilgit"];
+const sampleDestination = [];
 
 const Destination = (props) => {
   return (
@@ -17,7 +17,7 @@ const Destination = (props) => {
 };
 
 const AddNewDestinationForm = (props) => {
-  const [newDest, setNewDestination] = useState("");
+  const [newDest, setNewDestination] = useState('');
   const handleSubmit = (event) => {
     event.preventDefault();
     props.addNewDestination(newDest);
