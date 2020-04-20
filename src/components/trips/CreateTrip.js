@@ -5,11 +5,14 @@ import { Redirect } from 'react-router-dom';
 import { profileType } from '../../Helpers';
 import DestinationSection from './DestinationSection';
 import ImageUpload from './ImageUpload';
+
 // all css are from the materialized CSS class
 export class CreateTrip extends Component {
   state = {
     title: '',
     destinations: [],
+    departureLoc: '',
+    departureDate: '',
     departureLoc: '',
     departureDate: '',
     duration: 0,
