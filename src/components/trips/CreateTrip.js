@@ -4,6 +4,7 @@ import { createTrip } from '../../store/actions/tripActions';
 import { Redirect } from 'react-router-dom';
 import { profileType } from '../../Helpers';
 import DestinationSection from './DestinationSection';
+import ImageUpload from './ImageUpload';
 // all css are from the materialized CSS class
 export class CreateTrip extends Component {
   state = {
@@ -105,10 +106,11 @@ export class CreateTrip extends Component {
             ></textarea>
           </div>
 
-          <div className="input-field">
+          <ImageUpload />
+          {/* <div className="input-field">
             <label htmlFor="image">Drag-drattractionop or</label>
             <button className="btn blue lighten-1 z-depth-1">Upload</button>
-          </div>
+          </div> */}
 
           <div className="input-field">
             <button className="btn blue lighten-1 z-depth-1">Submit</button>
