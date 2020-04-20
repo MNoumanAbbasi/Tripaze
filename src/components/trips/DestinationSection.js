@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 import React, { useState } from 'react';
 
 const sampleDestination = [];
-=======
-import React, { useState } from "react";
-
-const sampleDestination = ["Gilgit"];
->>>>>>> b2e3103... Added storing destinations as array
 
 const Destination = (props) => {
   return (
@@ -23,11 +17,7 @@ const Destination = (props) => {
 };
 
 const AddNewDestinationForm = (props) => {
-<<<<<<< HEAD
   const [newDest, setNewDestination] = useState('');
-=======
-  const [newDest, setNewDestination] = useState("");
->>>>>>> b2e3103... Added storing destinations as array
   const handleSubmit = (event) => {
     event.preventDefault();
     props.addNewDestination(newDest);
