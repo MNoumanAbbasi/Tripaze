@@ -91,24 +91,28 @@
   background-size: cover;
 }
 
+.signup-background {
+  background: url(/img/signup-bg.png);
+  background-size: cover;
+}
+
 .signin-page {
-  height: -webkit-fill-available !important;
+  height: 100%;
+  width: 100%;
+  position: absolute;
 }
 
-.signin-form {
-  background-color: #ffffff;
-}
-
-.signin-margin {
-  margin-top: 7rem !important;
+.form-margin {
+  margin-top: auto !important;
+  margin-bottom: auto !important;
 }
 
 .dark-button {
   border: 0px;
   background-color: #00a99d;
   border-radius: 20px; /* Making border radius */
-  width: auto; /* Making auto-sizable width */
-  height: auto; /* Making auto-sizable height */
+  /* width: auto; Making auto-sizable width */
+  /* height: auto; Making auto-sizable height */
   padding: 5px 15px 5px 15px; /* Making space around letters */
   font-size: 18px; /* Changing font size */
   color: #ffffff;

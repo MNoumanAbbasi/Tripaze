@@ -32,7 +32,7 @@ export class SignIn extends Component {
 
     return (
       <div className="row m-0 signin-page ">
-        <div className="col-lg-3  signin-form signin-margin">
+        <div className="col-lg-3 col-md-4 col-sm-6 form-margin">
           <form onSubmit={this.handleSubmit} className="change-font-opensans ">
             <h3 class="mt-20 mb-4 text-center">Sign In</h3>
 
@@ -59,10 +59,6 @@ export class SignIn extends Component {
               />
             </div>
 
-            <a href="" class="">
-              Forgot Password?
-            </a>
-
             <div class="custom-control custom-checkbox mb-3">
               <input
                 type="checkbox"
@@ -75,7 +71,7 @@ export class SignIn extends Component {
             </div>
             <div className="input-field">
               <button
-                class="btn btn-lg signin-button form-rounded btn-block text-uppercase"
+                class="btn btn-lg light-button form-rounded btn-block text-uppercase"
                 type="submit"
               >
                 Sign in
@@ -84,9 +80,13 @@ export class SignIn extends Component {
                 {authError ? <p>{authError}</p> : null}
               </div>
             </div>
+            <hr></hr>
+            <div className="text-center">
+              <a href="">Forgot Password?</a>
+            </div>
           </form>
         </div>
-        <div className="col-lg-9 signin-background"></div>
+        <div className="col-lg-9 col-md-8 col-sm-6 d-sm-block d-none signin-background"></div>
       </div>
     );
   }

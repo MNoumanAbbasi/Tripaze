@@ -1,14 +1,15 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
-import { signUpUser } from "../../store/actions/authActions";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { signUpUser } from '../../store/actions/authActions';
+import { Link } from 'react-router-dom';
 
 // all css are from the materialized CSS class
 export class SignUpUser extends Component {
   state = {
-    email: "",
-    password: "",
-    userName: "",
+    email: '',
+    password: '',
+    userName: '',
   };
 
   handleChange = (e) => {
@@ -32,30 +33,64 @@ export class SignUpUser extends Component {
     }
 
     return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit} className="white">
-          <h5 className="gre-text text-darken-3">Sign Up as User</h5>
-          <div className="input-field">
-            <label htmlFor="userName">Username</label>
-            <input type="text" id="userName" onChange={this.handleChange} />
-          </div>
-          <div className="input-field">
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" onChange={this.handleChange} />
-          </div>
-          <div className="input-field">
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" onChange={this.handleChange} />
-          </div>
-          <div className="input-field">
-            <button className="btn blue lighten-1 z-depth-1">Sign Up</button>
-          </div>
+      <div className="row m-0 signin-page ">
+        <div className="col-lg-3 col-md-4 col-sm-6 form-margin">
+          <form onSubmit={this.handleSubmit} className="change-font-opensans ">
+            <h3 class="mt-20 mb-4 text-center">Sign Up as User</h3>
 
-          {/* To display sign up error */}
-          <div className="red-text center">
-            {authError ? <p>{authError}</p> : null}
-          </div>
-        </form>
+            <div>
+              <input
+                onChange={this.handleChange}
+                type="text"
+                id="username"
+                class="form-control mb-4"
+                placeholder="Full Name"
+                required
+              />
+            </div>
+
+            <div>
+              <input
+                onChange={this.handleChange}
+                type="email"
+                id="email"
+                class="form-control mb-4"
+                placeholder="Email address"
+                required
+              />
+            </div>
+
+            <div class="form-label-group">
+              <input
+                onChange={this.handleChange}
+                type="password"
+                id="password"
+                class="form-control mb-4"
+                placeholder="Password"
+                required
+              />
+            </div>
+
+            <div>
+              <button
+                class="btn btn-lg light-button form-rounded btn-block text-uppercase"
+                type="submit"
+              >
+                Sign Up
+              </button>
+              {/* To display sign up error */}
+              <div className="red-text center">
+                {authError ? <p>{authError}</p> : null}
+              </div>
+            </div>
+            <hr></hr>
+            <div className="text-center">
+              <h5 class="m-0 ">Are you a Company?</h5>
+              <Link to="/signupcompany">Sign Up here</Link>
+            </div>
+          </form>
+        </div>
+        <div className="col-lg-9 col-md-8 col-sm-6 d-sm-block d-none signup-background"></div>
       </div>
     );
   }
