@@ -3,12 +3,15 @@ import { connect } from 'react-redux';
 import { createTrip } from '../../store/actions/tripActions';
 import { Redirect } from 'react-router-dom';
 import { profileType } from '../../Helpers';
-
+import DestinationSection from './DestinationSection';
+import ImageUpload from './ImageUpload';
 // all css are from the materialized CSS class
 export class CreateTrip extends Component {
   state = {
     title: '',
-    destinations: '',
+    destinations: [],
+    departureLoc: '',
+    departureDate: '',
     departureLoc: '',
     departureDate: '',
     duration: 0,
@@ -25,7 +28,16 @@ export class CreateTrip extends Component {
       [e.target.id]: e.target.value,
     });
   };
-
+  handleDestChange = (destArray) => {
+    this.setState({
+      destinations: destArray,
+    });
+  };
+  handleImgAdd = (imgName) => {
+    this.setState({
+      image: imgName,
+    });
+  };
   handleSubmit = (e) => {
     // dont want the default action of page being reloaded
     e.preventDefault();
@@ -35,7 +47,6 @@ export class CreateTrip extends Component {
     this.props.createTrip(this.state, this.props.profile);
     this.props.history.push('/');
   };
-
   render() {
     const { auth, profile, isLoading } = this.props;
     const isInitialized = !isLoading && profile && auth;
@@ -56,10 +67,10 @@ export class CreateTrip extends Component {
             <input type="text" id="title" onChange={this.handleChange} />
           </div>
 
-          <div className="input-field">
-            <label htmlFor="destinations">Destinations</label>
-            <input type="text" id="destinations" onChange={this.handleChange} />
-          </div>
+          <DestinationSection
+            handleDestChange={this.handleDestChange}
+            destinationsArray={this.state.destinations}
+          />
 
           <div className="input-field">
             <label htmlFor="departureLoc">Departure Location</label>
@@ -108,10 +119,7 @@ export class CreateTrip extends Component {
             ></textarea>
           </div>
 
-          <div className="input-field">
-            <label htmlFor="image">Drag-drattractionop or</label>
-            <button className="btn blue lighten-1 z-depth-1">Upload</button>
-          </div>
+          <ImageUpload handleImgAdd={this.handleImgAdd} />
 
           <div className="input-field">
             <button className="btn blue lighten-1 z-depth-1">Submit</button>

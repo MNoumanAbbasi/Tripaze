@@ -48,11 +48,16 @@ function TripDetails(props) {
         </div>
         <div className="card-action grey lighten-4 grey-text">
           <div>Cost: Rs. {trip.price}</div>
-          <div>To: {trip.destinations}</div>
+
           <div>On: {trip.departureDate}</div>
           <div>From: {trip.departureLoc}</div>
           <div>Description: {trip.description}</div>
           <div>Attractions: {trip.attraction}</div>
+          <div>Destinations:</div>
+          {trip.destinations.map((dest) => {
+            return <li>{dest}</li>;
+          })}
+
           <div>
             {' '}
             Company:
