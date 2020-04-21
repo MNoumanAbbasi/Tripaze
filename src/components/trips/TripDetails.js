@@ -40,6 +40,9 @@ function TripDetails(props) {
       </button>
     );
   }
+  const dests = trip.destinations.map((trip) => {
+    return <li>{trip}</li>;
+  });
   return (
     <div className="container section trip-details">
       <div className="card z-depth-0">
@@ -53,6 +56,7 @@ function TripDetails(props) {
           <div>From: {trip.departureLoc}</div>
           <div>Description: {trip.description}</div>
           <div>Attractions: {trip.attraction}</div>
+          <ul>Destinations: {dests}</ul>
           <div>
             {' '}
             Company:

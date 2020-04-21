@@ -45,9 +45,7 @@ const DestinationSection = (props) => {
     setDestination([...destinations, newDestination]);
   };
   const removeDestination = (destToDelete) => {
-    setDestination(
-      destinations.filter((dest) => dest !== destToDelete) //Didn't get this
-    );
+    setDestination(destinations.filter((dest) => dest !== destToDelete));
   };
 
   // Button to display (add new or cancel) based on if add new faq form is open or not

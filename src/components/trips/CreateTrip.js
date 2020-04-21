@@ -38,7 +38,6 @@ export class CreateTrip extends Component {
     this.props.createTrip(this.state, this.props.profile);
     this.props.history.push('/');
   };
-
   render() {
     const { auth, profile, isLoading } = this.props;
     const isInitialized = !isLoading && profile && auth;
