@@ -24,12 +24,16 @@ class Dashboard extends Component {
       console.log('Trippy', trips);
       return (
         <div className="homePage">
-          <img src={background} className="home-cover"></img>
-          <hr className="greenline"></hr>
-          <div className="row -5 col-lg-10 container banner">
-            <h1 className="home-heading">ALL TRIPS</h1>
-            <hr className="underline"></hr>
-            <img src={logo_wt} className="logo-no-text"></img>
+          <img src={background} className="img-fluid mw-100"></img>
+          <hr className="greenline mw-100"></hr>
+
+          <div className="row justify-content-md-around justify-content-center align-items-end">
+            <h1 className="home-heading order-2 order-md-1">ALL TRIPS</h1>
+            {/* <hr className="underline"></hr> */}
+            <img
+              src={logo_wt}
+              className=" img-fluid logo-no-text order-1 order-md-2"
+            ></img>
           </div>
           <div className="container cardslist-margin">
             <TripsList trips={trips} />

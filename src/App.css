@@ -173,42 +173,21 @@
 }
 
 /* Home Page elements */
-.home-cover {
-  width: 100%;
-  max-height: auto;
-}
 
 .greenline {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
   height: 20px;
   background-color: green;
   opacity: 0.5;
 }
 
-.banner {
-  margin-left: 140px;
-  margin-top: 2rem;
-  height: 3rem;
-  display: inline-flex;
-  width: 75%;
-}
-
 .home-heading {
   font-size: 2em;
+  font-family: 'Open Sans';
   color: #585858;
-  margin-top: 2rem;
-  left: 200rem;
-  font-weight: 630;
+  font-weight: 645;
 }
 
-.logo-no-text {
-  margin-top: 0rem;
-  top: 0%;
-  /* float: right; */
-}
-
+/*
 .underline {
   margin-top: 5rem;
   margin-left: -9rem;
@@ -217,3 +196,11 @@
   background-color: green;
   opacity: 0.5;
 }
+*/
+/*
+@media only screen and (max-width: 990px) {
+  img.logo-no-text {
+    display: none;
+  }
+}
+*/
