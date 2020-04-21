@@ -29,7 +29,6 @@ const AddNewDestinationForm = (props) => {
         type="text"
         placeholder="Add destination"
         onChange={(event) => setNewDestination(event.target.value)}
-        required
       />
       <button className="dark-button" onClick={handleSubmit}>
         Add

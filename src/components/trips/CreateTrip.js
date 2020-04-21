@@ -33,6 +33,11 @@ export class CreateTrip extends Component {
       destinations: destArray,
     });
   };
+  handleImgAdd = (imgName) => {
+    this.setState({
+      image: imgName,
+    });
+  };
   handleSubmit = (e) => {
     // dont want the default action of page being reloaded
     e.preventDefault();
@@ -114,7 +119,7 @@ export class CreateTrip extends Component {
             ></textarea>
           </div>
 
-          <ImageUpload />
+          <ImageUpload handleImgAdd={this.handleImgAdd} />
 
           <div className="input-field">
             <button className="btn blue lighten-1 z-depth-1">Submit</button>
