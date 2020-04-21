@@ -93,7 +93,7 @@ export class SignUpCompany extends Component {
 
             <div>
               <button
-                class="btn btn-lg light-button form-rounded btn-block text-uppercase"
+                class="btn btn-lg btn-secondary light-button form-rounded btn-block text-uppercase"
                 type="submit"
               >
                 Sign Up
