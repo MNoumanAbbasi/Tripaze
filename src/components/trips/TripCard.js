@@ -6,9 +6,13 @@ import cardbg from './card-bg.png';
 
 const TripCard = ({ trip }) => {
   return (
-    <Link to={'/trip/' + trip.id}>
-      <div class="card content-box mx-4 mt-5 change-card-width">
-        <img class="card-img-top " src={cardbg} alt="" />
+    <Link to={'/trip/' + trip.id} className="nav-link">
+      <div class="card content-box m-4 change-card-width">
+        <div class="trip-title">
+          <img class="card-img-top" src={cardbg} alt="" />
+          <h4 class="bottom-left change-font darken-bg">{trip.title}</h4>
+        </div>
+
         <div class="card-body">
           <h6 class="card-title change-font font-weight-bold text-uppercase">
             <img
