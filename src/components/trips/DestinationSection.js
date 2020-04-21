@@ -39,8 +39,8 @@ const AddNewDestinationForm = (props) => {
 };
 
 const DestinationSection = (props) => {
-  const [destinations, setDestination] = useState(sampleDestination); // change sampleQuestions to fetch questions from db
-
+  const destinations = props.destinationsArray;
+  const setDestination = props.handleDestChange;
   const addNewDestination = (newDestination) => {
     setDestination([...destinations, newDestination]);
   };

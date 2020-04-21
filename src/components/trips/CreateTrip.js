@@ -28,7 +28,11 @@ export class CreateTrip extends Component {
       [e.target.id]: e.target.value,
     });
   };
-
+  handleDestChange = (destArray) => {
+    this.setState({
+      destinations: destArray,
+    });
+  };
   handleSubmit = (e) => {
     // dont want the default action of page being reloaded
     e.preventDefault();
@@ -58,7 +62,10 @@ export class CreateTrip extends Component {
             <input type="text" id="title" onChange={this.handleChange} />
           </div>
 
-          <DestinationSection />
+          <DestinationSection
+            handleDestChange={this.handleDestChange}
+            destinationsArray={this.state.destinations}
+          />
 
           <div className="input-field">
             <label htmlFor="departureLoc">Departure Location</label>

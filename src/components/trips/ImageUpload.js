@@ -39,6 +39,10 @@ class ImageUpload extends Component {
             // Unknown error occurred, inspect error.serverResponse
             break;
         }
+      },
+
+      () => {
+        //Successful completion
       }
     );
   };
