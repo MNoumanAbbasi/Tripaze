@@ -71,7 +71,7 @@ export class SignIn extends Component {
             </div>
             <div className="input-field">
               <button
-                class="btn btn-lg light-button form-rounded btn-block text-uppercase"
+                class="btn btn-lg btn-secondary light-button form-rounded btn-block text-uppercase"
                 type="submit"
               >
                 Sign in

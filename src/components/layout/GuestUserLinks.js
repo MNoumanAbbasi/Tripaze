@@ -1,8 +1,8 @@
 // Since this component has no state, this will be a functional component rather than a class component
 
-import React from "react";
-import { NavLink } from "react-router-dom";
-import SearchBar from "./SearchBar";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import SearchBar from './SearchBar';
 
 const GuestUserLinks = () => {
   return (
@@ -12,7 +12,7 @@ const GuestUserLinks = () => {
         <li class="nav-item">
           <NavLink to="/signin" class="nav-link">
             <button
-              class="btn btn-secondary signin-button mr-lg-3 my-2 my-lg-0 form-rounded"
+              class="btn btn-secondary light-button mr-lg-3 my-2 my-lg-0 form-rounded"
               type="button"
             >
               SIGN IN
@@ -22,7 +22,7 @@ const GuestUserLinks = () => {
         <li class="nav-item">
           <NavLink to="/signupchoice" class="nav-link">
             <button
-              class="btn btn-secondary change-color border-0 form-rounded"
+              class="btn btn-secondary dark-button mr-lg-3 my-2 my-lg-0 form-rounded"
               type="button"
             >
               SIGN UP

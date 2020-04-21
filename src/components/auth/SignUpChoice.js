@@ -17,14 +17,14 @@ const SignUpChoice = (props) => {
         <h3 class="mt-20 mb-4 text-center ">Sign Up</h3>
         <div>
           <Link to="/signupuser">
-            <button class="btn btn-lg light-button form-rounded btn-block text-uppercase mb-3 w-75 mx-auto">
+            <button class="btn btn-lg btn-secondary light-button form-rounded btn-block text-uppercase mb-3 w-75 mx-auto">
               USER
             </button>
           </Link>
         </div>
         <div>
           <Link to="/signupcompany">
-            <button class="btn btn-lg dark-button form-rounded btn-block text-uppercase b-3 w-75 mx-auto">
+            <button class="btn btn-lg btn-secondary dark-button form-rounded btn-block text-uppercase b-3 w-75 mx-auto">
               COMPANY
             </button>
           </Link>
