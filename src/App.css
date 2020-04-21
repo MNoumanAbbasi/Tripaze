@@ -45,6 +45,11 @@
 .card {
   box-shadow: 0 7px 10px rgba(0, 0, 0, 0.3);
   border-radius: 20px;
+  transition: transform 0.5s;
+}
+
+.card:hover {
+  transform: scale(1.05);
 }
 
 .cardslist-margin {
@@ -52,8 +57,28 @@
 }
 
 .card-img-top {
-  border-top-left-radius: inherit;
-  border-top-right-radius: inherit;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.trip-title {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.darken-bg {
+  background-color: black;
+  width: 18rem;
+  height: 2.6rem;
+  padding: 5px 15px 5px 15px;
+  opacity: 0.7;
+}
+
+/* Bottom left text */
+.bottom-left {
+  position: absolute;
+  bottom: -8px;
 }
 
 .card-title {
@@ -69,8 +94,8 @@
 }
 
 .card-body {
-  font-family: 'Oxygen';
   color: #808080;
+  padding-bottom: 0rem;
 }
 
 /* Change btn to body since Open Sans is the default for all components */
@@ -108,7 +133,7 @@
 }
 
 .dark-button {
-  border: 0px;
+  border: 1px solid #00a99d;
   background-color: #00a99d;
   border-radius: 20px; /* Making border radius */
   /* width: auto; Making auto-sizable width */
