@@ -42,7 +42,7 @@ class ImageUpload extends Component {
       },
 
       () => {
-        // this.props.handleImgAdd(this.state.name);
+        this.props.handleImgAdd(this.state.image.name);
       }
     );
   };
