@@ -204,3 +204,37 @@
   }
 }
 */
+
+/* Trip Details Page */
+
+.tripText {
+  font-family: 'Open Sans';
+  font-size: 2rem;
+  font-weight: 660;
+}
+
+.divider {
+  height: 0.2vh;
+  background-color: dimgray;
+}
+
+.companytitle {
+  font-family: 'Open Sans';
+  font-size: 1rem;
+  font-weight: 660;
+}
+
+@media only screen and (min-width: 1400px) {
+  .backDrop {
+    z-index: 1;
+    position: absolute;
+  }
+
+  .frontDrop {
+    z-index: 2;
+    position: absolute;
+    margin-left: 12%;
+    margin-right: 12%;
+    margin-top: 50%;
+  }
+}
