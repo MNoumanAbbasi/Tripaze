@@ -223,3 +223,18 @@
   font-size: 1rem;
   font-weight: 660;
 }
+
+@media only screen and (min-width: 1400px) {
+  .backDrop {
+    z-index: 1;
+    position: absolute;
+  }
+
+  .frontDrop {
+    z-index: 2;
+    position: absolute;
+    margin-left: 12%;
+    margin-right: 12%;
+    margin-top: 50%;
+  }
+}

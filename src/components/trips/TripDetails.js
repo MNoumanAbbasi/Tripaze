@@ -44,8 +44,8 @@ function TripDetails(props) {
   }
   return (
     <div className="row m-0 tripDetails">
-      <img src={cover} className="w-100"></img>
-      <div className="container z-depth-1">
+      <img src={cover} className="w-100 backDrop"></img>
+      <div className="container align-self-center bg-white frontDrop">
         {/* First row */}
         <div className="row justify-content-around">
           <div className="col-lg-7 row justify-content-between order-lg-1 order-2">
