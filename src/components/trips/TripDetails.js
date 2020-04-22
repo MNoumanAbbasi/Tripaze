@@ -45,15 +45,17 @@ function TripDetails(props) {
   return (
     <div className="row m-0 tripDetails">
       <img src={cover} className="w-100"></img>
-      <div className="container z-depth-1 border border-dark align-content-center">
+      <div className="container z-depth-1 align-content-center">
         {/* First row */}
-        <div className="row d-flex justify-content-around bg-danger">
-          <div className="row justify-content-between bg-secondary"></div>
-          <h1 className=" col-lg-4 text-secondary tripText align-self-center">
+        <div className="row justify-content-start">
+          <div className="row mt-4 justify-content-md-between"></div>
+          <h1 className="col-md-4 text-secondary tripText align-self-center">
             {trip.title}
           </h1>
-          <div className=" col-lg-2 text-info tripText align-self-center">
+          <div className=" col-md-2 text-info tripText align-self-center">
             Rs. {trip.price}
+          </div>
+        </div>
         {/* Second row */}
         <hr class="col-7 ml-0 divider"></hr>
         <div class="list-inline-md d-flex justify-content-start">
