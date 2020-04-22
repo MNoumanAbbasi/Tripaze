@@ -49,7 +49,7 @@ function TripDetails(props) {
         {/* First row */}
         <div className="row justify-content-around">
           <div className="col-lg-7 row justify-content-between order-lg-1 order-2">
-            <h1 className="text-secondary tripText align-self-center">
+            <h1 className="text-secondary tripText align-self-center mt-2">
               {trip.title}
             </h1>
             <div className="text-info tripText align-self-center">
