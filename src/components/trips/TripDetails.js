@@ -48,7 +48,7 @@ function TripDetails(props) {
       <div className="container z-depth-1">
         {/* First row */}
         <div className="row justify-content-around">
-          <div className="col-md-7 row justify-content-between">
+          <div className="col-lg-7 row justify-content-between">
             <h1 className="text-secondary tripText align-self-center">
               {trip.title}
             </h1>
@@ -74,15 +74,15 @@ function TripDetails(props) {
         {/* Second row */}
         <hr class="col-7 ml-0 divider"></hr>
         <div class="row h-35 align-content-center justify-content-start">
-          <h5 className="col-md-3 change-font">
+          <h5 className="col-lg-3 change-font">
             <i class="fa fa-calendar fa-2x fa-fw" aria-hidden="true"></i>
             {'     ' + trip.departureDate}
           </h5>
-          <h5 className="col-md-2 ml-3 change-font ">
+          <h5 className="col-lg-2 ml-3 change-font ">
             <i class="fa fa-clock-o fa-2x fa-fw" aria-hidden="true"></i>
             {trip.duration + ' days'}
           </h5>
-          <h5 class="col-md-2 text-uppercase change-font">
+          <h5 class="col-lg-2 text-uppercase change-font">
             <i class="fa fa-plane fa-2x fa-fw" aria-hidden="true"></i>
             {' ' + trip.departureLoc}
           </h5>
@@ -90,14 +90,16 @@ function TripDetails(props) {
         <hr class="col-7 ml-0 divider"></hr>
         {/* Description Box */}
         <div class="row align-content-centre justify-content-between">
-          <div class="col-md-6">
+          <div class="col-lg-6">
             <h3 class="text-secondary">Description</h3>
             <div class="text-secondary ">{trip.description}</div>
           </div>
-          <table class="col-md-4 table table-md-responsive table-info table-striped">
+          <table class="col-lg-4 table table-md-responsive table-info table-striped">
             <thead class="thead-light">
               <tr>
-                <th scope="col">Main Attractions</th>
+                <th class="bg-info text-white text-center" scope="col">
+                  Main Attractions
+                </th>
               </tr>
             </thead>
           </table>
