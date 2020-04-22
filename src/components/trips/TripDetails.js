@@ -42,10 +42,18 @@ function TripDetails(props) {
     );
   }
   return (
-    <div className="tripDetails">
+    <div className="row m-0 tripDetails">
       <img src={cover} className="w-100"></img>
+      <div className="container z-depth-1">
+        <div className="row justify-content-around">
+          <h1 className=" text-capitalize text-secondary tripText">
+            {trip.title}
+          </h1>
+          <div className="text-info tripText">Rs. {trip.price}</div>
+        </div>
+      </div>
       {/* <div className="container section trip-details">
-        <div className="card z-depth-0">
+        <div className="card z-depth-2 top">
           <div className="card-content">
             <span className="card-title">{trip.title}</span>
           </div>
@@ -73,7 +81,7 @@ function TripDetails(props) {
           {editButton}
           {deleteButton}
         </div>
-      </div> */}
+      </div>{' '} */}
     </div>
   );
 }

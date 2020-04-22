@@ -206,3 +206,9 @@
 */
 
 /* Trip Details Page */
+
+.tripText {
+  font-family: 'Open Sans';
+  font-size: 2rem;
+  font-weight: 660;
+}
