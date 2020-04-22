@@ -48,7 +48,7 @@ function TripDetails(props) {
       <div className="container z-depth-1">
         {/* First row */}
         <div className="row justify-content-around">
-          <div className="col-lg-7 row justify-content-between">
+          <div className="col-lg-7 row justify-content-between order-lg-1 order-2">
             <h1 className="text-secondary tripText align-self-center">
               {trip.title}
             </h1>
@@ -57,7 +57,7 @@ function TripDetails(props) {
             </div>
           </div>
           {/* {Company Card} */}
-          <div class="card content-box m-4 change-card-width">
+          <div class="card content-box m-4 change-card-width order-lg-2 order-1">
             <div class="card-body">
               <h6 class="card-title change-font font-weight-bold text-uppercase">
                 <img
@@ -73,28 +73,28 @@ function TripDetails(props) {
         </div>
         {/* Second row */}
         <hr class="col-7 ml-0 divider"></hr>
-        <div class="row h-35 align-content-center justify-content-start">
-          <h5 className="col-lg-3 change-font">
+        <div class="row align-content-center justify-content-start">
+          <h5 className="col-lg-3 change-font text-left">
             <i class="fa fa-calendar fa-2x fa-fw" aria-hidden="true"></i>
             {'     ' + trip.departureDate}
           </h5>
-          <h5 className="col-lg-2 ml-3 change-font ">
+          <h5 className="col-lg-2 change-font text-left ">
             <i class="fa fa-clock-o fa-2x fa-fw" aria-hidden="true"></i>
             {trip.duration + ' days'}
           </h5>
-          <h5 class="col-lg-2 text-uppercase change-font">
+          <h5 class="col-lg-2 text-uppercase change-font text-left">
             <i class="fa fa-plane fa-2x fa-fw" aria-hidden="true"></i>
             {' ' + trip.departureLoc}
           </h5>
         </div>
         <hr class="col-7 ml-0 divider"></hr>
         {/* Description Box */}
-        <div class="row align-content-centre justify-content-between">
+        <div class="mt-5 row align-content-centre justify-content-between">
           <div class="col-lg-6">
             <h3 class="text-secondary">Description</h3>
             <div class="text-secondary ">{trip.description}</div>
           </div>
-          <table class="col-lg-4 table table-md-responsive table-info table-striped">
+          <table class="mt-3 col-lg-4 table table-md-responsive table-info table-striped">
             <thead class="thead-light">
               <tr>
                 <th class="bg-info text-white text-center" scope="col">
