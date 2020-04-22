@@ -47,24 +47,31 @@ function TripDetails(props) {
       <img src={cover} className="w-100"></img>
       <div className="container z-depth-1 border border-dark align-content-center">
         {/* First row */}
-        <div className="row d-flex justify-content-between">
-          <div className="row col-md-7 justify-content-between">
-            <h1 className=" text-secondary tripText align-self-center">
-              {trip.title}
-            </h1>
-            <div className="text-info tripText align-self-center">
-              Rs. {trip.price}
-            </div>
+        <div className="row d-flex justify-content-around bg-danger">
+          <div className="row justify-content-between bg-secondary"></div>
+          <h1 className=" col-lg-4 text-secondary tripText align-self-center">
+            {trip.title}
+          </h1>
+          <div className=" col-lg-2 text-info tripText align-self-center">
+            Rs. {trip.price}
           </div>
-          <div class="text-secondary col-4 tripText align-self-center">
+
+          <div className="row justify-content-between bg-info"></div>
+          <div class=" ml-0 col-lg-4 align-self-center">
             <img
               src={cardbg}
               alt=""
-              class="img-fluid logo-on-card rounded-circle"
+              class="img-fluid logo-on-card rounded-circle align-self-center"
             />
-            <Link to={'/companyProfile/' + trip.companyId}>
-              {' ' + trip.companyName}
-            </Link>
+            <div>
+              {' '}
+              <Link
+                className="companytitle "
+                to={'/companyProfile/' + trip.companyId}
+              >
+                {' ' + trip.companyName}
+              </Link>
+            </div>
             <h6>This is where the review bar will come</h6>
           </div>
         </div>
