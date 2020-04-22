@@ -88,6 +88,20 @@ function TripDetails(props) {
           </h5>
         </div>
         <hr class="col-7 ml-0 divider"></hr>
+        {/* Description Box */}
+        <div class="row align-content-centre justify-content-between">
+          <div class="col-md-6">
+            <h3 class="text-secondary">Description</h3>
+            <div class="text-secondary ">{trip.description}</div>
+          </div>
+          <table class="col-md-4 table table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Main Attractions</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
       </div>
 
       {/* <div className="container section trip-details">
