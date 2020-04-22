@@ -5,6 +5,7 @@ import { compose } from 'redux';
 import { Link } from 'react-router-dom';
 import FAQSection from './FAQSection';
 import { deleteTrip } from '../../store/actions/tripActions';
+import cover from '../../Images/coverPhoto.jpg';
 // import { Redirect } from 'react-router-dom'
 
 // class container section is material
@@ -41,35 +42,38 @@ function TripDetails(props) {
     );
   }
   return (
-    <div className="container section trip-details">
-      <div className="card z-depth-0">
-        <div className="card-content">
-          <span className="card-title">{trip.title}</span>
-        </div>
-        <div className="card-action grey lighten-4 grey-text">
-          <div>Cost: Rs. {trip.price}</div>
-
-          <div>On: {trip.departureDate}</div>
-          <div>From: {trip.departureLoc}</div>
-          <div>Description: {trip.description}</div>
-          <div>Attractions: {trip.attraction}</div>
-          <div>Destinations:</div>
-          {trip.destinations.map((dest) => {
-            return <li>{dest}</li>;
-          })}
-
-          <div>
-            {' '}
-            Company:
-            <Link to={'/companyProfile/' + trip.companyId}>
-              {' ' + trip.companyName}
-            </Link>
+    <div className="tripDetails">
+      <img src={cover} className="w-100"></img>
+      {/* <div className="container section trip-details">
+        <div className="card z-depth-0">
+          <div className="card-content">
+            <span className="card-title">{trip.title}</span>
           </div>
+          <div className="card-action grey lighten-4 grey-text">
+            <div>Cost: Rs. {trip.price}</div>
+
+            <div>On: {trip.departureDate}</div>
+            <div>Frommo: {trip.departureLoc}</div>
+            <div>Description: {trip.description}</div>
+            <div>Attractions: {trip.attraction}</div>
+            <div>Destinations:</div>
+            {trip.destinations.map((dest) => {
+              return <li>{dest}</li>;
+            })}
+
+            <div>
+              {' '}
+              Company:
+              <Link to={'/companyProfile/' + trip.companyId}>
+                {' ' + trip.companyName}
+              </Link>
+            </div>
+          </div>
+          <FAQSection />
+          {editButton}
+          {deleteButton}
         </div>
-        <FAQSection />
-        {editButton}
-        {deleteButton}
-      </div>
+      </div> */}
     </div>
   );
 }
