@@ -20,7 +20,9 @@ class DisplayImage extends Component {
   };
   render() {
     this.getUrl();
-    return <img src={this.state.url} className="w-100 backDrop"></img>;
+    if (this.props.page == 'details')
+      return <img src={this.state.url} className="w-100 backDrop"></img>;
+    else return <img class="card-img-top" src={this.state.url} alt="" />;
   }
 }
 

@@ -45,7 +45,7 @@ function TripDetails(props) {
   }
   return (
     <div className="row m-0 tripDetails">
-      <DisplayImage img={trip.image} />
+      <DisplayImage img={trip.image} page={'details'} />
       <div className="container align-self-center bg-white frontDrop">
         {/* First row */}
         <div className="row justify-content-around">
