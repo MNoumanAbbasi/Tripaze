@@ -74,17 +74,17 @@ function TripDetails(props) {
         {/* Second row */}
         <hr class="col-7 ml-0 divider"></hr>
         <div class="row align-content-center justify-content-start">
-          <h5 className="col-lg-3 change-font text-left">
+          <h5 className="col-lg-3 change-font text-left ml-0">
             <i class="fa fa-calendar fa-2x fa-fw" aria-hidden="true"></i>
             {'     ' + trip.departureDate}
           </h5>
           <h5 className="col-lg-2 change-font text-left ">
             <i class="fa fa-clock-o fa-2x fa-fw" aria-hidden="true"></i>
-            {trip.duration + ' days'}
+            {'   ' + trip.duration + 'days'}
           </h5>
           <h5 class="col-lg-2 text-uppercase change-font text-left">
             <i class="fa fa-plane fa-2x fa-fw" aria-hidden="true"></i>
-            {' ' + trip.departureLoc}
+            {'' + trip.departureLoc}
           </h5>
         </div>
         <hr class="col-7 ml-0 divider"></hr>
