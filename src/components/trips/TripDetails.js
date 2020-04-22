@@ -45,7 +45,6 @@ function TripDetails(props) {
   }
   return (
     <div className="row m-0 tripDetails">
-      {/* <img src={cover} className="w-100 backDrop"></img> */}
       <DisplayImage img={trip.image} />
       <div className="container align-self-center bg-white frontDrop">
         {/* First row */}
