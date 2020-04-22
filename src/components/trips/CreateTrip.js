@@ -32,6 +32,7 @@ export class CreateTrip extends Component {
     });
   };
   handleImgAdd = (imgName) => {
+    console.log('imgname', imgName);
     this.setState({
       image: imgName,
     });
