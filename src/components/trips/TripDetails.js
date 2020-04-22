@@ -45,29 +45,51 @@ function TripDetails(props) {
   return (
     <div className="row m-0 tripDetails">
       <img src={cover} className="w-100"></img>
-      <div className="container z-depth-1">
-        <div className="list-inline d-flex  justify-content-around">
-          <h1 className=" list-inline-item text-capitalize text-secondary tripText">
-            {trip.title}
-          </h1>
-          <div className=" list-inline-item text-info tripText">
-            Rs. {trip.price}
+      <div className="container z-depth-1 border border-dark align-content-center">
+        {/* First row */}
+        <div className="row d-flex justify-content-between bg-dark">
+          <div className="row col-md-7 justify-content-between bg-danger">
+            <h1 className=" text-secondary tripText align-self-center">
+              {trip.title}
+            </h1>
+            <div className="text-info tripText align-self-center">
+              Rs. {trip.price}
+            </div>
           </div>
-          <div class="list-inline-item text-secondary tripText">
+          <div class="text-secondary tripText align-self-center">
             <img
               src={cardbg}
               alt=""
-              class="img-fluid list-inline-item logo-on-card rounded-circle mr-1"
+              class="img-fluid logo-on-card rounded-circle ml-1"
             />
-            <div class="list-inline-item">
+            <div className="mt-0">
               {' '}
               <Link to={'/companyProfile/' + trip.companyId}>
                 {' ' + trip.companyName}
               </Link>
             </div>
+            <h6>This is where the review bar will come</h6>
           </div>
         </div>
+        {/* Second row */}
+        <hr class="col-7 ml-0 divider"></hr>
+        <div class="list-inline-md d-flex justify-content-start">
+          <h6 className="list-inline-items col-2 ml-3 change-font">
+            <i class="fa fa-calendar fa-fw" aria-hidden="true"></i>
+            {'Date: ' + trip.departureDate}
+          </h6>
+          <h6 className=" list-inline-items col-2 ml-3 change-font">
+            <i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>
+            {trip.duration + ' days'}
+          </h6>
+          <h6 class="list-inline-item col-2 text-uppercase change-font">
+            <i class="fa fa-plane" aria-hidden="true"></i>
+            {' ' + trip.departureLoc}
+          </h6>
+        </div>
+        <hr class="col-7 ml-0 divider"></hr>
       </div>
+
       {/* <div className="container section trip-details">
         <div className="card z-depth-2 top">
           <div className="card-content">
