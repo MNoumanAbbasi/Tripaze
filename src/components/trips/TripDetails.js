@@ -54,19 +54,6 @@ function TripDetails(props) {
           </h1>
           <div className=" col-lg-2 text-info tripText align-self-center">
             Rs. {trip.price}
-          </div>
-            <div>
-              {' '}
-              <Link
-                className="companytitle "
-                to={'/companyProfile/' + trip.companyId}
-              >
-                {' ' + trip.companyName}
-              </Link>
-            </div>
-            <h6>This is where the review bar will come</h6>
-          </div>
-        </div>
         {/* Second row */}
         <hr class="col-7 ml-0 divider"></hr>
         <div class="list-inline-md d-flex justify-content-start">
