@@ -106,6 +106,7 @@ function TripDetails(props) {
             </thead>
           </table>
         </div>
+        {/* Insert FAQ here */}
       </div>
 
       {/* <div className="container section trip-details">
