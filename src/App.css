@@ -212,3 +212,8 @@
   font-size: 2rem;
   font-weight: 660;
 }
+
+.divider {
+  height: 0.2vh;
+  background-color: dimgray;
+}
