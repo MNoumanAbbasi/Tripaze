@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase'; // higher order
 import ReviewSection from './ReviewSection';
+import defaultCover from '../../Images/coverPhoto.jpg';
 import { profileType } from '../../Helpers';
 
 // 6 columns on medium and 12 column on small screens
@@ -14,10 +15,23 @@ class CompanyProfile extends Component {
     if (isInitialized) {
       const currProfileType = profileType(auth, profile);
       return (
-        <div className="dashboard container">
-          <h5 className="gre-text text-darken-3">
-            Company Profile: {company.companyName}
-          </h5>
+        <div className="row m-0 tripDetails">
+          <img src={defaultCover} className="w-100 backDrop"></img>
+          <div className="container align-self-center bg-white frontDrop">
+            <h1 className="ml-4 text-secondary tripText align-self-center">
+              THE BEST TRAVEL AGENCY
+            </h1>
+            <hr class="col-7 ml-0 divider"></hr>
+            {/* Description Box */}
+            <div class="mt-5 row align-content-centre justify-content-between">
+              <div class="col-lg-6">
+                <h3 class="text-secondary">Description</h3>
+                <div class="text-secondary ">
+                  Description will be inserted here
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="container cardslist-margin">
             <TripsList trips={trips} />
           </div>
