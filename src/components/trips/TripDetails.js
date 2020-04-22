@@ -74,7 +74,7 @@ function TripDetails(props) {
         {/* Second row */}
         <hr class="col-7 ml-0 divider"></hr>
         <div class="row h-35 align-content-center justify-content-start">
-          <h5 className="col-md-2 ml-3 change-font">
+          <h5 className="col-md-3 change-font">
             <i class="fa fa-calendar fa-2x fa-fw" aria-hidden="true"></i>
             {'     ' + trip.departureDate}
           </h5>
