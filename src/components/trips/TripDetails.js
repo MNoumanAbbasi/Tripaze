@@ -55,14 +55,6 @@ function TripDetails(props) {
           <div className=" col-lg-2 text-info tripText align-self-center">
             Rs. {trip.price}
           </div>
-
-          <div className="row justify-content-between bg-info"></div>
-          <div class=" ml-0 col-lg-4 align-self-center">
-            <img
-              src={cardbg}
-              alt=""
-              class="img-fluid logo-on-card rounded-circle align-self-center"
-            />
             <div>
               {' '}
               <Link
