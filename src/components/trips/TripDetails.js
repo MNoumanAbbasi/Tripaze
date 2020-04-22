@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import FAQSection from './FAQSection';
 import { deleteTrip } from '../../store/actions/tripActions';
 import cover from '../../Images/coverPhoto.jpg';
+import cardbg from './card-bg.png';
 // import { Redirect } from 'react-router-dom'
 
 // class container section is material
@@ -45,11 +46,26 @@ function TripDetails(props) {
     <div className="row m-0 tripDetails">
       <img src={cover} className="w-100"></img>
       <div className="container z-depth-1">
-        <div className="row justify-content-around">
-          <h1 className=" text-capitalize text-secondary tripText">
+        <div className="list-inline d-flex  justify-content-around">
+          <h1 className=" list-inline-item text-capitalize text-secondary tripText">
             {trip.title}
           </h1>
-          <div className="text-info tripText">Rs. {trip.price}</div>
+          <div className=" list-inline-item text-info tripText">
+            Rs. {trip.price}
+          </div>
+          <div class="list-inline-item text-secondary tripText">
+            <img
+              src={cardbg}
+              alt=""
+              class="img-fluid list-inline-item logo-on-card rounded-circle mr-1"
+            />
+            <div class="list-inline-item">
+              {' '}
+              <Link to={'/companyProfile/' + trip.companyId}>
+                {' ' + trip.companyName}
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
       {/* <div className="container section trip-details">
