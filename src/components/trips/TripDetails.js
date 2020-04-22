@@ -47,8 +47,8 @@ function TripDetails(props) {
       <img src={cover} className="w-100"></img>
       <div className="container z-depth-1 border border-dark align-content-center">
         {/* First row */}
-        <div className="row d-flex justify-content-between bg-dark">
-          <div className="row col-md-7 justify-content-between bg-danger">
+        <div className="row d-flex justify-content-between">
+          <div className="row col-md-7 justify-content-between">
             <h1 className=" text-secondary tripText align-self-center">
               {trip.title}
             </h1>
@@ -56,18 +56,15 @@ function TripDetails(props) {
               Rs. {trip.price}
             </div>
           </div>
-          <div class="text-secondary tripText align-self-center">
+          <div class="text-secondary col-4 tripText align-self-center">
             <img
               src={cardbg}
               alt=""
-              class="img-fluid logo-on-card rounded-circle ml-1"
+              class="img-fluid logo-on-card rounded-circle"
             />
-            <div className="mt-0">
-              {' '}
-              <Link to={'/companyProfile/' + trip.companyId}>
-                {' ' + trip.companyName}
-              </Link>
-            </div>
+            <Link to={'/companyProfile/' + trip.companyId}>
+              {' ' + trip.companyName}
+            </Link>
             <h6>This is where the review bar will come</h6>
           </div>
         </div>
