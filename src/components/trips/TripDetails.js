@@ -94,7 +94,7 @@ function TripDetails(props) {
             <h3 class="text-secondary">Description</h3>
             <div class="text-secondary ">{trip.description}</div>
           </div>
-          <table class="mt-3 col-lg-4 table table-md-responsive table-info table-striped">
+          <table class="mt-4 col-lg-4 table table-md-responsive table-info table-striped">
             <thead class="thead-light">
               <tr>
                 <th class="bg-info text-white text-center" scope="col">
