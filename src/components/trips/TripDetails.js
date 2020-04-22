@@ -73,16 +73,16 @@ function TripDetails(props) {
         </div>
         {/* Second row */}
         <hr class="col-7 ml-0 divider"></hr>
-        <div class="list-inline-md d-flex justify-content-start">
-          <h6 className="list-inline-items col-2 ml-3 change-font">
+        <div class="row h-35 justify-content-start">
+          <h6 className="col-2 ml-3 change-font">
             <i class="fa fa-calendar fa-fw" aria-hidden="true"></i>
             {'Date: ' + trip.departureDate}
           </h6>
-          <h6 className=" list-inline-items col-2 ml-3 change-font">
+          <h6 className="col-2 ml-3 change-font">
             <i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>
             {trip.duration + ' days'}
           </h6>
-          <h6 class="list-inline-item col-2 text-uppercase change-font">
+          <h6 class="col-2 text-uppercase change-font">
             <i class="fa fa-plane" aria-hidden="true"></i>
             {' ' + trip.departureLoc}
           </h6>
