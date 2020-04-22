@@ -65,7 +65,9 @@ function TripDetails(props) {
                   alt=""
                   class="img-fluid logo-on-card rounded-circle mr-1"
                 />
-                {' ' + trip.companyName}
+                <Link to={'/companyProfile/' + trip.companyId}>
+                  {' ' + trip.companyName}
+                </Link>
               </h6>
               <hr></hr>
             </div>
