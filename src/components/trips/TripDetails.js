@@ -178,7 +178,7 @@ function TripDetails(props) {
 
 // ownProps are the props of the component before we attach anything to it
 const mapStateToProps = (state, ownProps) => {
-  console.log('trip', state);
+  // console.log('trip', state);
   const id = ownProps.match.params.id;
   const trips = state.firestore.data.Trips; // using data instead of ordered here since we are interested in referencing specific trips (hash table)
   const trip = trips ? trips[id] : null; // if there are any projects, find the project with the given data
@@ -205,7 +205,7 @@ const mapDispatchToProps = (dispatch) => {
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect((props) => [
-    { collection: 'Trips' },
+    { collection: 'Trips', doc: props.match.params.id },
     { collection: 'FAQs', where: [['tripID', '==', props.match.params.id]] },
   ])
 )(TripDetails);
