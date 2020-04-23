@@ -18,7 +18,7 @@ export const addFaq = (faq, tripID) => {
       })
       .then(() => {
         window.location.reload(); // TODO: This is a hacky change. For global change, page needs to be refreshed. Find a solution to automatically update it when props change
-        dispatch({ type: 'ADD_FAQ', review: review });
+        dispatch({ type: 'ADD_FAQ', faq });
       })
       .catch((err) => {
         dispatch({ type: 'ADD_FAQ_ERROR', err });
@@ -38,7 +38,7 @@ export const deleteFaq = (faqID) => {
       .delete()
       .then(() => {
         window.location.reload(); // TODO: This is a hacky change. For global change, page needs to be refreshed. Find a solution to automatically update it when props change
-        dispatch({ type: 'DELETE_FAQ', reviewID: reviewID });
+        dispatch({ type: 'DELETE_FAQ', faqID });
       })
       .catch((err) => {
         dispatch({ type: 'DELETE_FAQ_ERROR', err });

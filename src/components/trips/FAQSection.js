@@ -109,4 +109,13 @@ const FAQSection = (props) => {
   );
 };
 
-export default FAQSection;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // so when we call props.createTrip, it's gonna perform a dispatch using the asynch middleware createTrip
+    // in src/store/actions
+    addReview: (review, companyID) => dispatch(addReview(review, companyID)),
+    deleteReview: (reviewID) => dispatch(deleteReview(reviewID)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(FAQSection);
