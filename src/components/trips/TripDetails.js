@@ -92,11 +92,11 @@ function TripDetails(props) {
         <hr class="col-7 ml-0 divider"></hr>
         {/* Description Box */}
         <div class="mt-5 row align-content-centre justify-content-between">
-          <div class="col-lg-6">
+          <div class="ml-lg-4 col-lg-6">
             <h3 class="text-secondary">Description</h3>
             <div class="text-secondary ">{trip.description}</div>
           </div>
-          <table class="mr-4 col-lg-4 table table-border table-hover table-md-responsive table-info">
+          <table class="mr-4 col-lg-4 table table-border border-info table-hover table-md-responsive">
             <thead class="thead-light">
               <tr>
                 <th class="bg-info text-white text-center" scope="col">
@@ -104,28 +104,30 @@ function TripDetails(props) {
                 </th>
               </tr>
             </thead>
-            <tr className="bg-white text-info text-center">
+            <tr className="text-center tr-highlight">
               <td>BBQ</td>
             </tr>
-            <tr className="bg-white text-info text-center">
-              <td>SKiing</td>
+            <tr className=" text-center tr-highlight">
+              <td>Skiing</td>
             </tr>
-            <tr className="bg-white text-info text-center">
+            <tr className="text-center tr-highlight">
               <td>Snow</td>
             </tr>
-            <tr className="bg-white text-info text-center">
+            <tr className="text-center tr-highlight">
               <td>Bonfire</td>
             </tr>
           </table>
         </div>
         <div>
-          <h3 class="text-secondary mt-5"> Destinations:</h3>
+          <h3 class=" ml-lg-4 text-secondary mt-3"> Destinations:</h3>
           {trip.destinations.map((dest) => {
-            return <li>{dest}</li>;
+            return <li class=" ml-lg-4 text-secondary">{dest}</li>;
           })}
         </div>
         <div>
-          <h3 class="text-secondary mt-5"> Frequently Asked Questions:</h3>
+          <h3 class=" ml-lg-4 text-secondary mt-5">
+            Frequently Asked Questions:
+          </h3>
         </div>
 
         {/* Insert FAQ here */}

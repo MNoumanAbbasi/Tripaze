@@ -242,8 +242,20 @@
 .table-hover {
   transition-timing-function: ease-in-out;
   transition-duration: 0.5s;
+  border-style: solid;
+  box-shadow: 0 7px 10px rgba(0, 0, 0, 0.3);
 }
 
 .table-hover:hover {
   transform: scale(1.05);
+}
+
+.tr-highlight {
+  background-color: white;
+  color: #17a2b8;
+}
+
+.tr-highlight:hover {
+  background-color: #17a2b8;
+  color: #ffffff;
 }
