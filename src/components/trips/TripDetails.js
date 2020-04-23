@@ -45,7 +45,9 @@ function TripDetails(props) {
   return (
     <div className="row m-0 tripDetails">
       <img src={cover} className="w-100 backDrop"></img>
-      <btn></btn>
+      <button type="button" class="btn btn-lg overlay-button form-rounded">
+        EDIT TRIP
+      </button>
       <div className="container align-self-center bg-white frontDrop">
         {/* First row */}
         <div className="row justify-content-around">
@@ -53,7 +55,7 @@ function TripDetails(props) {
             <h1 className="text-secondary tripText align-self-center">
               {trip.title}
             </h1>
-            <div className="text-info tripText align-self-center">
+            <div className="text-turq tripText align-self-center">
               Rs. {trip.price}
             </div>
           </div>
@@ -103,10 +105,10 @@ function TripDetails(props) {
               })}
             </div>
           </div>
-          <table class="mr-lg-4 mt-3 col-lg-4 table table-border border-info table-hover table-md-responsive">
-            <thead class="thead-light">
-              <tr>
-                <th class="bg-info text-white text-center" scope="col">
+          <table class="mr-lg-4 mt-3 col-lg-4 table table-border border-turq table-hover table-md-responsive">
+            <thead>
+              <tr class="bg-turq">
+                <th class="text-white text-center" scope="col">
                   Main Attractions
                 </th>
               </tr>
