@@ -253,19 +253,37 @@
 
 .tr-highlight {
   background-color: white;
-  color: #17a2b8;
+  color: #00a99d;
 }
 
 .tr-highlight:hover {
-  background-color: #17a2b8;
+  background-color: #00a99d;
   color: #ffffff;
 }
 
 .overlay-button {
   z-index: 3;
   position: absolute;
-  margin-right: 20%;
-  margin-top: auto;
   background-color: #00a99d;
+  border: black;
+  color: white;
+  margin-left: 77%;
+  margin-top: 23%;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+}
+
+.colored {
+  color: #17a2b8;
+}
+
+.bg-turq {
+  background-color: #00a99d;
+}
+
+.text-turq {
+  color: #00a99d;
+}
+
+.border-turq {
+  border-color: #00a99d;
 }
