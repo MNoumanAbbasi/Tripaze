@@ -45,6 +45,7 @@ function TripDetails(props) {
   return (
     <div className="row m-0 tripDetails">
       <img src={cover} className="w-100 backDrop"></img>
+      <btn></btn>
       <div className="container align-self-center bg-white frontDrop">
         {/* First row */}
         <div className="row justify-content-around">
@@ -80,11 +81,11 @@ function TripDetails(props) {
             <i class="fa fa-calendar fa-2x fa-fw" aria-hidden="true"></i>
             {'     ' + trip.departureDate}
           </h4>
-          <h4 className="col-lg-2 change-font ">
+          <h4 className="col-lg-2 text-uppercase change-font ">
             <i class="fa fa-clock-o fa-2x fa-fw" aria-hidden="true"></i>
-            {'   ' + trip.duration + 'days'}
+            {trip.duration + ' days'}
           </h4>
-          <h4 class="col-lg-2 text-uppercase change-font col-offset-7">
+          <h4 class="ml-lg-5 col-lg-2 text-uppercase change-font col-offset-7">
             <i class="fa fa-plane fa-2x fa-fw" aria-hidden="true"></i>
             {'' + trip.departureLoc}
           </h4>
@@ -119,7 +120,7 @@ function TripDetails(props) {
           </table>
         </div>
         <div>
-          <h3 class=" ml-lg-4 text-secondary mt-3"> Destinations:</h3>
+          <h3 class=" ml-lg-4 text-secondary"> Destinations:</h3>
           {trip.destinations.map((dest) => {
             return <li class=" ml-lg-4 text-secondary">{dest}</li>;
           })}
