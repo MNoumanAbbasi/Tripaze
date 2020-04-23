@@ -96,7 +96,7 @@ function TripDetails(props) {
             <h3 class="text-secondary">Description</h3>
             <div class="text-secondary ">{trip.description}</div>
           </div>
-          <table class="mt-4 col-lg-4 table table-md-responsive table-info table-striped">
+          <table class="mr-4 col-lg-4 table table-border table-hover table-md-responsive table-info">
             <thead class="thead-light">
               <tr>
                 <th class="bg-info text-white text-center" scope="col">
@@ -104,8 +104,30 @@ function TripDetails(props) {
                 </th>
               </tr>
             </thead>
+            <tr className="bg-white text-info text-center">
+              <td>BBQ</td>
+            </tr>
+            <tr className="bg-white text-info text-center">
+              <td>SKiing</td>
+            </tr>
+            <tr className="bg-white text-info text-center">
+              <td>Snow</td>
+            </tr>
+            <tr className="bg-white text-info text-center">
+              <td>Bonfire</td>
+            </tr>
           </table>
         </div>
+        <div>
+          <h3 class="text-secondary mt-5"> Destinations:</h3>
+          {trip.destinations.map((dest) => {
+            return <li>{dest}</li>;
+          })}
+        </div>
+        <div>
+          <h3 class="text-secondary mt-5"> Frequently Asked Questions:</h3>
+        </div>
+
         {/* Insert FAQ here */}
       </div>
 
