@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { addFaq, deleteFaq } from '../../store/actions/faqActions';
 
 const sampleQuestions = [
   {
