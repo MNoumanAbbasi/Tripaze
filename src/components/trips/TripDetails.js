@@ -137,7 +137,7 @@ function TripDetails(props) {
             Frequently Asked Questions:
           </h3>
         </div>
-        <FAQSection />
+        <FAQSection tripID={props.match.params.id} />
       </div>
 
       {/* <div className="container section trip-details">

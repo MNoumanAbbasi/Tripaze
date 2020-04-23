@@ -66,13 +66,15 @@ const FAQSection = (props) => {
   const [isAddFAQState, setIsAddFAQState] = useState(false);
 
   const addNewFaq = (newFaq) => {
-    setFAQs([...FAQs, newFaq]);
+    setFAQs([...FAQs, newFaq]); // set the FAQs locally
+    props.addFaq(newFaq);
     setIsAddFAQState(false);
   };
   const removeFaq = (question, answer) => {
     setFAQs(
       FAQs.filter((faq) => faq.question !== question && faq.answer !== answer)
     );
+    props.deleteFaq(faqID);
   };
 
   // Button to display (add new or cancel) based on if add new faq form is open or not
@@ -111,10 +113,8 @@ const FAQSection = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // so when we call props.createTrip, it's gonna perform a dispatch using the asynch middleware createTrip
-    // in src/store/actions
-    addReview: (review, companyID) => dispatch(addReview(review, companyID)),
-    deleteReview: (reviewID) => dispatch(deleteReview(reviewID)),
+    addFaq: (faq, tripID) => dispatch(addFaq(faq, tripID)),
+    deleteFaq: (faqID) => dispatch(deleteFaq(faqID)),
   };
 };
 
