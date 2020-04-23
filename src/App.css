@@ -260,3 +260,8 @@
   background-color: #17a2b8;
   color: #ffffff;
 }
+
+.overlay-button {
+  background-color: #00a99d;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+}

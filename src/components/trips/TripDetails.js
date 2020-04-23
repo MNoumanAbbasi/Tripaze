@@ -93,9 +93,15 @@ function TripDetails(props) {
         <hr class="mb-2 col-7 ml-0 divider"></hr>
         {/* Description Box */}
         <div class="mt-5 row align-content-centre justify-content-between">
-          <div class="ml-lg-4 col-lg-6 text-justify">
-            <h3 class="text-secondary">Description</h3>
-            <div class="text-secondary ">{trip.description}</div>
+          <div class="ml-lg-4 col-lg-6 text-justify text-secondary">
+            <h3>Description</h3>
+            <div>{trip.description}</div>
+            <div>
+              <h3 class="mt-5"> Destinations:</h3>
+              {trip.destinations.map((dest) => {
+                return <li class=" ml-lg-4 text-secondary">{dest}</li>;
+              })}
+            </div>
           </div>
           <table class="mr-lg-4 mt-3 col-lg-4 table table-border border-info table-hover table-md-responsive">
             <thead class="thead-light">
@@ -105,6 +111,7 @@ function TripDetails(props) {
                 </th>
               </tr>
             </thead>
+            {/* EDIT BELOW HERE and keep the classes */}
             <tr className="text-center tr-highlight">
               <td>BBQ</td>
             </tr>
@@ -118,12 +125,6 @@ function TripDetails(props) {
               <td>Bonfire</td>
             </tr>
           </table>
-        </div>
-        <div>
-          <h3 class=" ml-lg-4 text-secondary"> Destinations:</h3>
-          {trip.destinations.map((dest) => {
-            return <li class=" ml-lg-4 text-secondary">{dest}</li>;
-          })}
         </div>
         <div>
           <h3 class=" ml-lg-4 text-secondary mt-5">
