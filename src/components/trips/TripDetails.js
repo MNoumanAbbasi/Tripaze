@@ -46,6 +46,12 @@ function TripDetails(props) {
   return (
     <div className="row m-0 tripDetails">
       <DisplayImage img={trip.image} page={'details'} />
+      <button
+        type="button"
+        class="btn btn-lg overlay-buttonlg overlay-button form-rounded object-hover"
+      >
+        EDIT TRIP <i class="fa fas fa-edit fa-fw"></i>
+      </button>
       <div className="container align-self-center bg-white frontDrop">
         {/* First row */}
         <div className="row justify-content-around">
@@ -53,7 +59,7 @@ function TripDetails(props) {
             <h1 className="text-secondary tripText align-self-center">
               {trip.title}
             </h1>
-            <div className="text-info tripText align-self-center">
+            <div className="text-turq tripText align-self-center">
               Rs. {trip.price}
             </div>
           </div>
@@ -75,38 +81,63 @@ function TripDetails(props) {
           </div>
         </div>
         {/* Second row */}
-        <hr class="col-7 ml-0 divider"></hr>
+        <hr class="mt-3 col-7 ml-0 divider"></hr>
         <div class="row align-content-center justify-content-start">
-          <h5 className="col-lg-3 change-font text-left ml-0">
+          <h4 className="col-lg-3 change-font ml-0 colored">
             <i class="fa fa-calendar fa-2x fa-fw" aria-hidden="true"></i>
             {'     ' + trip.departureDate}
-          </h5>
-          <h5 className="col-lg-2 change-font text-left ">
+          </h4>
+          <h4 className="col-lg-2 text-uppercase change-font colored">
             <i class="fa fa-clock-o fa-2x fa-fw" aria-hidden="true"></i>
-            {'   ' + trip.duration + 'days'}
-          </h5>
-          <h5 class="col-lg-2 text-uppercase change-font text-left">
+            {trip.duration + ' days'}
+          </h4>
+          <h4 class="ml-lg-5 col-lg-2 text-uppercase change-font col-offset-7 colored">
             <i class="fa fa-plane fa-2x fa-fw" aria-hidden="true"></i>
             {'' + trip.departureLoc}
-          </h5>
+          </h4>
         </div>
-        <hr class="col-7 ml-0 divider"></hr>
+        <hr class="mb-2 col-7 ml-0 divider"></hr>
         {/* Description Box */}
         <div class="mt-5 row align-content-centre justify-content-between">
-          <div class="col-lg-6">
-            <h3 class="text-secondary">Description</h3>
-            <div class="text-secondary ">{trip.description}</div>
+          <div class="ml-lg-4 col-lg-6 text-justify text-secondary">
+            <h3>Description</h3>
+            <div>{trip.description}</div>
+            <div>
+              <h3 class="mt-5"> Destinations:</h3>
+              {trip.destinations.map((dest) => {
+                return <li class=" ml-lg-4 text-secondary">{dest}</li>;
+              })}
+            </div>
           </div>
-          <table class="mt-4 col-lg-4 table table-md-responsive table-info table-striped">
-            <thead class="thead-light">
-              <tr>
-                <th class="bg-info text-white text-center" scope="col">
+          <table class="mr-lg-4 mt-3 col-lg-4 table table-border tb-border border-turq object-hover table-md-responsive">
+            <thead>
+              <tr class="bg-turq">
+                <th class="text-white text-center" scope="col">
                   Main Attractions
                 </th>
               </tr>
             </thead>
+            {/* EDIT BELOW HERE and keep the classes */}
+            <tr className="text-center tr-highlight">
+              <td>BBQ</td>
+            </tr>
+            <tr className=" text-center tr-highlight">
+              <td>Skiing</td>
+            </tr>
+            <tr className="text-center tr-highlight">
+              <td>Snow</td>
+            </tr>
+            <tr className="text-center tr-highlight">
+              <td>Bonfire</td>
+            </tr>
           </table>
         </div>
+        <div>
+          <h3 class=" ml-lg-4 text-secondary mt-5">
+            Frequently Asked Questions:
+          </h3>
+        </div>
+        {/* Insert FAQ here */}
       </div>
 
       {/* <div className="container section trip-details">
