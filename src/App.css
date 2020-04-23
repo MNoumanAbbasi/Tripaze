@@ -239,8 +239,11 @@
   }
 }
 
+.table-hover {
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.5s;
+}
+
 .table-hover:hover {
   transform: scale(1.05);
-  transition-timing-function: ease-in-out;
-  transition-duration: 1s;
 }
