@@ -131,7 +131,6 @@ function TripDetails(props) {
             Frequently Asked Questions:
           </h3>
         </div>
-
         {/* Insert FAQ here */}
       </div>
 
