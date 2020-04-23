@@ -74,29 +74,29 @@ function TripDetails(props) {
           </div>
         </div>
         {/* Second row */}
-        <hr class="col-7 ml-0 divider"></hr>
+        <hr class="mt-3 col-7 ml-0 divider"></hr>
         <div class="row align-content-center justify-content-start">
-          <h5 className="col-lg-3 change-font text-left ml-0">
+          <h4 className="col-lg-3 change-font ml-0">
             <i class="fa fa-calendar fa-2x fa-fw" aria-hidden="true"></i>
             {'     ' + trip.departureDate}
-          </h5>
-          <h5 className="col-lg-2 change-font text-left ">
+          </h4>
+          <h4 className="col-lg-2 change-font ">
             <i class="fa fa-clock-o fa-2x fa-fw" aria-hidden="true"></i>
             {'   ' + trip.duration + 'days'}
-          </h5>
-          <h5 class="col-lg-2 text-uppercase change-font text-left">
+          </h4>
+          <h4 class="col-lg-2 text-uppercase change-font col-offset-7">
             <i class="fa fa-plane fa-2x fa-fw" aria-hidden="true"></i>
             {'' + trip.departureLoc}
-          </h5>
+          </h4>
         </div>
-        <hr class="col-7 ml-0 divider"></hr>
+        <hr class="mb-2 col-7 ml-0 divider"></hr>
         {/* Description Box */}
         <div class="mt-5 row align-content-centre justify-content-between">
           <div class="ml-lg-4 col-lg-6 text-justify">
             <h3 class="text-secondary">Description</h3>
             <div class="text-secondary ">{trip.description}</div>
           </div>
-          <table class="mr-4 col-lg-4 table table-border border-info table-hover table-md-responsive">
+          <table class="mr-lg-4 mt-3 col-lg-4 table table-border border-info table-hover table-md-responsive">
             <thead class="thead-light">
               <tr>
                 <th class="bg-info text-white text-center" scope="col">
