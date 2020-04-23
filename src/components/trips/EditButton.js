@@ -10,7 +10,7 @@ const  = (props) => {
 
   return (
     <button
-        class = "form-rounded "
+        class = "form-rounded overlay-button"
     ></button>
 
 
