@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { addQuestion, deleteFaq } from '../../store/actions/faqActions';
+import { addQuestion, addAnswer, deleteFaq } from '../../store/actions/faqActions';
 
 const FAQ = (props) => {
   return (
@@ -33,13 +33,29 @@ const AddQuestionForm = (props) => {
           onChange={(event) => setQuestion(event.target.value)}
           required
         />
-        {/* <input
+        <button className="dark-button">Add</button>
+      </form>
+    </div>
+  );
+};
+
+const AddAnswerForm = (props) => {
+  const [answer, setAnswer] = useState('');
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    props.onSubmit(answer);
+  };
+
+  return (
+    <div className="addAnswer">
+      <form onSubmit={handleSubmit}>
+        <input
           type="text"
           placeholder="Add answer"
           onChange={(event) => setAnswer(event.target.value)}
           required
-        /> */}
-        <button className="dark-button">Submit</button>
+        />
+        <button className="dark-button">Post</button>
       </form>
     </div>
   );
@@ -48,15 +64,23 @@ const AddQuestionForm = (props) => {
 const FAQSection = (props) => {
   // State to store all FAQs
   const [FAQs, setFAQs] = useState(props.FAQs);
-  // Updating FAQs from database
+  // If no faq, then empty the array
   if (props.FAQs === undefined) setFAQs([]);
 
   // State to check if the Add new FAQ form is open or not
   const [isAddFAQState, setIsAddFAQState] = useState(false);
 
   const addQuestion = (question) => {
-    setFAQs([...FAQs, { question, answer: '' }]);
-    props.addQuestion({ question, answer: '' }, props.tripID);
+    setFAQs([...FAQs, { question, answer: '' }]); // TODO: instead of updating local copy too. remount when faq added/deleted.
+    props.addQuestion(question, props.tripID);
+    // setFAQs(props.FAQs)
+    setIsAddFAQState(false);
+  };
+  const addAnswer = (answer, question) => {
+    const ind = FAQs.findIndex((faq) => faq.question == question);
+    const newFAQs = FAQs[ind].answer = answer;
+    setFAQs(newFAQs);  // TODO: instead of updating local copy too. remount when faq added/deleted.
+    props.addAnswer(answer, props.tripID, question);
     setIsAddFAQState(false);
   };
   const removeFaq = (faqID) => {
@@ -93,6 +117,7 @@ const FAQSection = (props) => {
         return <FAQ key={faq.id} {...faq} removeFaq={removeFaq} />;
       })}
       {isAddFAQState && <AddQuestionForm onSubmit={addQuestion} />}
+      {/* {isAddFAQState && <AddAnswerForm onSubmit={addAnswer} />} */}
       {button}
     </div>
   );
@@ -101,6 +126,7 @@ const FAQSection = (props) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addQuestion: (question, tripID) => dispatch(addQuestion(question, tripID)),
+    addAnswer: (answer, tripID, question) => dispatch(addAnswer(answer, tripID, question)),
     deleteFaq: (faqID) => dispatch(deleteFaq(faqID)),
   };
 };
