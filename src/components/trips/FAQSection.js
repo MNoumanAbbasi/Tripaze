@@ -2,19 +2,6 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { addFaq, deleteFaq } from '../../store/actions/faqActions';
 
-const sampleQuestions = [
-  {
-    question: 'New Question?',
-    answer:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit, nisl eu tempor mollis.',
-  },
-  {
-    question: 'Another Question?',
-    answer:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit, nisl eu tempor mollis  .',
-  },
-];
-
 const FAQ = (props) => {
   return (
     <div className="faq">

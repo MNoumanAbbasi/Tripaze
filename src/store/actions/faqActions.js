@@ -5,10 +5,10 @@ export const addFaq = (faq, tripID) => {
     // this variable will have a reference to our database
     const firestore = getFirestore();
 
-    // grabbing user's id and profile
+    // grabbing user's id and profile // TODO: why not working here
     const userID = getState().firebase.auth.uid;
     const userName = getState().auth.currProfile.userName;
-    console.log('new faq: ', { faq });
+
     firestore
       .collection('FAQs')
       .add({
