@@ -92,7 +92,7 @@ function TripDetails(props) {
         <hr class="col-7 ml-0 divider"></hr>
         {/* Description Box */}
         <div class="mt-5 row align-content-centre justify-content-between">
-          <div class="ml-lg-4 col-lg-6">
+          <div class="ml-lg-4 col-lg-6 text-justify">
             <h3 class="text-secondary">Description</h3>
             <div class="text-secondary ">{trip.description}</div>
           </div>
