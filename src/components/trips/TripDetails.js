@@ -7,6 +7,7 @@ import FAQSection from './FAQSection';
 import { deleteTrip } from '../../store/actions/tripActions';
 import cover from '../../Images/coverPhoto.jpg';
 import cardbg from './card-bg.png';
+import DisplayImage from './DisplayImage';
 // import { Redirect } from 'react-router-dom'
 
 // class container section is material
@@ -44,7 +45,7 @@ function TripDetails(props) {
   }
   return (
     <div className="row m-0 tripDetails">
-      <img src={cover} className="w-100 backDrop"></img>
+      <DisplayImage img={trip.image} page={'details'} />
       <button
         type="button"
         class="btn btn-lg overlay-buttonlg overlay-button form-rounded object-hover"
