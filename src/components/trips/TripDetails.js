@@ -45,10 +45,13 @@ function TripDetails(props) {
   return (
     <div className="row m-0 tripDetails">
       <img src={cover} className="w-100 backDrop"></img>
-      <button type="button" class="btn btn-lg overlay-button form-rounded">
-        EDIT TRIP
+      <button
+        type="button"
+        class="btn btn-lg overlay-buttonlg overlay-button form-rounded object-hover"
+      >
+        EDIT TRIP <i class="fa fas fa-edit fa-fw"></i>
       </button>
-      <div className="container align-self-center bg-white frontDrop">
+      <div className="container align-self-center bg-white frontDrop object-hover">
         {/* First row */}
         <div className="row justify-content-around">
           <div className="col-lg-7 row justify-content-between order-lg-1 order-2">
@@ -79,15 +82,15 @@ function TripDetails(props) {
         {/* Second row */}
         <hr class="mt-3 col-7 ml-0 divider"></hr>
         <div class="row align-content-center justify-content-start">
-          <h4 className="col-lg-3 change-font ml-0">
+          <h4 className="col-lg-3 change-font ml-0 colored">
             <i class="fa fa-calendar fa-2x fa-fw" aria-hidden="true"></i>
             {'     ' + trip.departureDate}
           </h4>
-          <h4 className="col-lg-2 text-uppercase change-font ">
+          <h4 className="col-lg-2 text-uppercase change-font colored">
             <i class="fa fa-clock-o fa-2x fa-fw" aria-hidden="true"></i>
             {trip.duration + ' days'}
           </h4>
-          <h4 class="ml-lg-5 col-lg-2 text-uppercase change-font col-offset-7">
+          <h4 class="ml-lg-5 col-lg-2 text-uppercase change-font col-offset-7 colored">
             <i class="fa fa-plane fa-2x fa-fw" aria-hidden="true"></i>
             {'' + trip.departureLoc}
           </h4>
@@ -105,7 +108,7 @@ function TripDetails(props) {
               })}
             </div>
           </div>
-          <table class="mr-lg-4 mt-3 col-lg-4 table table-border border-turq table-hover table-md-responsive">
+          <table class="mr-lg-4 mt-3 col-lg-4 table table-border tb-border border-turq object-hover table-md-responsive">
             <thead>
               <tr class="bg-turq">
                 <th class="text-white text-center" scope="col">
