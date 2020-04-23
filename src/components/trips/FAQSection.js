@@ -20,7 +20,7 @@ const FAQ = (props) => {
     <div className="faq">
       <button
         className="remove-btn float-right"
-        onClick={() => props.removeFaq(props.question, props.answer)}
+        onClick={() => props.removeFaq(props.id)}
       >
         <i className="material-icons">cancel</i>
       </button>
@@ -61,19 +61,18 @@ const AddNewFAQForm = (props) => {
 
 const FAQSection = (props) => {
   // State to store all FAQs
-  const [FAQs, setFAQs] = useState(sampleQuestions); // change sampleQuestions to fetch questions from db
+  const [FAQs, setFAQs] = useState(props.FAQs); // change sampleQuestions to fetch questions from db
+
   // State to check if the Add new FAQ form is open or not
   const [isAddFAQState, setIsAddFAQState] = useState(false);
 
   const addNewFaq = (newFaq) => {
     setFAQs([...FAQs, newFaq]); // set the FAQs locally
-    props.addFaq(newFaq);
+    props.addFaq(newFaq, props.tripID);
     setIsAddFAQState(false);
   };
-  const removeFaq = (question, answer) => {
-    setFAQs(
-      FAQs.filter((faq) => faq.question !== question && faq.answer !== answer)
-    );
+  const removeFaq = (faqID) => {
+    setFAQs(FAQs.filter((faq) => faq.id !== faqID));
     props.deleteFaq(faqID);
   };
 
@@ -103,7 +102,7 @@ const FAQSection = (props) => {
     <div className="FAQSection">
       <p className="heading">FAQ Section</p>
       {FAQs.map((faq) => {
-        return <FAQ key={faq.question} {...faq} removeFaq={removeFaq} />;
+        return <FAQ key={faq.id} {...faq} removeFaq={removeFaq} />;
       })}
       {isAddFAQState && <AddNewFAQForm onSubmit={addNewFaq} />}
       {button}

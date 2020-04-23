@@ -8,12 +8,13 @@ export const addFaq = (faq, tripID) => {
     // grabbing user's id and profile
     const userID = getState().firebase.auth.uid;
     const userName = getState().auth.currProfile.userName;
+    console.log('new faq: ', { faq });
     firestore
       .collection('FAQs')
       .add({
         ...faq, // takes both question and answer
-        userName, // userName is name of person asking (user or company)
-        userID, // userID is either companyID or signed in userID
+        // userName, // userName is name of person asking (user or company)
+        // userID, // userID is either companyID or signed in userID
         tripID,
       })
       .then(() => {

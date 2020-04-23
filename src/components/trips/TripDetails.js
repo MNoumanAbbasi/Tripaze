@@ -14,7 +14,8 @@ import DisplayImage from './DisplayImage';
 // class trip-details is from our own css
 // taking props to know which trip to load
 function TripDetails(props) {
-  const { trip, isLoading, auth } = props; // getting trip category from props
+  // TODO: Change to arrow function
+  const { trip, isLoading, auth, FAQs } = props; // getting trip category from props
   const isInitialized = !isLoading && trip;
 
   if (!isInitialized) {
@@ -137,7 +138,7 @@ function TripDetails(props) {
             Frequently Asked Questions:
           </h3>
         </div>
-        <FAQSection tripID={props.match.params.id} />
+        <FAQSection tripID={props.match.params.id} FAQs={FAQs} />
       </div>
 
       {/* <div className="container section trip-details">
@@ -189,6 +190,7 @@ const mapStateToProps = (state, ownProps) => {
     profile: state.auth.currProfile,
     auth: state.firebase.auth,
     isLoading: isLoading, // all must be loaded
+    FAQs: state.firestore.ordered.FAQs,
   };
 };
 
@@ -201,5 +203,5 @@ const mapDispatchToProps = (dispatch) => {
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  firestoreConnect([{ collection: 'Trips' }])
+  firestoreConnect([{ collection: 'Trips' }, { collection: 'FAQs' }])
 )(TripDetails);
