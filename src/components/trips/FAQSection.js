@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { addFaq, deleteFaq } from '../../store/actions/faqActions';
+import { addQuestion, deleteFaq } from '../../store/actions/faqActions';
 
 const FAQ = (props) => {
   return (
@@ -17,16 +17,15 @@ const FAQ = (props) => {
   );
 };
 
-const AddNewFAQForm = (props) => {
+const AddQuestionForm = (props) => {
   const [question, setQuestion] = useState('');
-  const [answer, setAnswer] = useState('');
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.onSubmit({ question, answer });
+    props.onSubmit(question);
   };
 
   return (
-    <div className="addNewFaq">
+    <div className="addQuestion">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -34,12 +33,12 @@ const AddNewFAQForm = (props) => {
           onChange={(event) => setQuestion(event.target.value)}
           required
         />
-        <input
+        {/* <input
           type="text"
           placeholder="Add answer"
           onChange={(event) => setAnswer(event.target.value)}
           required
-        />
+        /> */}
         <button className="dark-button">Submit</button>
       </form>
     </div>
@@ -55,9 +54,9 @@ const FAQSection = (props) => {
   // State to check if the Add new FAQ form is open or not
   const [isAddFAQState, setIsAddFAQState] = useState(false);
 
-  const addNewFaq = (newFaq) => {
-    setFAQs([...FAQs, newFaq]); // set the FAQs locally
-    props.addFaq(newFaq, props.tripID);
+  const addQuestion = (question) => {
+    setFAQs([...FAQs, { question, answer: '' }]);
+    props.addQuestion({ question, answer: '' }, props.tripID);
     setIsAddFAQState(false);
   };
   const removeFaq = (faqID) => {
@@ -93,7 +92,7 @@ const FAQSection = (props) => {
       {FAQs.map((faq) => {
         return <FAQ key={faq.id} {...faq} removeFaq={removeFaq} />;
       })}
-      {isAddFAQState && <AddNewFAQForm onSubmit={addNewFaq} />}
+      {isAddFAQState && <AddQuestionForm onSubmit={addQuestion} />}
       {button}
     </div>
   );
@@ -101,7 +100,7 @@ const FAQSection = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addFaq: (faq, tripID) => dispatch(addFaq(faq, tripID)),
+    addQuestion: (question, tripID) => dispatch(addQuestion(question, tripID)),
     deleteFaq: (faqID) => dispatch(deleteFaq(faqID)),
   };
 };

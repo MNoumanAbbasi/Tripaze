@@ -1,4 +1,4 @@
-export const addFaq = (faq, tripID) => {
+export const addQuestion = (question, tripID) => {
   // we want to return a function and halt the action dispatch until the function finishes
   // dispatch is the funciton that dispatches an action to the reducer
   return (dispatch, getState, { getFirebase, getFirestore }) => {
@@ -12,16 +12,17 @@ export const addFaq = (faq, tripID) => {
     firestore
       .collection('FAQs')
       .add({
-        ...faq, // takes both question and answer
+        question,
+        answer: '',
         // userName, // userName is name of person asking (user or company)
         // userID, // userID is either companyID or signed in userID
         tripID,
       })
       .then(() => {
-        dispatch({ type: 'ADD_FAQ', faq });
+        dispatch({ type: 'ADD_QUESTION', question });
       })
       .catch((err) => {
-        dispatch({ type: 'ADD_FAQ_ERROR', err });
+        dispatch({ type: 'ADD_QUESTION_ERROR', err });
       });
   };
 };

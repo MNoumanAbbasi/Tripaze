@@ -8,6 +8,7 @@ import { deleteTrip } from '../../store/actions/tripActions';
 import cover from '../../Images/coverPhoto.jpg';
 import cardbg from './card-bg.png';
 import DisplayImage from './DisplayImage';
+import { profileType } from '../../Helpers';
 // import { Redirect } from 'react-router-dom'
 
 // class container section is material
@@ -15,7 +16,7 @@ import DisplayImage from './DisplayImage';
 // taking props to know which trip to load
 function TripDetails(props) {
   // TODO: Change to arrow function
-  const { trip, isLoading, auth, FAQs } = props; // getting trip category from props
+  const { trip, isLoading, auth, profile, FAQs } = props; // getting trip category from props
 
   const isInitialized = !isLoading && trip;
 
@@ -139,7 +140,12 @@ function TripDetails(props) {
             Frequently Asked Questions:
           </h3>
         </div>
-        <FAQSection tripID={props.match.params.id} FAQs={FAQs} />
+        <FAQSection
+          FAQs={FAQs}
+          tripID={props.match.params.id}
+          profileType={profileType(auth, profile)}
+          id={auth.uid}
+        />
       </div>
 
       {/* <div className="container section trip-details">

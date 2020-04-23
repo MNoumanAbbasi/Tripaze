@@ -3,11 +3,11 @@ const initState = {};
 
 const faqReducer = (state = initState, action) => {
   switch (action.type) {
-    case 'ADD_FAQ':
-      console.log('added faq', action.faq);
+    case 'ADD_QUESTION':
+      console.log('added question', action.question);
       return state;
-    case 'ADD_FAQ_ERROR':
-      console.log('add faq error', action.err);
+    case 'ADD_QUESTION_ERROR':
+      console.log('add question error', action.err);
       return state;
     case 'DELETE_FAQ':
       console.log('deleted faq', action.faqID);
