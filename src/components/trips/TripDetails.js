@@ -16,6 +16,7 @@ import DisplayImage from './DisplayImage';
 function TripDetails(props) {
   // TODO: Change to arrow function
   const { trip, isLoading, auth, FAQs } = props; // getting trip category from props
+
   const isInitialized = !isLoading && trip;
 
   if (!isInitialized) {
@@ -203,5 +204,8 @@ const mapDispatchToProps = (dispatch) => {
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  firestoreConnect([{ collection: 'Trips' }, { collection: 'FAQs' }])
+  firestoreConnect((props) => [
+    { collection: 'Trips' },
+    { collection: 'FAQs', where: [['tripID', '==', props.match.params.id]] },
+  ])
 )(TripDetails);

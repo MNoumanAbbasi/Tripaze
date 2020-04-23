@@ -48,7 +48,9 @@ const AddNewFAQForm = (props) => {
 
 const FAQSection = (props) => {
   // State to store all FAQs
-  const [FAQs, setFAQs] = useState(props.FAQs); // change sampleQuestions to fetch questions from db
+  const [FAQs, setFAQs] = useState(props.FAQs);
+  // Updating FAQs from database
+  if (props.FAQs === undefined) setFAQs([]);
 
   // State to check if the Add new FAQ form is open or not
   const [isAddFAQState, setIsAddFAQState] = useState(false);
