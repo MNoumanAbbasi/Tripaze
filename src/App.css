@@ -262,9 +262,10 @@
 }
 
 .overlay-button {
-  z-index: 2;
+  z-index: 3;
   position: absolute;
   margin-right: 20%;
+  margin-top: auto;
   background-color: #00a99d;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
 }
