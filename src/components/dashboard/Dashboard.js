@@ -48,7 +48,6 @@ class Dashboard extends Component {
 }
 // Map state from store to props in component
 const mapStateToProps = (state) => {
-  // console.log('Dashboard', state);
   const requests = state.firestore.status.requesting;
   const isLoading = requests
     ? Object.values(requests).some((value) => value === true)

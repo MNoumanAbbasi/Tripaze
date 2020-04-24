@@ -14,7 +14,6 @@ class DisplayImage extends Component {
   }
 
   getUrl = () => {
-    console.log('asd', this.props.img);
     if (this.props.img === '') {
       this.setState({ url: coverPhoto, complete: true });
     } else {
