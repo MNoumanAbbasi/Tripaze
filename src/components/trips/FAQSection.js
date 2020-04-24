@@ -7,17 +7,16 @@ import {
 } from '../../store/actions/faqActions';
 
 const FAQ = (props) => {
-  const isOwnCompanyProfile =
-    props.profileType === 'Company';
+  const isOwnCompanyProfile = props.profileType === 'Company';
   const showAddAnswerForm = isOwnCompanyProfile && props.answer === '';
   return (
     <div className="faq">
       {isOwnCompanyProfile && (
         <button
-          className="remove-btn float-right"
+          className="btn form-rounded object-hover float-right"
           onClick={() => props.removeFaq(props.id)}
         >
-          <i className="material-icons">cancel</i>
+          <i class="fa fa-times-circle text-danger"></i>
         </button>
       )}
       <p className="question">Q. {props.question}</p>
@@ -38,7 +37,7 @@ const AddQuestionForm = (props) => {
 
   return (
     <div className="addQuestion">
-      <form onSubmit={handleSubmit}>
+      <form className="" onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Add question"
