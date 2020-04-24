@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import storage from '../../config/fbConfig';
 import coverPhoto from '../../Images/coverPhoto.jpg';
-import LoadingBox from '../dashboard/LoadingBox';
+import spinner from '../../Images/Spinner.gif';
 
 class DisplayImage extends Component {
   constructor(props) {
@@ -18,6 +18,7 @@ class DisplayImage extends Component {
     if (this.props.img === '') {
       this.setState({ url: coverPhoto, complete: true });
     } else {
+      this.setState({ url: spinner, complete: true });
       storage
         .ref('tripImages')
         .child(this.props.img)
