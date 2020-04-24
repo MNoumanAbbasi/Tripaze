@@ -31,7 +31,8 @@ class SearchResults extends Component {
 }
 
 // Map state from store to props in component
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownprops) => {
+  console.log(ownprops);
   const requests = state.firestore.status.requesting;
   const isLoading = requests
     ? Object.values(requests).some((value) => value === true)
@@ -50,7 +51,7 @@ export default compose(
   firestoreConnect((props) => [
     {
       collection: 'Trips',
-      where: [['destinations', '==', props.match.params.dest]],
+      where: [['destinations', 'array-contains', props.match.params.dest]],
     },
   ])
 )(SearchResults);
