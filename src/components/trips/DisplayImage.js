@@ -15,7 +15,7 @@ class DisplayImage extends Component {
 
   getUrl = () => {
     if (this.props.img === '') {
-      this.setState({ url: coverPhoto, complete: true });
+      return coverPhoto;
     } else {
       this.setState({ url: spinner, complete: true });
       storage
@@ -23,13 +23,22 @@ class DisplayImage extends Component {
         .child(this.props.img)
         .getDownloadURL()
         .then((url) => {
-          this.setState({ url, complete: true });
+          return url;
         });
     }
   };
 
+  _isMounted = false;
   componentDidMount() {
-    this.getUrl();
+    this._isMounted = true;
+    const url = this.getUrl();
+    if ((this._isMounted = true)) {
+      this.setState({ url, complete: true });
+    }
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   render() {
