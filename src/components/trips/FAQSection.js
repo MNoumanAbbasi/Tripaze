@@ -7,21 +7,24 @@ import {
 } from '../../store/actions/faqActions';
 
 const FAQ = (props) => {
-  const notAnswered = props.answer === '';
+  const isOwnCompanyProfile =
+    props.profileType === 'Company';
+  const showAddAnswerForm = isOwnCompanyProfile && props.answer === '';
   return (
     <div className="faq">
-      <button
-        className="remove-btn float-right"
-        onClick={() => props.removeFaq(props.id)}
-      >
-        <i className="material-icons">cancel</i>
-      </button>
-      <p className="question">Q. {props.question}</p>
-      {notAnswered ? (
-        <AddAnswerForm onSubmit={props.addAnswer} faqID={props.id} />
-      ) : (
-        <p className="answer">A. {props.answer}</p>
+      {isOwnCompanyProfile && (
+        <button
+          className="remove-btn float-right"
+          onClick={() => props.removeFaq(props.id)}
+        >
+          <i className="material-icons">cancel</i>
+        </button>
       )}
+      <p className="question">Q. {props.question}</p>
+      {showAddAnswerForm && (
+        <AddAnswerForm onSubmit={props.addAnswer} faqID={props.id} />
+      )}
+      {props.answer && <p className="answer">A. {props.answer}</p>}
     </div>
   );
 };
@@ -73,26 +76,21 @@ const AddAnswerForm = (props) => {
 const FAQSection = (props) => {
   // State to store all FAQs
   const [FAQs, setFAQs] = useState(props.FAQs);
-  // If no faq, then empty the array
-  if (props.FAQs === undefined) setFAQs([]);
-  // console.log('faqs fecthed', props.FAQs);
-
-  // State to check if the Add new FAQ form is open or not
-  const [isAddFAQState, setIsAddFAQState] = useState(false);
+  // State to check if the Add new question form is open or not
+  const [isAddQuestionState, setIsAddQuestionState] = useState(false);
+  const userSignedIn = props.profileType !== 'Guest';
 
   const addQuestion = (question) => {
     setFAQs([...FAQs, { question, answer: '' }]); // TODO: instead of updating local copy too. remount when faq added/deleted.
     props.addQuestion(question, props.tripID);
-    // console.log(props.FAQs);
-    // setFAQs(props.FAQs)
-    setIsAddFAQState(false);
+    setIsAddQuestionState(false);
   };
   const addAnswer = (answer, faqID) => {
-    const ind = FAQs.findIndex((faq) => faq.id == faqID);
+    const ind = FAQs.findIndex((faq) => faq.id === faqID);
     const newFAQs = (FAQs[ind].answer = answer);
     setFAQs(newFAQs); // TODO: instead of updating local copy too. remount when faq added/deleted.
     props.addAnswer(answer, faqID);
-    setIsAddFAQState(false);
+    setIsAddQuestionState(false);
   };
   const removeFaq = (faqID) => {
     setFAQs(FAQs.filter((faq) => faq.id !== faqID));
@@ -101,11 +99,11 @@ const FAQSection = (props) => {
 
   // Button to display (add new or cancel) based on if add new faq form is open or not
   let button;
-  if (isAddFAQState) {
+  if (isAddQuestionState) {
     button = (
       <button
         className="cancelButton light-button"
-        onClick={() => setIsAddFAQState(false)}
+        onClick={() => setIsAddQuestionState(false)}
       >
         Cancel
       </button>
@@ -114,7 +112,7 @@ const FAQSection = (props) => {
     button = (
       <button
         className="addNewButton dark-button"
-        onClick={() => setIsAddFAQState(true)}
+        onClick={() => setIsAddQuestionState(true)}
       >
         Add Question
       </button>
@@ -132,11 +130,13 @@ const FAQSection = (props) => {
               {...faq}
               removeFaq={removeFaq}
               addAnswer={addAnswer}
+              profileType={props.profileType}
+              profileID={props.profileID}
             />
           );
         })}
-      {isAddFAQState && <AddQuestionForm onSubmit={addQuestion} />}
-      {button}
+      {isAddQuestionState && <AddQuestionForm onSubmit={addQuestion} />}
+      {userSignedIn && button}
     </div>
   );
 };

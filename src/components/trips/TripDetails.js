@@ -144,7 +144,7 @@ function TripDetails(props) {
           FAQs={FAQs}
           tripID={props.match.params.id}
           profileType={profileType(auth, profile)}
-          id={auth.uid}
+          profileID={auth.uid}
         />
       </div>
 
