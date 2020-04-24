@@ -80,14 +80,14 @@ const FAQSection = (props) => {
   const userSignedIn = props.profileType !== 'Guest';
 
   const addQuestion = (question) => {
-    setFAQs([...FAQs, { question, answer: '' }]); // TODO: instead of updating local copy too. remount when faq added/deleted.
+    // setFAQs([...FAQs, { question, answer: '' }]); // TODO: instead of updating local copy too. remount when faq added/deleted.
     props.addQuestion(question, props.tripID);
     setIsAddQuestionState(false);
   };
   const addAnswer = (answer, faqID) => {
     const ind = FAQs.findIndex((faq) => faq.id === faqID);
-    const newFAQs = (FAQs[ind].answer = answer);
-    setFAQs(newFAQs); // TODO: instead of updating local copy too. remount when faq added/deleted.
+    FAQs[ind].answer = answer;
+    // setFAQs(newFAQs); // TODO: instead of updating local copy too. remount when faq added/deleted.
     props.addAnswer(answer, faqID);
     setIsAddQuestionState(false);
   };
@@ -120,7 +120,6 @@ const FAQSection = (props) => {
 
   return (
     <div className="FAQSection">
-      <p className="heading">FAQ Section</p>
       {FAQs &&
         FAQs.map((faq) => {
           return (
