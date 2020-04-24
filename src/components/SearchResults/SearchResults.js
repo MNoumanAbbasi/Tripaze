@@ -51,7 +51,13 @@ export default compose(
   firestoreConnect((props) => [
     {
       collection: 'Trips',
-      where: [['destinations', 'array-contains', props.match.params.dest]],
+      where: [
+        [
+          'destinationsLowerCase',
+          'array-contains',
+          props.match.params.dest.toLowerCase(),
+        ],
+      ],
     },
   ])
 )(SearchResults);
