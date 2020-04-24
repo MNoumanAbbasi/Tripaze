@@ -21,7 +21,6 @@ class Dashboard extends Component {
     }
 
     if (isInitialized) {
-      console.log('Trippy', trips);
       return (
         <div className="homePage">
           <img src={background} className="img-fluid mw-100"></img>

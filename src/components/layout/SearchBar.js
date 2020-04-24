@@ -37,8 +37,6 @@ export class SearchBar extends Component {
   };
 
   render() {
-    console.log(this.props.location);
-
     return (
       <form
         onSubmit={(e) => {
