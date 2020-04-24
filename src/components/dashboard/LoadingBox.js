@@ -2,9 +2,12 @@ import React from 'react';
 
 const LoadingBox = () => {
   return (
-    <div className="h-100 align-items-center">
-      <i class="fa fa-spinner fa-spin"></i>
-      <div>Loading</div>
+    <div
+      className="d-flex justify-content-center align-items-center"
+      style={{ height: '100px' }}
+    >
+      <i class="fa fa-3x fa-spinner fa-spin text-turq"></i>
+      <div className="home-heading">Loading</div>
     </div>
   );
 };
