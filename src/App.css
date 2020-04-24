@@ -285,8 +285,22 @@
 
 /* Re-usable for background, text color and borders */
 .colored {
-  color: #72777e;
+  color: gray;
   /* color: #00a99d; */
+}
+
+.colored:hover {
+  color: #00a99d;
+  /* color: #00a99d; */
+}
+
+.colored-r {
+  color: red;
+  /* color: #00a99d; */
+}
+
+.colored-r:hover {
+  color: white;
 }
 
 .bg-turq {

@@ -10,20 +10,22 @@ const FAQ = (props) => {
   const isOwnCompanyProfile = props.profileType === 'Company';
   const showAddAnswerForm = isOwnCompanyProfile && props.answer === '';
   return (
-    <div className="faq">
+    <div className="faq tb-border-0 mt-3 border-turq ">
       {isOwnCompanyProfile && (
         <button
-          className="btn form-rounded object-hover float-right"
+          className="btn btn-sm form-rounded object-hover float-right m-2"
           onClick={() => props.removeFaq(props.id)}
         >
-          <i class="fa fa-times-circle text-danger"></i>
+          <i class="fa fa-times-circle fa-2x text-danger"></i>
         </button>
       )}
-      <p className="question">Q. {props.question}</p>
-      {showAddAnswerForm && (
-        <AddAnswerForm onSubmit={props.addAnswer} faqID={props.id} />
-      )}
-      {props.answer && <p className="answer">A. {props.answer}</p>}
+      <h4 className="question bg-turq text-white p-3 ">Q. {props.question}</h4>
+      <div className="ml-3">
+        {showAddAnswerForm && (
+          <AddAnswerForm onSubmit={props.addAnswer} faqID={props.id} />
+        )}
+        {props.answer && <p className="answer">A. {props.answer}</p>}
+      </div>
     </div>
   );
 };
@@ -36,7 +38,7 @@ const AddQuestionForm = (props) => {
   };
 
   return (
-    <div className="addQuestion">
+    <div className="addQuestion mt-4">
       <form className="" onSubmit={handleSubmit}>
         <input
           type="text"
@@ -58,15 +60,16 @@ const AddAnswerForm = (props) => {
   };
 
   return (
-    <div className="addAnswer">
+    <div className="row asign-content-start justify-content-between">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Add answer"
+          className="col-10"
           onChange={(event) => setAnswer(event.target.value)}
           required
         />
-        <button className="dark-button">Post</button>
+        <button className="dark-button col-4">Post</button>
       </form>
     </div>
   );
@@ -119,8 +122,7 @@ const FAQSection = (props) => {
   }
 
   return (
-    <div className="FAQSection">
-      <p className="heading">FAQ Section</p>
+    <div className="FAQSection mt-5 mr-3 ml-3">
       {FAQs &&
         FAQs.map((faq) => {
           return (
