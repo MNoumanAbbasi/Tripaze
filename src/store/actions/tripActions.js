@@ -14,12 +14,18 @@ export const createTrip = (trip, currProfile) => {
     const newDate = dateSplit[1] + ' ' + dateSplit[2] + ', ' + dateSplit[3];
     trip.departureDate = newDate;
 
+    // storing departures as lower case for search
+    const destinationsLowerCase = trip.destinations.map((loc) =>
+      loc.toLowerCase()
+    );
+
     firestore
       .collection('Trips')
       .add({
         ...trip, // takes all the properties from createTrip
         companyId: authorId,
         companyName: currProfile.companyName,
+        destinationsLowerCase: destinationsLowerCase,
       })
       .then(() => {
         dispatch({ type: 'CREATE_TRIP', trip: trip });
