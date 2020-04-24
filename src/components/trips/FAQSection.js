@@ -7,6 +7,7 @@ import {
 } from '../../store/actions/faqActions';
 
 const FAQ = (props) => {
+  const notAnswered = props.answer === '';
   return (
     <div className="faq">
       <button
@@ -15,8 +16,12 @@ const FAQ = (props) => {
       >
         <i className="material-icons">cancel</i>
       </button>
-      <p className="question">{props.question}</p>
-      <p className="answer">{props.answer}</p>
+      <p className="question">Q. {props.question}</p>
+      {notAnswered ? (
+        <AddAnswerForm onSubmit={props.addAnswer} faqID={props.id} />
+      ) : (
+        <p className="answer">A. {props.answer}</p>
+      )}
     </div>
   );
 };
@@ -47,7 +52,7 @@ const AddAnswerForm = (props) => {
   const [answer, setAnswer] = useState('');
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.onSubmit(answer);
+    props.onSubmit(answer, props.faqID);
   };
 
   return (
@@ -82,11 +87,11 @@ const FAQSection = (props) => {
     // setFAQs(props.FAQs)
     setIsAddFAQState(false);
   };
-  const addAnswer = (answer, question) => {
-    const ind = FAQs.findIndex((faq) => faq.question == question);
+  const addAnswer = (answer, faqID) => {
+    const ind = FAQs.findIndex((faq) => faq.id == faqID);
     const newFAQs = (FAQs[ind].answer = answer);
     setFAQs(newFAQs); // TODO: instead of updating local copy too. remount when faq added/deleted.
-    props.addAnswer(answer, props.tripID, question);
+    props.addAnswer(answer, faqID);
     setIsAddFAQState(false);
   };
   const removeFaq = (faqID) => {
@@ -119,11 +124,18 @@ const FAQSection = (props) => {
   return (
     <div className="FAQSection">
       <p className="heading">FAQ Section</p>
-      {FAQs && FAQs.map((faq) => {
-        return <FAQ key={faq.id} {...faq} removeFaq={removeFaq} />;
-      })}
+      {FAQs &&
+        FAQs.map((faq) => {
+          return (
+            <FAQ
+              key={faq.id}
+              {...faq}
+              removeFaq={removeFaq}
+              addAnswer={addAnswer}
+            />
+          );
+        })}
       {isAddFAQState && <AddQuestionForm onSubmit={addQuestion} />}
-      {/* {isAddFAQState && <AddAnswerForm onSubmit={addAnswer} />} */}
       {button}
     </div>
   );
@@ -132,8 +144,7 @@ const FAQSection = (props) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addQuestion: (question, tripID) => dispatch(addQuestion(question, tripID)),
-    addAnswer: (answer, tripID, question) =>
-      dispatch(addAnswer(answer, tripID, question)),
+    addAnswer: (answer, faqID) => dispatch(addAnswer(answer, faqID)),
     deleteFaq: (faqID) => dispatch(deleteFaq(faqID)),
   };
 };

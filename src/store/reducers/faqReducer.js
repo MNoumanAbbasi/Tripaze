@@ -10,7 +10,7 @@ const faqReducer = (state = initState, action) => {
       console.log('add question error', action.err);
       return state;
     case 'ADD_ANSWER':
-      console.log('added answer', action.question);
+      console.log('added answer', action.answer);
       return state;
     case 'ADD_ANSWER_ERROR':
       console.log('add answer error', action.err);

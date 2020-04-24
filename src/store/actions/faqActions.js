@@ -28,7 +28,7 @@ export const addQuestion = (question, tripID) => {
   };
 };
 
-export const addAnswer = (answer, tripID, question) => {
+export const addAnswer = (answer, faqID) => {
   // we want to return a function and halt the action dispatch until the function finishes
   // dispatch is the funciton that dispatches an action to the reducer
   return (dispatch, getState, { getFirebase, getFirestore }) => {
@@ -41,16 +41,16 @@ export const addAnswer = (answer, tripID, question) => {
 
     firestore
       .collection('FAQs')
-      .add({
-        question,
-        answer: '',
+      .doc(faqID)
+      .update({
+        answer,
         // userName, // userName is name of person asking (user or company)
         // userID, // userID is either companyID or signed in userID
-        tripID,
+        // tripID,
       })
       .then(() => {
         window.location.reload(); // TODO: This is a hacky change. For global change, page needs to be refreshed. Find a solution to automatically update it when props change
-        dispatch({ type: 'ADD_ANSWER', question });
+        dispatch({ type: 'ADD_ANSWER', answer });
       })
       .catch((err) => {
         dispatch({ type: 'ADD_ANSWER_ERROR', err });
