@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { addQuestion, addAnswer, deleteFaq } from '../../store/actions/faqActions';
+import {
+  addQuestion,
+  addAnswer,
+  deleteFaq,
+} from '../../store/actions/faqActions';
 
 const FAQ = (props) => {
   return (
@@ -66,6 +70,7 @@ const FAQSection = (props) => {
   const [FAQs, setFAQs] = useState(props.FAQs);
   // If no faq, then empty the array
   if (props.FAQs === undefined) setFAQs([]);
+  // console.log('faqs fecthed', props.FAQs);
 
   // State to check if the Add new FAQ form is open or not
   const [isAddFAQState, setIsAddFAQState] = useState(false);
@@ -73,13 +78,14 @@ const FAQSection = (props) => {
   const addQuestion = (question) => {
     setFAQs([...FAQs, { question, answer: '' }]); // TODO: instead of updating local copy too. remount when faq added/deleted.
     props.addQuestion(question, props.tripID);
+    // console.log(props.FAQs);
     // setFAQs(props.FAQs)
     setIsAddFAQState(false);
   };
   const addAnswer = (answer, question) => {
     const ind = FAQs.findIndex((faq) => faq.question == question);
-    const newFAQs = FAQs[ind].answer = answer;
-    setFAQs(newFAQs);  // TODO: instead of updating local copy too. remount when faq added/deleted.
+    const newFAQs = (FAQs[ind].answer = answer);
+    setFAQs(newFAQs); // TODO: instead of updating local copy too. remount when faq added/deleted.
     props.addAnswer(answer, props.tripID, question);
     setIsAddFAQState(false);
   };
@@ -113,7 +119,7 @@ const FAQSection = (props) => {
   return (
     <div className="FAQSection">
       <p className="heading">FAQ Section</p>
-      {FAQs.map((faq) => {
+      {FAQs && FAQs.map((faq) => {
         return <FAQ key={faq.id} {...faq} removeFaq={removeFaq} />;
       })}
       {isAddFAQState && <AddQuestionForm onSubmit={addQuestion} />}
@@ -126,7 +132,8 @@ const FAQSection = (props) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addQuestion: (question, tripID) => dispatch(addQuestion(question, tripID)),
-    addAnswer: (answer, tripID, question) => dispatch(addAnswer(answer, tripID, question)),
+    addAnswer: (answer, tripID, question) =>
+      dispatch(addAnswer(answer, tripID, question)),
     deleteFaq: (faqID) => dispatch(deleteFaq(faqID)),
   };
 };
