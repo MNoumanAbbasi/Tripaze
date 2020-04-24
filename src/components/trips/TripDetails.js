@@ -8,13 +8,16 @@ import { deleteTrip } from '../../store/actions/tripActions';
 import cover from '../../Images/coverPhoto.jpg';
 import cardbg from './card-bg.png';
 import DisplayImage from './DisplayImage';
+import { profileType } from '../../Helpers';
 // import { Redirect } from 'react-router-dom'
 
 // class container section is material
 // class trip-details is from our own css
 // taking props to know which trip to load
 function TripDetails(props) {
-  const { trip, isLoading, auth } = props; // getting trip category from props
+  // TODO: Change to arrow function
+  const { trip, isLoading, auth, profile, FAQs } = props; // getting trip category from props
+
   const isInitialized = !isLoading && trip;
 
   if (!isInitialized) {
@@ -147,7 +150,12 @@ function TripDetails(props) {
             Frequently Asked Questions:
           </h3>
         </div>
-        {/* Insert FAQ here */}
+        <FAQSection
+          FAQs={FAQs}
+          tripID={props.match.params.id}
+          profileType={profileType(auth, profile)}
+          profileID={auth.uid}
+        />
       </div>
 
       {/* <div className="container section trip-details">
@@ -186,7 +194,7 @@ function TripDetails(props) {
 
 // ownProps are the props of the component before we attach anything to it
 const mapStateToProps = (state, ownProps) => {
-  console.log('trip', state);
+  // console.log('trip', state);
   const id = ownProps.match.params.id;
   const trips = state.firestore.data.Trips; // using data instead of ordered here since we are interested in referencing specific trips (hash table)
   const trip = trips ? trips[id] : null; // if there are any projects, find the project with the given data
@@ -199,6 +207,7 @@ const mapStateToProps = (state, ownProps) => {
     profile: state.auth.currProfile,
     auth: state.firebase.auth,
     isLoading: isLoading, // all must be loaded
+    FAQs: state.firestore.ordered.FAQs,
   };
 };
 
@@ -211,5 +220,8 @@ const mapDispatchToProps = (dispatch) => {
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  firestoreConnect([{ collection: 'Trips' }])
+  firestoreConnect((props) => [
+    { collection: 'Trips', doc: props.match.params.id },
+    { collection: 'FAQs', where: [['tripID', '==', props.match.params.id]] },
+  ])
 )(TripDetails);

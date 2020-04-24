@@ -15,6 +15,7 @@ import { authProfileLoad } from './store/actions/authActions';
 import './App.css';
 import SearchResults from './components/SearchResults/SearchResults';
 import EditTrip from './components/trips/EditTrip';
+import LoadingBox from './components/dashboard/LoadingBox';
 
 // switch ensures that only one route is loaded at  a time
 class App extends Component {
@@ -28,7 +29,7 @@ class App extends Component {
 
   render() {
     const { profileLoading } = this.props;
-    if (profileLoading) return <div>Loading Screen...</div>;
+    if (profileLoading) return <LoadingBox />;
     else
       return (
         <BrowserRouter>
