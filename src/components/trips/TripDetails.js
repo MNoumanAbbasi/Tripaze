@@ -18,7 +18,7 @@ function TripDetails(props) {
   // TODO: Change to arrow function
   const { trip, isLoading, auth, profile, FAQs } = props; // getting trip category from props
 
-  const isInitialized = !isLoading && trip;
+  const isInitialized = !isLoading && trip && FAQs;
 
   if (!isInitialized) {
     return <div>Loading...</div>;
