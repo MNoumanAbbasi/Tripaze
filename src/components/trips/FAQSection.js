@@ -13,10 +13,10 @@ const FAQ = (props) => {
     <div className="faq">
       {isOwnCompanyProfile && (
         <button
-          className="btn form-rounded object-hover bg-red float-right"
+          className="btn form-rounded object-hover float-right"
           onClick={() => props.removeFaq(props.id)}
         >
-          <i class="fa fa-times-circle icon-border"></i>
+          <i class="fa fa-times-circle text-danger"></i>
         </button>
       )}
       <p className="question">Q. {props.question}</p>

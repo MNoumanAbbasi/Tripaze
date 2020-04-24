@@ -7,7 +7,7 @@ const LoadingBox = () => {
       style={{ height: '100px' }}
     >
       <i class="fa fa-3x fa-spinner fa-spin text-turq"></i>
-      <div className="home-heading">Loading</div>
+      <div className="m-3 home-heading">Loading</div>
     </div>
   );
 };
