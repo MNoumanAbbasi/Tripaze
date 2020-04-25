@@ -10,7 +10,6 @@ const TripCard = ({ trip }) => {
     <Link to={'/trip/' + trip.id} className="nav-link">
       <div class="card content-box m-4 change-card-width">
         <div class="trip-title">
-          {/* <img class="card-img-top" src={cardbg} alt="" /> */}
           <DisplayImage img={trip.image} />
           <h4 class="bottom-left change-font darken-bg">{trip.title}</h4>
         </div>
