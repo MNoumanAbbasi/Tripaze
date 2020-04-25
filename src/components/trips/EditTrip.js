@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { editTrip } from '../../store/actions/tripActions';
 import { Redirect } from 'react-router-dom';
-import { profileType } from '../../Helpers';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
+import DestinationSection from './DestinationSection';
 
 // all css are from the materialized CSS class
 export class EditTrip extends Component {
   state = {
     title: '',
-    destinations: '',
+    destinations: [],
     departureLoc: '',
     departureDate: '',
     duration: 0,
@@ -39,6 +39,12 @@ export class EditTrip extends Component {
     this.props.history.push('/');
   };
 
+  handleDestChange = (destArray) => {
+    this.setState({
+      destinations: destArray,
+    });
+  };
+
   // TODO: Change this to a better method
   getDefaults = (trip) => {
     if (this.state.notUpdated) {
@@ -62,13 +68,15 @@ export class EditTrip extends Component {
     const { trip, profile, isLoading, auth } = this.props;
     console.log(this.state);
     const isInitialized = !isLoading && trip;
-    const adminMode = auth.uid === trip.companyId;
-    if (!isLoading && !adminMode) {
-      return <Redirect to="/" />;
-    }
+    const adminMode = trip && auth.uid === trip.companyId;
+    // if (!isLoading && !adminMode) {
+    //   return <Redirect to="/" />;
+    // }
 
     if (!isInitialized) {
       return <div>Loading...</div>;
+    } else if (!adminMode) {
+      return <Redirect to="/" />;
     } else {
       // {
       //   this.getDefaults(trip);
@@ -87,15 +95,10 @@ export class EditTrip extends Component {
               />
             </div>
 
-            <div className="input-field">
-              <label htmlFor="destinations">Destinations</label>
-              <input
-                value={this.state.destinations}
-                type="text"
-                id="destinations"
-                onChange={this.handleChange}
-              />
-            </div>
+            <DestinationSection
+              handleDestChange={this.handleDestChange}
+              destinationsArray={this.state.destinations}
+            />
 
             <div className="input-field">
               <label htmlFor="departureLoc">Departure Location</label>

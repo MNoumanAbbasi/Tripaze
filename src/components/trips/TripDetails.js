@@ -18,7 +18,7 @@ function TripDetails(props) {
   // TODO: Change to arrow function
   const { trip, isLoading, auth, profile, FAQs } = props; // getting trip category from props
 
-  const isInitialized = !isLoading && trip;
+  const isInitialized = !isLoading && trip && FAQs;
 
   if (!isInitialized) {
     return <div>Loading...</div>;
@@ -30,31 +30,30 @@ function TripDetails(props) {
   if (adminMode) {
     editButton = (
       <button
+        type="button"
+        class="btn btn-lg overlay-buttonlg overlay-button form-rounded object-hover"
         onClick={() => props.history.push('/edittrip/' + props.match.params.id)}
       >
-        Edit Trip
+        EDIT TRIP <i class="fa fas fa-edit fa-fw"></i>
       </button>
     );
     deleteButton = (
       <button
+        type="button"
+        class="btn btn-lg overlay-buttonlg overlay-button form-rounded object-hover"
         onClick={() => {
           props.deleteTrip(props.match.params.id);
           props.history.push('/');
         }}
       >
-        Delete Trip
+        DELETE TRIP
       </button>
     );
   }
   return (
     <div className="row m-0 tripDetails">
       <DisplayImage img={trip.image} page={'details'} />
-      <button
-        type="button"
-        class="btn btn-lg overlay-buttonlg overlay-button form-rounded object-hover"
-      >
-        EDIT TRIP <i class="fa fas fa-edit fa-fw"></i>
-      </button>
+      {editButton}
       <div className="container align-self-center bg-white frontDrop">
         {/* First row */}
         <div className="row justify-content-around">

@@ -32,7 +32,6 @@ export class CreateTrip extends Component {
     });
   };
   handleImgAdd = (imgName) => {
-    console.log('imgname', imgName);
     this.setState({
       image: imgName,
     });
@@ -134,7 +133,6 @@ export class CreateTrip extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     auth: state.firebase.auth,
     profile: state.auth.currProfile,
