@@ -38,16 +38,21 @@ const AddQuestionForm = (props) => {
   };
 
   return (
-    <div className="addQuestion mt-4">
-      <form className="" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Add question"
-          onChange={(event) => setQuestion(event.target.value)}
-          required
-        />
-        <button className="dark-button">Add</button>
-      </form>
+    <div className="border-turq">
+      <div className="form-group">
+        <form className="" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Add question"
+            className="form-control form-control-lg"
+            onChange={(event) => setQuestion(event.target.value)}
+            required
+          />
+          <div className="form-row mr-3 justify-content-end">
+            <button className="dark-button ">Add</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
@@ -60,16 +65,18 @@ const AddAnswerForm = (props) => {
   };
 
   return (
-    <div className="row asign-content-start justify-content-between">
+    <div className="form-group">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Add answer"
-          className="col-10"
+          placeholder="Add Answer"
+          className="form-control form-control-lg"
           onChange={(event) => setAnswer(event.target.value)}
           required
         />
-        <button className="dark-button col-4">Post</button>
+        <div className="form-row mr-3 justify-content-end">
+          <button className="dark-button ">Post</button>
+        </div>
       </form>
     </div>
   );
