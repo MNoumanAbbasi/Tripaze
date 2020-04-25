@@ -69,7 +69,7 @@ function TripDetails(props) {
           </button>
         </div>
       </div>
-      <div className="container align-self-center bg-white frontDrop">
+      <div className="container bg-white frontDrop">
         {/* First row */}
         <div className="row justify-content-around">
           <div className="col-lg-7 row justify-content-between order-lg-1 order-2">

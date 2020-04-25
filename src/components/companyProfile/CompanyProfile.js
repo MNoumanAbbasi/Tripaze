@@ -19,7 +19,7 @@ class CompanyProfile extends Component {
       return (
         <div className="row m-0">
           <img src={defaultCover} className="w-100 backDrop"></img>
-          <div className="container align-self-center bg-white frontDrop">
+          <div className="container align-self-start bg-white frontDrop">
             {/* First section */}
             <div className="row justify-content-between align-content-center">
               <div className="ml-lg-4 col-lg-7 text-secondary">
