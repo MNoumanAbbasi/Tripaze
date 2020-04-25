@@ -129,7 +129,7 @@ const FAQSection = (props) => {
   }
 
   return (
-    <div className="FAQSection mt-5 mr-5 ml-5">
+    <div className="FAQSection pb-5 pr-5 pl-5">
       {FAQs &&
         FAQs.map((faq) => {
           return (
