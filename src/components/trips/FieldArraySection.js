@@ -5,7 +5,9 @@ const FieldArraySection = ({ label, name, values }) => {
   const [newDest, setNewDest] = useState('');
   return (
     <div className="container">
-
+      <label htmlFor={name} style={{ display: 'block' }}>
+        {label}
+      </label>
       <FieldArray name={name}>
         {({ push, remove }) => {
           const handleAdd = () => {
@@ -16,7 +18,7 @@ const FieldArraySection = ({ label, name, values }) => {
             <div>
               {values.destinations.map((dest, ind) => {
                 return (
-                  <div>
+                  <div key={ind}>
                     {dest}
                     <button type="button" onClick={() => remove(ind)}>
                       Remove
