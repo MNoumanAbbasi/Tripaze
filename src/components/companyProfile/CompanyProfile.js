@@ -20,41 +20,55 @@ class CompanyProfile extends Component {
         <div className="row m-0">
           <img src={defaultCover} className="w-100 backDrop"></img>
           <div className="container align-self-center bg-white frontDrop">
-            {/* First Row */}
-            <div className="row justify-content-around">
-              <h1 className="ml-4 text-secondary tripText align-self-center">
-                THE BEST TRAVEL AGENCY
-              </h1>
-              {/* {Company Card} */}
-              <div class="card content-box m-4 change-card-width order-lg-2 order-1">
-                <div class="card-body">
-                  <h6 class="card-title change-font font-weight-bold text-uppercase text-secondary">
-                    <img
-                      src={cardbg}
-                      alt=""
-                      class="img-fluid logo-on-card rounded-circle mr-1"
-                    />
-                    Address of company
-                  </h6>
-                  <hr></hr>
+            {/* First section */}
+            <div className="row justify-content-between align-content-center">
+              <div className="ml-lg-4 col-lg-7 text-secondary">
+                <h1 className="mt-5 text-secondary tripText">
+                  THE BEST TRAVEL AGENCY
+                </h1>
+                <hr class="mt-3 col-12 ml-0 divider"></hr>
+                <h3 className="mt-5 text-justify text-secondary">
+                  Description
+                </h3>
+                <div>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                  irure dolor in reprehenderit in voluptate velit esse cillum
+                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                  cupidatat non proident, sunt in culpa qui officia deserunt
+                  mollit anim id est laborum.
                 </div>
               </div>
-            </div>
-            <h1 className="ml-4 text-secondary tripText align-self-center">
-              THE BEST TRAVEL AGENCY
-            </h1>
-            <hr class="col-7 ml-0 divider"></hr>
-            {/* Description Box */}
-            <div class="mt-5 row align-content-centre justify-content-between">
-              <div class="col-lg-6">
-                <h3 class="text-secondary">Description</h3>
-                <div class="text-secondary ">
-                  Description will be inserted here
+              {/* {Company Card} */}
+              <div class="card content-box mt-5 mr-5 change-card-width order-lg-2 order-1">
+                <div class="card-body">
+                  <h6 class="card-title change-font font-weight-bold text-uppercase text-secondary">
+                    <i
+                      class="fa fa-map-marker fa-2x fa-fw"
+                      aria-hidden="true"
+                    ></i>
+                    Address of Company
+                  </h6>
+                  <hr></hr>
+                  <h6 class="card-title change-font font-weight-bold text-uppercase text-secondary">
+                    <i class="fa fa-phone fa-2x fa-fw" aria-hidden="true"></i>
+                    Phone Number
+                  </h6>
+                  <hr></hr>
+                  <h6>This is where the Rating bar will be</h6>
                 </div>
               </div>
             </div>
           </div>
 
+          {/* Second Section */}
+          <div className="p-4 justify-content-centre">
+            <h2 className="text-secondary col-12">UPCOMING TRIPS</h2>
+          </div>
+
+          {/* 
           <div className="container cardslist-margin">
             <TripsList trips={trips} />
           </div>
@@ -63,7 +77,7 @@ class CompanyProfile extends Component {
             reviews={reviews}
             profileType={currProfileType}
             id={auth.uid}
-          />
+          /> */}
         </div>
       );
     } else {
