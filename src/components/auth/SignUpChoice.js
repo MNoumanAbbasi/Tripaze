@@ -12,18 +12,18 @@ const SignUpChoice = (props) => {
   }
 
   return (
-    <div className="row m-0 signin-page ">
-      <div className="col-lg-3 col-md-4 col-sm-6 form-margin">
+    <div className="row m-0 full-height-width">
+      <div className="col-lg-3 col-md-4 col-sm-6 center-align">
         <h3 class="mt-20 mb-4 text-center ">Sign Up</h3>
         <div>
-          <Link to="/signupuser">
+          <Link to="/signupuser" class="nav-link">
             <button class="btn btn-lg btn-secondary light-button form-rounded btn-block text-uppercase mb-3 w-75 mx-auto">
               USER
             </button>
           </Link>
         </div>
         <div>
-          <Link to="/signupcompany">
+          <Link to="/signupcompany" class="nav-link">
             <button class="btn btn-lg btn-secondary dark-button form-rounded btn-block text-uppercase b-3 w-75 mx-auto">
               COMPANY
             </button>

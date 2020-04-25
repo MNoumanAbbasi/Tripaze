@@ -33,8 +33,8 @@ export class SignUpUser extends Component {
     }
 
     return (
-      <div className="row m-0 signin-page ">
-        <div className="col-lg-3 col-md-4 col-sm-6 form-margin">
+      <div className="row m-0 full-height-width">
+        <div className="col-lg-3 col-md-4 col-sm-6 center-align">
           <form onSubmit={this.handleSubmit} className="change-font-opensans ">
             <h3 class="mt-20 mb-4 text-center">Sign Up as User</h3>
 
