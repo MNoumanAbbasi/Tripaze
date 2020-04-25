@@ -25,8 +25,10 @@ const createTripSchema = yup.object({
   title: yup.string().max(20, 'Max 20 characters').required('Required'),
   destinations: yup.array().required('Required'),
   departureLoc: yup.string().max(15, 'Max 15 characters').required('Required'),
-  // departureDate: yup.date().required('Required'),
-  departureDate: yup.date().min(new Date(), 'Date should start from tomorrow').required('Required'),
+  departureDate: yup
+    .date()
+    .min(new Date(), 'Date should start from tomorrow')
+    .required('Required'),
   duration: yup.number().positive('Invalid duration').required('Required'),
   price: yup.number().positive('Invalid price').required('Required'),
   capacity: yup.number().positive('Invalid capactiy').required('Required'),
@@ -47,32 +49,12 @@ const CreateTrip = (props) => {
   const [attraction, setAttraction] = useState('');
   const [image, setImage] = useState('');
 
-  // const handleChange = (e) => {
-  //   this.setState({
-  //     // store the input on form fields on the state
-  //     [e.target.id]: e.target.value,
-  //   });
-  // };
-  const handleDestChange = (destArray) => {
-    setDestinations({
-      destinations: destArray,
-    });
-  };
   const handleImgAdd = (imgName) => {
     console.log('imgname', imgName);
     this.setState({
       image: imgName,
     });
   };
-  // const handleSubmit = (e) => {
-  //   // dont want the default action of page being reloaded
-  //   e.preventDefault();
-  //   // console.log(this.state)
-
-  //   // calls the createTrip function in mapDispatchToProps which in turn calls dispatch with an action of createTrip that handles the asynch request. This request is then sent to the reducer for dispatch
-  //   this.props.createTrip(this.state, this.props.profile);
-  //   this.props.history.push('/');
-  // };
 
   const { auth, profile, isLoading } = props;
   const isInitialized = !isLoading && profile && auth;
@@ -109,26 +91,9 @@ const CreateTrip = (props) => {
         {({ values }) => (
           <Form>
             <InputField label="Title" name="title" type="text" />
-            {/* <DestinationSection
-              handleDestChange={handleDestChange}
-              destinationsArray={values.destinations}
-            /> */}
-            <FieldArray name="destinations">
-              {({ push }) => {
-                const newDest = '';
-                return (
-                  <div>
-                    {values.destinations.map((dest) => {
-                      return <div>{dest}</div>;
-                    })}
-                    <input name={newDest} type="text" />
-                    <button type="button" onClick={() => push(newDest)}>
-                      Add destination
-                    </button>
-                  </div>
-                );
-              }}
-            </FieldArray>
+
+            <DestinationSection values={values} />
+
             <pre>{JSON.stringify(values.destinations)}</pre>
             <InputField
               label="Departure Location"

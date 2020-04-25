@@ -1,67 +1,41 @@
 import React, { useState } from 'react';
+import { FieldArray } from 'formik';
 
-const sampleDestination = [];
-
-const Destination = (props) => {
+const DestinationSection = ({ values }) => {
+  const [newDest, setNewDest] = useState('');
   return (
-    <div className="destination">
-      <button
-        className="remove-btn"
-        onClick={() => props.removeDestination(props.dest)}
-      >
-        Remove
-      </button>
-      <p className="destination">{props.dest}</p>
-    </div>
-  );
-};
-
-const AddNewDestinationForm = (props) => {
-  const [newDest, setNewDestination] = useState('');
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    props.addNewDestination(newDest);
-  };
-
-  return (
-    <div className="addNewDestination">
-      <input
-        type="text"
-        placeholder="Add destination"
-        onChange={(event) => setNewDestination(event.target.value)}
-      />
-      <button className="dark-button" onClick={handleSubmit}>
-        Add
-      </button>
-    </div>
-  );
-};
-
-const DestinationSection = (props) => {
-  const destinations = props.destinationsArray;
-  const setDestination = props.handleDestChange;
-  const addNewDestination = (newDestination) => {
-    setDestination([...destinations, newDestination]);
-  };
-  const removeDestination = (destToDelete) => {
-    setDestination(destinations.filter((dest) => dest !== destToDelete));
-  };
-
-  // Button to display (add new or cancel) based on if add new faq form is open or not
-
-  return (
-    <div className="DestinationSection">
-      {destinations.map((dest) => {
+    <FieldArray name="destinations">
+      {({ push, remove }) => {
+        const handleAdd = () => {
+          push(newDest);
+          setNewDest('');
+        };
         return (
-          <Destination
-            key={dest}
-            dest={dest}
-            removeDestination={removeDestination}
-          />
+          <div>
+            {values.destinations.map((dest, ind) => {
+              return (
+                <div>
+                  {dest}
+                  <button type="button" onClick={() => remove(ind)}>
+                    Remove
+                  </button>
+                </div>
+              );
+            })}
+            <div className="input-field">
+              <input
+                type="text"
+                value={newDest}
+                onChange={(e) => setNewDest(e.target.value)}
+              />
+              <button type="button" onClick={handleAdd}>
+                Add destination
+              </button>
+            </div>
+          </div>
         );
-      })}
-      <AddNewDestinationForm addNewDestination={addNewDestination} />
-    </div>
+      }}
+    </FieldArray>
   );
 };
 
