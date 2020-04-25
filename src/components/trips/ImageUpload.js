@@ -1,23 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import storage from '../../config/fbConfig';
 
-const ImageUpload = (props) => {
-  const [image, setImage] = useState(props.imageName);
-  const [progress, setProgress] = useState(0);
+// class Thumb extends React.Component {
+//   state = {
+//     loading: false,
+//     thumb: undefined
+//   };
 
-  const handleChangeImage = (e) => {
-    e.preventDefault();
-    console.log(e.target.files);
-    // image =
-    // if (e.target.files[0]) {
-    //   const image = e.target.files[0];
-    //   this.setState(() => ({ image }));
-    // }
-  };
-  const showComplete = () => {
-    if (progress === 100) return <div>Photo uploaded</div>;
-  };
-  const handleUpload = (e) => {
+//   componentWillReceiveProps(nextProps) {
+//     if (!nextProps.file) {
+//       return;
+//     }
+
+//     this.setState({ loading: true }, () => {
+//       let reader = new FileReader();
+
+//       reader.onloadend = () => {
+//         this.setState({ loading: false, thumb: reader.result });
+//       };
+
+//       reader.readAsDataURL(nextProps.file);
+//     });
+//   }
+
+//   render() {
+//     const { file } = this.props;
+//     const { loading, thumb } = this.state;
+
+//     if (!file) {
+//       return null;
+//     }
+
+//     if (loading) {
+//       return <p>loading...</p>;
+//     }
+
+//     return (
+//       <img
+//         src={thumb}
+//         alt={file.name}
+//         className="img-thumbnail mt-2"
+//         height={200}
+//         width={200}
+//       />
+//     );
+//   }
+// }
+const ImageThumb = ({ image, handleImgNameChange }) => {
+  const [progress, setProgress] = useState(0);
+  let isUploaded = progress === 100;
+
+  // useEffect is called on first time render to upload file
+  useEffect(() => {
+    // Uploading file
     console.log(image);
     const uploadTask = storage.ref(`tripImages/${image.name}`).put(image);
     uploadTask.on(
@@ -45,10 +80,12 @@ const ImageUpload = (props) => {
       () => {
         // Handle Successful Upload
         console.log('Successfull upload of image');
-        props.handleImgNameChange(image.name);
+        handleImgNameChange(image.name);
+        isUploaded = true;
       }
     );
-  };
+  }, []);
+
   const handleDelete = (e) => {
     const deleteRef = storage.ref(`tripImages/${image.name}`);
     // Delete the file
@@ -61,25 +98,57 @@ const ImageUpload = (props) => {
         // Uh-oh, an error occurred!
       });
   };
+  console.log('img name', image)
   return (
-    <div>
-      <input type="file" onChange={(e) => setImage(e.currentTarget.files[0])} />
-      <button type="button" onClick={handleUpload}>
-        Upload
-      </button>
-      <button type="button" onClick={handleDelete}>
-        Remove
-      </button>
+    <div className="image-thumb border" style={{ width: "200px" }}>
+        <img
+          src={URL.createObjectURL(image)}
+          alt={image.name}
+          className="img-thumbnail mt-2"
+          height={200}
+          width={200}
+        />
       <div className="progress">
         <div
           className="progress-bar bg-success"
           style={{ width: `${progress}%` }}
         >
-          {progress}
+          {progress}%
         </div>
       </div>
+      {isUploaded && (
+        <button type="button" onClick={handleDelete}>
+          Remove
+        </button>
+      )}
     </div>
   );
 };
 
-export default ImageUpload;
+const ImageSection = (props) => {
+  const [image, setImage] = useState(props.imageName);
+  const [isFileChosen, setIsFileChosen] = useState(false);
+
+  const handleFileChoosing = (e) => {
+    setImage(e.currentTarget.files[0]);
+    setIsFileChosen(true);
+  };
+
+  if (!isFileChosen) {
+    return (
+      <div>
+        <input type="file" onChange={handleFileChoosing} />
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <ImageThumb
+          image={image}
+          handleImgNameChange={props.handleImgNameChange}
+        />
+      </div>
+    );
+  }
+};
+export default ImageSection;
