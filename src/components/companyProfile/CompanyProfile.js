@@ -6,6 +6,8 @@ import { firestoreConnect } from 'react-redux-firebase'; // higher order
 import ReviewSection from './ReviewSection';
 import defaultCover from '../../Images/coverPhoto.jpg';
 import { profileType } from '../../Helpers';
+import cardbg from '../trips/card-bg.png';
+import { Link } from 'react-router-dom';
 
 // 6 columns on medium and 12 column on small screens
 class CompanyProfile extends Component {
@@ -15,9 +17,29 @@ class CompanyProfile extends Component {
     if (isInitialized) {
       const currProfileType = profileType(auth, profile);
       return (
-        <div className="row m-0 tripDetails">
+        <div className="row m-0">
           <img src={defaultCover} className="w-100 backDrop"></img>
           <div className="container align-self-center bg-white frontDrop">
+            {/* First Row */}
+            <div className="row justify-content-around">
+              <h1 className="ml-4 text-secondary tripText align-self-center">
+                THE BEST TRAVEL AGENCY
+              </h1>
+              {/* {Company Card} */}
+              <div class="card content-box m-4 change-card-width order-lg-2 order-1">
+                <div class="card-body">
+                  <h6 class="card-title change-font font-weight-bold text-uppercase text-secondary">
+                    <img
+                      src={cardbg}
+                      alt=""
+                      class="img-fluid logo-on-card rounded-circle mr-1"
+                    />
+                    Address of company
+                  </h6>
+                  <hr></hr>
+                </div>
+              </div>
+            </div>
             <h1 className="ml-4 text-secondary tripText align-self-center">
               THE BEST TRAVEL AGENCY
             </h1>
@@ -32,6 +54,7 @@ class CompanyProfile extends Component {
               </div>
             </div>
           </div>
+
           <div className="container cardslist-margin">
             <TripsList trips={trips} />
           </div>
