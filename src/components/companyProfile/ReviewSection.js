@@ -15,7 +15,7 @@ const Review = (props) => {
     );
   }
   return (
-    <div className=" tb-border-0 p-3 border-turq ">
+    <div className="faq tb-border-0 mt-3 border-turq ">
       {button}
       <h6 className="username text-white bg-turq p-4">{props.userName}</h6>
       <div className="ml-3">
@@ -54,7 +54,7 @@ const AddNewReviewForm = (props) => {
             required
           />
           <div className="form-row mr-3 justify-content-end">
-            <button className="btn  form-rounded r-green-button">Submit</button>
+            <button className="btn form-rounded r-green-button">Submit</button>
           </div>
         </form>
       </div>
@@ -82,7 +82,7 @@ const ReviewSection = (props) => {
   if (isAddReviewState) {
     button = (
       <button
-        className="cancelButton light-button"
+        className="btn mt-3 form-rounded red-button"
         onClick={() => setIsAddReviewState(false)}
       >
         Cancel
@@ -93,7 +93,7 @@ const ReviewSection = (props) => {
   } else {
     button = (
       <button
-        className="addNewButton dark-button"
+        className="btn mt-3 form-rounded r-green-button"
         onClick={() => setIsAddReviewState(true)}
       >
         Add Review
@@ -102,7 +102,7 @@ const ReviewSection = (props) => {
   }
 
   return (
-    <div className="ReviewSection">
+    <div className="ReviewSection pb-5 pr-5 pl-5">
       {reviews.map((currReview) => {
         return (
           <Review
