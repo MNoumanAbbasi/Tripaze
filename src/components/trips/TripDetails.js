@@ -53,7 +53,22 @@ function TripDetails(props) {
   return (
     <div className="row m-0 tripDetails">
       <DisplayImage img={trip.image} page={'details'} />
-      {editButton}
+      <div className="container overlay align-self-end">
+        <div className="row justify-content-lg-end justify-content-center">
+          <button
+            type="button"
+            class="btn mt-lg-5 mr-5 btn-lg green-button form-rounded object-hover"
+          >
+            EDIT TRIP <i class="fa fas fa-edit fa-fw"></i>
+          </button>
+          <button
+            type="button"
+            class="btn btn-lg  mt-lg-5 mr-1 red-button form-rounded object-hover"
+          >
+            DELETE <i class="fa fas fa-trash fa-fw"></i>
+          </button>
+        </div>
+      </div>
       <div className="container align-self-center bg-white frontDrop">
         {/* First row */}
         <div className="row justify-content-around">
