@@ -1,3 +1,8 @@
+a {
+  color: #707070;
+  text-decoration: none;
+}
+
 .logo {
   top: 4px;
   width: 170px;
@@ -7,6 +12,10 @@
 .navbar {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
   background-color: #ee6060;
+}
+
+.nav-link {
+  padding: 0;
 }
 
 .navbar-fonts {
