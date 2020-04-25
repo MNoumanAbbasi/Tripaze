@@ -151,7 +151,7 @@ function TripDetails(props) {
         </div>
         <div className="row p-4 mt-5 justify-content-center align-content-centre text-turq">
           <i class="fa fa-question-circle fa-3x fa-fw" aria-hidden="false"></i>
-          <h3 className="col-6 tripText">Frequently Asked Questions</h3>
+          <h3 className="tripText">Frequently Asked Questions</h3>
         </div>
         <FAQSection
           FAQs={FAQs}
