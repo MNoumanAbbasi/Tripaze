@@ -56,7 +56,7 @@ class CompanyProfile extends Component {
               {/* {Company Card} */}
               <div class="card content-box mr-5 change-card-width order-lg-2 order-1">
                 <div class="card-body">
-                  <h6 class="card-title change-font font-weight-bold text-uppercase text-secondary">
+                  <h6 class="card-title change-font font-weight-bold text-uppercase colored">
                     <i
                       class="fa fa-map-marker fa-2x fa-fw"
                       aria-hidden="true"
@@ -64,7 +64,7 @@ class CompanyProfile extends Component {
                     Address of Company
                   </h6>
                   <hr></hr>
-                  <h6 class="card-title change-font font-weight-bold text-uppercase text-secondary">
+                  <h6 class="card-title change-font font-weight-bold text-uppercase colored">
                     <i class="fa fa-phone fa-2x fa-fw" aria-hidden="true"></i>
                     Phone Number
                   </h6>
@@ -76,7 +76,7 @@ class CompanyProfile extends Component {
             {/* Second Section */}
             <div className="row p-4 mt-5 justify-content-center align-content-centre text-turq">
               <i class="fa fa-th fa-3x fa-fw" aria-hidden="false"></i>
-              <h3 className="col-4 tripText">Upcoming Trips</h3>
+              <h3 className="tripText">Upcoming Trips</h3>
             </div>
             <div className="container mt-4">
               <TripsList trips={trips} />
@@ -85,11 +85,7 @@ class CompanyProfile extends Component {
             {/* Second Section */}
             <div className="row p-4 mt-5 justify-content-center align-content-centre text-turq">
               <i class="fa fa-th fa-3x fa-fw" aria-hidden="false"></i>
-              <h3 className="col-4 tripText">Company Reviews</h3>
-            </div>
-
-            <div className="container cardslist-margin">
-              <TripsList trips={trips} />
+              <h3 className="tripText">Company Reviews</h3>
             </div>
             <ReviewSection
               companyID={this.props.match.params.id}
