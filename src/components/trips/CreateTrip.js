@@ -29,8 +29,16 @@ const createTripSchema = yup.object({
     .date()
     .min(new Date(), 'Date should start from tomorrow')
     .required('Required'),
-  duration: yup.number().positive('Invalid duration').required('Required'),
-  price: yup.number().positive('Invalid price').required('Required'),
+  duration: yup
+    .number()
+    .positive('Invalid duration')
+    .max(60, 'Max duration 60')
+    .required('Required'),
+  price: yup
+    .number()
+    .positive('Invalid price')
+    .max(999999, 'Max price 999999')
+    .required('Required'),
   capacity: yup.number().positive('Invalid capactiy').required('Required'),
   description: yup.string(),
   attractions: yup.array().required('Required'),
