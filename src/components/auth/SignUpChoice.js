@@ -16,7 +16,7 @@ const SignUpChoice = (props) => {
       <div className="col-lg-3 col-md-4 col-sm-6 form-margin">
         <h3 class="mt-20 mb-4 text-center ">Sign Up</h3>
         <div>
-          <Link to="/signupuser">
+          <Link to="/signupuser" class="nav-link">
             <button class="btn btn-lg btn-secondary light-button form-rounded btn-block text-uppercase mb-3 w-75 mx-auto">
               USER
             </button>
