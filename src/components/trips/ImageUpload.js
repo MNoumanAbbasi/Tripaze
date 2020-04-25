@@ -70,7 +70,14 @@ const ImageUpload = (props) => {
       <button type="button" onClick={handleDelete}>
         Remove
       </button>
-
+      <div className="progress">
+        <div
+          className="progress-bar bg-success"
+          style={{ width: `${progress}%` }}
+        >
+          {progress}
+        </div>
+      </div>
     </div>
   );
 };
