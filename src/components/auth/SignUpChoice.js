@@ -13,7 +13,7 @@ const SignUpChoice = (props) => {
 
   return (
     <div className="row m-0 full-height-width">
-      <div className="col-lg-3 col-md-4 col-sm-6 form-margin">
+      <div className="col-lg-3 col-md-4 col-sm-6 center-align">
         <h3 class="mt-20 mb-4 text-center ">Sign Up</h3>
         <div>
           <Link to="/signupuser" class="nav-link">
