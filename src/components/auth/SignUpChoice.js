@@ -23,7 +23,7 @@ const SignUpChoice = (props) => {
           </Link>
         </div>
         <div>
-          <Link to="/signupcompany">
+          <Link to="/signupcompany" class="nav-link">
             <button class="btn btn-lg btn-secondary dark-button form-rounded btn-block text-uppercase b-3 w-75 mx-auto">
               COMPANY
             </button>
