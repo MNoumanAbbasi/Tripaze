@@ -14,26 +14,28 @@ class DisplayImage extends Component {
   }
 
   getUrl = () => {
-    if (this.props.img === '') {
-      return coverPhoto;
-    } else {
-      this.setState({ url: spinner, complete: true });
-      storage
-        .ref('tripImages')
-        .child(this.props.img)
-        .getDownloadURL()
-        .then((url) => {
-          return url;
-        });
-    }
+    return storage
+      .ref('tripImages')
+      .child(this.props.img)
+      .getDownloadURL()
+      .then((url) => {
+        if ((this._isMounted = true)) {
+          this.setState({ url, complete: true });
+        }
+      });
   };
 
   _isMounted = false;
   componentDidMount() {
     this._isMounted = true;
-    const url = this.getUrl();
-    if ((this._isMounted = true)) {
-      this.setState({ url, complete: true });
+    let url = spinner;
+    if (this.props.img === '') {
+      url = coverPhoto;
+      if ((this._isMounted = true)) {
+        this.setState({ url, complete: true });
+      }
+    } else {
+      this.getUrl();
     }
   }
 
