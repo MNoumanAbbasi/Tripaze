@@ -23,19 +23,28 @@ class Dashboard extends Component {
     if (isInitialized) {
       return (
         <div className="homePage">
-          <img src={background} className="img-fluid mw-100"></img>
-          <hr className="greenline mw-100"></hr>
+          <div class="trip-title">
+            <img src={background} className="img-fluid mw-100"></img>
 
-          <div className="row justify-content-md-around justify-content-center align-items-end">
-            <h1 className="home-heading order-2 order-md-1">ALL TRIPS</h1>
-            {/* <hr className="underline"></hr> */}
-            <img
-              src={logo_wt}
-              className=" img-fluid logo-no-text order-1 order-md-2"
-            ></img>
+            {/* <div class="centered home-font">Trips that amaze you!</div> */}
           </div>
-          <div className="container cardslist-margin">
-            <TripsList trips={trips} />
+          <a href="#tripcards">CLICK HERE</a>
+          <div id="tripcards">
+            <hr className="greenline mw-100"></hr>
+
+            <div className="row justify-content-md-around justify-content-center align-items-end">
+              <h1 className="home-heading mt-5">
+                <u>ALL TRIPS</u>
+              </h1>
+              {/* <hr className="underline"></hr> */}
+              {/* <img
+                src={logo_wt}
+                className=" img-fluid logo-no-text order-1 order-md-2"
+              ></img> */}
+            </div>
+            <div className="container">
+              <TripsList trips={trips} />
+            </div>
           </div>
         </div>
       );
