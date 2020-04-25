@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FieldArray } from 'formik';
 
 const FieldArraySection = ({ label, name, values }) => {
-  const [newDest, setNewDest] = useState('');
+  const [newEntry, setNewEntry] = useState('');
   return (
     <div className="container">
       <label htmlFor={name} style={{ display: 'block' }}>
@@ -11,12 +11,12 @@ const FieldArraySection = ({ label, name, values }) => {
       <FieldArray name={name}>
         {({ push, remove }) => {
           const handleAdd = () => {
-            push(newDest);
-            setNewDest('');
+            push(newEntry);
+            setNewEntry('');
           };
           return (
             <div>
-              {values.destinations.map((dest, ind) => {
+              {values[name].map((dest, ind) => {
                 return (
                   <div key={ind}>
                     {dest}
@@ -29,11 +29,11 @@ const FieldArraySection = ({ label, name, values }) => {
               <div className="input-field">
                 <input
                   type="text"
-                  value={newDest}
-                  onChange={(e) => setNewDest(e.target.value)}
+                  value={newEntry}
+                  onChange={(e) => setNewEntry(e.target.value)}
                 />
                 <button type="button" onClick={handleAdd}>
-                  Add destination
+                  Add
                 </button>
               </div>
             </div>
