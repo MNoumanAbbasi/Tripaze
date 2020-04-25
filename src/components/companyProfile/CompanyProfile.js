@@ -61,12 +61,14 @@ class CompanyProfile extends Component {
                 </div>
               </div>
             </div>
+            {/* Second Section */}
+            <div className="row p-4 mt-5 justify-content-center align-content-centre">
+              <i class="fa fa-layer-group fa-2x fa-fw" aria-hidden="true"></i>
+              <h3 className="text-secondary col-4">UPCOMING TRIPS</h3>
+            </div>
           </div>
 
           {/* Second Section */}
-          <div className="p-4 justify-content-centre">
-            <h2 className="text-secondary col-12">UPCOMING TRIPS</h2>
-          </div>
 
           {/* 
           <div className="container cardslist-margin">
