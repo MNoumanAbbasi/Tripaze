@@ -40,7 +40,7 @@ const AddQuestionForm = (props) => {
   return (
     <div className="border border-thin mt-3 border-turq">
       <div className="form-group">
-        <form className="" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <input
             type="text"
             placeholder="Add question"
