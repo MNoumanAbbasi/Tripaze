@@ -31,10 +31,9 @@ class DisplayImage extends Component {
     let url = spinner;
     if (this.props.img === '') {
       url = coverPhoto;
-      if ((this._isMounted = true)) {
-        this.setState({ url, complete: true });
-      }
+      this.setState({ url, complete: true });
     } else {
+      this.setState({ url, complete: true });
       this.getUrl();
     }
   }
