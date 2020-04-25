@@ -87,18 +87,17 @@ class CompanyProfile extends Component {
               <i class="fa fa-th fa-3x fa-fw" aria-hidden="false"></i>
               <h3 className="col-4 tripText">Company Reviews</h3>
             </div>
-          </div>
 
-          {/* 
-          <div className="container cardslist-margin">
-            <TripsList trips={trips} />
+            <div className="container cardslist-margin">
+              <TripsList trips={trips} />
+            </div>
+            <ReviewSection
+              companyID={this.props.match.params.id}
+              reviews={reviews}
+              profileType={currProfileType}
+              id={auth.uid}
+            />
           </div>
-          <ReviewSection
-            companyID={this.props.match.params.id}
-            reviews={reviews}
-            profileType={currProfileType}
-            id={auth.uid}
-          /> */}
         </div>
       );
     } else {
