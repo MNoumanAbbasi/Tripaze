@@ -13,13 +13,13 @@ const FAQ = (props) => {
     <div className="faq tb-border-0 mt-3 border-turq ">
       {isOwnCompanyProfile && (
         <button
-          className="btn btn-sm form-rounded object-hover float-right m-2"
+          className="btn btn-sm bg-turq form-rounded float-right m-2"
           onClick={() => props.removeFaq(props.id)}
         >
-          <i class="fa fa-times-circle fa-2x text-danger"></i>
+          <i class="fa fa-times fa-2x text-danger"></i>
         </button>
       )}
-      <h4 className="question bg-turq text-white p-3 ">Q. {props.question}</h4>
+      <h6 className="question bg-turq text-white p-3">Q. {props.question}</h6>
       <div className="ml-3">
         {showAddAnswerForm && (
           <AddAnswerForm onSubmit={props.addAnswer} faqID={props.id} />
@@ -38,16 +38,21 @@ const AddQuestionForm = (props) => {
   };
 
   return (
-    <div className="addQuestion mt-4">
-      <form className="" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Add question"
-          onChange={(event) => setQuestion(event.target.value)}
-          required
-        />
-        <button className="dark-button">Add</button>
-      </form>
+    <div className="border border-thin mt-3 border-turq">
+      <div className="form-group">
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Add question"
+            className="form-control form-control-lg"
+            onChange={(event) => setQuestion(event.target.value)}
+            required
+          />
+          <div className="form-row mr-3 justify-content-end">
+            <button className="btn  form-rounded r-green-button">Add</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
@@ -60,16 +65,18 @@ const AddAnswerForm = (props) => {
   };
 
   return (
-    <div className="row asign-content-start justify-content-between">
+    <div className="form-group">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Add answer"
-          className="col-10"
+          placeholder="Add Answer"
+          className="form-control form-control-lg"
           onChange={(event) => setAnswer(event.target.value)}
           required
         />
-        <button className="dark-button col-4">Post</button>
+        <div className="form-row mr-3 justify-content-end">
+          <button className="btn form-rounded r-green-button">Post</button>
+        </div>
       </form>
     </div>
   );
@@ -104,7 +111,7 @@ const FAQSection = (props) => {
   if (isAddQuestionState) {
     button = (
       <button
-        className="cancelButton light-button"
+        className="btn mt-3 form-rounded red-button"
         onClick={() => setIsAddQuestionState(false)}
       >
         Cancel
@@ -113,7 +120,7 @@ const FAQSection = (props) => {
   } else {
     button = (
       <button
-        className="addNewButton dark-button"
+        className="btn mt-3 form-rounded r-green-button"
         onClick={() => setIsAddQuestionState(true)}
       >
         Add Question
@@ -122,7 +129,7 @@ const FAQSection = (props) => {
   }
 
   return (
-    <div className="FAQSection mt-5 mr-3 ml-3">
+    <div className="FAQSection pb-5 pr-5 pl-5">
       {FAQs &&
         FAQs.map((faq) => {
           return (
