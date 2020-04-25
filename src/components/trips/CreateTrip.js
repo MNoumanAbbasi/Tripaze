@@ -7,6 +7,7 @@ import DestinationSection from './DestinationSection';
 import ImageUpload from './ImageUpload';
 import { Formik, Form, Field } from 'formik';
 import { set } from 'jsonpointer';
+import * as Yup from Yup
 
 const InputField = ({ label, name, type }) => {
   return (
