@@ -33,7 +33,7 @@ const createTripSchema = yup.object({
   price: yup.number().positive('Invalid price').required('Required'),
   capacity: yup.number().positive('Invalid capactiy').required('Required'),
   description: yup.string(),
-  attraction: yup.string(),
+  attractions: yup.array().required('Required'),
   image: yup.string(),
 });
 
@@ -79,7 +79,7 @@ const CreateTrip = (props) => {
           price: 0,
           capacity: 0,
           description: '',
-          attraction: [],
+          attractions: [],
           image: '',
         }}
         validationSchema={createTripSchema}
@@ -112,7 +112,11 @@ const CreateTrip = (props) => {
             <InputField label="Price" name="price" type="number" />
             <InputField label="Capacity" name="capacity" type="number" />
             <InputField label="Description" name="description" type="text" />
-            <InputField label="Attractions" name="attraction" type="text" />
+            <FieldArraySection
+              label="Attraction(s)"
+              name="attractions"
+              values={values}
+            />
             <div className="input-field">
               <label htmlFor="image">Upload Image</label>
               <Field name="image" type="image" />
