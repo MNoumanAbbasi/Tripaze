@@ -7,7 +7,7 @@ import DestinationSection from './DestinationSection';
 import ImageUpload from './ImageUpload';
 import { Formik, Form, Field } from 'formik';
 import { set } from 'jsonpointer';
-import * as Yup from Yup
+import * as Yup from 'yup';
 
 const InputField = ({ label, name, type }) => {
   return (
@@ -17,7 +17,6 @@ const InputField = ({ label, name, type }) => {
     </div>
   );
 };
-
 
 const CreateTrip = (props) => {
   const [title, setTitle] = useState('');
@@ -85,11 +84,13 @@ const CreateTrip = (props) => {
         }}
         validate={(values) => {
           const errors = {};
-          if (values.title.length() > 20) {
-          }
+          // if (values.title.length() > 20) {
+          // }
+          return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
           console.log(values);
+          props.createTrip(values, props.profile);
         }}
       >
         {({ values }) => (
