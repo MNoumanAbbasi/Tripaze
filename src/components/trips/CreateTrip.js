@@ -5,23 +5,37 @@ import { Redirect } from 'react-router-dom';
 import { profileType } from '../../Helpers';
 import DestinationSection from './DestinationSection';
 import ImageUpload from './ImageUpload';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { set } from 'jsonpointer';
-import * as Yup from 'yup';
+import * as yup from 'yup';
 
 const InputField = ({ label, name, type }) => {
   return (
     <div className="input-field">
-      <label htmlFor={name}>{label}</label>
-      <Field name={name} type={type} />
+      <label htmlFor={name} style={{display: 'block'}}>{label}</label>
+      <Field name={name} type={type}/>
+      <ErrorMessage name={name} />
     </div>
   );
 };
+
+const createTripSchema = yup.object({
+  title: yup.string().max(20, 'Max 20 characters').required('Required'),
+  destinations: yup.array().required('Required'),
+  departureLoc: yup.string().max(10, 'Max 10 characters').required('Required'),
+  duration: yup.number().positive('Invalid duration').required('Required'),
+  price: yup.number().positive('Invalid price').required('Required'),
+  capacity: yup.number().positive('Invalid capactiy').required('Required'),
+  description: yup.string(),
+  attraction: yup.string(),
+  image: yup.string(),
+});
 
 const CreateTrip = (props) => {
   const [title, setTitle] = useState('');
   const [destinations, setDestinations] = useState([]);
   const [departureLoc, setDepartureLoc] = useState('');
+  const [departureDate, setDepartureDate] = useState('');
   const [duration, setDuration] = useState(0);
   const [price, setPrice] = useState(0);
   const [capacity, setCapacity] = useState(0);
@@ -29,12 +43,12 @@ const CreateTrip = (props) => {
   const [attraction, setAttraction] = useState('');
   const [image, setImage] = useState('');
 
-  const handleChange = (e) => {
-    this.setState({
-      // store the input on form fields on the state
-      [e.target.id]: e.target.value,
-    });
-  };
+  // const handleChange = (e) => {
+  //   this.setState({
+  //     // store the input on form fields on the state
+  //     [e.target.id]: e.target.value,
+  //   });
+  // };
   const handleDestChange = (destArray) => {
     setDestinations({
       destinations: destArray,
@@ -46,15 +60,15 @@ const CreateTrip = (props) => {
       image: imgName,
     });
   };
-  const handleSubmit = (e) => {
-    // dont want the default action of page being reloaded
-    e.preventDefault();
-    // console.log(this.state)
+  // const handleSubmit = (e) => {
+  //   // dont want the default action of page being reloaded
+  //   e.preventDefault();
+  //   // console.log(this.state)
 
-    // calls the createTrip function in mapDispatchToProps which in turn calls dispatch with an action of createTrip that handles the asynch request. This request is then sent to the reducer for dispatch
-    this.props.createTrip(this.state, this.props.profile);
-    this.props.history.push('/');
-  };
+  //   // calls the createTrip function in mapDispatchToProps which in turn calls dispatch with an action of createTrip that handles the asynch request. This request is then sent to the reducer for dispatch
+  //   this.props.createTrip(this.state, this.props.profile);
+  //   this.props.history.push('/');
+  // };
 
   const { auth, profile, isLoading } = props;
   const isInitialized = !isLoading && profile && auth;
@@ -82,15 +96,10 @@ const CreateTrip = (props) => {
           attraction: '',
           image: '',
         }}
-        validate={(values) => {
-          const errors = {};
-          // if (values.title.length() > 20) {
-          // }
-          return errors;
-        }}
+        validationSchema={createTripSchema}
         onSubmit={(values, { setSubmitting }) => {
-          console.log(values);
           props.createTrip(values, props.profile);
+          props.history.push('/');
         }}
       >
         {({ values }) => (
