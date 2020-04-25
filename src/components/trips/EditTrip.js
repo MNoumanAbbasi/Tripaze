@@ -4,7 +4,7 @@ import { editTrip } from '../../store/actions/tripActions';
 import { Redirect } from 'react-router-dom';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
-import DestinationSection from './DestinationSection';
+// import DestinationSection from './DestinationSection';
 
 // all css are from the materialized CSS class
 export class EditTrip extends Component {
@@ -95,10 +95,10 @@ export class EditTrip extends Component {
               />
             </div>
 
-            <DestinationSection
+            {/* <DestinationSection
               handleDestChange={this.handleDestChange}
               destinationsArray={this.state.destinations}
-            />
+            /> */}
 
             <div className="input-field">
               <label htmlFor="departureLoc">Departure Location</label>

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { createTrip } from '../../store/actions/tripActions';
 import { Redirect } from 'react-router-dom';
 import { profileType } from '../../Helpers';
-import DestinationSection from './DestinationSection';
+import FieldArraySection from './FieldArraySection';
 import ImageUpload from './ImageUpload';
 import { Formik, Form, Field, ErrorMessage, FieldArray } from 'formik';
 import { set } from 'jsonpointer';
@@ -64,7 +64,7 @@ const CreateTrip = (props) => {
   }
 
   if (!isInitialized) {
-    return <div>Loading...</div>; // Display loading box
+    return <div>Loading...</div>; // TODO: Display loading box
   }
   return (
     <div className="container">
@@ -79,7 +79,7 @@ const CreateTrip = (props) => {
           price: 0,
           capacity: 0,
           description: '',
-          attraction: '',
+          attraction: [],
           image: '',
         }}
         validationSchema={createTripSchema}
@@ -92,9 +92,12 @@ const CreateTrip = (props) => {
           <Form>
             <InputField label="Title" name="title" type="text" />
 
-            <DestinationSection values={values} />
+            <FieldArraySection
+              label="Destination(s)"
+              name="destinations"
+              values={values}
+            />
 
-            <pre>{JSON.stringify(values.destinations)}</pre>
             <InputField
               label="Departure Location"
               name="departureLoc"
@@ -117,79 +120,15 @@ const CreateTrip = (props) => {
             <button type="submit">Submit</button>
           </Form>
         )}
-      </Formik>
-      {/* <form onSubmit={this.handleSubmit} className="white">
-        <div className="input-field">
-          <label htmlFor="title">Title</label>
-          <input
-            type="text"
-            id="title"
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </div>
+        {/* <ImageUpload handleImgAdd={this.handleImgAdd} /> */}
 
-        <DestinationSection
-          handleDestChange={handleDestChange}
-          destinationsArray={destinations}
-        />
-
-        <div className="input-field">
-          <label htmlFor="departureLoc">Departure Location</label>
-          <input
-            type="text"
-            id="departureLoc"
-            onChange={(e) => setDepartureLoc}
-          />
-        </div>
-
-        <div className="input-field">
-          <label htmlFor="departureDate">Departure Date</label>
-          <input type="date" id="departureDate" onChange={this.handleChange} />
-        </div>
-
-        <div className="input-field">
-          <label htmlFor="duration">Duration</label>
-          <input type="number" id="duration" onChange={this.handleChange} />
-        </div>
-
-        <div className="input-field">
-          <label htmlFor="price">Price</label>
-          <input type="number" id="price" onChange={this.handleChange} />
-        </div>
-
-        <div className="input-field">
-          <label htmlFor="capacity">Capacity</label>
-          <input type="number" id="capacity" onChange={this.handleChange} />
-        </div>
-
-        <div className="input-field">
-          <label htmlFor="description">Description</label>
-          <textarea
-            id="description"
-            onChange={this.handleChange}
-            className="materialize-textarea"
-          ></textarea>
-        </div>
-
-        <div className="input-field">
-          <label htmlFor="attraction">Attractions</label>
-          <textarea
-            id="attraction"
-            onChange={this.handleChange}
-            className="materialize-textarea"
-          ></textarea>
-        </div>
-
-        <ImageUpload handleImgAdd={this.handleImgAdd} />
-
-        <div className="input-field">
+        {/* <div className="input-field">
           <button className="btn blue lighten-1 z-depth-1">Submit</button>
-        </div>
-      </form>
-
+        </div> */}
+      </Formik>
       <div className="input-field">
         <button className="btn grey lighten-1 z-depth-1">Cancel</button>
-      </div> */}
+      </div>
     </div>
   );
 };
