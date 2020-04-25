@@ -3,6 +3,11 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  color: #707070;
+  text-decoration: none;
+}
+
 .logo {
   top: 4px;
   width: 170px;
