@@ -12,8 +12,10 @@ import * as yup from 'yup';
 const InputField = ({ label, name, type }) => {
   return (
     <div className="input-field">
-      <label htmlFor={name} style={{display: 'block'}}>{label}</label>
-      <Field name={name} type={type}/>
+      <label htmlFor={name} style={{ display: 'block' }}>
+        {label}
+      </label>
+      <Field name={name} type={type} min="0" />
       <ErrorMessage name={name} />
     </div>
   );
