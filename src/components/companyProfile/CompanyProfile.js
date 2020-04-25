@@ -34,7 +34,7 @@ class CompanyProfile extends Component {
             <div className="row justify-content-between align-content-center">
               {/* Heading */}
               <div className="ml-lg-4 col-lg-7 text-secondary">
-                <h1 className="mt-5 tripText">THE BEST TRAVEL AGENCY</h1>
+                <h1 className="mt-5 tripText">{company.companyName}</h1>
               </div>
               {/* Description + Card */}
               <div className=" row ml-lg-4 col-lg-7 text-secondary">
