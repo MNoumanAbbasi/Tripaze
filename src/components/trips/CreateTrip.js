@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import { profileType } from '../../Helpers';
 import DestinationSection from './DestinationSection';
 import ImageUpload from './ImageUpload';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field, ErrorMessage, FieldArray } from 'formik';
 import { set } from 'jsonpointer';
 import * as yup from 'yup';
 
@@ -24,7 +24,9 @@ const InputField = ({ label, name, type }) => {
 const createTripSchema = yup.object({
   title: yup.string().max(20, 'Max 20 characters').required('Required'),
   destinations: yup.array().required('Required'),
-  departureLoc: yup.string().max(10, 'Max 10 characters').required('Required'),
+  departureLoc: yup.string().max(15, 'Max 15 characters').required('Required'),
+  // departureDate: yup.date().required('Required'),
+  departureDate: yup.date().min(new Date(), 'Date should start from tomorrow').required('Required'),
   duration: yup.number().positive('Invalid duration').required('Required'),
   price: yup.number().positive('Invalid price').required('Required'),
   capacity: yup.number().positive('Invalid capactiy').required('Required'),
@@ -80,7 +82,7 @@ const CreateTrip = (props) => {
   }
 
   if (!isInitialized) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>; // Display loading box
   }
   return (
     <div className="container">
@@ -107,10 +109,27 @@ const CreateTrip = (props) => {
         {({ values }) => (
           <Form>
             <InputField label="Title" name="title" type="text" />
-            <DestinationSection
+            {/* <DestinationSection
               handleDestChange={handleDestChange}
               destinationsArray={values.destinations}
-            />
+            /> */}
+            <FieldArray name="destinations">
+              {({ push }) => {
+                const newDest = '';
+                return (
+                  <div>
+                    {values.destinations.map((dest) => {
+                      return <div>{dest}</div>;
+                    })}
+                    <input name={newDest} type="text" />
+                    <button type="button" onClick={() => push(newDest)}>
+                      Add destination
+                    </button>
+                  </div>
+                );
+              }}
+            </FieldArray>
+            <pre>{JSON.stringify(values.destinations)}</pre>
             <InputField
               label="Departure Location"
               name="departureLoc"
@@ -126,7 +145,6 @@ const CreateTrip = (props) => {
             <InputField label="Capacity" name="capacity" type="number" />
             <InputField label="Description" name="description" type="text" />
             <InputField label="Attractions" name="attraction" type="text" />
-
             <div className="input-field">
               <label htmlFor="image">Upload Image</label>
               <Field name="image" type="image" />
