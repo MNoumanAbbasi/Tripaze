@@ -7,7 +7,17 @@ import DestinationSection from './DestinationSection';
 import ImageUpload from './ImageUpload';
 import { Formik, Form, Field } from 'formik';
 import { set } from 'jsonpointer';
-// all css are from the materialized CSS class
+
+const InputField = ({ label, name, type }) => {
+  return (
+    <div className="input-field">
+      <label htmlFor={name}>{label}</label>
+      <Field name={name} type={type} />
+    </div>
+  );
+};
+
+
 const CreateTrip = (props) => {
   const [title, setTitle] = useState('');
   const [destinations, setDestinations] = useState([]);
@@ -74,21 +84,41 @@ const CreateTrip = (props) => {
         }}
         validate={(values) => {
           const errors = {};
-          // Add validation here
+          if (values.title.length() > 20) {
+          }
         }}
         onSubmit={(values, { setSubmitting }) => {
           console.log(values);
         }}
       >
-        {({ values, handleChange, handleSubmit }) => (
+        {({ values }) => (
           <Form>
-            <Field type="title" name="title" />
+            <InputField label="Title" name="title" type="text" />
             <DestinationSection
               handleDestChange={handleDestChange}
               destinationsArray={values.destinations}
             />
-            <Field type="departureLoc" name="title" />
-            <Field type="departureDate" name="title" />
+            <InputField
+              label="Departure Location"
+              name="departureLoc"
+              type="text"
+            />
+            <InputField
+              label="Departure Date"
+              name="departureDate"
+              type="date"
+            />
+            <InputField label="Duration" name="duration" type="number" />
+            <InputField label="Price" name="price" type="number" />
+            <InputField label="Capacity" name="capacity" type="number" />
+            <InputField label="Description" name="description" type="text" />
+            <InputField label="Attractions" name="attraction" type="text" />
+
+            <div className="input-field">
+              <label htmlFor="image">Upload Image</label>
+              <Field name="image" type="image" />
+            </div>
+            <button type="submit">Submit</button>
           </Form>
         )}
       </Formik>
