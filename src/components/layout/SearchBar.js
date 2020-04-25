@@ -1,20 +1,19 @@
 // Since this component has no state, this will be a functional component rather than a class component
 
-import React, { Component } from "react";
-import { withRouter, Redirect } from "react-router-dom";
+import React, { Component } from 'react';
+import { withRouter, Redirect } from 'react-router-dom';
 
 export class SearchBar extends Component {
   state = {
-    destinations: "",
+    destinations: '',
   };
 
   componentWillMount() {
     this.unlisten = this.props.history.listen((location, action) => {
-      console.log("on route change", location);
-      if (!location.pathname.startsWith("/searchResults")) {
+      if (!location.pathname.startsWith('/searchResults')) {
         this.setState({
           // store the input on form fields on the state
-          destinations: "",
+          destinations: '',
         });
       }
     });
@@ -32,15 +31,12 @@ export class SearchBar extends Component {
   };
 
   handleSubmit = (e) => {
-    console.log(this.state);
     // dont want the default action of page being reloaded
     e.preventDefault();
-    this.props.history.push("/searchResults/" + this.state.destinations);
+    this.props.history.push('/searchResults/' + this.state.destinations);
   };
 
   render() {
-    console.log(this.props.location);
-
     return (
       <form
         onSubmit={(e) => {

@@ -93,7 +93,6 @@ export class SignIn extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     authError: state.auth.authError, // in root reducer check auth property and the authError in that property
     auth: state.firebase.auth,

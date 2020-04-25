@@ -257,6 +257,11 @@
   }
 }
 
+.tb-border {
+  border-style: solid;
+}
+
+/* Become bigger on hover */
 .object-hover {
   transition-timing-function: ease-in-out;
   transition-duration: 0.5s;
@@ -267,10 +272,7 @@
   transform: scale(1.05);
 }
 
-.tb-border {
-  border-style: solid;
-}
-
+/* Change Color on hover */
 .tr-highlight {
   background-color: white;
   color: #00a99d;
@@ -281,28 +283,24 @@
   color: #ffffff;
 }
 
-@media only screen and (max-width: 1400px) {
-  .overlay-button {
-    z-index: 3;
-    font-weight: 700;
-    position: absolute;
-    background-color: white;
-    border: #00a99d;
-    color: #00a99d;
-    margin-top: 33%;
-    margin-left: 36%;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
-  }
-}
-
-.overlay-button:hover {
-  background-color: #00a99d;
-  color: white;
-}
-
+/* Re-usable for background, text color and borders */
 .colored {
-  color: #72777e;
+  color: gray;
   /* color: #00a99d; */
+}
+
+.colored:hover {
+  color: #00a99d;
+  /* color: #00a99d; */
+}
+
+.colored-r {
+  color: red;
+  /* color: #00a99d; */
+}
+
+.colored-r:hover {
+  color: white;
 }
 
 .bg-turq {
@@ -315,4 +313,38 @@
 
 .border-turq {
   border-color: #00a99d;
+}
+
+/* Buttons */
+.overlay-button {
+  z-index: 3;
+  font-weight: 700;
+  position: absolute;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+}
+
+.green-button {
+  background-color: white;
+  border: #00a99d;
+  color: #00a99d;
+}
+
+.green-button:hover {
+  background-color: #00a99d;
+  color: white;
+}
+
+.red-button {
+  background-color: white;
+  border: red;
+  color: red;
+}
+
+.red-button:hover {
+  background-color: red;
+  color: white;
+}
+
+.overlay {
+  z-index: 3;
 }

@@ -1,10 +1,10 @@
 // Since this component has no state, this will be a functional component rather than a class component
 
-import React from "react";
-import { withRouter, NavLink } from "react-router-dom";
-import { connect } from "react-redux";
-import { signOut } from "../../store/actions/authActions";
-import { compose } from "redux";
+import React from 'react';
+import { withRouter, NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { signOut } from '../../store/actions/authActions';
+import { compose } from 'redux';
 
 // this is a functional component, not a class, so we need to pass the props as argument
 const SignedInCompanyLinks = (props) => {
@@ -23,13 +23,17 @@ const SignedInCompanyLinks = (props) => {
           </NavLink>
         </li>
         <li class="nav-item nav-link">
-          <a
-            onClick={() => {
-              props.signOut(props.history);
-            }}
-          >
-            Sign Out
-          </a>
+          <li class="nav-item ">
+            <NavLink
+              to="/"
+              class="nav-link"
+              onClick={() => {
+                props.signOut(props.history);
+              }}
+            >
+              Sign Out
+            </NavLink>
+          </li>
         </li>
       </ul>
     </div>
