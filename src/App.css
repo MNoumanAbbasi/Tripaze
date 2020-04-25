@@ -257,8 +257,13 @@
   }
 }
 
+/* REUSABLE  */
 .tb-border {
   border-style: solid;
+}
+
+.border-thin {
+  border-width: thin;
 }
 
 /* Become bigger on hover */
@@ -289,6 +294,9 @@
   /* color: #00a99d; */
 }
 
+.bg-gray {
+  background-color: rgb(165, 161, 161);
+}
 .colored:hover {
   color: #00a99d;
   /* color: #00a99d; */
@@ -334,9 +342,20 @@
   color: white;
 }
 
+.r-green-button {
+  background-color: #00a99d;
+  color: white;
+}
+
+.r-green-button:hover {
+  background-color: white;
+  border-color: #00a99d;
+  color: #00a99d;
+}
+
 .red-button {
   background-color: white;
-  border: red;
+  border-color: red;
   color: red;
 }
 
