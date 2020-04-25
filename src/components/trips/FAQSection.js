@@ -10,20 +10,22 @@ const FAQ = (props) => {
   const isOwnCompanyProfile = props.profileType === 'Company';
   const showAddAnswerForm = isOwnCompanyProfile && props.answer === '';
   return (
-    <div className="faq">
+    <div className="faq tb-border-0 mt-3 border-turq ">
       {isOwnCompanyProfile && (
         <button
-          className="btn form-rounded object-hover float-right"
+          className="btn btn-sm bg-turq form-rounded float-right m-2"
           onClick={() => props.removeFaq(props.id)}
         >
-          <i class="fa fa-times-circle text-danger"></i>
+          <i class="fa fa-times fa-2x text-danger"></i>
         </button>
       )}
-      <p className="question">Q. {props.question}</p>
-      {showAddAnswerForm && (
-        <AddAnswerForm onSubmit={props.addAnswer} faqID={props.id} />
-      )}
-      {props.answer && <p className="answer">A. {props.answer}</p>}
+      <h6 className="question bg-turq text-white p-3">Q. {props.question}</h6>
+      <div className="ml-3">
+        {showAddAnswerForm && (
+          <AddAnswerForm onSubmit={props.addAnswer} faqID={props.id} />
+        )}
+        {props.answer && <p className="answer">A. {props.answer}</p>}
+      </div>
     </div>
   );
 };
@@ -36,16 +38,21 @@ const AddQuestionForm = (props) => {
   };
 
   return (
-    <div className="addQuestion">
-      <form className="" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Add question"
-          onChange={(event) => setQuestion(event.target.value)}
-          required
-        />
-        <button className="dark-button">Add</button>
-      </form>
+    <div className="border border-thin mt-3 border-turq">
+      <div className="form-group">
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Add question"
+            className="form-control form-control-lg"
+            onChange={(event) => setQuestion(event.target.value)}
+            required
+          />
+          <div className="form-row mr-3 justify-content-end">
+            <button className="btn  form-rounded r-green-button">Add</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
@@ -58,15 +65,18 @@ const AddAnswerForm = (props) => {
   };
 
   return (
-    <div className="addAnswer">
+    <div className="form-group">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Add answer"
+          placeholder="Add Answer"
+          className="form-control form-control-lg"
           onChange={(event) => setAnswer(event.target.value)}
           required
         />
-        <button className="dark-button">Post</button>
+        <div className="form-row mr-3 justify-content-end">
+          <button className="btn form-rounded r-green-button">Post</button>
+        </div>
       </form>
     </div>
   );
@@ -80,14 +90,14 @@ const FAQSection = (props) => {
   const userSignedIn = props.profileType !== 'Guest';
 
   const addQuestion = (question) => {
-    setFAQs([...FAQs, { question, answer: '' }]); // TODO: instead of updating local copy too. remount when faq added/deleted.
+    // setFAQs([...FAQs, { question, answer: '' }]); // TODO: instead of updating local copy too. remount when faq added/deleted.
     props.addQuestion(question, props.tripID);
     setIsAddQuestionState(false);
   };
   const addAnswer = (answer, faqID) => {
     const ind = FAQs.findIndex((faq) => faq.id === faqID);
-    const newFAQs = (FAQs[ind].answer = answer);
-    setFAQs(newFAQs); // TODO: instead of updating local copy too. remount when faq added/deleted.
+    FAQs[ind].answer = answer;
+    // setFAQs(newFAQs); // TODO: instead of updating local copy too. remount when faq added/deleted.
     props.addAnswer(answer, faqID);
     setIsAddQuestionState(false);
   };
@@ -101,7 +111,7 @@ const FAQSection = (props) => {
   if (isAddQuestionState) {
     button = (
       <button
-        className="cancelButton light-button"
+        className="btn mt-3 form-rounded red-button"
         onClick={() => setIsAddQuestionState(false)}
       >
         Cancel
@@ -110,7 +120,7 @@ const FAQSection = (props) => {
   } else {
     button = (
       <button
-        className="addNewButton dark-button"
+        className="btn mt-3 form-rounded r-green-button"
         onClick={() => setIsAddQuestionState(true)}
       >
         Add Question
@@ -119,8 +129,7 @@ const FAQSection = (props) => {
   }
 
   return (
-    <div className="FAQSection">
-      <p className="heading">FAQ Section</p>
+    <div className="FAQSection pb-5 pr-5 pl-5">
       {FAQs &&
         FAQs.map((faq) => {
           return (
