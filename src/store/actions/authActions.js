@@ -1,10 +1,9 @@
 import firebase from 'firebase';
 
 export const signIn = (credentials) => {
-  dispatch({ type: 'PROFILE_LOADING' });
-
   // getFirebase is to communicate with our firebase project to sign a use
   return (dispatch, getState, { _, getFirestore }) => {
+    dispatch({ type: 'PROFILE_LOADING' });
     // this variable will have a reference to our database
     const firestore = getFirestore();
     var uid;
@@ -22,8 +21,8 @@ export const signIn = (credentials) => {
 };
 
 export const authProfileLoad = (user) => {
-  dispatch({ type: 'PROFILE_LOADING' });
   return (dispatch, getState, { _, getFirestore }) => {
+    dispatch({ type: 'PROFILE_LOADING' });
     // getFirebase is to communicate with our firebase project to sign a use
     // this variable will have a reference to our database
     const firestore = getFirestore();
@@ -50,8 +49,8 @@ export const authProfileLoad = (user) => {
 };
 
 export const signOut = (history) => {
-  dispatch({ type: 'PROFILE_LOADING' });
   return (dispatch, getState) => {
+    dispatch({ type: 'PROFILE_LOADING' });
     firebase
       .auth()
       .signOut()
@@ -66,8 +65,8 @@ export const signOut = (history) => {
 
 // newUser contains all the information obtained from the sign up form
 export const signUpUser = (newUser) => {
-  dispatch({ type: 'PROFILE_LOADING' });
   return (dispatch, getState, { getFirestore }) => {
+    dispatch({ type: 'PROFILE_LOADING' });
     var uid;
     const firestore = getFirestore();
     firebase
@@ -98,8 +97,8 @@ export const signUpUser = (newUser) => {
 
 // newCompany contains all the information obtained from the sign up form
 export const signUpCompany = (newUser) => {
-  dispatch({ type: 'PROFILE_LOADING' });
   return (dispatch, getState, { getFirestore }) => {
+    dispatch({ type: 'PROFILE_LOADING' });
     var uid;
     const firestore = getFirestore();
     firebase
