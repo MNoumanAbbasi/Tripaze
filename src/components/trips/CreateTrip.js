@@ -46,23 +46,23 @@ const createTripSchema = yup.object({
 });
 
 const CreateTrip = (props) => {
-  const [title, setTitle] = useState('');
-  const [destinations, setDestinations] = useState([]);
-  const [departureLoc, setDepartureLoc] = useState('');
-  const [departureDate, setDepartureDate] = useState('');
-  const [duration, setDuration] = useState(0);
-  const [price, setPrice] = useState(0);
-  const [capacity, setCapacity] = useState(0);
-  const [description, setDescription] = useState(0);
-  const [attraction, setAttraction] = useState('');
-  const [image, setImage] = useState('');
+  // const [title, setTitle] = useState('');
+  // const [destinations, setDestinations] = useState([]);
+  // const [departureLoc, setDepartureLoc] = useState('');
+  // const [departureDate, setDepartureDate] = useState('');
+  // const [duration, setDuration] = useState(0);
+  // const [price, setPrice] = useState(0);
+  // const [capacity, setCapacity] = useState(0);
+  // const [description, setDescription] = useState(0);
+  // const [attraction, setAttraction] = useState('');
+  // const [image, setImage] = useState('');
 
-  const handleImgAdd = (imgName) => {
-    console.log('imgname', imgName);
-    this.setState({
-      image: imgName,
-    });
-  };
+  // const handleImgAdd = (imgName) => {
+  //   console.log('imgname', imgName);
+  //   this.setState({
+  //     image: imgName,
+  //   });
+  // };
 
   const { auth, profile, isLoading } = props;
   const isInitialized = !isLoading && profile && auth;
@@ -91,7 +91,7 @@ const CreateTrip = (props) => {
           image: '',
         }}
         validationSchema={createTripSchema}
-        onSubmit={(values, { setSubmitting }) => {
+        onSubmit={(values) => {
           props.createTrip(values, props.profile);
           props.history.push('/');
         }}
@@ -125,14 +125,14 @@ const CreateTrip = (props) => {
               name="attractions"
               values={values}
             />
-            <div className="input-field">
-              <label htmlFor="image">Upload Image</label>
-              <Field name="image" type="image" />
-            </div>
+            <ImageUpload
+              imageName={values.image}
+              handleImgNameChange={(img) => (values.image = img)}
+            />
+
             <button type="submit">Submit</button>
           </Form>
         )}
-        {/* <ImageUpload handleImgAdd={this.handleImgAdd} /> */}
 
         {/* <div className="input-field">
           <button className="btn blue lighten-1 z-depth-1">Submit</button>

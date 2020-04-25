@@ -1,33 +1,35 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import storage from '../../config/fbConfig';
-class ImageUpload extends Component {
-  construct(props) {
-    this.state = {};
-    this.handleChangeImage = this.handleChangeImage.bind(this);
-    this.handleUpload = this.handleUpload;
-    this.progress = 0;
-  }
-  handleChangeImage = (e) => {
+
+const ImageUpload = (props) => {
+  const [image, setImage] = useState(props.imageName);
+  const [progress, setProgress] = useState(0);
+
+  const handleChangeImage = (e) => {
     e.preventDefault();
-    if (e.target.files[0]) {
-      const image = e.target.files[0];
-      this.setState(() => ({ image }));
-    }
+    console.log(e.target.files);
+    // image =
+    // if (e.target.files[0]) {
+    //   const image = e.target.files[0];
+    //   this.setState(() => ({ image }));
+    // }
   };
-  showComplete = () => {
-    if (this.progress == 100) return <div>Photo uploaded</div>;
+  const showComplete = () => {
+    if (progress === 100) return <div>Photo uploaded</div>;
   };
-  handleUpload = (e) => {
-    e.preventDefault();
-    const { image } = this.state;
-    var imgName = image.name;
-    const uploadTask = storage.ref(`tripImages/${imgName}`).put(image);
+  const handleUpload = (e) => {
+    console.log(image);
+    const uploadTask = storage.ref(`tripImages/${image.name}`).put(image);
     uploadTask.on(
       'state_changed',
       (snapshot) => {
-        this.progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      }, //Progress
+        // Handle Progress (store as int)
+        setProgress(
+          parseInt((snapshot.bytesTransferred * 100) / snapshot.totalBytes)
+        );
+      },
       (error) => {
+        // Handle Errors
         switch (error.code) {
           case 'storage/unauthorized':
             // User doesn't have permission to access the object
@@ -40,17 +42,15 @@ class ImageUpload extends Component {
             break;
         }
       },
-
       () => {
-        this.props.handleImgAdd(this.state.image.name);
+        // Handle Successful Upload
+        console.log('Successfull upload of image');
+        props.handleImgNameChange(image.name);
       }
     );
   };
-  handleDelete = (e) => {
-    e.preventDefault();
-    const { image } = this.state;
-    var imgName = image.name;
-    var deleteRef = storage.ref(`tripImages/${imgName}`);
+  const handleDelete = (e) => {
+    const deleteRef = storage.ref(`tripImages/${image.name}`);
     // Delete the file
     deleteRef
       .delete()
@@ -61,15 +61,18 @@ class ImageUpload extends Component {
         // Uh-oh, an error occurred!
       });
   };
-  render() {
-    return (
-      <div>
-        <input type="file" onChange={this.handleChangeImage} />
-        <button onClick={this.handleUpload}>Upload</button>
-        <button onClick={this.handleDelete}>Delete uploaded photo</button>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <input type="file" onChange={(e) => setImage(e.currentTarget.files[0])} />
+      <button type="button" onClick={handleUpload}>
+        Upload
+      </button>
+      <button type="button" onClick={handleDelete}>
+        Remove
+      </button>
+
+    </div>
+  );
+};
 
 export default ImageUpload;
