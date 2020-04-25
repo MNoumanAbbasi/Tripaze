@@ -5,6 +5,7 @@ import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase'; // higher order
 import ReviewSection from './ReviewSection';
 import defaultCover from '../../Images/coverPhoto.jpg';
+import defaultLogo from '../../Images/default-logo.jpg';
 import { profileType } from '../../Helpers';
 import cardbg from '../trips/card-bg.png';
 import { Link } from 'react-router-dom';
@@ -19,18 +20,29 @@ class CompanyProfile extends Component {
       return (
         <div className="row m-0">
           <img src={defaultCover} className="w-100 backDrop"></img>
+          {/* Logo Image for Overlapping
+          <div className="overlay row w-100 justify-content-lg-end justify-content-center">
+            <img
+              class="border-turq tb-border"
+              alt="100x100"
+              src={defaultLogo}
+              data-holder-rendered="true"
+            />
+          </div> */}
           <div className="container align-self-start bg-white frontDrop">
             {/* First section */}
             <div className="row justify-content-between align-content-center">
+              {/* Heading */}
               <div className="ml-lg-4 col-lg-7 text-secondary">
-                <h1 className="mt-5 text-secondary tripText">
-                  THE BEST TRAVEL AGENCY
-                </h1>
-                <hr class="mt-3 col-12 ml-0 divider"></hr>
+                <h1 className="mt-5 tripText">THE BEST TRAVEL AGENCY</h1>
+              </div>
+              {/* Description + Card */}
+              <div className=" row ml-lg-4 col-lg-7 text-secondary">
+                <hr class="mt-2 col-12 ml-0 divider"></hr>
                 <h3 className="mt-5 text-justify text-secondary">
                   Description
                 </h3>
-                <div>
+                <div className="text-justify">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                   Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -42,7 +54,7 @@ class CompanyProfile extends Component {
                 </div>
               </div>
               {/* {Company Card} */}
-              <div class="card content-box mt-5 mr-5 change-card-width order-lg-2 order-1">
+              <div class="card content-box mr-5 change-card-width order-lg-2 order-1">
                 <div class="card-body">
                   <h6 class="card-title change-font font-weight-bold text-uppercase text-secondary">
                     <i
@@ -66,7 +78,7 @@ class CompanyProfile extends Component {
               <i class="fa fa-th fa-3x fa-fw" aria-hidden="false"></i>
               <h3 className="col-4 tripText">Upcoming Trips</h3>
             </div>
-            <div className="container cardslist-margin">
+            <div className="container mt-4">
               <TripsList trips={trips} />
             </div>
 

@@ -348,3 +348,24 @@
 .overlay {
   z-index: 3;
 }
+
+.circle-avatar {
+  /* make it responsive */
+  max-width: 20%;
+  width: 100%;
+  height: 2vw;
+  display: block;
+  /* div height to be the same as width*/
+  padding-top: 100%;
+
+  /* make it a circle */
+  border-radius: 50%;
+
+  /* Centering on image`s center*/
+  background-position-y: center;
+  background-position-x: center;
+  background-repeat: no-repeat;
+
+  /* it makes the clue thing, takes smaller dimension to fill div */
+  background-size: cover;
+}

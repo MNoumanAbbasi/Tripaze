@@ -53,7 +53,7 @@ function TripDetails(props) {
   return (
     <div className="row m-0 tripDetails">
       <DisplayImage img={trip.image} page={'details'} />
-      <div className="container overlay align-self-end">
+      {/* <div className="container overlay align-self-end">
         <div className="row justify-content-lg-end justify-content-center">
           <button
             type="button"
@@ -68,7 +68,7 @@ function TripDetails(props) {
             DELETE <i class="fa fas fa-trash fa-fw"></i>
           </button>
         </div>
-      </div>
+      </div> */}
       <div className="container bg-white frontDrop">
         {/* First row */}
         <div className="row justify-content-around">
@@ -149,10 +149,9 @@ function TripDetails(props) {
             </tr>
           </table>
         </div>
-        <div>
-          <h3 class=" ml-lg-4 text-secondary mt-5">
-            Frequently Asked Questions:
-          </h3>
+        <div className="row p-4 mt-5 justify-content-center align-content-centre text-turq">
+          <i class="fa fa-question-circle fa-3x fa-fw" aria-hidden="false"></i>
+          <h3 className="col-6 tripText">Frequently Asked Questions</h3>
         </div>
         <FAQSection
           FAQs={FAQs}
