@@ -1,23 +1,24 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import { createStore, applyMiddleware, compose } from "redux";
-import rootReducer from "./store/reducers/rootReducer";
-import { Provider, useSelector } from "react-redux";
-import thunk from "redux-thunk";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import { createStore, applyMiddleware, compose } from 'redux';
+import rootReducer from './store/reducers/rootReducer';
+import { Provider, useSelector } from 'react-redux';
+import thunk from 'redux-thunk';
 import {
   createFirestoreInstance,
   getFirestore,
   reduxFirestore,
-} from "redux-firestore";
+} from 'redux-firestore';
 import {
   ReactReduxFirebaseProvider,
   getFirebase,
   isLoaded,
-} from "react-redux-firebase";
-import fbConfig from "./config/fbConfig";
-import firebase from "firebase/app";
+} from 'react-redux-firebase';
+import fbConfig from './config/fbConfig';
+import firebase from 'firebase/app';
+import LoadingBox from './components/dashboard/LoadingBox';
 
 // Multiple reducers for multiple actions
 // Thunk with extra arguments takes in an object
@@ -32,7 +33,7 @@ const store = createStore(
 
 //construct required properties
 const profileSpecificProps = {
-  userProfile: "UserTypes",
+  userProfile: 'UserTypes',
   useFirestoreForProfile: true,
   enableRedirectHandling: false,
   resetBeforeLogin: false,
@@ -51,7 +52,7 @@ const rrfProps = {
 // This is to ensure that the website does not show wrong links when the firebase authentication has not been loaded
 function AuthIsLoaded({ children }) {
   const auth = useSelector((state) => state.firebase.auth);
-  if (!isLoaded(auth)) return <div>Loading Screen...</div>;
+  if (!isLoaded(auth)) return <LoadingBox />;
   else return children;
 }
 
@@ -63,7 +64,7 @@ ReactDOM.render(
       </AuthIsLoaded>
     </ReactReduxFirebaseProvider>
   </Provider>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 
 // serviceWorker.unregister();

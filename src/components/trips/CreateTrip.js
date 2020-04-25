@@ -12,8 +12,6 @@ export class CreateTrip extends Component {
     destinations: [],
     departureLoc: '',
     departureDate: '',
-    departureLoc: '',
-    departureDate: '',
     duration: 0,
     price: 0,
     capacity: 0,
@@ -34,6 +32,7 @@ export class CreateTrip extends Component {
     });
   };
   handleImgAdd = (imgName) => {
+    console.log('imgname', imgName);
     this.setState({
       image: imgName,
     });
