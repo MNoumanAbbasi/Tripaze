@@ -62,13 +62,20 @@ class CompanyProfile extends Component {
               </div>
             </div>
             {/* Second Section */}
-            <div className="row p-4 mt-5 justify-content-center align-content-centre">
-              <i class="fa fa-layer-group fa-2x fa-fw" aria-hidden="true"></i>
-              <h3 className="text-secondary col-4">UPCOMING TRIPS</h3>
+            <div className="row p-4 mt-5 justify-content-center align-content-centre text-turq">
+              <i class="fa fa-th fa-3x fa-fw" aria-hidden="false"></i>
+              <h3 className="col-4 tripText">Upcoming Trips</h3>
+            </div>
+            <div className="container cardslist-margin">
+              <TripsList trips={trips} />
+            </div>
+
+            {/* Second Section */}
+            <div className="row p-4 mt-5 justify-content-center align-content-centre text-turq">
+              <i class="fa fa-th fa-3x fa-fw" aria-hidden="false"></i>
+              <h3 className="col-4 tripText">Company Reviews</h3>
             </div>
           </div>
-
-          {/* Second Section */}
 
           {/* 
           <div className="container cardslist-margin">
