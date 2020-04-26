@@ -118,10 +118,7 @@ const ReviewSection = (props) => {
       <SignInToAccess
         show={modalShow}
         onHide={() => setModalShow(false)}
-        onDelete={() => {
-          props.deleteTrip(props.match.params.id);
-          props.history.push('/');
-        }}
+        section="review"
       />
       {reviews.map((currReview) => {
         return (
