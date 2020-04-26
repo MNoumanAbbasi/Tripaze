@@ -3,15 +3,6 @@ import GeneralDialogBox from './GeneralDialogBox';
 import { NavLink } from 'react-router-dom';
 
 function SignInToAccess(props) {
-  const cancelButton = (
-    <button
-      type="button"
-      class="btn btn-lg r-green-button form-rounded object-hover"
-      onClick={props.onHide}
-    >
-      Cancel
-    </button>
-  );
   const signInButton = (
     <NavLink to="/signin" class="nav-link">
       <button

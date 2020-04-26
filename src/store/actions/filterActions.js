@@ -6,7 +6,6 @@ export const search = (destination) => {
     const firestore = getFirestore();
 
     // grabbing user's id and profile
-    const authorId = getState().firebase.auth.uid;
     firestore
       .collection('Trips')
       .where([['destinations', '==', destination]])

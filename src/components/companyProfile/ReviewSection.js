@@ -5,7 +5,7 @@ import SignInToAccess from '../dialogBoxes/SignInToAccess';
 
 const Review = (props) => {
   let button = null;
-  if (props.profileType == 'User' && props.profileID == props.userID) {
+  if (props.profileType === 'User' && props.profileID === props.userID) {
     button = (
       <button
         className="btn btn-sm bg-turq form-rounded float-right mr-3"
@@ -65,7 +65,7 @@ const AddNewReviewForm = (props) => {
 
 const ReviewSection = (props) => {
   // State to store all Reviews
-  const [reviews, setReviews] = useState(props.reviews); // display reviews passed from parent
+  const [reviews] = useState(props.reviews); // display reviews passed from parent
   // State to check if the Add new review form is open or not
   const [isAddReviewState, setIsAddReviewState] = useState(false);
 

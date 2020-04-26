@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TripsList from '../trips/TripsList';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { firestoreConnect, isLoaded } from 'react-redux-firebase'; // higher order
+import { firestoreConnect } from 'react-redux-firebase'; // higher order
 import { Redirect } from 'react-router-dom';
 import { profileType } from '../../Helpers';
 import logo_wt from '../../Images/logo-without-text.jpg';
@@ -67,8 +67,12 @@ class Dashboard extends Component {
     if (isInitialized) {
       return (
         <div className="homePage">
-          <div class="trip-title d-sm-block d-none">
-            <img src={background} className="img-fluid mw-100"></img>
+          <div class="d-sm-block d-none">
+            <img
+              alt="Background"
+              src={background}
+              className="img-fluid mw-100"
+            ></img>
             <SearchBar
               formClass="input-group form-group home-searchbar w-50 centered"
               inputClass="form-control form-control-lg form-rounded"
@@ -85,7 +89,11 @@ class Dashboard extends Component {
 
             <div className="row justify-content-center justify-content-around align-items-end">
               <h1 className="home-heading mt-5">ALL TRIPS</h1>
-              <img src={logo_wt} className="logo-no-text logo-dims ml-3"></img>
+              <img
+                alt="Logo"
+                src={logo_wt}
+                className="logo-no-text logo-dims ml-3"
+              ></img>
             </div>
             <div className="container">
               <TripsList trips={trips} />

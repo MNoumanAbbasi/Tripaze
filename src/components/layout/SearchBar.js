@@ -1,7 +1,7 @@
 // Since this component has no state, this will be a functional component rather than a class component
 
 import React, { Component } from 'react';
-import { withRouter, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
@@ -10,7 +10,7 @@ export class SearchBar extends Component {
     destinations: '',
   };
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.unlisten = this.props.history.listen((location, action) => {
       if (!location.pathname.startsWith('/searchResults')) {
         this.setState({
@@ -21,7 +21,7 @@ export class SearchBar extends Component {
     });
   }
 
-  componentWillUnmount() {
+  UNSAFE_componentWillUnmount() {
     this.unlisten();
   }
 
