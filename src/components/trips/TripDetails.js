@@ -51,7 +51,7 @@ function TripDetails(props) {
     );
   }
   return (
-    <div className="row m-0 tripDetails">
+    <div className="row m-0 justify-content-center tripDetails">
       <DisplayImage img={trip.image} page={'details'} />
       {/* <div className="container overlay align-self-end">
         <div className="row justify-content-lg-end justify-content-center">

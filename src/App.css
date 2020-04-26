@@ -249,8 +249,6 @@ a:hover {
   .frontDrop {
     z-index: 2;
     position: absolute;
-    margin-left: 12%;
-    margin-right: 12%;
     margin-top: 24vw;
     box-shadow: 0 7px 10px rgba(0, 0, 0, 0.3);
   }
