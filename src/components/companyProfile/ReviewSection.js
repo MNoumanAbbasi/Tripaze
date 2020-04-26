@@ -89,7 +89,14 @@ const ReviewSection = (props) => {
       </button>
     );
   } else if (props.profileType !== 'User') {
-    button = null;
+    button = (
+      <button
+        className="btn mt-3 form-rounded r-green-button"
+        onClick={() => setIsAddReviewState(true)}
+      >
+        Add Review
+      </button>
+    );
   } else {
     button = (
       <button
