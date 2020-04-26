@@ -50,6 +50,11 @@ class Dashboard extends Component {
                 </button>
               </div>
             </form>
+            <a href="#tripcards" className="scroll-button ">
+              <span></span>
+              <span></span>
+              <span></span>
+            </a>
           </div>
           <div id="tripcards">
             <hr className="greenline mw-100"></hr>
