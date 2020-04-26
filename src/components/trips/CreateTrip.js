@@ -134,7 +134,10 @@ const CreateTrip = (props) => {
               handleImgNameChange={(img) => (values.image = img)}
             />
 
-            <button type="submit">Submit</button>
+            <button type="button" className="btn grey lighten-1 z-depth-1">
+              Cancel
+            </button>
+            <button type="submit" className="btn form-rounded r-green-button">Submit</button>
           </Form>
         )}
 
@@ -142,9 +145,7 @@ const CreateTrip = (props) => {
           <button className="btn blue lighten-1 z-depth-1">Submit</button>
         </div> */}
       </Formik>
-      <div className="input-field">
-        <button className="btn grey lighten-1 z-depth-1">Cancel</button>
-      </div>
+      <div className="input-field"></div>
     </div>
   );
 };

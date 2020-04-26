@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import storage from '../../config/fbConfig';
 
 const ImageThumb = ({ image }) => {
@@ -19,12 +19,11 @@ const ImageSection = (props) => {
   const [image, setImage] = useState(props.imageName);
   const [isFileChosen, setIsFileChosen] = useState(false);
   const [progress, setProgress] = useState(0);
-  let isUploaded = progress === 100;
+  const [isUploaded, setIsUploaded] = useState(false);
 
   const handleUpload = (e) => {
     setIsFileChosen(true);
     setImage(e.currentTarget.files[0]);
-    console.log('image', image);
 
     // Uploading file
     const uploadTask = storage
@@ -56,7 +55,7 @@ const ImageSection = (props) => {
         // Handle Successful Upload
         console.log('Successfull upload of image');
         props.handleImgNameChange(image.name);
-        isUploaded = true;
+        setIsUploaded(true);
       }
     );
   };
@@ -83,26 +82,30 @@ const ImageSection = (props) => {
       <div>
         <em>A default image will be assigned if you don't assign your own.</em>
         <br />
-        <input type="file" onChange={(e) => handleUpload(e)} />
+        <input type="file" onChange={handleUpload} />
       </div>
     );
   } else {
     return (
-      <div className="border" style={{width: "200px"}}>
+      <div className="border" style={{ width: '200px' }}>
+        {isUploaded && (
+          <button
+            className="form-rounded overlay-button"
+            type="button"
+            onClick={handleDelete}
+          >
+            <i class="fa fa-times fa-2x"></i>
+          </button>
+        )}
         <ImageThumb image={image} />
         <div className="progress">
           <div
             className="progress-bar bg-success"
             style={{ width: `${progress}%` }}
           >
-            {progress}%
+            {isUploaded ? 'Uploaded' : `${progress}%`}
           </div>
         </div>
-        {isUploaded && (
-          <button type="button" onClick={handleDelete}>
-            Remove
-          </button>
-        )}
       </div>
     );
   }
