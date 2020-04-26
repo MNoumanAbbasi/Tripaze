@@ -40,6 +40,7 @@ export const tripSchema = yup.object({
   image: yup.string(),
 });
 
+// TODO: Separate InputField into its own file
 export const InputField = ({ label, name, type, as = '' }) => {
   return (
     <div className="input-field">
