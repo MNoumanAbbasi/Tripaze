@@ -66,7 +66,7 @@ class CompanyProfile extends Component {
                   <hr></hr>
                   <h6 class="card-title change-font font-weight-bold text-uppercase colored">
                     <i class="fa fa-phone fa-2x fa-fw" aria-hidden="true"></i>
-                    Phone Number
+                    {company.contact}
                   </h6>
                   <hr></hr>
                   <h6>This is where the Rating bar will be</h6>
