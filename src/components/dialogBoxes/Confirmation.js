@@ -21,7 +21,7 @@ function Confirmation(props) {
       <Modal.Footer>
         <button
           type="button"
-          class="btn btn-lg green-button form-rounded object-hover"
+          class="btn btn-lg r-green-button form-rounded object-hover"
           onClick={props.onHide}
         >
           Cancel
