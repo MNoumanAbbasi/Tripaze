@@ -54,7 +54,7 @@ function TripDetails(props) {
   }
 
   return (
-    <div className="row m-0 tripDetails">
+    <div className="row m-0 tripDetails justify-content-center">
       <Confirmation
         show={modalShow}
         onHide={() => setModalShow(false)}
@@ -66,12 +66,12 @@ function TripDetails(props) {
         message="You are about to delete a trip. Are you sure you want to continue?"
       />
       <DisplayImage img={trip.image} page={'details'} />
-      <div className="container overlay align-self-end">
+      {/* <div className="container overlay align-self-end">
         <div className="row justify-content-lg-end justify-content-center">
           {editButton}
           {deleteButton}
         </div>
-      </div>
+      </div> */}
       <div className="container bg-white frontDrop">
         {/* First row */}
         <div className="row justify-content-around">
