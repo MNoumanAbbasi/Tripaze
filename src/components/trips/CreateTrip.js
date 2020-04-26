@@ -8,18 +8,6 @@ import ImageSection from './ImageSection';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 
-const InputField = ({ label, name, type }) => {
-  return (
-    <div className="input-field">
-      <label htmlFor={name} style={{ display: 'block' }}>
-        {label}
-      </label>
-      <Field name={name} type={type} min="0" />
-      <ErrorMessage name={name} />
-    </div>
-  );
-};
-
 const createTripSchema = yup.object({
   title: yup.string().max(25, 'Max 25 characters').required('Required'),
   destinations: yup
@@ -51,8 +39,19 @@ const createTripSchema = yup.object({
   image: yup.string(),
 });
 
-const CreateTrip = (props) => {
+const InputField = ({ label, name, type }) => {
+  return (
+    <div className="input-field">
+      <label htmlFor={name} style={{ display: 'block' }}>
+        {label}
+      </label>
+      <Field name={name} type={type} min="0" />
+      <ErrorMessage name={name} />
+    </div>
+  );
+};
 
+const CreateTrip = (props) => {
   const { auth, profile, isLoading } = props;
   const isInitialized = !isLoading && profile && auth;
 
@@ -131,12 +130,7 @@ const CreateTrip = (props) => {
             </button>
           </Form>
         )}
-
-        {/* <div className="input-field">
-          <button className="btn blue lighten-1 z-depth-1">Submit</button>
-        </div> */}
       </Formik>
-      <div className="input-field"></div>
     </div>
   );
 };

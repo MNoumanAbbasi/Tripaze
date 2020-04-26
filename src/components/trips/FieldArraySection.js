@@ -11,7 +11,7 @@ const FieldArraySection = ({ label, name, values }) => {
       <FieldArray name={name}>
         {({ push, remove }) => {
           const handleAdd = () => {
-            push(newEntry);
+            if (newEntry) push(newEntry);
             setNewEntry('');
           };
           return (
