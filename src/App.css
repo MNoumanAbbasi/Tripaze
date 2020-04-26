@@ -373,6 +373,11 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
     left: -5px;
     opacity: 0;
   }
+  25% {
+    top: 0;
+    left: 0;
+    opacity: 1;
+  }
 }
 
 .centered {
