@@ -5,11 +5,10 @@ import { compose } from 'redux';
 import { Link } from 'react-router-dom';
 import FAQSection from './FAQSection';
 import { deleteTrip } from '../../store/actions/tripActions';
-import cover from '../../Images/coverPhoto.jpg';
 import cardbg from './card-bg.png';
 import DisplayImage from './DisplayImage';
 import { profileType } from '../../Helpers';
-// import { Redirect } from 'react-router-dom'
+import Confirmation from '../dialogBoxes/Confirmation';
 
 // class container section is material
 // class trip-details is from our own css
@@ -19,6 +18,8 @@ function TripDetails(props) {
   const { trip, isLoading, auth, profile, FAQs } = props; // getting trip category from props
 
   const isInitialized = !isLoading && trip && FAQs;
+
+  const [modalShow, setModalShow] = React.useState(false);
 
   if (!isInitialized) {
     return <div>Loading...</div>;
@@ -31,7 +32,7 @@ function TripDetails(props) {
     editButton = (
       <button
         type="button"
-        class="btn btn-lg overlay-buttonlg overlay-button form-rounded object-hover"
+        class="btn mt-lg-5 mr-5 btn-lg green-button form-rounded object-hover"
         onClick={() => props.history.push('/edittrip/' + props.match.params.id)}
       >
         EDIT TRIP <i class="fa fas fa-edit fa-fw"></i>
@@ -40,35 +41,37 @@ function TripDetails(props) {
     deleteButton = (
       <button
         type="button"
-        class="btn btn-lg overlay-buttonlg overlay-button form-rounded object-hover"
-        onClick={() => {
-          props.deleteTrip(props.match.params.id);
-          props.history.push('/');
-        }}
+        class="btn btn-lg  mt-lg-5 mr-1 red-button form-rounded object-hover"
+        onClick={() => setModalShow(true)}
+        // onClick={() => {
+        //   props.deleteTrip(props.match.params.id);
+        //   props.history.push('/');
+        // }}
       >
-        DELETE TRIP
+        DELETE <i class="fa fas fa-trash fa-fw"></i>
       </button>
     );
   }
+
   return (
-    <div className="row m-0 justify-content-center tripDetails">
+    <div className="row m-0 tripDetails">
+      <Confirmation
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        onDelete={() => {
+          props.deleteTrip(props.match.params.id);
+          props.history.push('/');
+        }}
+        heading="Deleting Trip"
+        message="You are about to delete a trip. Are you sure you want to continue?"
+      />
       <DisplayImage img={trip.image} page={'details'} />
-      {/* <div className="container overlay align-self-end">
+      <div className="container overlay align-self-end">
         <div className="row justify-content-lg-end justify-content-center">
-          <button
-            type="button"
-            class="btn mt-lg-5 mr-5 btn-lg green-button form-rounded object-hover"
-          >
-            EDIT TRIP <i class="fa fas fa-edit fa-fw"></i>
-          </button>
-          <button
-            type="button"
-            class="btn btn-lg  mt-lg-5 mr-1 red-button form-rounded object-hover"
-          >
-            DELETE <i class="fa fas fa-trash fa-fw"></i>
-          </button>
+          {editButton}
+          {deleteButton}
         </div>
-      </div> */}
+      </div>
       <div className="container bg-white frontDrop">
         {/* First row */}
         <div className="row justify-content-around">
@@ -160,37 +163,6 @@ function TripDetails(props) {
           profileID={auth.uid}
         />
       </div>
-
-      {/* <div className="container section trip-details">
-        <div className="card z-depth-2 top">
-          <div className="card-content">
-            <span className="card-title">{trip.title}</span>
-          </div>
-          <div className="card-action grey lighten-4 grey-text">
-            <div>Cost: Rs. {trip.price}</div>
-
-            <div>On: {trip.departureDate}</div>
-            <div>Frommo: {trip.departureLoc}</div>
-            <div>Description: {trip.description}</div>
-            <div>Attractions: {trip.attraction}</div>
-            <div>Destinations:</div>
-            {trip.destinations.map((dest) => {
-              return <li>{dest}</li>;
-            })}
-
-            <div>
-              {' '}
-              Company:
-              <Link to={'/companyProfile/' + trip.companyId}>
-                {' ' + trip.companyName}
-              </Link>
-            </div>
-          </div>
-          <FAQSection />
-          {editButton}
-          {deleteButton}
-        </div>
-      </div>{' '} */}
     </div>
   );
 }
