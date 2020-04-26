@@ -59,7 +59,7 @@ class Dashboard extends Component {
           <div id="tripcards">
             <hr className="greenline mw-100"></hr>
 
-            <div className="row justify-content-md-around justify-content-center align-items-end">
+            <div className="row justify-content-center align-items-end">
               <h1 className="home-heading mt-5">ALL TRIPS</h1>
               <img src={logo_wt} className="logo-no-text logo-dims ml-3"></img>
             </div>
