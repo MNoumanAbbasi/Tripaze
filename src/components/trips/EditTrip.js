@@ -7,7 +7,7 @@ import { compose } from 'redux';
 import FieldArraySection from './FieldArraySection';
 import ImageSection from './ImageSection';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { tripSchema, InputField} from './CreateTrip';
+import { tripSchema, InputField } from './CreateTrip';
 
 const EditTrip = (props) => {
   const { trip, profile, isLoading, auth } = props;
@@ -85,7 +85,11 @@ const EditTrip = (props) => {
               handleImgNameChange={(img) => (values.image = img)}
             />
 
-            <button type="button" className="btn grey lighten-1 z-depth-1">
+            <button
+              type="button"
+              className="btn grey lighten-1 z-depth-1"
+              onClick={() => props.history.push('/')}
+            >
               Cancel
             </button>
             <button type="submit" className="btn form-rounded r-green-button">
