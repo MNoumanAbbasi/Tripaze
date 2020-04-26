@@ -4,8 +4,8 @@ import { createTrip } from '../../store/actions/tripActions';
 import { Redirect } from 'react-router-dom';
 import { profileType } from '../../Helpers';
 import FieldArraySection from './FieldArraySection';
-import ImageUpload from './ImageUpload';
-import { Formik, Form, Field, ErrorMessage, FieldArray } from 'formik';
+import ImageSection from './ImageSection';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { set } from 'jsonpointer';
 import * as yup from 'yup';
 
@@ -125,7 +125,11 @@ const CreateTrip = (props) => {
               name="attractions"
               values={values}
             />
-            <ImageUpload
+            <label htmlFor="image-section" style={{ display: 'block' }}>
+              Upload Image
+            </label>
+            <ImageSection
+              className="image-section"
               imageName={values.image}
               handleImgNameChange={(img) => (values.image = img)}
             />
