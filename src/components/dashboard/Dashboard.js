@@ -18,34 +18,42 @@ class Dashboard extends Component {
   // To detect scroll
   componentDidMount() {
     this.props.searchBarShow(false);
-    window.addEventListener('scroll', this.handleScroll, true);
+    window.addEventListener('scroll', this.handleScroll, false);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
+    console.log('ASD');
+    window.removeEventListener('scroll', this.handleScroll, false);
     this.props.searchBarShow(true);
   }
   tripsPart = React.createRef();
   handleScroll = () => {
     lastScrollY = window.scrollY;
     // If search bar not showing but should be shown
-    if (
-      lastScrollY > this.tripsPart.current.offsetTop - 460 &&
-      !this.props.searchBarVisible
-    ) {
-      this.props.searchBarShow(true);
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        if (!this.tripsPart.current) {
+          this.props.searchBarShow(false);
+        }
+        if (
+          this.tripsPart.current &&
+          lastScrollY > this.tripsPart.current.offsetTop - 460 &&
+          !this.props.searchBarVisible
+        ) {
+          this.props.searchBarShow(true);
+        }
+        // Else if search bar is showing but should not be shown
+        else if (
+          this.tripsPart.current &&
+          lastScrollY <= this.tripsPart.current.offsetTop - 460 &&
+          this.props.searchBarVisible
+        ) {
+          this.props.searchBarShow(false);
+        }
+        ticking = false;
+      });
     }
-    // Else if search bar is showing but should not be shown
-    else if (
-      lastScrollY <= this.tripsPart.current.offsetTop - 460 &&
-      this.props.searchBarVisible
-    ) {
-      this.props.searchBarShow(false);
-    }
-    // window.requestAnimationFrame(() => {
-    //
-
-    // });
+    ticking = true;
   };
 
   render() {
