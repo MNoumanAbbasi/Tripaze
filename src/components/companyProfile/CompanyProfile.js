@@ -5,12 +5,9 @@ import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase'; // higher order
 import ReviewSection from './ReviewSection';
 import defaultCover from '../../Images/coverPhoto.jpg';
-import defaultLogo from '../../Images/default-logo.jpg';
 import { profileType } from '../../Helpers';
-import cardbg from '../trips/card-bg.png';
-import { Link } from 'react-router-dom';
+import LoadingBox from './../dashboard/LoadingBox';
 
-// 6 columns on medium and 12 column on small screens
 class CompanyProfile extends Component {
   render() {
     const { trips, company, profile, isLoading, reviews, auth } = this.props;
@@ -19,7 +16,11 @@ class CompanyProfile extends Component {
       const currProfileType = profileType(auth, profile);
       return (
         <div className="row m-0 justify-content-center">
-          <img src={defaultCover} className="w-100 backDrop"></img>
+          <img
+            alt="Company Cover"
+            src={defaultCover}
+            className="w-100 backDrop"
+          ></img>
           {/* Logo Image for Overlapping
           <div className="overlay row w-100 justify-content-lg-end justify-content-center">
             <img
@@ -97,7 +98,7 @@ class CompanyProfile extends Component {
         </div>
       );
     } else {
-      return <div>Loading...</div>;
+      return <LoadingBox />;
     }
   }
 }

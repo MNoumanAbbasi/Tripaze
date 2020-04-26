@@ -17,7 +17,10 @@ import {
   isLoaded,
 } from 'react-redux-firebase';
 import fbConfig from './config/fbConfig';
+
 import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 import LoadingBox from './components/dashboard/LoadingBox';
 
 // Multiple reducers for multiple actions
@@ -33,6 +36,7 @@ const store = createStore(
 
 //construct required properties
 const profileSpecificProps = {
+  config: fbConfig,
   userProfile: 'UserTypes',
   useFirestoreForProfile: true,
   enableRedirectHandling: false,
@@ -42,7 +46,6 @@ const profileSpecificProps = {
 // redux binding for firebase. This is the updated method to bind firebase
 const rrfProps = {
   firebase,
-  config: fbConfig,
   //second config added here
   config: profileSpecificProps,
   dispatch: store.dispatch,

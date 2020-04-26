@@ -43,10 +43,6 @@ function TripDetails(props) {
         type="button"
         class="btn btn-lg  mt-lg-5 mr-1 red-button form-rounded object-hover"
         onClick={() => setModalShow(true)}
-        // onClick={() => {
-        //   props.deleteTrip(props.match.params.id);
-        //   props.history.push('/');
-        // }}
       >
         DELETE <i class="fa fas fa-trash fa-fw"></i>
       </button>
@@ -62,8 +58,6 @@ function TripDetails(props) {
           props.deleteTrip(props.match.params.id);
           props.history.push('/');
         }}
-        heading="Deleting Trip"
-        message="You are about to delete a trip. Are you sure you want to continue?"
       />
       <DisplayImage img={trip.image} page={'details'} />
       <div className="container overlay align-self-end">

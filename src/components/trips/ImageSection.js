@@ -41,12 +41,18 @@ const ImageSection = (props) => {
         switch (error.code) {
           case 'storage/unauthorized':
             // User doesn't have permission to access the object
+            console.log(error.code);
             break;
           case 'storage/canceled':
             // User canceled the upload
+            console.log(error.code);
             break;
           case 'storage/unknown':
             // Unknown error occurred, inspect error.serverResponse
+            console.log(error.code);
+            break;
+          default:
+            console.log(error.code);
             break;
         }
       },

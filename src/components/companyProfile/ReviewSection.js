@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { addReview, deleteReview } from '../../store/actions/reviewActions';
+import SignInToAccess from '../dialogBoxes/SignInToAccess';
 
 const Review = (props) => {
   let button = null;
-  if (props.profileType == 'User' && props.profileID == props.userID) {
+  if (props.profileType === 'User' && props.profileID === props.userID) {
     button = (
       <button
         className="btn btn-sm bg-turq form-rounded float-right mr-3"
@@ -64,7 +65,7 @@ const AddNewReviewForm = (props) => {
 
 const ReviewSection = (props) => {
   // State to store all Reviews
-  const [reviews, setReviews] = useState(props.reviews); // display reviews passed from parent
+  const [reviews] = useState(props.reviews); // display reviews passed from parent
   // State to check if the Add new review form is open or not
   const [isAddReviewState, setIsAddReviewState] = useState(false);
 
@@ -77,6 +78,8 @@ const ReviewSection = (props) => {
     props.deleteReview(id);
   };
 
+  const [modalShow, setModalShow] = React.useState(false);
+
   // Button to display (add new or cancel) based on if add new faq form is open or not
   let button;
   if (isAddReviewState) {
@@ -86,6 +89,15 @@ const ReviewSection = (props) => {
         onClick={() => setIsAddReviewState(false)}
       >
         Cancel
+      </button>
+    );
+  } else if (props.profileType === 'Guest') {
+    button = (
+      <button
+        className="btn mt-3 form-rounded r-green-button"
+        onClick={() => setModalShow(true)}
+      >
+        Add Review
       </button>
     );
   } else if (props.profileType !== 'User') {
@@ -103,6 +115,11 @@ const ReviewSection = (props) => {
 
   return (
     <div className="ReviewSection pb-5 pr-5 pl-5">
+      <SignInToAccess
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        section="review"
+      />
       {reviews.map((currReview) => {
         return (
           <Review

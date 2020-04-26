@@ -2,62 +2,51 @@ import React, { Component } from 'react';
 import TripsList from '../trips/TripsList';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { firestoreConnect, isLoaded } from 'react-redux-firebase'; // higher order
+import { firestoreConnect } from 'react-redux-firebase'; // higher order
 import { Redirect } from 'react-router-dom';
 import { profileType } from '../../Helpers';
 import logo_wt from '../../Images/logo-without-text.jpg';
 import background from '../../Images/HomepageImage.jpg';
 import SearchBar from '../layout/SearchBar';
 import { searchBarShow } from '../../store/actions/filterActions';
+import LoadingBox from './LoadingBox';
 
 let lastScrollY = 0;
-let ticking = false;
 
 // 6 columns on medium and 12 column on small screens
 class Dashboard extends Component {
   // To detect scroll
   componentDidMount() {
-    this.props.searchBarShow(false);
+    // Add search bar to navbar if in mobile mode
+    if (window.innerWidth < 992) this.props.searchBarShow(true);
+    else this.props.searchBarShow(false);
     window.addEventListener('scroll', this.handleScroll, false);
   }
 
   componentWillUnmount() {
-    console.log('ASD');
     window.removeEventListener('scroll', this.handleScroll, false);
     this.props.searchBarShow(true);
   }
-  tripsPart = React.createRef();
+
   handleScroll = () => {
     lastScrollY = window.scrollY;
     // If search bar not showing but should be shown
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        if (!this.tripsPart.current) {
-          this.props.searchBarShow(false);
-        }
-        if (
-          this.tripsPart.current &&
-          lastScrollY > this.tripsPart.current.offsetTop - 460 &&
-          !this.props.searchBarVisible
-        ) {
-          this.props.searchBarShow(true);
-        }
-        // Else if search bar is showing but should not be shown
-        else if (
-          this.tripsPart.current &&
-          lastScrollY <= this.tripsPart.current.offsetTop - 460 &&
-          this.props.searchBarVisible
-        ) {
-          this.props.searchBarShow(false);
-        }
-        ticking = false;
-      });
+    if (window.innerWidth < 992 && !this.props.searchBarVisible) {
+      this.props.searchBarShow(true);
+    } else if (lastScrollY > 252 && !this.props.searchBarVisible) {
+      this.props.searchBarShow(true);
     }
-    ticking = true;
+    // Else if search bar is showing but should not be shown
+    else if (
+      lastScrollY <= 252 &&
+      this.props.searchBarVisible &&
+      window.innerWidth >= 992
+    ) {
+      this.props.searchBarShow(false);
+    }
   };
 
   render() {
-    // console.log(this.props)
     const { trips, profile, auth, isLoading } = this.props;
     const isInitialized = trips && !isLoading;
 
@@ -69,8 +58,12 @@ class Dashboard extends Component {
     if (isInitialized) {
       return (
         <div className="homePage">
-          <div class="trip-title d-sm-block d-none">
-            <img src={background} className="img-fluid mw-100"></img>
+          <div class="d-sm-block d-none">
+            <img
+              alt="Background"
+              src={background}
+              className="img-fluid mw-100"
+            ></img>
             <SearchBar
               formClass="input-group form-group home-searchbar w-50 centered"
               inputClass="form-control form-control-lg form-rounded"
@@ -82,12 +75,16 @@ class Dashboard extends Component {
               <span></span>
             </a>
           </div>
-          <div id="tripcards" ref={this.tripsPart}>
+          <div id="tripcards">
             <hr className="greenline mw-100"></hr>
 
             <div className="row justify-content-center justify-content-around align-items-end">
               <h1 className="home-heading mt-5">ALL TRIPS</h1>
-              <img src={logo_wt} className="logo-no-text logo-dims ml-3"></img>
+              <img
+                alt="Logo"
+                src={logo_wt}
+                className="logo-no-text logo-dims ml-3"
+              ></img>
             </div>
             <div className="container">
               <TripsList trips={trips} />
@@ -96,8 +93,7 @@ class Dashboard extends Component {
         </div>
       );
     } else {
-      // to show page reload while trips are being requested
-      return <div>Loading...</div>;
+      return <LoadingBox />;
     }
   }
 }
