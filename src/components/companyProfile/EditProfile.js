@@ -11,49 +11,50 @@ import { editProfile } from '../../store/actions/profileActions';
 import * as yup from 'yup';
 
 const profileSchema = yup.object({
-  title: yup.string().max(20, 'Max 20 characters').required('Required'),
-  destinations: yup
-    .array()
-    .of(yup.string().required('Required'))
-    .min(0, 'At least one destination required')
-    .required('Required'),
-  departureLoc: yup.string().max(10, 'Max 10 characters').required('Required'),
-  departureDate: yup
-    .date()
-    .min(new Date(), 'Date should start from tomorrow')
-    .required('Required'),
-  duration: yup
-    .number()
-    .positive('Invalid duration')
-    .max(60, 'Max duration 60')
-    .required('Required'),
-  price: yup
-    .number()
-    .positive('Invalid price')
-    .max(99999, 'Max price 99999')
-    .required('Required'),
-  capacity: yup
-    .number()
-    .positive('Invalid capactiy')
-    .max(1000, 'Max 1000')
-    .required('Required'),
-  description: yup.string(),
-  attractions: yup.array().of(yup.string()),
-  image: yup.string(),
+  //   title: yup.string().max(20, 'Max 20 characters').required('Required'),
+  //   destinations: yup
+  //     .array()
+  //     .of(yup.string().required('Required'))
+  //     .min(0, 'At least one destination required')
+  //     .required('Required'),
+  //   departureLoc: yup.string().max(10, 'Max 10 characters').required('Required'),
+  //   departureDate: yup
+  //     .date()
+  //     .min(new Date(), 'Date should start from tomorrow')
+  //     .required('Required'),
+  //   duration: yup
+  //     .number()
+  //     .positive('Invalid duration')
+  //     .max(60, 'Max duration 60')
+  //     .required('Required'),
+  //   price: yup
+  //     .number()
+  //     .positive('Invalid price')
+  //     .max(99999, 'Max price 99999')
+  //     .required('Required'),
+  //   capacity: yup
+  //     .number()
+  //     .positive('Invalid capactiy')
+  //     .max(1000, 'Max 1000')
+  //     .required('Required'),
+  //   description: yup.string(),
+  //   attractions: yup.array().of(yup.string()),
+  //   image: yup.string(),
 });
 
 const EditProfile = (props) => {
   const { auth, profile, isLoading } = props;
   const isInitialized = !isLoading && profile && auth;
-  const adminMode = auth.uid === profile;
+  const adminMode = auth.uid === props.match.params.id;
 
-  if (!isInitialized) {
-    return <div>Loading...</div>;
-  } else if (!adminMode) {
-    return <Redirect to="/" />;
-  }
+  // if (!isInitialized) {
+  //   return <div>Loading...</div>;
+  // } else if (!adminMode) {
+  //   return <Redirect to="/" />;
+  // }
   return (
     <div className="container">
+      {console.log('heelo')}
       <h5 className="gre-text text-darken-3">Create Trip</h5>
       <Formik
         initialValues={{

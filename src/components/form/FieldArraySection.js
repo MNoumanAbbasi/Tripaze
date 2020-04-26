@@ -16,17 +16,17 @@ const FieldArraySection = ({ label, name, values }) => {
           };
           return (
             <div>
-              {console.log('value.name', name)}
-              {values[name].map((dest, ind) => {
-                return (
-                  <div key={ind}>
-                    {dest}
-                    <button type="button" onClick={() => remove(ind)}>
-                      Remove
-                    </button>
-                  </div>
-                );
-              })}
+              {values &&
+                values[name].map((dest, ind) => {
+                  return (
+                    <div key={ind}>
+                      {dest}
+                      <button type="button" onClick={() => remove(ind)}>
+                        Remove
+                      </button>
+                    </div>
+                  );
+                })}
               <div className="input-field">
                 <input
                   type="text"

@@ -14,8 +14,7 @@ import { Link } from 'react-router-dom';
 const CompanyProfile = (props) => {
   const { trips, company, profile, isLoading, reviews, auth } = props;
   const isInitialized = !isLoading && trips && company && auth;
-  console.log('here', company, auth.uid);
-  const adminMode = auth.uid === company;
+  const adminMode = auth.uid === props.match.params.id;
   if (isInitialized) {
     const currProfileType = profileType(auth, profile);
     return (
@@ -30,7 +29,7 @@ const CompanyProfile = (props) => {
               data-holder-rendered="true"
             />
           </div> */}
-        {/* {adminMode && (
+        {adminMode && (
           <button
             type="button"
             class="btn mt-lg-5 mr-5 btn-lg green-button form-rounded object-hover"
@@ -40,7 +39,7 @@ const CompanyProfile = (props) => {
           >
             EDIT PROFILE <i class="fa fas fa-edit fa-fw"></i>
           </button>
-        )} */}
+        )}
 
         <div className="container align-self-start bg-white frontDrop">
           {/* First section */}
