@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { editTrip } from '../../store/actions/tripActions';
 import { Redirect } from 'react-router-dom';
@@ -6,7 +6,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import FieldArraySection from './FieldArraySection';
 import ImageSection from './ImageSection';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form } from 'formik';
 import { tripSchema, InputField } from './CreateTrip';
 
 const EditTrip = (props) => {
