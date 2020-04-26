@@ -339,6 +339,17 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
   transform: rotate(45deg);
 }
 
+.scroll-button span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  border-bottom: 4px solid #ffff;
+  border-right: 4px solid #ffff;
+  animation: animate 1.5s linear infinite;
+  opacity: 0;
+}
+
 .centered {
   position: absolute;
   top: 45%;
