@@ -9,7 +9,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 
 const createTripSchema = yup.object({
-  title: yup.string().max(25, 'Max 25 characters').required('Required'),
+  title: yup.string().max(20, 'Max 20 characters').required('Required'),
   destinations: yup
     .array()
     .of(yup.string().required('Required'))
@@ -28,24 +28,25 @@ const createTripSchema = yup.object({
   price: yup
     .number()
     .positive('Invalid price')
-    .max(999999, 'Max price 999999')
+    .max(99999, 'Max price 99999')
     .required('Required'),
-  capacity: yup.number().positive('Invalid capactiy').required('Required'),
+  capacity: yup
+    .number()
+    .positive('Invalid capactiy')
+    .max(1000, 'Max 1000')
+    .required('Required'),
   description: yup.string(),
-  attractions: yup
-    .array()
-    .of(yup.string().required('Required'))
-    .required('Required'),
+  attractions: yup.array().of(yup.string()),
   image: yup.string(),
 });
 
-const InputField = ({ label, name, type, as="" }) => {
+const InputField = ({ label, name, type, as = '' }) => {
   return (
     <div className="input-field">
       <label htmlFor={name} style={{ display: 'block' }}>
         {label}
       </label>
-      <Field name={name} type={type} min="0" as={as}/>
+      <Field name={name} type={type} min="0" as={as} />
       <ErrorMessage name={name} />
     </div>
   );
@@ -80,6 +81,7 @@ const CreateTrip = (props) => {
         }}
         validationSchema={createTripSchema}
         onSubmit={(values) => {
+          console.log(values);
           props.createTrip(values, props.profile);
           props.history.push('/');
         }}
@@ -107,7 +109,12 @@ const CreateTrip = (props) => {
             <InputField label="Duration" name="duration" type="number" />
             <InputField label="Price" name="price" type="number" />
             <InputField label="Capacity" name="capacity" type="number" />
-            <InputField label="Description" name="description" type="text" as="textarea"/>
+            <InputField
+              label="Description"
+              name="description"
+              type="text"
+              as="textarea"
+            />
             <FieldArraySection
               label="Attraction(s)"
               name="attractions"

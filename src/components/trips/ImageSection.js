@@ -23,12 +23,13 @@ const ImageSection = (props) => {
 
   const handleUpload = (e) => {
     setIsFileChosen(true);
-    setImage(e.currentTarget.files[0]);
+    const image = e.currentTarget.files[0]
+    setImage(image);
 
     // Uploading file
     const uploadTask = storage
-      .ref(`tripImages/${e.currentTarget.files[0].name}`)
-      .put(e.currentTarget.files[0]);
+      .ref(`tripImages/${image.name}`)
+      .put(image);
     uploadTask.on(
       'state_changed',
       (snapshot) => {
@@ -53,7 +54,7 @@ const ImageSection = (props) => {
       },
       () => {
         // Handle Successful Upload
-        console.log('Successfull upload of image');
+        console.log('Successfull upload of image', image.name);
         props.handleImgNameChange(image.name);
         setIsUploaded(true);
       }

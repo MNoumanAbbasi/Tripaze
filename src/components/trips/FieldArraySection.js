@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FieldArray } from 'formik';
+import { FieldArray, ErrorMessage } from 'formik';
 
 const FieldArraySection = ({ label, name, values }) => {
   const [newEntry, setNewEntry] = useState('');
@@ -36,6 +36,7 @@ const FieldArraySection = ({ label, name, values }) => {
                   Add
                 </button>
               </div>
+              <ErrorMessage name={name} />
             </div>
           );
         }}
