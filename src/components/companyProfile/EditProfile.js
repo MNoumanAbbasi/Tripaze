@@ -13,9 +13,8 @@ import * as yup from 'yup';
 const profileSchema = yup.object({
   companyName: yup.string().max(20, 'Max 20 characters').required('Required'),
   contact: yup
-    .number()
-    .typeError('Invalid phone number')
-    .positive('Invalid phone number')
+    .string()
+    .matches(/^[0-9]*$/, 'Invalid phone number')
     .min(10, 'Too short')
     .max(11, 'Too long')
     .required('Required'),
@@ -35,7 +34,7 @@ const EditProfile = (props) => {
   } else if (!adminMode) {
     return <Redirect to="/" />;
   }
-  console.log(company)
+  console.log(company);
   return (
     <div className="container">
       <h5 className="gre-text text-darken-3">Create Trip</h5>
@@ -51,7 +50,7 @@ const EditProfile = (props) => {
         }}
         validationSchema={profileSchema}
         onSubmit={(values) => {
-          console.log(values);
+          console.log('New Profile', values);
           props.editProfile(values, props.match.params.id);
           props.history.push('/');
         }}
@@ -59,16 +58,7 @@ const EditProfile = (props) => {
         {({ values }) => (
           <Form>
             <InputField label="Company name" name="companyName" type="text" />
-
-            {/* <div className="input-field">
-              <label htmlFor="contact" style={{ display: 'block' }}>
-                Contact Number
-              </label>
-              <Field name="contact" type="tel" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" />
-              <ErrorMessage name="contact" />
-            </div> */}
-            <InputField label="Contact Number" name="contact" type="number" />
-
+            <InputField label="Contact Number" name="contact" type="text" />
             <InputField label="Company Address" name="location" type="text" />
             <InputField
               label="Description"
@@ -76,7 +66,7 @@ const EditProfile = (props) => {
               type="text"
               as="textarea"
             />
-
+            <br />
             <label htmlFor="image-section" style={{ display: 'block' }}>
               Upload Logo
             </label>
@@ -86,7 +76,7 @@ const EditProfile = (props) => {
               imageCategory="companyLogo"
               handleImgNameChange={(img) => (values.logoImage = img)}
             />
-
+            <br />
             <label htmlFor="cover-image" style={{ display: 'block' }}>
               Upload Background Cover
             </label>
