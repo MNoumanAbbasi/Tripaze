@@ -23,24 +23,40 @@ class Dashboard extends Component {
     if (isInitialized) {
       return (
         <div className="homePage">
-          <div class="trip-title">
+          <div class="trip-title d-sm-block d-none">
             <img src={background} className="img-fluid mw-100"></img>
+            <form
+              onSubmit={(e) => {
+                this.handleSubmit(e);
+              }}
+              className="input-group form-group home-searchbar w-50  centered"
+            >
+              <input
+                class="form-control form-control-lg form-rounded "
+                type="text"
+                placeholder="Search trips..."
+                aria-label="Search"
+                id="destinations"
+                // value={this.state.destinations}
+                // onChange={this.handleChange}
+              />
 
-            {/* <div class="centered home-font">Trips that amaze you!</div> */}
+              <div class="input-group-append">
+                <button
+                  class="btn btn-secondary change-color adjusted-btn border-0 form-rounded"
+                  type="submit"
+                >
+                  <i class="fa fa-search"></i>
+                </button>
+              </div>
+            </form>
           </div>
-          <a href="#tripcards">CLICK HERE</a>
           <div id="tripcards">
             <hr className="greenline mw-100"></hr>
 
             <div className="row justify-content-md-around justify-content-center align-items-end">
-              <h1 className="home-heading mt-5">
-                <u>ALL TRIPS</u>
-              </h1>
-              {/* <hr className="underline"></hr> */}
-              {/* <img
-                src={logo_wt}
-                className=" img-fluid logo-no-text order-1 order-md-2"
-              ></img> */}
+              <h1 className="home-heading mt-5">ALL TRIPS</h1>
+              <img src={logo_wt} className="logo-no-text logo-dims ml-3"></img>
             </div>
             <div className="container">
               <TripsList trips={trips} />
