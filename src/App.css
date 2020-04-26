@@ -357,6 +357,11 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
   animation-delay: -0.4s;
 }
 
+.scroll-button span:nth-child(2) {
+  transform: translate(0, 0);
+  animation-delay: -0.2s;
+}
+
 .centered {
   position: absolute;
   top: 45%;
