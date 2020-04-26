@@ -6,7 +6,6 @@ import { profileType } from '../../Helpers';
 import FieldArraySection from './FieldArraySection';
 import ImageSection from './ImageSection';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { set } from 'jsonpointer';
 import * as yup from 'yup';
 
 const InputField = ({ label, name, type }) => {
@@ -23,8 +22,12 @@ const InputField = ({ label, name, type }) => {
 
 const createTripSchema = yup.object({
   title: yup.string().max(25, 'Max 25 characters').required('Required'),
-  destinations: yup.array().required('Required'),
-  departureLoc: yup.string().max(15, 'Max 15 characters').required('Required'),
+  destinations: yup
+    .array()
+    .of(yup.string().required('Required'))
+    .min(0, 'At least one destination required')
+    .required('Required'),
+  departureLoc: yup.string().max(10, 'Max 10 characters').required('Required'),
   departureDate: yup
     .date()
     .min(new Date(), 'Date should start from tomorrow')
@@ -41,28 +44,14 @@ const createTripSchema = yup.object({
     .required('Required'),
   capacity: yup.number().positive('Invalid capactiy').required('Required'),
   description: yup.string(),
-  attractions: yup.array().required('Required'),
+  attractions: yup
+    .array()
+    .of(yup.string().required('Required'))
+    .required('Required'),
   image: yup.string(),
 });
 
 const CreateTrip = (props) => {
-  // const [title, setTitle] = useState('');
-  // const [destinations, setDestinations] = useState([]);
-  // const [departureLoc, setDepartureLoc] = useState('');
-  // const [departureDate, setDepartureDate] = useState('');
-  // const [duration, setDuration] = useState(0);
-  // const [price, setPrice] = useState(0);
-  // const [capacity, setCapacity] = useState(0);
-  // const [description, setDescription] = useState(0);
-  // const [attraction, setAttraction] = useState('');
-  // const [image, setImage] = useState('');
-
-  // const handleImgAdd = (imgName) => {
-  //   console.log('imgname', imgName);
-  //   this.setState({
-  //     image: imgName,
-  //   });
-  // };
 
   const { auth, profile, isLoading } = props;
   const isInitialized = !isLoading && profile && auth;
@@ -137,7 +126,9 @@ const CreateTrip = (props) => {
             <button type="button" className="btn grey lighten-1 z-depth-1">
               Cancel
             </button>
-            <button type="submit" className="btn form-rounded r-green-button">Submit</button>
+            <button type="submit" className="btn form-rounded r-green-button">
+              Submit
+            </button>
           </Form>
         )}
 
