@@ -326,6 +326,19 @@ a:hover {
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:700');
 
+/* Scroll Animation 
+Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
+
+.scroll-button {
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  width: 6vh;
+  height: 6vh;
+  background: #ffffff;
+  transform: rotate(45deg);
+}
+
 .centered {
   position: absolute;
   top: 45%;
