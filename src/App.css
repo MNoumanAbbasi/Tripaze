@@ -389,6 +389,11 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
   border-radius: 50px;
 }
 
+.logo-dims {
+  height: 5rem;
+  width: 5rem;
+}
+
 .centered {
   position: absolute;
   top: 45%;
