@@ -4,7 +4,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { Redirect } from 'react-router-dom';
 import ImageSection from '../form/ImageSection';
-import { Formik, Form } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import FieldArraySection from '../form/FieldArraySection';
 import InputField from '../form/InputField';
 import { editProfile } from '../../store/actions/profileActions';
@@ -77,35 +77,44 @@ const EditProfile = (props) => {
           <Form>
             <InputField label="Company name" name="companyName" type="text" />
 
-            {/* <div className="input-field">
+            <div className="input-field">
               <label htmlFor="contact" style={{ display: 'block' }}>
                 Contact Number
               </label>
-              <Field name="contact" type="tel" min="0" as={as} />
-              <ErrorMessage name={name} />
-            </div> */}
-            <InputField label="Contact Number" name="contact" type="tel" />
-            <InputField label="Duration" name="duration" type="number" />
-            <InputField label="Price" name="price" type="number" />
-            <InputField label="Capacity" name="capacity" type="number" />
+              <Field name="contact" type="tel" pattern />
+              <ErrorMessage name="contact" />
+            </div>
+            {/* <InputField label="Contact Number" name="contact" type="tel" /> */}
+
+            <InputField
+              label="Company Address"
+              name="location"
+              type="text"
+              as="textarea"
+            />
             <InputField
               label="Description"
               name="description"
               type="text"
               as="textarea"
             />
-            <FieldArraySection
-              label="Attraction(s)"
-              name="attractions"
-              values={values}
-            />
+
             <label htmlFor="image-section" style={{ display: 'block' }}>
-              Upload Image
+              Upload Logo
             </label>
             <ImageSection
-              className="image-section"
-              imageName={values.image}
-              handleImgNameChange={(img) => (values.image = img)}
+              className="logo-image"
+              imageName={values.logoImage}
+              handleImgNameChange={(img) => (values.logoImage = img)}
+            />
+
+            <label htmlFor="cover-image" style={{ display: 'block' }}>
+              Upload Background Cover
+            </label>
+            <ImageSection
+              className="cover-image"
+              imageName={values.coverImage}
+              handleImgNameChange={(img) => (values.coverImage = img)}
             />
 
             <button
