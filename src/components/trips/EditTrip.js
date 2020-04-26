@@ -1,193 +1,102 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { editTrip } from '../../store/actions/tripActions';
 import { Redirect } from 'react-router-dom';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
-// import DestinationSection from './DestinationSection';
+import FieldArraySection from './FieldArraySection';
+import ImageSection from './ImageSection';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { tripSchema, InputField} from './CreateTrip';
 
-// all css are from the materialized CSS class
-export class EditTrip extends Component {
-  state = {
-    title: '',
-    destinations: [],
-    departureLoc: '',
-    departureDate: '',
-    duration: 0,
-    price: 0,
-    capacity: 0,
-    description: '',
-    attraction: '',
-    image: '',
-    notUpdated: true,
-  };
+const EditTrip = (props) => {
+  const { trip, profile, isLoading, auth } = props;
+  const isInitialized = !isLoading && trip;
+  const adminMode = trip && auth.uid === trip.companyId;
 
-  handleChange = (e) => {
-    this.setState({
-      // store the input on form fields on the state
-      [e.target.id]: e.target.value,
-    });
-  };
-
-  handleSubmit = (e) => {
-    // dont want the default action of page being reloaded
-    e.preventDefault();
-    // console.log(this.state)
-
-    // calls the createTrip function in mapDispatchToProps which in turn calls dispatch with an action of createTrip that handles the asynch request. This request is then sent to the reducer for dispatch
-    this.props.editTrip(this.state, this.props.match.params.id);
-    this.props.history.push('/');
-  };
-
-  handleDestChange = (destArray) => {
-    this.setState({
-      destinations: destArray,
-    });
-  };
-
-  // TODO: Change this to a better method
-  getDefaults = (trip) => {
-    if (this.state.notUpdated) {
-      this.setState({
-        title: trip.title,
-        destinations: trip.destinations,
-        departureLoc: trip.departureLoc,
-        departureDate: trip.departureDate,
-        duration: trip.duration,
-        price: trip.price,
-        capacity: trip.capacity,
-        description: trip.description,
-        attraction: trip.attraction,
-        image: trip.image,
-        notUpdated: false,
-      });
-    }
-  };
-
-  render() {
-    const { trip, profile, isLoading, auth } = this.props;
-    console.log(this.state);
-    const isInitialized = !isLoading && trip;
-    const adminMode = trip && auth.uid === trip.companyId;
-    // if (!isLoading && !adminMode) {
-    //   return <Redirect to="/" />;
-    // }
-
-    if (!isInitialized) {
-      return <div>Loading...</div>;
-    } else if (!adminMode) {
-      return <Redirect to="/" />;
-    } else {
-      // {
-      //   this.getDefaults(trip);
-      // }
-      return (
-        <div className="container" active={this.getDefaults(trip)}>
-          <form onSubmit={this.handleSubmit} className="white">
-            <h5 className="gre-text text-darken-3">Create Trip</h5>
-            <div className="input-field">
-              <label htmlFor="title">Title</label>
-              <input
-                value={this.state.title}
-                type="text"
-                id="title"
-                onChange={this.handleChange}
-              />
-            </div>
-
-            {/* <DestinationSection
-              handleDestChange={this.handleDestChange}
-              destinationsArray={this.state.destinations}
-            /> */}
-
-            <div className="input-field">
-              <label htmlFor="departureLoc">Departure Location</label>
-              <input
-                value={this.state.departureLoc}
-                type="text"
-                id="departureLoc"
-                onChange={this.handleChange}
-              />
-            </div>
-
-            <div className="input-field">
-              <label htmlFor="departureDate">Departure Date</label>
-              <input
-                value={this.state.departureDate}
-                type="date"
-                id="departureDate"
-                onChange={this.handleChange}
-              />
-            </div>
-
-            <div className="input-field">
-              <label htmlFor="duration">Duration</label>
-              <input
-                value={this.state.duration}
-                type="number"
-                id="duration"
-                onChange={this.handleChange}
-              />
-            </div>
-
-            <div className="input-field">
-              <label htmlFor="price">Price</label>
-              <input
-                value={this.state.price}
-                type="number"
-                id="price"
-                onChange={this.handleChange}
-              />
-            </div>
-
-            <div className="input-field">
-              <label htmlFor="capacity">Capacity</label>
-              <input
-                value={this.state.capacity}
-                type="number"
-                id="capacity"
-                onChange={this.handleChange}
-              />
-            </div>
-
-            <div className="input-field">
-              <label htmlFor="description">Description</label>
-              <textarea
-                value={this.state.description}
-                id="description"
-                onChange={this.handleChange}
-                className="materialize-textarea"
-              ></textarea>
-            </div>
-
-            <div className="input-field">
-              <label htmlFor="attraction">Attractions</label>
-              <textarea
-                value={this.state.attraction}
-                id="attraction"
-                onChange={this.handleChange}
-                className="materialize-textarea"
-              ></textarea>
-            </div>
-
-            <div className="input-field">
-              <label htmlFor="image">Drag-drattractionop or</label>
-              <button className="btn blue lighten-1 z-depth-1">Upload</button>
-            </div>
-
-            <div className="input-field">
-              <button className="btn blue lighten-1 z-depth-1">Submit</button>
-            </div>
-          </form>
-
-          <div className="input-field">
-            <button className="btn grey lighten-1 z-depth-1">Cancel</button>
-          </div>
-        </div>
-      );
-    }
+  if (!isInitialized) {
+    return <div>Loading...</div>;
+  } else if (!adminMode) {
+    return <Redirect to="/" />;
   }
-}
+  return (
+    <div className="container">
+      <h5 className="gre-text text-darken-3">Create Trip</h5>
+      <Formik
+        initialValues={{
+          title: trip.title,
+          destinations: trip.destinations,
+          departureLoc: trip.departureLoc,
+          departureDate: trip.departureDate,
+          duration: trip.duration,
+          price: trip.price,
+          capacity: trip.capacity,
+          description: trip.description,
+          attractions: trip.attractions,
+          image: trip.image,
+        }}
+        validationSchema={tripSchema}
+        onSubmit={(values) => {
+          console.log(values);
+          props.editTrip(values, props.match.params.id);
+          props.history.push('/');
+        }}
+      >
+        {({ values }) => (
+          <Form>
+            <InputField label="Title" name="title" type="text" />
+
+            <FieldArraySection
+              label="Destination(s)"
+              name="destinations"
+              values={values}
+            />
+
+            <InputField
+              label="Departure Location"
+              name="departureLoc"
+              type="text"
+            />
+            <InputField
+              label="Departure Date"
+              name="departureDate"
+              type="date"
+            />
+            <InputField label="Duration" name="duration" type="number" />
+            <InputField label="Price" name="price" type="number" />
+            <InputField label="Capacity" name="capacity" type="number" />
+            <InputField
+              label="Description"
+              name="description"
+              type="text"
+              as="textarea"
+            />
+            <FieldArraySection
+              label="Attraction(s)"
+              name="attractions"
+              values={values}
+            />
+            <label htmlFor="image-section" style={{ display: 'block' }}>
+              Upload Image
+            </label>
+            <ImageSection
+              className="image-section"
+              imageName={values.image}
+              handleImgNameChange={(img) => (values.image = img)}
+            />
+
+            <button type="button" className="btn grey lighten-1 z-depth-1">
+              Cancel
+            </button>
+            <button type="submit" className="btn form-rounded r-green-button">
+              Submit
+            </button>
+          </Form>
+        )}
+      </Formik>
+    </div>
+  );
+};
 
 const mapStateToProps = (state, ownProps) => {
   const id = ownProps.match.params.id;

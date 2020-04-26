@@ -66,12 +66,12 @@ function TripDetails(props) {
         message="You are about to delete a trip. Are you sure you want to continue?"
       />
       <DisplayImage img={trip.image} page={'details'} />
-      {/* <div className="container overlay align-self-end">
+      <div className="container overlay align-self-end">
         <div className="row justify-content-lg-end justify-content-center">
           {editButton}
           {deleteButton}
         </div>
-      </div> */}
+      </div>
       <div className="container bg-white frontDrop">
         {/* First row */}
         <div className="row justify-content-around">
@@ -125,7 +125,11 @@ function TripDetails(props) {
             <div>
               <h3 class="mt-5"> Destinations:</h3>
               {trip.destinations.map((dest) => {
-                return <li class=" ml-lg-4 text-secondary">{dest}</li>;
+                return (
+                  <li key={dest} class=" ml-lg-4 text-secondary">
+                    {dest}
+                  </li>
+                );
               })}
             </div>
           </div>

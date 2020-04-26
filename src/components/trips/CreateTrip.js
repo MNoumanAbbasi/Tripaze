@@ -8,7 +8,7 @@ import ImageSection from './ImageSection';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 
-const createTripSchema = yup.object({
+export const tripSchema = yup.object({
   title: yup.string().max(20, 'Max 20 characters').required('Required'),
   destinations: yup
     .array()
@@ -40,7 +40,7 @@ const createTripSchema = yup.object({
   image: yup.string(),
 });
 
-const InputField = ({ label, name, type, as = '' }) => {
+export const InputField = ({ label, name, type, as = '' }) => {
   return (
     <div className="input-field">
       <label htmlFor={name} style={{ display: 'block' }}>
@@ -79,7 +79,7 @@ const CreateTrip = (props) => {
           attractions: [],
           image: '',
         }}
-        validationSchema={createTripSchema}
+        validationSchema={tripSchema}
         onSubmit={(values) => {
           console.log(values);
           props.createTrip(values, props.profile);
@@ -129,7 +129,11 @@ const CreateTrip = (props) => {
               handleImgNameChange={(img) => (values.image = img)}
             />
 
-            <button type="button" className="btn grey lighten-1 z-depth-1">
+            <button
+              type="button"
+              className="btn grey lighten-1 z-depth-1"
+              onClick={() => props.history.push('/')}
+            >
               Cancel
             </button>
             <button type="submit" className="btn form-rounded r-green-button">

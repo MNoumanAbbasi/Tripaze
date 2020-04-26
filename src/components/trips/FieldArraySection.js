@@ -16,6 +16,7 @@ const FieldArraySection = ({ label, name, values }) => {
           };
           return (
             <div>
+              {console.log('value.name', name)}
               {values[name].map((dest, ind) => {
                 return (
                   <div key={ind}>
