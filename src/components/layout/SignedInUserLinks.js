@@ -17,7 +17,7 @@ const SignedInUserLinks = (props) => {
         inputClass="form-control form-rounded "
         centreSearchBar={false}
       />
-      <ul class="navbar-nav navbar-fonts justify-content-end">
+      <ul class="navbar-nav navbar-fonts ml-auto justify-content-end">
         <li class="nav-item">
           <NavLink to="/" class="nav-link">
             {initial}

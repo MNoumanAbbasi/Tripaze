@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { addReview, deleteReview } from '../../store/actions/reviewActions';
+import SignInToAccess from '../dialogBoxes/SignInToAccess';
 
 const Review = (props) => {
   let button = null;
@@ -77,6 +78,8 @@ const ReviewSection = (props) => {
     props.deleteReview(id);
   };
 
+  const [modalShow, setModalShow] = React.useState(false);
+
   // Button to display (add new or cancel) based on if add new faq form is open or not
   let button;
   if (isAddReviewState) {
@@ -88,15 +91,17 @@ const ReviewSection = (props) => {
         Cancel
       </button>
     );
-  } else if (props.profileType !== 'User') {
+  } else if (props.profileType === 'Guest') {
     button = (
       <button
         className="btn mt-3 form-rounded r-green-button"
-        onClick={() => setIsAddReviewState(true)}
+        onClick={() => setModalShow(true)}
       >
         Add Review
       </button>
     );
+  } else if (props.profileType !== 'User') {
+    button = null;
   } else {
     button = (
       <button
@@ -110,6 +115,14 @@ const ReviewSection = (props) => {
 
   return (
     <div className="ReviewSection pb-5 pr-5 pl-5">
+      <SignInToAccess
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        onDelete={() => {
+          props.deleteTrip(props.match.params.id);
+          props.history.push('/');
+        }}
+      />
       {reviews.map((currReview) => {
         return (
           <Review
