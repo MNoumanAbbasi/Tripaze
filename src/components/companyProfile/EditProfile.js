@@ -11,35 +11,18 @@ import { editProfile } from '../../store/actions/profileActions';
 import * as yup from 'yup';
 
 const profileSchema = yup.object({
-  //   title: yup.string().max(20, 'Max 20 characters').required('Required'),
-  //   destinations: yup
-  //     .array()
-  //     .of(yup.string().required('Required'))
-  //     .min(0, 'At least one destination required')
-  //     .required('Required'),
-  //   departureLoc: yup.string().max(10, 'Max 10 characters').required('Required'),
-  //   departureDate: yup
-  //     .date()
-  //     .min(new Date(), 'Date should start from tomorrow')
-  //     .required('Required'),
-  //   duration: yup
-  //     .number()
-  //     .positive('Invalid duration')
-  //     .max(60, 'Max duration 60')
-  //     .required('Required'),
-  //   price: yup
-  //     .number()
-  //     .positive('Invalid price')
-  //     .max(99999, 'Max price 99999')
-  //     .required('Required'),
-  //   capacity: yup
-  //     .number()
-  //     .positive('Invalid capactiy')
-  //     .max(1000, 'Max 1000')
-  //     .required('Required'),
-  //   description: yup.string(),
-  //   attractions: yup.array().of(yup.string()),
-  //   image: yup.string(),
+  companyName: yup.string().max(20, 'Max 20 characters').required('Required'),
+  contact: yup
+    .number()
+    .typeError('Invalid phone number')
+    .positive('Invalid phone number')
+    .min(10, 'Too short')
+    .max(11, 'Too long')
+    .required('Required'),
+  location: yup.string().max(15, 'Max 15 characters').required('Required'),
+  description: yup.string().max(1000, 'Max 15 characters').required('Required'),
+  logoImage: yup.string(),
+  coverImage: yup.string(),
 });
 
 const EditProfile = (props) => {
@@ -84,14 +67,9 @@ const EditProfile = (props) => {
               <Field name="contact" type="tel" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" />
               <ErrorMessage name="contact" />
             </div> */}
-            <InputField label="Contact Number" name="contact" type="tel" />
+            <InputField label="Contact Number" name="contact" type="number" />
 
-            <InputField
-              label="Company Address"
-              name="location"
-              type="text"
-              as="textarea"
-            />
+            <InputField label="Company Address" name="location" type="text" />
             <InputField
               label="Description"
               name="description"
@@ -105,7 +83,7 @@ const EditProfile = (props) => {
             <ImageSection
               className="logo-image"
               imageName={values.logoImage}
-              imageCategory='companyLogo'
+              imageCategory="companyLogo"
               handleImgNameChange={(img) => (values.logoImage = img)}
             />
 
@@ -115,7 +93,7 @@ const EditProfile = (props) => {
             <ImageSection
               className="cover-image"
               imageName={values.coverImage}
-              imageCategory='companyCover'
+              imageCategory="companyCover"
               handleImgNameChange={(img) => (values.coverImage = img)}
             />
 
