@@ -23,13 +23,11 @@ const ImageSection = (props) => {
 
   const handleUpload = (e) => {
     setIsFileChosen(true);
-    const image = e.currentTarget.files[0]
+    const image = e.currentTarget.files[0];
     setImage(image);
 
     // Uploading file
-    const uploadTask = storage
-      .ref(`tripImages/${image.name}`)
-      .put(image);
+    const uploadTask = storage.ref(`tripImages/${image.name}`).put(image);
     uploadTask.on(
       'state_changed',
       (snapshot) => {
@@ -83,7 +81,7 @@ const ImageSection = (props) => {
       <div>
         <em>A default image will be assigned if you don't assign your own.</em>
         <br />
-        <input type="file" onChange={handleUpload} />
+        <input type="file" accept="image/*" onChange={handleUpload} />
       </div>
     );
   } else {
