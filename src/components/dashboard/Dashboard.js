@@ -23,19 +23,49 @@ class Dashboard extends Component {
     if (isInitialized) {
       return (
         <div className="homePage">
-          <img src={background} className="img-fluid mw-100"></img>
-          <hr className="greenline mw-100"></hr>
+          <div class="trip-title d-sm-block d-none">
+            <img src={background} className="img-fluid mw-100"></img>
+            <form
+              onSubmit={(e) => {
+                this.handleSubmit(e);
+              }}
+              className="input-group form-group home-searchbar w-50  centered"
+            >
+              <input
+                class="form-control form-control-lg form-rounded "
+                type="text"
+                placeholder="Search trips..."
+                aria-label="Search"
+                id="destinations"
+                // value={this.state.destinations}
+                // onChange={this.handleChange}
+              />
 
-          <div className="row justify-content-md-around justify-content-center align-items-end">
-            <h1 className="home-heading order-2 order-md-1">ALL TRIPS</h1>
-            {/* <hr className="underline"></hr> */}
-            <img
-              src={logo_wt}
-              className=" img-fluid logo-no-text order-1 order-md-2"
-            ></img>
+              <div class="input-group-append">
+                <button
+                  class="btn btn-secondary change-color adjusted-btn border-0 form-rounded"
+                  type="submit"
+                >
+                  <i class="fa fa-search"></i>
+                </button>
+              </div>
+            </form>
+            <a href="#tripcards" className="scroll-button ">
+              <span></span>
+              <span></span>
+              <span></span>
+            </a>
           </div>
-          <div className="container cardslist-margin">
-            <TripsList trips={trips} />
+          <div id="tripcards">
+            <hr className="greenline mw-100"></hr>
+
+            <div className="row justify-content-center align-items-end">
+              <h1 className="home-heading mt-5">ALL TRIPS</h1>
+              <img src={logo_wt} className="logo-no-text logo-dims ml-3"></img>
+            </div>
+            <div className="container">
+              <TripsList trips={trips} />
+            </div>
           </div>
         </div>
       );

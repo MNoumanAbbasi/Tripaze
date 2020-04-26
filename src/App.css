@@ -273,6 +273,9 @@ a:hover {
   width: 100%;
   position: absolute;
 }
+.pos {
+  position: relative;
+}
 
 .center-align {
   margin-top: auto !important;
@@ -321,6 +324,88 @@ a:hover {
 
 /* Home Page elements */
 
+@import url('https://fonts.googleapis.com/css?family=Roboto:700');
+
+/* Scroll Animation 
+Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
+
+.scroll-button {
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  width: 6vh;
+  height: 6vh;
+  /* background: #ffffff; */
+  transform: rotate(45deg);
+}
+
+.scroll-button span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-bottom: 4px solid #ffff;
+  border-right: 4px solid #ffff;
+  animation: animate 1.5s linear infinite;
+  opacity: 0;
+}
+
+.scroll-button span:nth-child(1) {
+  transform: translate(-15px, -15px);
+  animation-delay: -0.4s;
+}
+
+.scroll-button span:nth-child(2) {
+  transform: translate(0, 0);
+  animation-delay: -0.2s;
+}
+
+.scroll-button span:nth-child(3) {
+  transform: translate(15px, 15px);
+  animation-delay: 0s;
+}
+
+@keyframes animate {
+  0% {
+    top: -5px;
+    left: -5px;
+    opacity: 0;
+  }
+  25% {
+    top: 0;
+    left: 0;
+    opacity: 1;
+  }
+}
+
+/*Scroll animation */
+
+.home-searchbar {
+  margin-top: 0 !important;
+  padding: 0%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.36);
+  border-radius: 50px;
+}
+
+.logo-dims {
+  height: 5rem;
+  width: 5rem;
+}
+
+.centered {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.row {
+  margin-right: 0;
+  margin-left: 0;
+}
+
 .greenline {
   height: 20px;
   background-color: green;
@@ -328,7 +413,7 @@ a:hover {
 }
 
 .home-heading {
-  font-size: 2em;
+  font-size: 3em;
   font-family: 'Open Sans';
   color: #585858;
   font-weight: 645;
