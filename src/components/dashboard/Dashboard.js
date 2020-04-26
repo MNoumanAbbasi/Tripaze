@@ -12,13 +12,14 @@ import { searchBarShow } from '../../store/actions/filterActions';
 import LoadingBox from './LoadingBox';
 
 let lastScrollY = 0;
-let ticking = false;
 
 // 6 columns on medium and 12 column on small screens
 class Dashboard extends Component {
   // To detect scroll
   componentDidMount() {
-    this.props.searchBarShow(false);
+    // Add search bar to navbar if in mobile mode
+    if (window.innerWidth < 992) this.props.searchBarShow(true);
+    else this.props.searchBarShow(false);
     window.addEventListener('scroll', this.handleScroll, false);
   }
 
@@ -26,34 +27,23 @@ class Dashboard extends Component {
     window.removeEventListener('scroll', this.handleScroll, false);
     this.props.searchBarShow(true);
   }
-  tripsPart = React.createRef();
+
   handleScroll = () => {
     lastScrollY = window.scrollY;
     // If search bar not showing but should be shown
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        if (!this.tripsPart.current) {
-          this.props.searchBarShow(false);
-        }
-        if (
-          this.tripsPart.current &&
-          lastScrollY > this.tripsPart.current.offsetTop - 460 &&
-          !this.props.searchBarVisible
-        ) {
-          this.props.searchBarShow(true);
-        }
-        // Else if search bar is showing but should not be shown
-        else if (
-          this.tripsPart.current &&
-          lastScrollY <= this.tripsPart.current.offsetTop - 460 &&
-          this.props.searchBarVisible
-        ) {
-          this.props.searchBarShow(false);
-        }
-        ticking = false;
-      });
+    if (window.innerWidth < 992 && !this.props.searchBarVisible) {
+      this.props.searchBarShow(true);
+    } else if (lastScrollY > 252 && !this.props.searchBarVisible) {
+      this.props.searchBarShow(true);
     }
-    ticking = true;
+    // Else if search bar is showing but should not be shown
+    else if (
+      lastScrollY <= 252 &&
+      this.props.searchBarVisible &&
+      window.innerWidth >= 992
+    ) {
+      this.props.searchBarShow(false);
+    }
   };
 
   render() {
@@ -64,6 +54,7 @@ class Dashboard extends Component {
     if (profileType(auth, profile) === 'Company') {
       return <Redirect to={'/companyprofile/' + auth.uid} />;
     }
+
     if (isInitialized) {
       return (
         <div className="homePage">
@@ -84,7 +75,7 @@ class Dashboard extends Component {
               <span></span>
             </a>
           </div>
-          <div id="tripcards" ref={this.tripsPart}>
+          <div id="tripcards">
             <hr className="greenline mw-100"></hr>
 
             <div className="row justify-content-center justify-content-around align-items-end">
