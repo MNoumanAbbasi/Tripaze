@@ -2,6 +2,8 @@
 
 import React, { Component } from 'react';
 import { withRouter, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 
 export class SearchBar extends Component {
   state = {
@@ -37,34 +39,43 @@ export class SearchBar extends Component {
   };
 
   render() {
-    return (
-      <form
-        onSubmit={(e) => {
-          this.handleSubmit(e);
-        }}
-        className={this.props.formClass}
-      >
-        <input
-          class={this.props.inputClass}
-          type="text"
-          placeholder="Search trips..."
-          aria-label="Search"
-          id="destinations"
-          value={this.state.destinations}
-          onChange={this.handleChange}
-        />
+    if (!this.props.searchBarVisible && !this.props.centreSearchBar) {
+      return null;
+    } else
+      return (
+        <form
+          onSubmit={(e) => {
+            this.handleSubmit(e);
+          }}
+          className={this.props.formClass}
+        >
+          <input
+            class={this.props.inputClass}
+            type="text"
+            placeholder="Search trips..."
+            aria-label="Search"
+            id="destinations"
+            value={this.state.destinations}
+            onChange={this.handleChange}
+          />
 
-        <div class="input-group-append">
-          <button
-            class="btn btn-secondary change-color adjusted-btn border-0 form-rounded"
-            type="submit"
-          >
-            <i class="fa fa-search"></i>
-          </button>
-        </div>
-      </form>
-    );
+          <div class="input-group-append">
+            <button
+              class="btn btn-secondary change-color adjusted-btn border-0 form-rounded"
+              type="submit"
+            >
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+        </form>
+      );
   }
 }
 
-export default withRouter(SearchBar);
+const mapStateToProps = (state) => {
+  return {
+    searchBarVisible: state.filters.showSearch,
+  };
+};
+
+export default compose(connect(mapStateToProps), withRouter)(SearchBar);

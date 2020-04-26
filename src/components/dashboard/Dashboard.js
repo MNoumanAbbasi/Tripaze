@@ -8,6 +8,7 @@ import { profileType } from '../../Helpers';
 import logo_wt from '../../Images/logo-without-text.jpg';
 import background from '../../Images/HomepageImage.jpg';
 import SearchBar from '../layout/SearchBar';
+import { searchBarShow } from '../../store/actions/filterActions';
 
 let lastScrollY = 0;
 let ticking = false;
@@ -15,45 +16,36 @@ let ticking = false;
 // 6 columns on medium and 12 column on small screens
 class Dashboard extends Component {
   // To detect scroll
-  state = {
-    showSearchBar: false,
-  };
-
   componentDidMount() {
+    this.props.searchBarShow(false);
     window.addEventListener('scroll', this.handleScroll, true);
   }
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
+    this.props.searchBarShow(true);
   }
   tripsPart = React.createRef();
   handleScroll = () => {
     lastScrollY = window.scrollY;
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        // If search bar not showing but should be shown
-        if (
-          lastScrollY > this.tripsPart.current.offsetTop &&
-          !this.state.showSearchBar
-        ) {
-          this.setState({
-            showSearchBar: true,
-          });
-        }
-        // Else if search bar is showing but should not be shown
-        else if (
-          lastScrollY <= this.tripsPart.current.offsetTop &&
-          this.state.showSearchBar
-        ) {
-          this.setState({
-            showSearchBar: false,
-          });
-        }
-        ticking = false;
-      });
-
-      ticking = true;
+    // If search bar not showing but should be shown
+    if (
+      lastScrollY > this.tripsPart.current.offsetTop - 460 &&
+      !this.props.searchBarVisible
+    ) {
+      this.props.searchBarShow(true);
     }
+    // Else if search bar is showing but should not be shown
+    else if (
+      lastScrollY <= this.tripsPart.current.offsetTop - 460 &&
+      this.props.searchBarVisible
+    ) {
+      this.props.searchBarShow(false);
+    }
+    // window.requestAnimationFrame(() => {
+    //
+
+    // });
   };
 
   render() {
@@ -74,6 +66,7 @@ class Dashboard extends Component {
             <SearchBar
               formClass="input-group form-group home-searchbar w-50 centered"
               inputClass="form-control form-control-lg form-rounded"
+              centreSearchBar={true}
             />
             <a href="#tripcards" className="scroll-button ">
               <span></span>
@@ -111,11 +104,19 @@ const mapStateToProps = (state) => {
     auth: state.firebase.auth,
     profile: state.auth.currProfile,
     isLoading: isLoading,
+    searchBarVisible: state.filters.showSearch,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // so when we call props.createTrip, it's gonna perform a dispatch using the asynch middleware createTrip in src/store/actions
+    searchBarShow: (show) => dispatch(searchBarShow(show)),
   };
 };
 
 export default compose(
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
   // tells us which collections to connect to in our firebase project whenever this component, namely dashboard, is active
   // Whenever collection trip is changed, it would call the firestore reducer which would update the state of this firestore
   firestoreConnect([{ collection: 'Trips' }])
