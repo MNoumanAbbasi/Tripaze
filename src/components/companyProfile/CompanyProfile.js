@@ -52,15 +52,7 @@ const CompanyProfile = (props) => {
             <div className=" row ml-lg-4 col-lg-7 text-secondary">
               <hr class="mt-2 col-12 ml-0 divider"></hr>
               <h3 className="mt-5 text-justify text-secondary">Description</h3>
-              <div className="text-justify">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </div>
+              <div className="text-justify">{company.description}</div>
             </div>
             {/* {Company Card} */}
             <div class="card content-box mr-5 change-card-width order-lg-2 order-1">
@@ -70,7 +62,7 @@ const CompanyProfile = (props) => {
                     class="fa fa-map-marker fa-2x fa-fw"
                     aria-hidden="true"
                   ></i>
-                  Address of Company
+                  {company.location}
                 </h6>
                 <hr></hr>
                 <h6 class="card-title change-font font-weight-bold text-uppercase colored">
