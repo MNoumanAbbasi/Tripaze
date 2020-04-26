@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { createTrip } from '../../store/actions/tripActions';
 import { Redirect } from 'react-router-dom';
 import { profileType } from '../../Helpers';
-import FieldArraySection from './FieldArraySection';
-import ImageSection from './ImageSection';
-import { InputField } from '../form/InputField';
+import FieldArraySection from '../form/FieldArraySection';
+import InputField from '../form/InputField';
+import ImageSection from '../form/ImageSection';
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 

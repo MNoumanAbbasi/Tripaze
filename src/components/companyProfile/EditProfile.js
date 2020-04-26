@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { Redirect } from 'react-router-dom';
-import FieldArraySection from './FieldArraySection';
-import ImageSection from './ImageSection';
+import ImageSection from '../form/ImageSection';
 import { Formik, Form } from 'formik';
-import { InputField } from '../form/InputField';
+import FieldArraySection from '../form/FieldArraySection';
+import InputField from '../form/InputField';
 import { editProfile } from '../../store/actions/profileActions';
 import * as yup from 'yup';
 
@@ -133,7 +133,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    editProfile: (values, companyID) => dispatch(editProfile(values, companyID)),
+    editProfile: (values, companyID) =>
+      dispatch(editProfile(values, companyID)),
   };
 };
 
