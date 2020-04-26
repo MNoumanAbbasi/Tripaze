@@ -1,136 +1,150 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { createTrip } from '../../store/actions/tripActions';
 import { Redirect } from 'react-router-dom';
 import { profileType } from '../../Helpers';
-import DestinationSection from './DestinationSection';
-import ImageUpload from './ImageUpload';
-// all css are from the materialized CSS class
-export class CreateTrip extends Component {
-  state = {
-    title: '',
-    destinations: [],
-    departureLoc: '',
-    departureDate: '',
-    duration: 0,
-    price: 0,
-    capacity: 0,
-    description: '',
-    attraction: '',
-    image: '',
-  };
+import FieldArraySection from './FieldArraySection';
+import ImageSection from './ImageSection';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as yup from 'yup';
 
-  handleChange = (e) => {
-    this.setState({
-      // store the input on form fields on the state
-      [e.target.id]: e.target.value,
-    });
-  };
-  handleDestChange = (destArray) => {
-    this.setState({
-      destinations: destArray,
-    });
-  };
-  handleImgAdd = (imgName) => {
-    this.setState({
-      image: imgName,
-    });
-  };
-  handleSubmit = (e) => {
-    // dont want the default action of page being reloaded
-    e.preventDefault();
-    // console.log(this.state)
+export const tripSchema = yup.object({
+  title: yup.string().max(20, 'Max 20 characters').required('Required'),
+  destinations: yup
+    .array()
+    .of(yup.string().required('Required'))
+    .min(0, 'At least one destination required')
+    .required('Required'),
+  departureLoc: yup.string().max(10, 'Max 10 characters').required('Required'),
+  departureDate: yup
+    .date()
+    .min(new Date(), 'Date should start from tomorrow')
+    .required('Required'),
+  duration: yup
+    .number()
+    .positive('Invalid duration')
+    .max(60, 'Max duration 60')
+    .required('Required'),
+  price: yup
+    .number()
+    .positive('Invalid price')
+    .max(99999, 'Max price 99999')
+    .required('Required'),
+  capacity: yup
+    .number()
+    .positive('Invalid capactiy')
+    .max(1000, 'Max 1000')
+    .required('Required'),
+  description: yup.string(),
+  attractions: yup.array().of(yup.string()),
+  image: yup.string(),
+});
 
-    // calls the createTrip function in mapDispatchToProps which in turn calls dispatch with an action of createTrip that handles the asynch request. This request is then sent to the reducer for dispatch
-    this.props.createTrip(this.state, this.props.profile);
-    this.props.history.push('/');
-  };
-  render() {
-    const { auth, profile, isLoading } = this.props;
-    const isInitialized = !isLoading && profile && auth;
+export const InputField = ({ label, name, type, as = '' }) => {
+  return (
+    <div className="input-field">
+      <label htmlFor={name} style={{ display: 'block' }}>
+        {label}
+      </label>
+      <Field name={name} type={type} min="0" as={as} />
+      <ErrorMessage name={name} />
+    </div>
+  );
+};
 
-    if (isInitialized && profileType(auth, profile) !== 'Company') {
-      return <Redirect to="/" />;
-    }
+const CreateTrip = (props) => {
+  const { auth, profile, isLoading } = props;
+  const isInitialized = !isLoading && profile && auth;
 
-    if (!isInitialized) {
-      return <div>Loading...</div>;
-    }
-    return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit} className="white">
-          <h5 className="gre-text text-darken-3">Create Trip</h5>
-          <div className="input-field">
-            <label htmlFor="title">Title</label>
-            <input type="text" id="title" onChange={this.handleChange} />
-          </div>
-
-          <DestinationSection
-            handleDestChange={this.handleDestChange}
-            destinationsArray={this.state.destinations}
-          />
-
-          <div className="input-field">
-            <label htmlFor="departureLoc">Departure Location</label>
-            <input type="text" id="departureLoc" onChange={this.handleChange} />
-          </div>
-
-          <div className="input-field">
-            <label htmlFor="departureDate">Departure Date</label>
-            <input
-              type="date"
-              id="departureDate"
-              onChange={this.handleChange}
-            />
-          </div>
-
-          <div className="input-field">
-            <label htmlFor="duration">Duration</label>
-            <input type="number" id="duration" onChange={this.handleChange} />
-          </div>
-
-          <div className="input-field">
-            <label htmlFor="price">Price</label>
-            <input type="number" id="price" onChange={this.handleChange} />
-          </div>
-
-          <div className="input-field">
-            <label htmlFor="capacity">Capacity</label>
-            <input type="number" id="capacity" onChange={this.handleChange} />
-          </div>
-
-          <div className="input-field">
-            <label htmlFor="description">Description</label>
-            <textarea
-              id="description"
-              onChange={this.handleChange}
-              className="materialize-textarea"
-            ></textarea>
-          </div>
-
-          <div className="input-field">
-            <label htmlFor="attraction">Attractions</label>
-            <textarea
-              id="attraction"
-              onChange={this.handleChange}
-              className="materialize-textarea"
-            ></textarea>
-          </div>
-
-          <ImageUpload handleImgAdd={this.handleImgAdd} />
-
-          <div className="input-field">
-            <button className="btn blue lighten-1 z-depth-1">Submit</button>
-          </div>
-        </form>
-
-        <div className="input-field">
-          <button className="btn grey lighten-1 z-depth-1">Cancel</button>
-        </div>
-      </div>
-    );
+  if (isInitialized && profileType(auth, profile) !== 'Company') {
+    return <Redirect to="/" />;
   }
-}
+
+  if (!isInitialized) {
+    return <div>Loading...</div>; // TODO: Display loading box
+  }
+  return (
+    <div className="container">
+      <h5 className="gre-text text-darken-3">Create Trip</h5>
+      <Formik
+        initialValues={{
+          title: '',
+          destinations: [],
+          departureLoc: '',
+          departureDate: '',
+          duration: 0,
+          price: 0,
+          capacity: 0,
+          description: '',
+          attractions: [],
+          image: '',
+        }}
+        validationSchema={tripSchema}
+        onSubmit={(values) => {
+          console.log(values);
+          props.createTrip(values, props.profile);
+          props.history.push('/');
+        }}
+      >
+        {({ values }) => (
+          <Form>
+            <InputField label="Title" name="title" type="text" />
+
+            <FieldArraySection
+              label="Destination(s)"
+              name="destinations"
+              values={values}
+            />
+
+            <InputField
+              label="Departure Location"
+              name="departureLoc"
+              type="text"
+            />
+            <InputField
+              label="Departure Date"
+              name="departureDate"
+              type="date"
+            />
+            <InputField label="Duration" name="duration" type="number" />
+            <InputField label="Price" name="price" type="number" />
+            <InputField label="Capacity" name="capacity" type="number" />
+            <InputField
+              label="Description"
+              name="description"
+              type="text"
+              as="textarea"
+            />
+            <FieldArraySection
+              label="Attraction(s)"
+              name="attractions"
+              values={values}
+            />
+            <label htmlFor="image-section" style={{ display: 'block' }}>
+              Upload Image
+            </label>
+            <ImageSection
+              className="image-section"
+              imageName={values.image}
+              handleImgNameChange={(img) => (values.image = img)}
+            />
+
+            <button
+              type="button"
+              className="btn grey lighten-1 z-depth-1"
+              onClick={() => props.history.push('/')}
+            >
+              Cancel
+            </button>
+            <button type="submit" className="btn form-rounded r-green-button">
+              Submit
+            </button>
+          </Form>
+        )}
+      </Formik>
+    </div>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
