@@ -113,7 +113,7 @@ const CompanyProfile = (props) => {
 // Map state from store to props in component
 const mapStateToProps = (state, ownProps) => {
   const id = ownProps.match.params.id;
-  const companies = state.firestore.data.Companies; // using data instead of ordered here since we are interested in referencing specific trips (hash table)
+  const companies = state.firestore.data.Companies;
   const company = companies ? companies[id] : null;
   const requests = state.firestore.status.requesting;
   const isLoading = requests

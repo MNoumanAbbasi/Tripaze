@@ -26,28 +26,28 @@ const profileSchema = yup.object({
 });
 
 const EditProfile = (props) => {
-  const { auth, profile, isLoading } = props;
+  const { auth, company, profile, isLoading } = props;
   const isInitialized = !isLoading && profile && auth;
   const adminMode = auth.uid === props.match.params.id;
 
-  // if (!isInitialized) {
-  //   return <div>Loading...</div>;
-  // } else if (!adminMode) {
-  //   return <Redirect to="/" />;
-  // }
+  if (!isInitialized) {
+    return <div>Loading...</div>;
+  } else if (!adminMode) {
+    return <Redirect to="/" />;
+  }
+  console.log(company)
   return (
     <div className="container">
-      {console.log('heelo')}
       <h5 className="gre-text text-darken-3">Create Trip</h5>
       <Formik
         initialValues={{
-          companyName: '',
-          contact: 0,
-          location: '',
-          type: 'Company',
-          description: '',
-          logoImage: '',
-          coverImage: '',
+          companyName: company.companyName,
+          contact: company.contact,
+          location: company.location,
+          type: company.type,
+          description: company.description,
+          logoImage: company.logoImage,
+          coverImage: company.coverImage,
         }}
         validationSchema={profileSchema}
         onSubmit={(values) => {
@@ -114,8 +114,18 @@ const EditProfile = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+  const id = ownProps.match.params.id;
+  const companies = state.firestore.data.Companies;
+  const company = companies ? companies[id] : null;
+  const requests = state.firestore.status.requesting;
+  const isLoading = requests
+    ? Object.values(requests).some((value) => value === true)
+    : null;
   return {
+    company: company,
+    profile: state.auth.currProfile,
+    isLoading: isLoading,
     auth: state.firebase.auth,
     authError: state.auth.authError,
   };
