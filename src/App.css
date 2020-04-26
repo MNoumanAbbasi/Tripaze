@@ -335,7 +335,7 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
   left: 50%;
   width: 6vh;
   height: 6vh;
-  background: #ffffff;
+  /* background: #ffffff; */
   transform: rotate(45deg);
 }
 
