@@ -39,13 +39,13 @@ const createTripSchema = yup.object({
   image: yup.string(),
 });
 
-const InputField = ({ label, name, type }) => {
+const InputField = ({ label, name, type, as="" }) => {
   return (
     <div className="input-field">
       <label htmlFor={name} style={{ display: 'block' }}>
         {label}
       </label>
-      <Field name={name} type={type} min="0" />
+      <Field name={name} type={type} min="0" as={as}/>
       <ErrorMessage name={name} />
     </div>
   );
@@ -107,7 +107,7 @@ const CreateTrip = (props) => {
             <InputField label="Duration" name="duration" type="number" />
             <InputField label="Price" name="price" type="number" />
             <InputField label="Capacity" name="capacity" type="number" />
-            <InputField label="Description" name="description" type="text" />
+            <InputField label="Description" name="description" type="text" as="textarea"/>
             <FieldArraySection
               label="Attraction(s)"
               name="attractions"
