@@ -382,6 +382,12 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
 
 /*Scroll animation */
 
+.home-searchbar {
+  margin-top: 0 !important;
+  padding: 0%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.36);
+}
+
 .centered {
   position: absolute;
   top: 45%;
