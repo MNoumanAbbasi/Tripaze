@@ -7,6 +7,7 @@ import { Redirect } from 'react-router-dom';
 import { profileType } from '../../Helpers';
 import logo_wt from '../../Images/logo-without-text.jpg';
 import background from '../../Images/HomepageImage.jpg';
+import SearchBar from '../layout/SearchBar';
 
 // 6 columns on medium and 12 column on small screens
 class Dashboard extends Component {
@@ -25,31 +26,10 @@ class Dashboard extends Component {
         <div className="homePage">
           <div class="trip-title d-sm-block d-none">
             <img src={background} className="img-fluid mw-100"></img>
-            <form
-              onSubmit={(e) => {
-                this.handleSubmit(e);
-              }}
-              className="input-group form-group home-searchbar w-50  centered"
-            >
-              <input
-                class="form-control form-control-lg form-rounded "
-                type="text"
-                placeholder="Search trips..."
-                aria-label="Search"
-                id="destinations"
-                // value={this.state.destinations}
-                // onChange={this.handleChange}
-              />
-
-              <div class="input-group-append">
-                <button
-                  class="btn btn-secondary change-color adjusted-btn border-0 form-rounded"
-                  type="submit"
-                >
-                  <i class="fa fa-search"></i>
-                </button>
-              </div>
-            </form>
+            <SearchBar
+              formClass="input-group form-group home-searchbar w-50 centered"
+              inputClass="form-control form-control-lg form-rounded "
+            />
             <a href="#tripcards" className="scroll-button ">
               <span></span>
               <span></span>

@@ -42,10 +42,10 @@ export class SearchBar extends Component {
         onSubmit={(e) => {
           this.handleSubmit(e);
         }}
-        className="navbar-nav input-group form-group adjusted-form w-50 ml-auto mr-auto "
+        className={this.props.formClass}
       >
         <input
-          class="form-control form-rounded "
+          class={this.props.inputClass}
           type="text"
           placeholder="Search trips..."
           aria-label="Search"
