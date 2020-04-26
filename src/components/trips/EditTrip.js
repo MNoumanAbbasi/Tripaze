@@ -7,7 +7,8 @@ import { compose } from 'redux';
 import FieldArraySection from './FieldArraySection';
 import ImageSection from './ImageSection';
 import { Formik, Form } from 'formik';
-import { tripSchema, InputField } from './CreateTrip';
+import { tripSchema } from './CreateTrip';
+import { InputField } from '../form/InputField';
 
 const EditTrip = (props) => {
   const { trip, profile, isLoading, auth } = props;

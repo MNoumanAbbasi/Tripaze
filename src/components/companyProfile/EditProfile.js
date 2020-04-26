@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 import FieldArraySection from './FieldArraySection';
 import ImageSection from './ImageSection';
 import { Formik, Form } from 'formik';
-import { InputField } from '../../Helpers';
+import { InputField } from '../form/InputField';
 import { editProfile } from '../../store/actions/profileActions';
 import * as yup from 'yup';
 

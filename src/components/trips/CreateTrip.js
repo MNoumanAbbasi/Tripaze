@@ -5,7 +5,8 @@ import { Redirect } from 'react-router-dom';
 import { profileType } from '../../Helpers';
 import FieldArraySection from './FieldArraySection';
 import ImageSection from './ImageSection';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { InputField } from '../form/InputField';
+import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 
 export const tripSchema = yup.object({
@@ -39,19 +40,6 @@ export const tripSchema = yup.object({
   attractions: yup.array().of(yup.string()),
   image: yup.string(),
 });
-
-// TODO: Separate InputField into its own file
-export const InputField = ({ label, name, type, as = '' }) => {
-  return (
-    <div className="input-field">
-      <label htmlFor={name} style={{ display: 'block' }}>
-        {label}
-      </label>
-      <Field name={name} type={type} min="0" as={as} />
-      <ErrorMessage name={name} />
-    </div>
-  );
-};
 
 const CreateTrip = (props) => {
   const { auth, profile, isLoading } = props;
