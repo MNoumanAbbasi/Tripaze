@@ -77,14 +77,14 @@ const EditProfile = (props) => {
           <Form>
             <InputField label="Company name" name="companyName" type="text" />
 
-            <div className="input-field">
+            {/* <div className="input-field">
               <label htmlFor="contact" style={{ display: 'block' }}>
                 Contact Number
               </label>
-              <Field name="contact" type="tel" pattern />
+              <Field name="contact" type="tel" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" />
               <ErrorMessage name="contact" />
-            </div>
-            {/* <InputField label="Contact Number" name="contact" type="tel" /> */}
+            </div> */}
+            <InputField label="Contact Number" name="contact" type="tel" />
 
             <InputField
               label="Company Address"
@@ -105,6 +105,7 @@ const EditProfile = (props) => {
             <ImageSection
               className="logo-image"
               imageName={values.logoImage}
+              imageCategory='companyLogo'
               handleImgNameChange={(img) => (values.logoImage = img)}
             />
 
@@ -114,6 +115,7 @@ const EditProfile = (props) => {
             <ImageSection
               className="cover-image"
               imageName={values.coverImage}
+              imageCategory='companyCover'
               handleImgNameChange={(img) => (values.coverImage = img)}
             />
 
