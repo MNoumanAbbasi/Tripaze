@@ -115,6 +115,7 @@ const CreateTrip = (props) => {
             <ImageSection
               className="image-section"
               imageName={values.image}
+              imageCategory='trip'
               handleImgNameChange={(img) => (values.image = img)}
             />
 
