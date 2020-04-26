@@ -74,11 +74,17 @@ const EditProfile = (props) => {
           <Form>
             <InputField label="Company name" name="companyName" type="text" />
 
-            
+            {/* <div className="input-field">
+              <label htmlFor="contact" style={{ display: 'block' }}>
+                Contact Number
+              </label>
+              <Field name="contact" type="tel" min="0" as={as} />
+              <ErrorMessage name={name} />
+            </div> */}
             <InputField
-              label="Departure Date"
-              name="departureDate"
-              type="date"
+              label="Contact Number"
+              name="contact"
+              type="tel"
             />
             <InputField label="Duration" name="duration" type="number" />
             <InputField label="Price" name="price" type="number" />
