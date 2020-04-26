@@ -9,6 +9,7 @@ import logo_wt from '../../Images/logo-without-text.jpg';
 import background from '../../Images/HomepageImage.jpg';
 import SearchBar from '../layout/SearchBar';
 import { searchBarShow } from '../../store/actions/filterActions';
+import LoadingBox from './LoadingBox';
 
 let lastScrollY = 0;
 let ticking = false;
@@ -22,7 +23,6 @@ class Dashboard extends Component {
   }
 
   componentWillUnmount() {
-    console.log('ASD');
     window.removeEventListener('scroll', this.handleScroll, false);
     this.props.searchBarShow(true);
   }
@@ -57,7 +57,6 @@ class Dashboard extends Component {
   };
 
   render() {
-    // console.log(this.props)
     const { trips, profile, auth, isLoading } = this.props;
     const isInitialized = trips && !isLoading;
 
@@ -65,7 +64,6 @@ class Dashboard extends Component {
     if (profileType(auth, profile) === 'Company') {
       return <Redirect to={'/companyprofile/' + auth.uid} />;
     }
-
     if (isInitialized) {
       return (
         <div className="homePage">
@@ -96,8 +94,7 @@ class Dashboard extends Component {
         </div>
       );
     } else {
-      // to show page reload while trips are being requested
-      return <div>Loading...</div>;
+      return <LoadingBox />;
     }
   }
 }
