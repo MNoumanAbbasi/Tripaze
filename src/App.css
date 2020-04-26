@@ -386,6 +386,7 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
   margin-top: 0 !important;
   padding: 0%;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.36);
+  border-radius: 50px;
 }
 
 .centered {
