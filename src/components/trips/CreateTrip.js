@@ -22,7 +22,7 @@ const InputField = ({ label, name, type }) => {
 };
 
 const createTripSchema = yup.object({
-  title: yup.string().max(20, 'Max 20 characters').required('Required'),
+  title: yup.string().max(25, 'Max 25 characters').required('Required'),
   destinations: yup.array().required('Required'),
   departureLoc: yup.string().max(15, 'Max 15 characters').required('Required'),
   departureDate: yup
