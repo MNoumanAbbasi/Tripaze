@@ -18,7 +18,7 @@ class CompanyProfile extends Component {
     if (isInitialized) {
       const currProfileType = profileType(auth, profile);
       return (
-        <div className="row m-0">
+        <div className="row m-0 justify-content-center">
           <img src={defaultCover} className="w-100 backDrop"></img>
           {/* Logo Image for Overlapping
           <div className="overlay row w-100 justify-content-lg-end justify-content-center">
