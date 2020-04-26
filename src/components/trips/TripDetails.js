@@ -9,6 +9,7 @@ import cardbg from './card-bg.png';
 import DisplayImage from './DisplayImage';
 import { profileType } from '../../Helpers';
 import Confirmation from '../dialogBoxes/Confirmation';
+import LoadingBox from './../dashboard/LoadingBox';
 
 // class container section is material
 // class trip-details is from our own css
@@ -22,7 +23,7 @@ function TripDetails(props) {
   const [modalShow, setModalShow] = React.useState(false);
 
   if (!isInitialized) {
-    return <div>Loading...</div>;
+    return <LoadingBox />;
   }
 
   var deleteButton = null;
