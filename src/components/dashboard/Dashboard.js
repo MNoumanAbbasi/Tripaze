@@ -7,9 +7,55 @@ import { Redirect } from 'react-router-dom';
 import { profileType } from '../../Helpers';
 import logo_wt from '../../Images/logo-without-text.jpg';
 import background from '../../Images/HomepageImage.jpg';
+import SearchBar from '../layout/SearchBar';
+import { searchBarShow } from '../../store/actions/filterActions';
+
+let lastScrollY = 0;
+let ticking = false;
 
 // 6 columns on medium and 12 column on small screens
 class Dashboard extends Component {
+  // To detect scroll
+  componentDidMount() {
+    this.props.searchBarShow(false);
+    window.addEventListener('scroll', this.handleScroll, false);
+  }
+
+  componentWillUnmount() {
+    console.log('ASD');
+    window.removeEventListener('scroll', this.handleScroll, false);
+    this.props.searchBarShow(true);
+  }
+  tripsPart = React.createRef();
+  handleScroll = () => {
+    lastScrollY = window.scrollY;
+    // If search bar not showing but should be shown
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        if (!this.tripsPart.current) {
+          this.props.searchBarShow(false);
+        }
+        if (
+          this.tripsPart.current &&
+          lastScrollY > this.tripsPart.current.offsetTop - 460 &&
+          !this.props.searchBarVisible
+        ) {
+          this.props.searchBarShow(true);
+        }
+        // Else if search bar is showing but should not be shown
+        else if (
+          this.tripsPart.current &&
+          lastScrollY <= this.tripsPart.current.offsetTop - 460 &&
+          this.props.searchBarVisible
+        ) {
+          this.props.searchBarShow(false);
+        }
+        ticking = false;
+      });
+    }
+    ticking = true;
+  };
+
   render() {
     // console.log(this.props)
     const { trips, profile, auth, isLoading } = this.props;
@@ -25,38 +71,18 @@ class Dashboard extends Component {
         <div className="homePage">
           <div class="trip-title d-sm-block d-none">
             <img src={background} className="img-fluid mw-100"></img>
-            <form
-              onSubmit={(e) => {
-                this.handleSubmit(e);
-              }}
-              className="input-group form-group home-searchbar w-50  centered"
-            >
-              <input
-                class="form-control form-control-lg form-rounded "
-                type="text"
-                placeholder="Search trips..."
-                aria-label="Search"
-                id="destinations"
-                // value={this.state.destinations}
-                // onChange={this.handleChange}
-              />
-
-              <div class="input-group-append">
-                <button
-                  class="btn btn-secondary change-color adjusted-btn border-0 form-rounded"
-                  type="submit"
-                >
-                  <i class="fa fa-search"></i>
-                </button>
-              </div>
-            </form>
+            <SearchBar
+              formClass="input-group form-group home-searchbar w-50 centered"
+              inputClass="form-control form-control-lg form-rounded"
+              centreSearchBar={true}
+            />
             <a href="#tripcards" className="scroll-button ">
               <span></span>
               <span></span>
               <span></span>
             </a>
           </div>
-          <div id="tripcards">
+          <div id="tripcards" ref={this.tripsPart}>
             <hr className="greenline mw-100"></hr>
 
             <div className="row justify-content-center align-items-end">
@@ -86,11 +112,19 @@ const mapStateToProps = (state) => {
     auth: state.firebase.auth,
     profile: state.auth.currProfile,
     isLoading: isLoading,
+    searchBarVisible: state.filters.showSearch,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // so when we call props.createTrip, it's gonna perform a dispatch using the asynch middleware createTrip in src/store/actions
+    searchBarShow: (show) => dispatch(searchBarShow(show)),
   };
 };
 
 export default compose(
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
   // tells us which collections to connect to in our firebase project whenever this component, namely dashboard, is active
   // Whenever collection trip is changed, it would call the firestore reducer which would update the state of this firestore
   firestoreConnect([{ collection: 'Trips' }])

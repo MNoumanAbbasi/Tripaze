@@ -15,23 +15,23 @@ function Confirmation(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {/* <h4></h4> */}
+        <h4>Are you sure?</h4>
         <p>{props.message}</p>
       </Modal.Body>
       <Modal.Footer>
         <button
           type="button"
-          class="btn btn-lg green-button form-rounded object-hover"
+          class="btn btn-lg r-green-button form-rounded object-hover"
           onClick={props.onHide}
         >
-          Close
+          Cancel
         </button>
         <button
           type="button"
           class="btn btn-lg red-button form-rounded object-hover"
           onClick={props.onDelete}
         >
-          Confirm
+          Yes
         </button>
       </Modal.Footer>
     </Modal>

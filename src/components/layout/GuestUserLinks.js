@@ -7,7 +7,11 @@ import SearchBar from './SearchBar';
 const GuestUserLinks = () => {
   return (
     <div class="collapse navbar-collapse " id="navbarSupportedContent">
-      <SearchBar />
+      <SearchBar
+        formClass="navbar-nav input-group form-group adjusted-form w-50 ml-auto mr-auto"
+        inputClass="form-control form-rounded "
+        centreSearchBar={false}
+      />
       <ul class="navbar-nav navbar-fonts justify-content-end">
         <li class="nav-item">
           <NavLink to="/signin" class="nav-link">
