@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import TripsList from '../trips/TripsList';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
