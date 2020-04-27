@@ -5,6 +5,7 @@ import {
   addAnswer,
   deleteFaq,
 } from '../../store/actions/faqActions';
+import SignInToAccess from '../dialogBoxes/SignInToAccess';
 
 const FAQ = (props) => {
   const isOwnCompanyProfile = props.profileType === 'Company';
@@ -33,6 +34,7 @@ const FAQ = (props) => {
 const AddQuestionForm = (props) => {
   const [question, setQuestion] = useState('');
   const handleSubmit = (event) => {
+    // console.log('asd', question);
     event.preventDefault();
     props.onSubmit(question);
   };
@@ -87,8 +89,7 @@ const FAQSection = (props) => {
   const [FAQs, setFAQs] = useState(props.FAQs);
   // State to check if the Add new question form is open or not
   const [isAddQuestionState, setIsAddQuestionState] = useState(false);
-  const userSignedIn = props.profileType !== 'Guest';
-
+  const [modalShow, setModalShow] = React.useState(false);
   const addQuestion = (question) => {
     // setFAQs([...FAQs, { question, answer: '' }]); // TODO: instead of updating local copy too. remount when faq added/deleted.
     props.addQuestion(question, props.tripID);
@@ -111,10 +112,19 @@ const FAQSection = (props) => {
   if (isAddQuestionState) {
     button = (
       <button
-        className="btn mt-3 form-rounded red-button"
+        className="btn mt-3 form-rounded red-button border-red"
         onClick={() => setIsAddQuestionState(false)}
       >
         Cancel
+      </button>
+    );
+  } else if (props.profileType === 'Guest') {
+    button = (
+      <button
+        className="btn mt-3 form-rounded r-green-button"
+        onClick={() => setModalShow(true)}
+      >
+        Add Question
       </button>
     );
   } else {
@@ -130,6 +140,11 @@ const FAQSection = (props) => {
 
   return (
     <div className="FAQSection pb-5 pr-5 pl-5">
+      <SignInToAccess
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        section="question"
+      />
       {FAQs &&
         FAQs.map((faq) => {
           return (
@@ -144,7 +159,7 @@ const FAQSection = (props) => {
           );
         })}
       {isAddQuestionState && <AddQuestionForm onSubmit={addQuestion} />}
-      {userSignedIn && button}
+      {button}
     </div>
   );
 };

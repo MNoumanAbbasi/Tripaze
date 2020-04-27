@@ -9,6 +9,7 @@ import cardbg from './card-bg.png';
 import DisplayImage from './DisplayImage';
 import { profileType } from '../../Helpers';
 import Confirmation from '../dialogBoxes/Confirmation';
+import LoadingBox from './../dashboard/LoadingBox';
 
 // class container section is material
 // class trip-details is from our own css
@@ -22,7 +23,7 @@ function TripDetails(props) {
   const [modalShow, setModalShow] = React.useState(false);
 
   if (!isInitialized) {
-    return <div>Loading...</div>;
+    return <LoadingBox />;
   }
 
   var deleteButton = null;
@@ -32,7 +33,7 @@ function TripDetails(props) {
     editButton = (
       <button
         type="button"
-        class="btn mt-lg-5 mr-5 btn-lg green-button form-rounded object-hover"
+        class="btn mr-5 btn-lg green-button form-rounded"
         onClick={() => props.history.push('/edittrip/' + props.match.params.id)}
       >
         EDIT TRIP <i class="fa fas fa-edit fa-fw"></i>
@@ -41,12 +42,8 @@ function TripDetails(props) {
     deleteButton = (
       <button
         type="button"
-        class="btn btn-lg  mt-lg-5 mr-1 red-button form-rounded object-hover"
+        class="btn btn-lg mr-1 red-button form-rounded"
         onClick={() => setModalShow(true)}
-        // onClick={() => {
-        //   props.deleteTrip(props.match.params.id);
-        //   props.history.push('/');
-        // }}
       >
         DELETE <i class="fa fas fa-trash fa-fw"></i>
       </button>
@@ -62,12 +59,10 @@ function TripDetails(props) {
           props.deleteTrip(props.match.params.id);
           props.history.push('/');
         }}
-        heading="Deleting Trip"
-        message="You are about to delete a trip. Are you sure you want to continue?"
       />
       <DisplayImage img={trip.image} page={'details'} />
-      <div className="container overlay align-self-end">
-        <div className="row justify-content-lg-end justify-content-center">
+      <div className="container thirdDrop">
+        <div className="row justify-content-lg-end justify-content-sm-around">
           {editButton}
           {deleteButton}
         </div>

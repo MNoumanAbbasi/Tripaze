@@ -331,7 +331,7 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
 
 .scroll-button {
   position: absolute;
-  top: 75%;
+  top: 80%;
   left: 50%;
   width: 6vh;
   height: 6vh;
@@ -469,21 +469,10 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
     box-shadow: 0 7px 10px rgba(0, 0, 0, 0.3);
   }
 
-  .overlay-buttonlg {
-    z-index: 3;
-    font-weight: 700;
+  .thirdDrop {
+    z-index: 2;
     position: absolute;
-    background-color: white;
-    border: #00a99d;
-    color: #00a99d;
-    margin-left: 65%;
-    margin-top: 23%;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
-  }
-
-  .overlay-buttonlg:hover {
-    background-color: #00a99d;
-    color: white;
+    margin-top: 17vw;
   }
 }
 
@@ -552,17 +541,14 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
   border-color: #00a99d;
 }
 
-/* Buttons */
-.overlay-button {
-  z-index: 3;
-  font-weight: 700;
-  position: absolute;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+.border-red {
+  border-color: red;
 }
+
+/* Buttons */
 
 .green-button {
   background-color: white;
-  border: #00a99d;
   color: #00a99d;
 }
 
@@ -584,13 +570,23 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
 
 .red-button {
   background-color: white;
-  border-color: red;
   color: red;
 }
 
 .red-button:hover {
   background-color: red;
   color: white;
+}
+
+.r-red-button {
+  background-color: red;
+  color: white;
+}
+
+.r-red-button:hover {
+  background-color: white;
+  border-color: red;
+  color: red;
 }
 
 .overlay {
@@ -616,4 +612,20 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
 
   /* it makes the clue thing, takes smaller dimension to fill div */
   background-size: cover;
+}
+
+@media only screen and (max-width: 1200px) {
+  .bigscreen {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .smallscreen {
+    display: none;
+  }
+}
+
+.fix-width {
+  min-width: 5em;
 }

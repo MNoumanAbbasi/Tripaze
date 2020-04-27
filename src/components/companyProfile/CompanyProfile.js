@@ -5,10 +5,8 @@ import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase'; // higher order
 import ReviewSection from './ReviewSection';
 import defaultCover from '../../Images/coverPhoto.jpg';
-import defaultLogo from '../../Images/default-logo.jpg';
 import { profileType } from '../../Helpers';
-import cardbg from '../trips/card-bg.png';
-import { Link } from 'react-router-dom';
+import LoadingBox from './../dashboard/LoadingBox';
 
 // 6 columns on medium and 12 column on small screens
 const CompanyProfile = (props) => {
@@ -98,7 +96,7 @@ const CompanyProfile = (props) => {
       </div>
     );
   } else {
-    return <div>Loading...</div>;
+    return <LoadingBox />;
   }
 };
 

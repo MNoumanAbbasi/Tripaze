@@ -11,7 +11,7 @@ import { tripSchema } from './CreateTrip';
 import InputField from '../form/InputField';
 
 const EditTrip = (props) => {
-  const { trip, profile, isLoading, auth } = props;
+  const { trip, isLoading, auth } = props;
   const isInitialized = !isLoading && trip;
   const adminMode = trip && auth.uid === trip.companyId;
 
