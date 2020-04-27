@@ -39,11 +39,13 @@ const CompanyProfile = (props) => {
             {/* Description + Card */}
             <div className=" row ml-lg-4 col-lg-7 text-secondary">
               <hr class="mt-2 col-12 ml-0 divider"></hr>
-              <h3 className="mt-5 text-justify text-secondary">Description</h3>
+              <h3 className="mt-5 col-12 text-justify text-secondary">
+                Description
+              </h3>
               <div className="text-justify">{company.description}</div>
             </div>
-            {/* {Company Card} */}
-            <div class="card content-box mr-5 change-card-width order-lg-2 order-1">
+            {/* {Company Card } */}
+            <div class="card content-box mr-5 change-card-width">
               <div class="card-body">
                 <h6 class="card-title change-font font-weight-bold text-uppercase colored">
                   <i
