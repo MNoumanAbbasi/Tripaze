@@ -28,21 +28,10 @@ const CompanyProfile = (props) => {
           data-holder-rendered="true"
           />
         </div> */}
+        {/* <LogoImage img={company.logoImage} type="companyLogo" /> */}
 
         <div className="container align-self-start bg-white frontDrop">
           {/* First section */}
-          <LogoImage img={company.logoImage} type="companyLogo" />
-          {adminMode && (
-            <button
-              type="button"
-              class="btn mt-lg-5 mr-5 btn-lg green-button form-rounded object-hover"
-              onClick={() =>
-                props.history.push('/editprofile/' + props.match.params.id)
-              }
-            >
-              EDIT PROFILE <i class="fa fas fa-edit fa-fw"></i>
-            </button>
-          )}
           <div className="row justify-content-between align-content-center">
             {/* Heading */}
             <div className="ml-lg-4 col-lg-7 text-secondary">
@@ -74,6 +63,17 @@ const CompanyProfile = (props) => {
               </div>
             </div>
           </div>
+          {adminMode && (
+            <button
+              type="button"
+              class="btn mt-lg-5 mr-5 btn-lg green-button form-rounded object-hover float-right"
+              onClick={() =>
+                props.history.push('/editprofile/' + props.match.params.id)
+              }
+            >
+              EDIT PROFILE <i class="fa fas fa-edit fa-fw"></i>
+            </button>
+          )}
           {/* Second Section */}
           <div className="row p-4 mt-5 justify-content-center align-content-centre text-turq">
             <i class="fa fa-th fa-3x fa-fw" aria-hidden="false"></i>
