@@ -24,7 +24,16 @@ const LogoImage = (props) => {
     else getUrl();
   }, []);
 
-  return <img alt="Trip background" className="rounded-circle" src={url} />;
+  return (
+    <div className="overlay row justify-content-lg-end justify-content-center">
+      <img
+        alt="Trip background"
+        className="border-turq tb-border rounded-circle"
+        style={{ height: '100px', widht: '100px' }}
+        src={url}
+      />
+    </div>
+  );
 };
 
 export default LogoImage;

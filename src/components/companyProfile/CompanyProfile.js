@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase'; // higher order
 import ReviewSection from './ReviewSection';
-import defaultCover from '../../Images/coverPhoto.jpg';
 import { profileType } from '../../Helpers';
 import LoadingBox from './../dashboard/LoadingBox';
+import LogoImage from '../displayImages/LogoImage';
+import CoverImage from '../displayImages/CoverImage';
 
 // 6 columns on medium and 12 column on small screens
 const CompanyProfile = (props) => {
@@ -17,31 +18,32 @@ const CompanyProfile = (props) => {
     const currProfileType = profileType(auth, profile);
     return (
       <div className="row m-0 justify-content-center">
-        <img src={defaultCover} className="w-100 backDrop"></img>
+        <CoverImage img={company.coverImage} type="companyCover" />
         {/* Logo Image for Overlapping
           <div className="overlay row w-100 justify-content-lg-end justify-content-center">
-            <img
-              class="border-turq tb-border"
-              alt="100x100"
-              src={defaultLogo}
-              data-holder-rendered="true"
-            />
-          </div> */}
+          <img
+          class="border-turq tb-border"
+          alt="100x100"
+          src={defaultLogo}
+          data-holder-rendered="true"
+          />
+        </div> */}
 
         <div className="container align-self-start bg-white frontDrop">
           {/* First section */}
+          <LogoImage img={company.logoImage} type="companyLogo" />
+          {adminMode && (
+            <button
+              type="button"
+              class="btn mt-lg-5 mr-5 btn-lg green-button form-rounded object-hover"
+              onClick={() =>
+                props.history.push('/editprofile/' + props.match.params.id)
+              }
+            >
+              EDIT PROFILE <i class="fa fas fa-edit fa-fw"></i>
+            </button>
+          )}
           <div className="row justify-content-between align-content-center">
-            {adminMode && (
-              <button
-                type="button"
-                class="btn mt-lg-5 mr-5 btn-lg green-button form-rounded object-hover"
-                onClick={() =>
-                  props.history.push('/editprofile/' + props.match.params.id)
-                }
-              >
-                EDIT PROFILE <i class="fa fas fa-edit fa-fw"></i>
-              </button>
-            )}
             {/* Heading */}
             <div className="ml-lg-4 col-lg-7 text-secondary">
               <h1 className="mt-5 tripText">{company.companyName}</h1>
