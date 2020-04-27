@@ -12,40 +12,28 @@ const DisplayTripImages = (props) => {
   //   };
   //   this.getUrl = this.getUrl.bind(this);
   // }
-  const [url, setUrl] = useState('');
-  const [complete, setComplete] = useState(false);
-
+  const [url, setUrl] = useState(spinner);
   const getUrl = () => {
     return storage
       .ref('tripImages')
       .child(props.img)
       .getDownloadURL()
       .then((url) => {
-        if (_isMounted === true) {
           setUrl(url);
-          setComplete(true);
-        }
       });
   };
 
-  let _isMounted = false;
   useEffect(() => {
-    _isMounted = true;
-    let url = spinner;
+    // let url = spinner;
     if (props.img === '') {
       setUrl(coverPhoto);
-      setComplete(true);
     } else {
       setUrl(url);
-      setComplete(true);
       getUrl();
     }
-    return () => {
-      _isMounted = false;
-    };
   }, []);
 
-  if (complete) {
+  // if (complete) {
     if (props.page === 'details') // if we are on the trip details page
       return (
         <img
@@ -58,9 +46,9 @@ const DisplayTripImages = (props) => {
       return (
         <img alt="Trip background" class="card-img-top" src={url} />
       );
-  } else {
-    return <div>Loading...</div>;
-  }
+  // } else {
+  //   return <div>Loading...</div>;
+  // }
 };
 
 export default DisplayTripImages;

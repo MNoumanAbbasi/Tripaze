@@ -3,14 +3,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import cardbg from './card-bg.png';
-import DisplayTripImages from '../displayImages/DisplayTripImages';
+import CardImage from '../displayImages/CardImage';
 
 const TripCard = ({ trip }) => {
   return (
     <Link to={'/trip/' + trip.id} className="nav-link">
       <div class="card content-box m-4 change-card-width">
         <div class="trip-title">
-          <DisplayTripImages img={trip.image} />
+          <CardImage img={trip.image} type="trip" />
           <h4 class="bottom-left change-font darken-bg">{trip.title}</h4>
         </div>
 

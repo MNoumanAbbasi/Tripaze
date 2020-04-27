@@ -6,8 +6,6 @@ import spinner from '../../Images/Spinner.gif';
 const CoverImage = (props) => {
   const [url, setUrl] = useState(spinner);
   const folderName = props.type + 'Images';
-  // if no image available, use default coverPhoto
-  if (props.img === '') setUrl(coverPhoto);
 
   const getUrl = () => {
     return storage
@@ -20,7 +18,10 @@ const CoverImage = (props) => {
   };
 
   useEffect(() => {
-    getUrl();
+    // if no image linked, use default coverPhoto
+    if (props.img === '') setUrl(coverPhoto);
+    // else fetch from database
+    else getUrl();
   }, []);
 
   return (

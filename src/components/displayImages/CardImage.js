@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import storage from '../../config/fbConfig';
+import coverPhoto from '../../Images/coverPhoto.jpg';
 import spinner from '../../Images/Spinner.gif';
 
 const CardImage = (props) => {
   const [url, setUrl] = useState(spinner);
   const folderName = props.type + 'Images';
-  // if no image available, use default coverPhoto
-  if (props.img === '') setUrl(coverPhoto);
 
   const getUrl = () => {
     return storage
@@ -19,7 +18,10 @@ const CardImage = (props) => {
   };
 
   useEffect(() => {
-    getUrl();
+    // if no image linked, use default coverPhoto
+    if (props.img === '') setUrl(coverPhoto);
+    // else fetch from database
+    else getUrl();
   }, []);
 
   return <img alt={`${props.type} Card`} class="card-img-top" src={url} />;
