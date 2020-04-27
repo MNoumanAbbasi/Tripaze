@@ -625,3 +625,7 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
     display: none;
   }
 }
+
+.fix-width {
+  min-width: 5em;
+}
