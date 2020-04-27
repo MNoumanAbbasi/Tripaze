@@ -1,21 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import storage from '../../config/fbConfig';
-import coverPhoto from '../../Images/coverPhoto.jpg';
+import defaultLogo from '../../Images/default-logo.jpg';
 import spinner from '../../Images/Spinner.gif';
 
-const DisplayTripImages = (props) => {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     url: '',
-  //     complete: false,
-  //   };
-  //   this.getUrl = this.getUrl.bind(this);
-  // }
+const LogoImage = (props) => {
   const [url, setUrl] = useState(spinner);
+  const folderName = props.type + 'Images';
+
   const getUrl = () => {
     return storage
-      .ref('tripImages')
+      .ref(folderName)
       .child(props.img)
       .getDownloadURL()
       .then((url) => {
@@ -24,13 +18,10 @@ const DisplayTripImages = (props) => {
   };
 
   useEffect(() => {
-    // let url = spinner;
-    if (props.img === '') {
-      setUrl(coverPhoto);
-    } else {
-      setUrl(url);
-      getUrl();
-    }
+    // if no image linked, use default logo
+    if (props.img === '') setUrl(defaultLogo);
+    // else fetch from database
+    else getUrl();
   }, []);
 
   // if (complete) {
@@ -46,9 +37,6 @@ const DisplayTripImages = (props) => {
       return (
         <img alt="Trip background" class="card-img-top" src={url} />
       );
-  // } else {
-  //   return <div>Loading...</div>;
-  // }
 };
 
-export default DisplayTripImages;
+export default LogoImage;

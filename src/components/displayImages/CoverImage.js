@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import storage from '../../config/fbConfig';
-import coverPhoto from '../../Images/coverPhoto.jpg';
+import defaultCover from '../../Images/coverPhoto.jpg';
 import spinner from '../../Images/Spinner.gif';
 
 const CoverImage = (props) => {
@@ -19,7 +19,7 @@ const CoverImage = (props) => {
 
   useEffect(() => {
     // if no image linked, use default coverPhoto
-    if (props.img === '') setUrl(coverPhoto);
+    if (props.img === '') setUrl(defaultCover);
     // else fetch from database
     else getUrl();
   }, []);
