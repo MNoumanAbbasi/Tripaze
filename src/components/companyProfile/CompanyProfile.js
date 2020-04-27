@@ -27,21 +27,21 @@ const CompanyProfile = (props) => {
               data-holder-rendered="true"
             />
           </div> */}
-        {adminMode && (
-          <button
-            type="button"
-            class="btn mt-lg-5 mr-5 btn-lg green-button form-rounded object-hover"
-            onClick={() =>
-              props.history.push('/editprofile/' + props.match.params.id)
-            }
-          >
-            EDIT PROFILE <i class="fa fas fa-edit fa-fw"></i>
-          </button>
-        )}
 
         <div className="container align-self-start bg-white frontDrop">
           {/* First section */}
           <div className="row justify-content-between align-content-center">
+            {adminMode && (
+              <button
+                type="button"
+                class="btn mt-lg-5 mr-5 btn-lg green-button form-rounded object-hover"
+                onClick={() =>
+                  props.history.push('/editprofile/' + props.match.params.id)
+                }
+              >
+                EDIT PROFILE <i class="fa fas fa-edit fa-fw"></i>
+              </button>
+            )}
             {/* Heading */}
             <div className="ml-lg-4 col-lg-7 text-secondary">
               <h1 className="mt-5 tripText">{company.companyName}</h1>
