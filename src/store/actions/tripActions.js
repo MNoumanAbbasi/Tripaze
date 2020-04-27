@@ -15,13 +15,14 @@ export const createTrip = (trip, currProfile) => {
     trip.departureDate = newDate;
 
     // storing departures as lower case for search
-    console.log(trip.destinations);
-    const destsSeparated = trip.destinations
-      .map((loc) => loc.split(' '))
-      .flat();
-    const destinationsLowerCase = destsSeparated.map((loc) =>
+    const destinationsLowerCase = trip.destinations.map((loc) =>
       loc.toLowerCase()
     );
+
+    const destsSeparated = destinationsLowerCase
+      .map((loc) => loc.split(' '))
+      .flat()
+      .concat(destinationsLowerCase);
 
     firestore
       .collection('Trips')
@@ -29,7 +30,7 @@ export const createTrip = (trip, currProfile) => {
         ...trip, // takes all the properties from createTrip
         companyId: authorId,
         companyName: currProfile.companyName,
-        destinationsLowerCase: destinationsLowerCase,
+        destinationsLowerCase: destsSeparated,
       })
       .then(() => {
         dispatch({ type: 'CREATE_TRIP', trip: trip });
@@ -54,11 +55,22 @@ export const editTrip = (trip, tripID) => {
     const newDate = dateSplit[1] + ' ' + dateSplit[2] + ', ' + dateSplit[3];
     trip.departureDate = newDate;
 
+    // storing departures as lower case for search
+    const destinationsLowerCase = trip.destinations.map((loc) =>
+      loc.toLowerCase()
+    );
+
+    const destsSeparated = destinationsLowerCase
+      .map((loc) => loc.split(' '))
+      .flat()
+      .concat(destinationsLowerCase);
+
     firestore
       .collection('Trips')
       .doc(tripID)
       .update({
         ...trip, // takes all the properties from createTrip
+        destinationsLowerCase: destsSeparated,
       })
       .then(() => {
         dispatch({ type: 'EDIT_TRIP', trip: trip });

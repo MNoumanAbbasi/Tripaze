@@ -10,9 +10,11 @@ export class SearchBar extends Component {
     destinations: '',
   };
 
+  _isMounted = false;
   UNSAFE_componentWillMount() {
+    this._isMounted = true;
     this.unlisten = this.props.history.listen((location, action) => {
-      if (!location.pathname.startsWith('/searchResults')) {
+      if (this._isMounted && !location.pathname.startsWith('/searchResults')) {
         this.setState({
           // store the input on form fields on the state
           destinations: '',
@@ -23,6 +25,7 @@ export class SearchBar extends Component {
 
   UNSAFE_componentWillUnmount() {
     this.unlisten();
+    this._isMounted = false;
   }
 
   handleChange = (e) => {

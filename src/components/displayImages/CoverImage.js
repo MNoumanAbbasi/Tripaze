@@ -19,7 +19,8 @@ const CoverImage = (props) => {
 
   useEffect(() => {
     // if no image linked, use default coverPhoto
-    if (props.img === '') setUrl(defaultCover);
+    console.log(props.img);
+    if (!props.img || props.img === '') setUrl(defaultCover);
     // else fetch from database
     else getUrl();
   }, []);

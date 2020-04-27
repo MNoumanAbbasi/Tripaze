@@ -21,7 +21,10 @@ const SearchResults = (props) => {
       return (
         <NoTripsFound
           show={modalShow}
-          onHide={() => setModalShow(false)}
+          onHide={() => {
+            setModalShow(false);
+            props.history.push('/');
+          }}
           dest={props.match.params.dest}
         />
       );
