@@ -6,7 +6,6 @@ import { firestoreConnect } from 'react-redux-firebase'; // higher order
 import ReviewSection from './ReviewSection';
 import { profileType } from '../../Helpers';
 import LoadingBox from './../dashboard/LoadingBox';
-import LogoImage from '../displayImages/LogoImage';
 import CoverImage from '../displayImages/CoverImage';
 
 // 6 columns on medium and 12 column on small screens
