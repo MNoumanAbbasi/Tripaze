@@ -116,6 +116,8 @@ export const signUpCompany = (newUser) => {
           companyName: newUser.companyName,
           contact: newUser.contact,
           type: 'Company',
+          coverImage: '',
+          logoImage: '',
         });
       })
       .then(() => {
