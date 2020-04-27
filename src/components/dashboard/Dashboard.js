@@ -79,17 +79,12 @@ class Dashboard extends Component {
             <hr className="greenline mw-100"></hr>
 
             <div className="row justify-content-center justify-content-around align-items-end">
-<<<<<<< HEAD
               <h3 className="home-heading mt-5">ALL TRIPS</h3>
-              <img src={logo_wt} className="logo-no-text logo-dims ml-3"></img>
-=======
-              <h1 className="home-heading mt-5">ALL TRIPS</h1>
               <img
-                alt="Logo"
                 src={logo_wt}
                 className="logo-no-text logo-dims ml-3"
+                alt="Logo"
               ></img>
->>>>>>> origin/master
             </div>
             <div className="container">
               <TripsList trips={trips} />
