@@ -306,7 +306,7 @@
     "on-finished": "^2.3.0",
     "on-headers": "^1.0.2",
     "onetime": "^1.1.0",
-    "open": "^0.0.5",
+    "open": "^6.0.0",
     "optimist": "^0.6.1",
     "os-browserify": "^0.2.1",
     "os-homedir": "^1.0.2",
