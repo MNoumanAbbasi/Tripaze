@@ -20,6 +20,7 @@ const ImageSection = (props) => {
   const [isFileChosen, setIsFileChosen] = useState(false);
   const [progress, setProgress] = useState(0);
   const [isUploaded, setIsUploaded] = useState(false);
+  const folderName = props.imageCategory + 'Images/';
 
   const handleUpload = (e) => {
     setIsFileChosen(true);
@@ -27,7 +28,7 @@ const ImageSection = (props) => {
     setImage(image);
 
     // Uploading file
-    const uploadTask = storage.ref(`tripImages/${image.name}`).put(image);
+    const uploadTask = storage.ref(`${folderName + image.name}`).put(image);
     uploadTask.on(
       'state_changed',
       (snapshot) => {
@@ -68,7 +69,7 @@ const ImageSection = (props) => {
   const handleDelete = () => {
     setImage('');
     setIsFileChosen(false);
-    const deleteRef = storage.ref(`tripImages/${image.name}`);
+    const deleteRef = storage.ref(`${folderName + image.name}`);
     // Delete the file
     deleteRef
       .delete()

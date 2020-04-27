@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import FAQSection from './FAQSection';
 import { deleteTrip } from '../../store/actions/tripActions';
 import cardbg from './card-bg.png';
-import DisplayImage from './DisplayImage';
+import CoverImage from '../displayImages/CoverImage';
 import { profileType } from '../../Helpers';
 import Confirmation from '../dialogBoxes/Confirmation';
 import LoadingBox from './../dashboard/LoadingBox';
@@ -60,7 +60,7 @@ function TripDetails(props) {
           props.history.push('/');
         }}
       />
-      <DisplayImage img={trip.image} page={'details'} />
+      <CoverImage img={trip.image} type="trip" />
       <div className="container thirdDrop">
         <div className="row justify-content-lg-end justify-content-sm-around">
           {editButton}
@@ -128,7 +128,7 @@ function TripDetails(props) {
               })}
             </div>
           </div>
-          <table class="mr-lg-4 mt-3 col-lg-4 table table-border tb-border border-turq object-hover table-md-responsive">
+          <table class="mr-lg-4 mt-3 col-lg-4 table table-border tb-border border-turq table-md-responsive">
             <thead>
               <tr class="bg-turq">
                 <th class="text-white text-center" scope="col">
@@ -136,19 +136,15 @@ function TripDetails(props) {
                 </th>
               </tr>
             </thead>
-            {/* EDIT BELOW HERE and keep the classes */}
-            <tr className="text-center tr-highlight">
-              <td>BBQ</td>
-            </tr>
-            <tr className=" text-center tr-highlight">
-              <td>Skiing</td>
-            </tr>
-            <tr className="text-center tr-highlight">
-              <td>Snow</td>
-            </tr>
-            <tr className="text-center tr-highlight">
-              <td>Bonfire</td>
-            </tr>
+            <tbody>
+              {trip.attractions.map((attraction) => {
+                return (
+                  <tr className="text-center">
+                    <td>{attraction}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
           </table>
         </div>
         <div className="row p-4 mt-5 justify-content-center align-content-centre text-turq">
