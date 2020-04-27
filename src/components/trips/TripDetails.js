@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import FAQSection from './FAQSection';
 import { deleteTrip } from '../../store/actions/tripActions';
 import cardbg from './card-bg.png';
-import DisplayImage from './DisplayImage';
+import CoverImage from '../displayImages/CoverImage';
 import { profileType } from '../../Helpers';
 import Confirmation from '../dialogBoxes/Confirmation';
 import LoadingBox from './../dashboard/LoadingBox';
@@ -60,7 +60,7 @@ function TripDetails(props) {
           props.history.push('/');
         }}
       />
-      <DisplayImage img={trip.image} page={'details'} />
+      <CoverImage img={trip.image} type="trip" />
       <div className="container thirdDrop">
         <div className="row justify-content-lg-end justify-content-sm-around">
           {editButton}
