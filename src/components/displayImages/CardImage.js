@@ -24,7 +24,7 @@ const CardImage = (props) => {
     else getUrl();
   }, []);
 
-  return <img alt={`${props.type} Card`} class="card-img-top" src={url} />;
+  return <img alt={`${props.type} Card`} className="card-img-top" src={url} />;
 };
 
 export default CardImage;
