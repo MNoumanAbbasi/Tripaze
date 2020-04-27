@@ -36,7 +36,7 @@ class CompanyProfile extends Component {
               <div className="ml-lg-4 col-lg-7 text-secondary">
                 <h1 className="mt-5 tripText">{company.companyName}</h1>
               </div>
-              {/* Description + Card */}
+              {/* Description*/}
               <div className=" row ml-lg-4 col-lg-7 text-secondary">
                 <hr class="mt-2 col-12 ml-0 divider"></hr>
                 <h3 className="mt-5 text-justify text-secondary">
@@ -55,7 +55,7 @@ class CompanyProfile extends Component {
               </div>
               {/* {Company Card} */}
               {/* For Big screen */}
-              <div class="card content-box mr-5 change-card-width mt-3 bigscreen">
+              <div class="card content-box mr-lg-5 change-card-width mt-3 bigscreen">
                 <div class="card-body">
                   <h6 class="card-title change-font font-weight-bold text-uppercase colored">
                     <i
@@ -74,7 +74,7 @@ class CompanyProfile extends Component {
                 </div>
               </div>
               {/* Company card for small screen */}
-              <div class="smallscreen ml-3 mt-3">
+              <div class="smallscreen ml-3 mt-3 mr-md-4">
                 <h6 class="card-title change-font font-weight-bold text-uppercase colored">
                   <i
                     class="fa fa-map-marker fa-2x fa-fw"
