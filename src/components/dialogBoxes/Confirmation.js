@@ -5,6 +5,7 @@ function Confirmation(props) {
   const cancelButton = (
     <button
       type="button"
+      key="Cancel"
       class="btn btn-lg r-green-button form-rounded fix-width"
       onClick={props.onHide}
     >
@@ -14,6 +15,7 @@ function Confirmation(props) {
   const deleteButton = (
     <button
       type="button"
+      key="Yes"
       class="btn btn-lg r-red-button form-rounded fix-width"
       onClick={props.onDelete}
     >

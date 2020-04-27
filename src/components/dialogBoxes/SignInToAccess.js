@@ -6,6 +6,7 @@ function SignInToAccess(props) {
   const signInButton = (
     <NavLink to="/signin" class="nav-link">
       <button
+        key="SignIn"
         class="btn btn-secondary light-button mr-lg-3 my-2 my-lg-0 form-rounded"
         type="button"
       >
@@ -17,6 +18,7 @@ function SignInToAccess(props) {
   const signUpButton = (
     <NavLink to="/signupchoice" class="nav-link">
       <button
+        key="SignUp"
         class="btn btn-secondary dark-button mr-lg-3 my-2 my-lg-0 form-rounded"
         type="button"
       >
