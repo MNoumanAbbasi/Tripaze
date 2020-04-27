@@ -1,38 +1,38 @@
-import React, { Component } from 'react';
+import React from 'react';
 import TripsList from '../trips/TripsList';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase'; // higher order
+import LoadingBox from '../dashboard/LoadingBox';
+import NoTripsFound from '../dialogBoxes/NoTripsFound';
 
-// 6 columns on medium and 12 column on small screens
-class SearchResults extends Component {
-  render() {
-    const { trips, isLoading } = this.props;
-    console.log('Trips', trips);
-    const isInitialized = !isLoading && trips;
-    if (isInitialized) {
-      if (trips.length > 0) {
-        return (
-          <div className="container cardslist-margin">
-            <TripsList trips={trips} />
-          </div>
-        );
-      } else {
-        return (
-          <div>
-            No trips found with destination "{this.props.match.params.dest}"
-          </div>
-        );
-      }
+const SearchResults = (props) => {
+  const [modalShow, setModalShow] = React.useState(true);
+  const { trips, isLoading } = props;
+  const isInitialized = !isLoading && trips;
+  if (isInitialized) {
+    if (trips.length > 0) {
+      return (
+        <div className="container cardslist-margin">
+          <TripsList trips={trips} />
+        </div>
+      );
     } else {
-      return <div>Loading...</div>;
+      return (
+        <NoTripsFound
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          dest={props.match.params.dest}
+        />
+      );
     }
+  } else {
+    return <LoadingBox />;
   }
-}
+};
 
 // Map state from store to props in component
 const mapStateToProps = (state, ownprops) => {
-  console.log(ownprops);
   const requests = state.firestore.status.requesting;
   const isLoading = requests
     ? Object.values(requests).some((value) => value === true)
