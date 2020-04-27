@@ -15,7 +15,11 @@ export const createTrip = (trip, currProfile) => {
     trip.departureDate = newDate;
 
     // storing departures as lower case for search
-    const destinationsLowerCase = trip.destinations.map((loc) =>
+    console.log(trip.destinations);
+    const destsSeparated = trip.destinations
+      .map((loc) => loc.split(' '))
+      .flat();
+    const destinationsLowerCase = destsSeparated.map((loc) =>
       loc.toLowerCase()
     );
 
