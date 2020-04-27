@@ -31,12 +31,11 @@ function SignInToAccess(props) {
       show={props.show}
       onHide={props.onHide}
       buttons={buttons}
-      title="Not Signed In"
-      heading={'Sign in to add a ' + props.section}
+      title={'Sign in to add a ' + props.section}
       message={
         'You can only add ' +
         props.section +
-        's if you are signed in. If you already have an account, click on sign in. To create an account, click on sign up'
+        's if you are signed in. If you already have an account, click on sign in. To create an account, click on sign up.'
       }
     />
   );

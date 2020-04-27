@@ -27,7 +27,6 @@ function Confirmation(props) {
       onHide={props.onHide}
       buttons={buttons}
       title="Deleting Trip"
-      heading="Are you sure?"
       message="You are about to delete a trip. Are you sure you want to continue?"
     />
   );
