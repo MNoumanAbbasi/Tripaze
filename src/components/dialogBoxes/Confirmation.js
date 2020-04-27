@@ -25,7 +25,6 @@ function Confirmation(props) {
     <GeneralDialogBox
       show={props.show}
       onHide={props.onHide}
-      onDelete={props.onDelete}
       buttons={buttons}
       title="Deleting Trip"
       heading="Are you sure?"
