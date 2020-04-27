@@ -42,7 +42,7 @@ export class SignUpUser extends Component {
               <input
                 onChange={this.handleChange}
                 type="text"
-                id="username"
+                id="userName"
                 class="form-control mb-4"
                 placeholder="Full Name"
                 required
