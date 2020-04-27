@@ -1,14 +1,23 @@
-import Modal from 'react-bootstrap/Modal';
 import React from 'react';
+import GeneralDialogBox from './GeneralDialogBox';
 
 function Confirmation(props) {
-  return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
+  const cancelButton = (
+    <button
+      type="button"
+      class="btn btn-lg r-green-button form-rounded object-hover"
+      onClick={props.onHide}
     >
+      Cancel
+    </button>
+  );
+  const deleteButton = (
+    <button
+      type="button"
+      class="btn btn-lg red-button form-rounded object-hover"
+      onClick={props.onDelete}
+    >
+<<<<<<< HEAD
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           {props.heading}
@@ -35,6 +44,22 @@ function Confirmation(props) {
         </button>
       </Modal.Footer>
     </Modal>
+=======
+      Yes
+    </button>
+  );
+  const buttons = [cancelButton, deleteButton];
+  return (
+    <GeneralDialogBox
+      show={props.show}
+      onHide={props.onHide}
+      onDelete={props.onDelete}
+      buttons={buttons}
+      title="Deleting Trip"
+      heading="Are you sure?"
+      message="You are about to delete a trip. Are you sure you want to continue?"
+    />
+>>>>>>> origin/master
   );
 }
 

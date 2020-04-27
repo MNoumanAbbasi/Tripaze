@@ -5,8 +5,6 @@ export const signIn = (credentials) => {
   return (dispatch, getState, { _, getFirestore }) => {
     dispatch({ type: 'PROFILE_LOADING' });
     // this variable will have a reference to our database
-    const firestore = getFirestore();
-    var uid;
     firebase
       .auth()
       .signInWithEmailAndPassword(credentials.email, credentials.password)
