@@ -28,7 +28,7 @@ function Confirmation(props) {
         </button>
         <button
           type="button"
-          class="btn btn-lg red-button form-rounded object-hover"
+          class="btn btn-lg r-red-button form-rounded object-hover"
           onClick={props.onDelete}
         >
           Yes

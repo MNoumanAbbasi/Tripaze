@@ -54,7 +54,8 @@ class CompanyProfile extends Component {
                 </div>
               </div>
               {/* {Company Card} */}
-              <div class="card content-box mr-5 change-card-width order-lg-2 order-1">
+              {/* For Big screen */}
+              <div class="card content-box mr-5 change-card-width mt-3 bigscreen">
                 <div class="card-body">
                   <h6 class="card-title change-font font-weight-bold text-uppercase colored">
                     <i
@@ -71,6 +72,23 @@ class CompanyProfile extends Component {
                   <hr></hr>
                   <h6>This is where the Rating bar will be</h6>
                 </div>
+              </div>
+              {/* Company card for small screen */}
+              <div class="smallscreen ml-3 mt-3">
+                <h6 class="card-title change-font font-weight-bold text-uppercase colored">
+                  <i
+                    class="fa fa-map-marker fa-2x fa-fw"
+                    aria-hidden="true"
+                  ></i>
+                  Address of Company
+                </h6>
+                <hr></hr>
+                <h6 class="card-title change-font font-weight-bold text-uppercase colored">
+                  <i class="fa fa-phone fa-2x fa-fw" aria-hidden="true"></i>
+                  {company.contact}
+                </h6>
+                <hr></hr>
+                <h6>This is where the Rating bar will be</h6>
               </div>
             </div>
             {/* Second Section */}

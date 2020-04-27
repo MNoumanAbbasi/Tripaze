@@ -32,7 +32,7 @@ function TripDetails(props) {
     editButton = (
       <button
         type="button"
-        class="btn mt-lg-5 mr-5 btn-lg green-button form-rounded object-hover"
+        class="btn mr-5 btn-lg green-button form-rounded"
         onClick={() => props.history.push('/edittrip/' + props.match.params.id)}
       >
         EDIT TRIP <i class="fa fas fa-edit fa-fw"></i>
@@ -41,7 +41,7 @@ function TripDetails(props) {
     deleteButton = (
       <button
         type="button"
-        class="btn btn-lg  mt-lg-5 mr-1 red-button form-rounded object-hover"
+        class="btn btn-lg mr-1 red-button form-rounded"
         onClick={() => setModalShow(true)}
         // onClick={() => {
         //   props.deleteTrip(props.match.params.id);
@@ -66,8 +66,8 @@ function TripDetails(props) {
         message="You are about to delete a trip. Are you sure you want to continue?"
       />
       <DisplayImage img={trip.image} page={'details'} />
-      <div className="container overlay align-self-end">
-        <div className="row justify-content-lg-end justify-content-center">
+      <div className="container thirdDrop">
+        <div className="row justify-content-lg-end justify-content-sm-around">
           {editButton}
           {deleteButton}
         </div>
