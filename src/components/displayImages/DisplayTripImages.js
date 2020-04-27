@@ -13,7 +13,7 @@ const LogoImage = (props) => {
       .child(props.img)
       .getDownloadURL()
       .then((url) => {
-          setUrl(url);
+        setUrl(url);
       });
   };
 
@@ -24,19 +24,7 @@ const LogoImage = (props) => {
     else getUrl();
   }, []);
 
-  // if (complete) {
-    if (props.page === 'details') // if we are on the trip details page
-      return (
-        <img
-          alt="Trip background"
-          src={url}
-          className="w-100 backDrop"
-        ></img>
-      );
-    else
-      return (
-        <img alt="Trip background" class="card-img-top" src={url} />
-      );
+  return <img alt="Trip background" className="rounded-circle" src={url} />;
 };
 
 export default LogoImage;
