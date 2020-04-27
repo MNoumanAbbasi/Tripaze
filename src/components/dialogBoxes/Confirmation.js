@@ -5,7 +5,7 @@ function Confirmation(props) {
   const cancelButton = (
     <button
       type="button"
-      class="btn btn-lg r-green-button form-rounded object-hover"
+      class="btn btn-lg r-green-button form-rounded fix-width"
       onClick={props.onHide}
     >
       Cancel
@@ -14,7 +14,7 @@ function Confirmation(props) {
   const deleteButton = (
     <button
       type="button"
-      class="btn btn-lg red-button form-rounded object-hover"
+      class="btn btn-lg r-red-button form-rounded fix-width"
       onClick={props.onDelete}
     >
       Yes

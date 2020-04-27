@@ -112,7 +112,7 @@ const FAQSection = (props) => {
   if (isAddQuestionState) {
     button = (
       <button
-        className="btn mt-3 form-rounded red-button"
+        className="btn mt-3 form-rounded red-button border-red"
         onClick={() => setIsAddQuestionState(false)}
       >
         Cancel

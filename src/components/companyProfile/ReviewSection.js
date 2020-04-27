@@ -85,7 +85,7 @@ const ReviewSection = (props) => {
   if (isAddReviewState) {
     button = (
       <button
-        className="btn mt-3 form-rounded red-button"
+        className="btn mt-3 form-rounded red-button border-red"
         onClick={() => setIsAddReviewState(false)}
       >
         Cancel
