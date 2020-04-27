@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { createTrip } from '../../store/actions/tripActions';
 import { Redirect } from 'react-router-dom';
 import { profileType } from '../../Helpers';
-import FieldArraySection from './FieldArraySection';
-import ImageSection from './ImageSection';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import FieldArraySection from '../form/FieldArraySection';
+import InputField from '../form/InputField';
+import ImageSection from '../form/ImageSection';
+import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 
 export const tripSchema = yup.object({
@@ -40,18 +41,6 @@ export const tripSchema = yup.object({
   image: yup.string(),
 });
 
-export const InputField = ({ label, name, type, as = '' }) => {
-  return (
-    <div className="input-field">
-      <label htmlFor={name} style={{ display: 'block' }}>
-        {label}
-      </label>
-      <Field name={name} type={type} min="0" as={as} />
-      <ErrorMessage name={name} />
-    </div>
-  );
-};
-
 const CreateTrip = (props) => {
   const { auth, profile, isLoading } = props;
   const isInitialized = !isLoading && profile && auth;
@@ -81,7 +70,7 @@ const CreateTrip = (props) => {
         }}
         validationSchema={tripSchema}
         onSubmit={(values) => {
-          console.log(values);
+          console.log('New Trip', values);
           props.createTrip(values, props.profile);
           props.history.push('/');
         }}
@@ -126,6 +115,7 @@ const CreateTrip = (props) => {
             <ImageSection
               className="image-section"
               imageName={values.image}
+              imageCategory='trip'
               handleImgNameChange={(img) => (values.image = img)}
             />
 

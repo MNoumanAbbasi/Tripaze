@@ -4,10 +4,11 @@ import { editTrip } from '../../store/actions/tripActions';
 import { Redirect } from 'react-router-dom';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
-import FieldArraySection from './FieldArraySection';
-import ImageSection from './ImageSection';
+import FieldArraySection from '../form/FieldArraySection';
+import ImageSection from '../form/ImageSection';
 import { Formik, Form } from 'formik';
-import { tripSchema, InputField } from './CreateTrip';
+import { tripSchema } from './CreateTrip';
+import InputField from '../form/InputField';
 
 const EditTrip = (props) => {
   const { trip, isLoading, auth } = props;
@@ -82,6 +83,7 @@ const EditTrip = (props) => {
             <ImageSection
               className="image-section"
               imageName={values.image}
+              imageCategory='trip'
               handleImgNameChange={(img) => (values.image = img)}
             />
 
