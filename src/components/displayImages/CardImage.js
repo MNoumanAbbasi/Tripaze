@@ -3,9 +3,10 @@ import storage from '../../config/fbConfig';
 import spinner from '../../Images/Spinner.gif';
 
 const CardImage = (props) => {
-  const [url, setUrl] = useState('');
-  const [complete, setComplete] = useState(false);
+  const [url, setUrl] = useState(spinner);
   const folderName = props.type + 'Images';
+  // if no image available, use default coverPhoto
+  if (props.img === '') setUrl(coverPhoto);
 
   const getUrl = () => {
     return storage
@@ -13,30 +14,15 @@ const CardImage = (props) => {
       .child(props.img)
       .getDownloadURL()
       .then((url) => {
-        if (_isMounted === true) {
-          setUrl(url);
-          setComplete(true);
-        }
+        setUrl(url);
       });
   };
 
-  let _isMounted = false;
   useEffect(() => {
-    _isMounted = true;
-    let url = spinner;
-    setUrl(url);
-    setComplete(true);
     getUrl();
-    return () => {
-      _isMounted = false;
-    };
   }, []);
 
-  if (complete) {
-    return <img alt={`${props.type} background`} class="card-img-top" src={url} />;
-  } else {
-    return <div>Loading...</div>;
-  }
+  return <img alt={`${props.type} Card`} class="card-img-top" src={url} />;
 };
 
 export default CardImage;

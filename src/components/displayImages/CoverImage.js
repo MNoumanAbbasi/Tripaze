@@ -4,9 +4,10 @@ import coverPhoto from '../../Images/coverPhoto.jpg';
 import spinner from '../../Images/Spinner.gif';
 
 const CoverImage = (props) => {
-  const [url, setUrl] = useState('');
-  const [complete, setComplete] = useState(false);
+  const [url, setUrl] = useState(spinner);
   const folderName = props.type + 'Images';
+  // if no image available, use default coverPhoto
+  if (props.img === '') setUrl(coverPhoto);
 
   const getUrl = () => {
     return storage
@@ -14,41 +15,17 @@ const CoverImage = (props) => {
       .child(props.img)
       .getDownloadURL()
       .then((url) => {
-        if (_isMounted === true) {
-          setUrl(url);
-          setComplete(true);
-        }
+        setUrl(url);
       });
   };
 
-  let _isMounted = false;
   useEffect(() => {
-    _isMounted = true;
-    let url = spinner;
-    if (props.img === '') {
-      setUrl(coverPhoto);
-      setComplete(true);
-    } else {
-      setUrl(url);
-      setComplete(true);
-      getUrl();
-    }
-    return () => {
-      _isMounted = false;
-    };
+    getUrl();
   }, []);
 
-  if (complete) {
-    return (
-      <img
-        alt={`${props.type} Cover`}
-        src={url}
-        className="w-100 backDrop"
-      ></img>
-    );
-  } else {
-    return <div>Loading...</div>;
-  }
+  return (
+    <img alt={`${props.type} Cover`} src={url} className="w-100 backDrop"></img>
+  );
 };
 
 export default CoverImage;
