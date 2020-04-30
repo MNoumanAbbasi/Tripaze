@@ -10,6 +10,7 @@ import CoverImage from '../displayImages/CoverImage';
 import { profileType } from '../../Helpers';
 import Confirmation from '../dialogBoxes/Confirmation';
 import LoadingBox from './../dashboard/LoadingBox';
+import MapContainer from './MapContainer';
 
 // class container section is material
 // class trip-details is from our own css
@@ -151,6 +152,7 @@ function TripDetails(props) {
           <i class="fa fa-question-circle fa-3x fa-fw" aria-hidden="false"></i>
           <h3 className="tripText">Frequently Asked Questions</h3>
         </div>
+        <MapContainer />
         <FAQSection
           FAQs={FAQs}
           tripID={props.match.params.id}
