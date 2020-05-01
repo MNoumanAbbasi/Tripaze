@@ -25,13 +25,13 @@ Geocode.fromAddress('Eiffel Tower').then(
   }
 );
 
-const MapContainer = () => {
+const MapContainer = (props, destinationsArray) => {
   const [coordinates, setCoordinates] = useState([]);
   const getCoordinates = (location) => {
     Geocode.fromAddress(location).then(
       (response) => {
         const coords = response.results[0].geometry.location;
-        setCoordinates([]);
+        setCoordinates(coordinates.push(coords));
         // console.log(lat, lng);
       },
       (error) => {
@@ -39,10 +39,14 @@ const MapContainer = () => {
       }
     );
   };
+  // destinationsArray.forEach((destination) => {
+  //   getCoordinates(destination);
+  // });
+  console.log(coordinates);
 
   return (
     <Map
-      google={this.props.google}
+      google={props.google}
       zoom={14}
       style={mapStyles}
       initialCenter={{
