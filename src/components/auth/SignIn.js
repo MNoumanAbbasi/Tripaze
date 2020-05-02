@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { signIn } from '../../store/actions/authActions';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 // all css are from the materialized CSS class
 export class SignIn extends Component {
@@ -82,7 +82,7 @@ export class SignIn extends Component {
             </div>
             <hr></hr>
             <div className="text-center">
-              <a href="/forgetpassword">Forgot Password?</a>
+              <Link to="/forgetpassword">Forgot Password?</Link>
             </div>
           </form>
         </div>

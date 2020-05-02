@@ -21,7 +21,7 @@ const ForgetPassword = (props) => {
     <div className="row m-0 full-height-width">
       <div className="col-lg-3 col-md-4 col-sm-6 center-align">
         <form onSubmit={handleSubmit} className="change-font-opensans ">
-          <h3 class="mt-20 mb-4 text-center">Sign In</h3>
+          <h3 class="mt-20 mb-4 text-center">Forget Password</h3>
 
           <div>
             <input
