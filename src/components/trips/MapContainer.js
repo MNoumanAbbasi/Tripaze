@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import Geocode from 'react-geocode';
+import {geoCo} from 'react-places-autocomplete';
 
 const mapStyles = {
   width: '50%',
   height: '50%',
 };
+
 Geocode.setApiKey('AIzaSyAdrE2IZMrS6t9XpbPNN5gbHNwaGt2biNs');
 Geocode.setLanguage('en');
 Geocode.setRegion('pk');
