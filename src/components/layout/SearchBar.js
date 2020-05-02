@@ -38,7 +38,10 @@ export class SearchBar extends Component {
   handleSubmit = (e) => {
     // dont want the default action of page being reloaded
     e.preventDefault();
-    this.props.history.push('/searchResults/' + this.state.destinations);
+    this.props.history.push({
+      pathname: '/searchResults',
+      state: { dest: [this.state.destinations] },
+    });
   };
 
   render() {

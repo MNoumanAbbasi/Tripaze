@@ -12,9 +12,20 @@ const SearchResults = (props) => {
   const isInitialized = !isLoading && trips;
   if (isInitialized) {
     if (trips.length > 0) {
+      const filteredTrips = trips.filter((trip) => {
+        let show = false;
+        let filteredDest;
+        for (filteredDest of props.location.state.dest) {
+          if (trip.destinationsLowerCase.includes(filteredDest.toLowerCase())) {
+            show = true;
+            break;
+          }
+        }
+        return show;
+      });
       return (
         <div className="container cardslist-margin">
-          <TripsList trips={trips} />
+          <TripsList trips={filteredTrips} />
         </div>
       );
     } else {
@@ -51,16 +62,19 @@ export default compose(
   connect(mapStateToProps),
   // tells us which collections to connect to in our firebase project whenever this component, namely dashboard, is active
   // Whenever collection trip is changed, it would call the firestore reducer which would update the state of this firestore
-  firestoreConnect((props) => [
-    {
-      collection: 'Trips',
-      where: [
-        [
-          'destinationsLowerCase',
-          'array-contains',
-          props.match.params.dest.toLowerCase(),
-        ],
-      ],
-    },
-  ])
+  firestoreConnect((props) => {
+    return [
+      {
+        collection: 'Trips',
+        // where: [
+        //   [
+        //     'destinationsLowerCase',
+        //     'array-contains',
+        //     props.location.state.dest.toLowerCase(),
+        //   ],
+        //   // ['companyName', '==', 'Chakoar'],
+        // ],
+      },
+    ];
+  })
 )(SearchResults);
