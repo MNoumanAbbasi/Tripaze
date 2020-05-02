@@ -11,6 +11,7 @@ import SearchBar from '../layout/SearchBar';
 import { searchBarShow } from '../../store/actions/filterActions';
 import LoadingBox from './LoadingBox';
 import Calendar from './Calendar';
+import FilterBar from '../filterBar/FilterBar';
 
 let lastScrollY = 0;
 
@@ -71,6 +72,7 @@ class Dashboard extends Component {
               centreSearchBar={true}
             />
             <Calendar />
+            <FilterBar trips={trips} />
             {/* <a href="#tripcards" className="scroll-button ">
               <span></span>
               <span></span>
