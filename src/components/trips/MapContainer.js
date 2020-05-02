@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import Geocode from 'react-geocode';
-import {geocodeByAddress, getLatLng} from 'react-places-autocomplete';
 
 const mapStyles = {
   width: '50%',
   height: '50%',
+};
+
+// setting pakistan's geographical limits
+const countryLimits = {
+  north: 37.5,
+  south: 24.0,
+  west: 61.0,
+  east: 75.5,
 };
 
 Geocode.setApiKey('AIzaSyAdrE2IZMrS6t9XpbPNN5gbHNwaGt2biNs');
