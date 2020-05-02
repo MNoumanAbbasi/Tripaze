@@ -6,14 +6,24 @@ import { withRouter } from 'react-router-dom';
 class FilterBar extends Component {
   componentDidMount() {
     this.destinationsChecked = new Set();
+    this.departuresChecked = new Set();
   }
 
-  toggleCheckbox = (label) => {
+  toggleCheckboxDest = (label) => {
     console.log(label);
     if (this.destinationsChecked.has(label)) {
       this.destinationsChecked.delete(label);
     } else {
       this.destinationsChecked.add(label);
+    }
+  };
+
+  toggleCheckboxDep = (label) => {
+    console.log(label);
+    if (this.departuresChecked.has(label)) {
+      this.departuresChecked.delete(label);
+    } else {
+      this.departuresChecked.add(label);
     }
   };
 
@@ -23,9 +33,13 @@ class FilterBar extends Component {
     for (const dest of this.destinationsChecked) {
       destinations.push(dest);
     }
+    let departures = [];
+    for (const dep of this.departuresChecked) {
+      departures.push(dep);
+    }
     this.props.history.push({
       pathname: '/searchResults',
-      state: { dest: destinations },
+      state: { dest: destinations, departureLocs: departures },
     });
   };
 
@@ -36,12 +50,23 @@ class FilterBar extends Component {
         if (!destinations.includes(dest)) destinations.push(dest);
       });
     });
+    let departures = [];
+    this.props.trips.map((trip) => {
+      if (!departures.includes(trip.departureLoc))
+        departures.push(trip.departureLoc);
+    });
     return (
       <form onSubmit={this.handleFormSubmit}>
         <DropdownButton id="dropdown-item-button" title="Destinations">
           <CheckboxContainer
-            handleCheckboxChange={this.toggleCheckbox}
+            handleCheckboxChange={this.toggleCheckboxDest}
             items={destinations}
+          />
+        </DropdownButton>
+        <DropdownButton id="dropdown-item-button" title="Departure Locations">
+          <CheckboxContainer
+            handleCheckboxChange={this.toggleCheckboxDep}
+            items={departures}
           />
         </DropdownButton>
 

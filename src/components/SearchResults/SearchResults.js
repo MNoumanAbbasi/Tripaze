@@ -15,8 +15,15 @@ const SearchResults = (props) => {
       const filteredTrips = trips.filter((trip) => {
         let show = false;
         let filteredDest;
+        let filteredDep;
         for (filteredDest of props.location.state.dest) {
           if (trip.destinationsLowerCase.includes(filteredDest.toLowerCase())) {
+            show = true;
+            break;
+          }
+        }
+        for (filteredDep of props.location.state.departureLocs) {
+          if (trip.departureLoc === filteredDep) {
             show = true;
             break;
           }
