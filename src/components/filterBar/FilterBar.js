@@ -4,13 +4,25 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import { withRouter } from 'react-router-dom';
 
 class FilterBar extends Component {
+  state = {
+    min: 0,
+    max: 9999,
+  };
+
   componentDidMount() {
     this.destinationsChecked = new Set();
     this.departuresChecked = new Set();
+    this.companiesChecked = new Set();
   }
 
+  handleChange = (e) => {
+    this.setState({
+      // is an email being entered or a password?
+      [e.target.id]: e.target.value,
+    });
+  };
+
   toggleCheckboxDest = (label) => {
-    console.log(label);
     if (this.destinationsChecked.has(label)) {
       this.destinationsChecked.delete(label);
     } else {
@@ -19,11 +31,18 @@ class FilterBar extends Component {
   };
 
   toggleCheckboxDep = (label) => {
-    console.log(label);
     if (this.departuresChecked.has(label)) {
       this.departuresChecked.delete(label);
     } else {
       this.departuresChecked.add(label);
+    }
+  };
+
+  toggleCheckboxCompany = (label) => {
+    if (this.companiesChecked.has(label)) {
+      this.companiesChecked.delete(label);
+    } else {
+      this.companiesChecked.add(label);
     }
   };
 
@@ -37,9 +56,19 @@ class FilterBar extends Component {
     for (const dep of this.departuresChecked) {
       departures.push(dep);
     }
+    let companies = [];
+    for (const comp of this.companiesChecked) {
+      companies.push(comp);
+    }
     this.props.history.push({
       pathname: '/searchResults',
-      state: { dest: destinations, departureLocs: departures },
+      state: {
+        dest: destinations,
+        departureLocs: departures,
+        comps: companies,
+        priceMin: parseInt(this.state.min),
+        priceMax: parseInt(this.state.max),
+      },
     });
   };
 
@@ -55,6 +84,11 @@ class FilterBar extends Component {
       if (!departures.includes(trip.departureLoc))
         departures.push(trip.departureLoc);
     });
+    let companies = [];
+    this.props.trips.map((trip) => {
+      if (!companies.includes(trip.companyName))
+        companies.push(trip.companyName);
+    });
     return (
       <form onSubmit={this.handleFormSubmit}>
         <DropdownButton id="dropdown-item-button" title="Destinations">
@@ -69,7 +103,30 @@ class FilterBar extends Component {
             items={departures}
           />
         </DropdownButton>
-
+        <DropdownButton id="dropdown-item-button" title="Companies">
+          <CheckboxContainer
+            handleCheckboxChange={this.toggleCheckboxCompany}
+            items={companies}
+          />
+        </DropdownButton>
+        <input
+          onChange={this.handleChange}
+          type="number"
+          id="min"
+          class="form-control mb-4"
+          placeholder="Minimum Price (PKR)"
+          required
+          autofocus
+        />
+        <input
+          onChange={this.handleChange}
+          type="number"
+          id="max"
+          class="form-control mb-4"
+          placeholder="Maximum Price (PKR)"
+          required
+          autofocus
+        />
         <button className="btn btn-default" type="submit">
           Submit
         </button>

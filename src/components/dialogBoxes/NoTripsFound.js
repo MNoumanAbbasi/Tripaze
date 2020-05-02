@@ -23,9 +23,7 @@ function NoTripsFound(props) {
       buttons={buttons}
       title="No trips found"
       message={
-        'No trips were found with the destination ' +
-        props.dest +
-        '. Please try a different destination.'
+        'No trips were found with the given search/filters. Please try a different destination.'
       }
     />
   );
