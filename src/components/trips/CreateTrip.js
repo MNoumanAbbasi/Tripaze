@@ -94,7 +94,9 @@ const CreateTrip = (props) => {
               label="Departure Date"
               name="departureDate"
               type="date"
-              handleDate={(date) => (values.departureDate = new Date(date))}
+              handleDate={(departureDate) =>
+                (values.departureDate = Date.parse(new Date(departureDate)))
+              }
             />
             <InputField label="Duration" name="duration" type="number" />
             <InputField label="Price" name="price" type="number" />
