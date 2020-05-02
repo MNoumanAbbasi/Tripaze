@@ -396,10 +396,33 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
 
 .centered {
   position: absolute;
-  top: 45%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.searchbar-w {
+  width: 46%;
+}
+
+/* Calendar classes */
+
+.calendar-pos {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.DateInput {
+  width: 18.5rem;
+}
+
+.DateInput_input__focused {
+  border-bottom: 3px solid #008489;
+}
+
+/* Calendar classes */
 
 .row {
   margin-right: 0;

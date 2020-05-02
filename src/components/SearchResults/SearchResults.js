@@ -11,10 +11,44 @@ const SearchResults = (props) => {
   const { trips, isLoading } = props;
   const isInitialized = !isLoading && trips;
   if (isInitialized) {
-    if (trips.length > 0) {
+    let filteredTrips = trips;
+    console.log('filter', filteredTrips);
+    // If any one of the filters have been used, then filter trips accordingly
+    if (
+      props.location.state.dest.length ||
+      props.location.state.departureLocs.length ||
+      props.location.state.comps.length
+    )
+      filteredTrips = trips.filter((trip) => {
+        let show = false;
+        let filteredDest;
+        let filteredDep;
+        let filteredCompanies;
+        for (filteredDest of props.location.state.dest) {
+          if (trip.destinationsLowerCase.includes(filteredDest.toLowerCase())) {
+            show = true;
+            break;
+          }
+        }
+        for (filteredDep of props.location.state.departureLocs) {
+          if (trip.departureLoc === filteredDep) {
+            show = true;
+            break;
+          }
+        }
+        for (filteredCompanies of props.location.state.comps) {
+          if (trip.companyName === filteredCompanies) {
+            show = true;
+            break;
+          }
+        }
+        return show;
+      });
+
+    if (filteredTrips.length > 0) {
       return (
         <div className="container cardslist-margin">
-          <TripsList trips={trips} />
+          <TripsList trips={filteredTrips} />
         </div>
       );
     } else {
@@ -25,7 +59,6 @@ const SearchResults = (props) => {
             setModalShow(false);
             props.history.push('/');
           }}
-          dest={props.match.params.dest}
         />
       );
     }
@@ -51,16 +84,16 @@ export default compose(
   connect(mapStateToProps),
   // tells us which collections to connect to in our firebase project whenever this component, namely dashboard, is active
   // Whenever collection trip is changed, it would call the firestore reducer which would update the state of this firestore
-  firestoreConnect((props) => [
-    {
-      collection: 'Trips',
-      where: [
-        [
-          'destinationsLowerCase',
-          'array-contains',
-          props.match.params.dest.toLowerCase(),
+  firestoreConnect((props) => {
+    console.log(props);
+    return [
+      {
+        collection: 'Trips',
+        where: [
+          ['price', '>=', props.location.state.priceMin],
+          ['price', '<=', props.location.state.priceMax],
         ],
-      ],
-    },
-  ])
+      },
+    ];
+  })
 )(SearchResults);
