@@ -2,11 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import Geocode from 'react-geocode';
 
-const mapStyles = {
-  width: '50%',
-  height: '50%',
-};
-
 // setting pakistan's geographical limits
 const countryLimits = {
   north: 37.5,
@@ -76,17 +71,22 @@ const MapContainer = (props) => {
   }, []);
 
   return (
-    <Map
-      google={props.google}
-      zoom={5}
-      style={mapStyles}
-      initialCenter={{
-        lat: 30.4,
-        lng: 69.5,
-      }}
-    >
-      {placeMarkers()}
-    </Map>
+    <div className="border p-1" style={{ width: '420px', height: '370px' }}>
+      <Map
+        google={props.google}
+        zoom={5}
+        style={{
+          width: '410px',
+          height: '360px',
+        }}
+        initialCenter={{
+          lat: 30.4,
+          lng: 69.5,
+        }}
+      >
+        {placeMarkers()}
+      </Map>
+    </div>
   );
 };
 
