@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
@@ -15,20 +15,19 @@ import MapContainer from './MapContainer';
 // class container section is material
 // class trip-details is from our own css
 // taking props to know which trip to load
-function TripDetails(props) {
-  // TODO: Change to arrow function
+const TripDetails = (props) => {
   const { trip, isLoading, auth, profile, FAQs } = props; // getting trip category from props
 
   const isInitialized = !isLoading && trip && FAQs;
 
-  const [modalShow, setModalShow] = React.useState(false);
+  const [modalShow, setModalShow] = useState(false);
 
   if (!isInitialized) {
     return <LoadingBox />;
   }
 
-  var deleteButton = null;
-  var editButton = null;
+  let deleteButton = null;
+  let editButton = null;
   const adminMode = auth.uid === trip.companyId;
   if (adminMode) {
     editButton = (
@@ -162,7 +161,7 @@ function TripDetails(props) {
       </div>
     </div>
   );
-}
+};
 
 // ownProps are the props of the component before we attach anything to it
 const mapStateToProps = (state, ownProps) => {
