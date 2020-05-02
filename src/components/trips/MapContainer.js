@@ -81,8 +81,8 @@ const MapContainer = (props) => {
       zoom={5}
       style={mapStyles}
       initialCenter={{
-        lat: 35.5204,
-        lng: 72.3587,
+        lat: 30.4,
+        lng: 69.5,
       }}
     >
       {placeMarkers()}
