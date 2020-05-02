@@ -67,6 +67,20 @@ const authReducer = (state = initState, action) => {
         authError: action.err.message,
         profileLoading: false,
       };
+    case 'RESET_SUCCESS':
+      console.log('password reset success');
+      return {
+        ...state,
+        authError: null,
+        profileLoading: false,
+      };
+    case 'RESET_ERROR':
+      console.log('password reset error');
+      return {
+        ...state,
+        authError: action.err.message,
+        profileLoading: false,
+      };
     default:
       return state;
   }

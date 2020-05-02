@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
-import { signUpUser } from '../../store/actions/authActions';
+import { resetPassword } from '../../store/actions/authActions';
 
 const ForgetPassword = (props) => {
   const [email, setEmail] = useState('');
+  // const [error, setError] = useState('');
+  const { auth, authEror, resetPassword } = props;
 
   const handleSubmit = (e) => {
-    // dont want the default action of page being reloaded
     e.preventDefault();
-    // this.props.signUp(this.state);
+    // Sending password reset email
+    resetPassword(email);
   };
-  const { auth, authError } = props;
 
   if (auth.uid) {
     return <Redirect to="/" />;
@@ -43,7 +44,7 @@ const ForgetPassword = (props) => {
               Reset
             </button>
             <div className="red-text center">
-              {authError ? <p>{authError}</p> : null}
+              {authEror ? <p>{authEror}</p> : null}
             </div>
           </div>
           <hr></hr>
@@ -66,7 +67,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    signUp: (newUser) => dispatch(signUpUser(newUser)),
+    resetPassword: (email) => dispatch(resetPassword(email)),
   };
 };
 

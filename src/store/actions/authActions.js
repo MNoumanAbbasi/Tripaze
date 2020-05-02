@@ -125,3 +125,21 @@ export const signUpCompany = (newUser) => {
       });
   };
 };
+
+// initiates a password reset request on firebase
+export const resetPassword = (email) => {
+  return (dispatch, getState, { getFirestore }) => {
+    dispatch({ type: 'PROFILE_LOADING' });
+    firebase
+      .auth()
+      .sendPasswordResetEmail(email)
+      .then(() => {
+        // Email sent.
+        dispatch({ type: 'RESET_SUCCESS' });
+      })
+      .catch((err) => {
+        // An error happened.
+        dispatch({ type: 'RESET_ERROR', err });
+      });
+  };
+};
