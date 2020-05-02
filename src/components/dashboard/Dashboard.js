@@ -72,11 +72,11 @@ class Dashboard extends Component {
               centreSearchBar={true}
             />
             <FilterBar trips={trips} />
-            {/* <a href="#tripcards" className="scroll-button ">
+            <a href="#tripcards" className="scroll-button ">
               <span></span>
               <span></span>
               <span></span>
-            </a> */}
+            </a>
           </div>
           <div id="tripcards">
             <hr className="greenline mw-100"></hr>
