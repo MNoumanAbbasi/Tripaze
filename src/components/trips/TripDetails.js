@@ -137,9 +137,9 @@ const TripDetails = (props) => {
               </tr>
             </thead>
             <tbody>
-              {trip.attractions.map((attraction) => {
+              {trip.attractions.map((attraction, index) => {
                 return (
-                  <tr className="text-center">
+                  <tr key={index} className="text-center">
                     <td>{attraction}</td>
                   </tr>
                 );
