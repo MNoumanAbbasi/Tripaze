@@ -44,7 +44,7 @@ export class SignIn extends Component {
                 class="form-control mb-4"
                 placeholder="Email address"
                 required
-                autofocus
+                autoFocus
               />
             </div>
 

@@ -31,7 +31,7 @@ const ForgetPassword = (props) => {
               class="form-control mb-4"
               placeholder="Email address"
               required
-              autofocus
+              autoFocus
             />
           </div>
 
