@@ -28,7 +28,21 @@ const CompanyProfile = (props) => {
           />
         </div> */}
         {/* <LogoImage img={company.logoImage} type="companyLogo" /> */}
-
+        <div className="container thirdDrop">
+          <div className="row justify-content-lg-end justify-content-sm-around">
+            {adminMode && (
+              <button
+                type="button"
+                class="btn mt-lg-5 mr-5 btn-lg green-button form-rounded"
+                onClick={() =>
+                  props.history.push('/editprofile/' + props.match.params.id)
+                }
+              >
+                EDIT PROFILE <i class="fa fas fa-edit fa-fw"></i>
+              </button>
+            )}
+          </div>
+        </div>
         <div className="container align-self-start bg-white frontDrop">
           {/* First section */}
           <div className="row justify-content-between align-content-center">
@@ -39,10 +53,8 @@ const CompanyProfile = (props) => {
             {/* Description + Card */}
             <div className=" row ml-lg-4 col-lg-7 text-secondary">
               <hr class="mt-2 col-12 ml-0 divider"></hr>
-              <h3 className="mt-5 col-12 text-justify text-secondary">
-                Description
-              </h3>
-              <div className="text-justify">{company.description}</div>
+              <h3 className="mt-5 col-12 text-secondary">Description</h3>
+              <div className="text-justify ml-3">{company.description}</div>
             </div>
             {/* {Company Card } */}
             <div class="card content-box mr-5 change-card-width">
@@ -64,17 +76,7 @@ const CompanyProfile = (props) => {
               </div>
             </div>
           </div>
-          {adminMode && (
-            <button
-              type="button"
-              class="btn mt-lg-5 mr-5 btn-lg green-button form-rounded object-hover float-right"
-              onClick={() =>
-                props.history.push('/editprofile/' + props.match.params.id)
-              }
-            >
-              EDIT PROFILE <i class="fa fas fa-edit fa-fw"></i>
-            </button>
-          )}
+
           {/* Second Section */}
           <div className="row p-4 mt-5 justify-content-center align-content-centre text-turq">
             <i class="fa fa-th fa-3x fa-fw" aria-hidden="false"></i>
@@ -84,7 +86,7 @@ const CompanyProfile = (props) => {
             <TripsList trips={trips} />
           </div>
 
-          {/* Second Section */}
+          {/* Third Section */}
           <div className="row p-4 mt-5 justify-content-center align-content-centre text-turq">
             <i class="fa fa-th fa-3x fa-fw" aria-hidden="false"></i>
             <h3 className="tripText">Company Reviews</h3>
