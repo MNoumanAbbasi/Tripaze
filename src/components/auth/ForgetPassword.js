@@ -48,7 +48,7 @@ const ForgetPassword = (props) => {
           </div>
           <hr></hr>
           <div className="text-center">
-            <a href="/signin">Return to Sign in</a>
+            <Link to="/signin">Return to Sign in</Link>
           </div>
         </form>
       </div>
