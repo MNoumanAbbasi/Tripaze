@@ -43,18 +43,29 @@ const MapContainer = (props) => {
     );
   };
 
+  const isInCountry = ({ lat, lng }, limits) => {
+    return (
+      lat >= limits.south &&
+      lat <= limits.north &&
+      lng >= limits.west &&
+      lng <= limits.east
+    );
+  };
+
   const placeMarkers = () => {
     return coordinates.map((coord, index) => {
-      return (
-        <Marker
-          key={index}
-          id={index}
-          position={{
-            lat: coord.lat,
-            lng: coord.lng,
-          }}
-        />
-      );
+      if (isInCountry(coord, countryLimits)) {
+        return (
+          <Marker
+            key={index}
+            id={index}
+            position={{
+              lat: coord.lat,
+              lng: coord.lng,
+            }}
+          />
+        );
+      }
     });
   };
 
