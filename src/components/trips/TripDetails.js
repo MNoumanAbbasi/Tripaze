@@ -127,6 +127,9 @@ const TripDetails = (props) => {
                 );
               })}
             </div>
+            <div className="ml-4 mt-2 row align-content-centre justify-content-between">
+              <MapContainer destinations={trip.destinations} />
+            </div>
           </div>
           <table class="mr-lg-4 mt-3 col-lg-4 table table-border tb-border border-turq table-md-responsive">
             <thead>
@@ -146,10 +149,6 @@ const TripDetails = (props) => {
               })}
             </tbody>
           </table>
-        </div>
-
-        <div className="ml-5 mt-2 row align-content-centre justify-content-between">
-          <MapContainer destinations={trip.destinations} />
         </div>
 
         <div className="row p-4 mt-5 justify-content-center align-content-centre text-turq">
