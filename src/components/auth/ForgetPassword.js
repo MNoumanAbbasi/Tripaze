@@ -55,9 +55,11 @@ const ForgetPassword = (props) => {
               >
                 Reset
               </button>
-              <div className="red-text center">
-                {!isEmailSent ? <p>{authError}</p> : null}
-              </div>
+              {authError && (
+                <div className="border border-danger rounded text-danger p-1">
+                  <p>{authError}</p>
+                </div>
+              )}
             </div>
           )}
 

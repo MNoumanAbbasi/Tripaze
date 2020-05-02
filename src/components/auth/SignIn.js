@@ -76,9 +76,11 @@ export class SignIn extends Component {
               >
                 Sign in
               </button>
-              <div className="red-text center">
-                {authError ? <p>{authError}</p> : null}
-              </div>
+              {authError && (
+                <div className="border border-danger rounded text-danger p-1">
+                  <p>{authError}</p>
+                </div>
+              )}
             </div>
             <hr></hr>
             <div className="text-center">
