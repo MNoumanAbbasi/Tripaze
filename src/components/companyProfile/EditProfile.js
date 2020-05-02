@@ -36,69 +36,88 @@ const EditProfile = (props) => {
   console.log(company);
   return (
     <div className="container">
-      <h5 className="gre-text text-darken-3">Create Trip</h5>
-      <Formik
-        initialValues={{
-          companyName: company.companyName,
-          contact: company.contact,
-          location: company.location,
-          type: company.type,
-          description: company.description,
-          logoImage: company.logoImage,
-          coverImage: company.coverImage,
-        }}
-        validationSchema={profileSchema}
-        onSubmit={(values) => {
-          console.log('New Profile', values);
-          props.editProfile(values, props.match.params.id);
-          props.history.push('/');
-        }}
-      >
-        {({ values }) => (
-          <Form>
-            <InputField label="Company name" name="companyName" type="text" />
-            <InputField label="Contact Number" name="contact" type="text" />
-            <InputField label="Company Address" name="location" type="text" />
-            <InputField
-              label="Description"
-              name="description"
-              type="text"
-              as="textarea"
-            />
-            <br />
-            <label htmlFor="image-section" style={{ display: 'block' }}>
-              Upload Logo
-            </label>
-            <ImageSection
-              className="logo-image"
-              imageName={values.logoImage}
-              imageCategory="companyLogo"
-              handleImgNameChange={(img) => (values.logoImage = img)}
-            />
-            <br />
-            <label htmlFor="cover-image" style={{ display: 'block' }}>
-              Upload Background Cover
-            </label>
-            <ImageSection
-              className="cover-image"
-              imageName={values.coverImage}
-              imageCategory="companyCover"
-              handleImgNameChange={(img) => (values.coverImage = img)}
-            />
+      <div className="row mt-5">
+        <div className="col-lg-12 text-center">
+          <h1 className="mt-5 text-turq">Edit Profile </h1>
+        </div>
+      </div>
+      <div className="row justify-content-center">
+        <div className="col-lg-8">
+          <Formik
+            initialValues={{
+              companyName: company.companyName,
+              contact: company.contact,
+              location: company.location,
+              type: company.type,
+              description: company.description,
+              logoImage: company.logoImage,
+              coverImage: company.coverImage,
+            }}
+            validationSchema={profileSchema}
+            onSubmit={(values) => {
+              console.log('New Profile', values);
+              props.editProfile(values, props.match.params.id);
+              props.history.push('/');
+            }}
+          >
+            {({ values }) => (
+              <Form>
+                <InputField
+                  label="Company name"
+                  name="companyName"
+                  type="text"
+                />
+                <InputField label="Contact Number" name="contact" type="text" />
+                <InputField
+                  label="Company Address"
+                  name="location"
+                  type="text"
+                />
+                <InputField
+                  label="Description"
+                  name="description"
+                  type="text"
+                  as="textarea"
+                />
+                <br />
+                <label htmlFor="image-section" style={{ display: 'block' }}>
+                  Upload Logo
+                </label>
+                <ImageSection
+                  className="logo-image"
+                  imageName={values.logoImage}
+                  imageCategory="companyLogo"
+                  handleImgNameChange={(img) => (values.logoImage = img)}
+                />
+                <br />
+                <label htmlFor="cover-image" style={{ display: 'block' }}>
+                  Upload Background Cover
+                </label>
+                <ImageSection
+                  className="cover-image"
+                  imageName={values.coverImage}
+                  imageCategory="companyCover"
+                  handleImgNameChange={(img) => (values.coverImage = img)}
+                />
 
-            <button
-              type="button"
-              className="btn grey lighten-1 z-depth-1"
-              onClick={() => props.history.push('/')}
-            >
-              Cancel
-            </button>
-            <button type="submit" className="btn form-rounded r-green-button">
-              Submit
-            </button>
-          </Form>
-        )}
-      </Formik>
+                <button
+                  type="submit"
+                  className="btn form-rounded r-green-button"
+                >
+                  Submit
+                </button>
+                <button
+                  type="button"
+                  className="ml-4 btn form-rounded r-red-button"
+                  onClick={() => props.history.push('/')}
+                >
+                  Cancel
+                </button>
+              </Form>
+            )}
+          </Formik>
+        </div>
+      </div>
     </div>
   );
 };
