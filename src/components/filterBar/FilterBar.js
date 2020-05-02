@@ -116,7 +116,6 @@ class FilterBar extends Component {
           class="form-control mb-4"
           placeholder="Minimum Price (PKR)"
           required
-          autofocus
         />
         <input
           onChange={this.handleChange}
@@ -125,7 +124,6 @@ class FilterBar extends Component {
           class="form-control mb-4"
           placeholder="Maximum Price (PKR)"
           required
-          autofocus
         />
         <button className="btn btn-default" type="submit">
           Submit

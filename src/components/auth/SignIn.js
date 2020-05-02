@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { signIn } from '../../store/actions/authActions';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 // all css are from the materialized CSS class
 export class SignIn extends Component {
@@ -44,7 +44,7 @@ export class SignIn extends Component {
                 class="form-control mb-4"
                 placeholder="Email address"
                 required
-                autofocus
+                autoFocus
               />
             </div>
 
@@ -65,7 +65,7 @@ export class SignIn extends Component {
                 class="custom-control-input"
                 id="customCheck1"
               />
-              <label class="custom-control-label" for="customCheck1">
+              <label class="custom-control-label" htmlFor="customCheck1">
                 Remember password
               </label>
             </div>
@@ -76,13 +76,15 @@ export class SignIn extends Component {
               >
                 Sign in
               </button>
-              <div className="red-text center">
-                {authError ? <p>{authError}</p> : null}
-              </div>
+              {authError && (
+                <div className="border border-danger rounded text-danger p-1">
+                  <p>{authError}</p>
+                </div>
+              )}
             </div>
             <hr></hr>
             <div className="text-center">
-              <a href="/">Forgot Password?</a>
+              <Link to="/forgetpassword">Forgot Password?</Link>
             </div>
           </form>
         </div>
