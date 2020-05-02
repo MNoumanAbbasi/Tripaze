@@ -60,7 +60,7 @@ const CreateTrip = (props) => {
           title: '',
           destinations: [],
           departureLoc: '',
-          departureDate: '',
+          departureDate: new Date(),
           duration: 0,
           price: 0,
           capacity: 0,
@@ -115,7 +115,7 @@ const CreateTrip = (props) => {
             <ImageSection
               className="image-section"
               imageName={values.image}
-              imageCategory='trip'
+              imageCategory="trip"
               handleImgNameChange={(img) => (values.image = img)}
             />
 

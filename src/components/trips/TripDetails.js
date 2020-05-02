@@ -100,7 +100,7 @@ function TripDetails(props) {
         <div class="row align-content-center justify-content-start">
           <h4 className="col-lg-3 change-font ml-0 colored">
             <i class="fa fa-calendar fa-2x fa-fw" aria-hidden="true"></i>
-            {'     ' + moment(trip.departureDate).format('MMMM Do YYYY')}
+            {'     ' + moment(trip.departureDate).format('MMM Do YYYY')}
           </h4>
           <h4 className="col-lg-2 text-uppercase change-font colored">
             <i class="fa fa-clock-o fa-2x fa-fw" aria-hidden="true"></i>
