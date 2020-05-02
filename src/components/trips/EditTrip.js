@@ -22,85 +22,96 @@ const EditTrip = (props) => {
   }
   return (
     <div className="container">
-      <h5 className="gre-text text-darken-3">Create Trip</h5>
-      <Formik
-        initialValues={{
-          title: trip.title,
-          destinations: trip.destinations,
-          departureLoc: trip.departureLoc,
-          departureDate: trip.departureDate,
-          duration: trip.duration,
-          price: trip.price,
-          capacity: trip.capacity,
-          description: trip.description,
-          attractions: trip.attractions,
-          image: trip.image,
-        }}
-        validationSchema={tripSchema}
-        onSubmit={(values) => {
-          values.departureDate = new Date(values.departureDate);
-          console.log(values);
-          props.editTrip(values, props.match.params.id);
-          props.history.push('/');
-        }}
-      >
-        {({ values }) => (
-          <Form>
-            <InputField label="Title" name="title" type="text" />
+      <div className="row mt-5">
+        <div className="col-lg-12 text-center">
+          <h1 className="mt-5 text-turq">Edit Trip</h1>
+        </div>
+      </div>
+      <div className="row justify-content-center">
+        <div className="col-lg-8">
+          <Formik
+            initialValues={{
+              title: trip.title,
+              destinations: trip.destinations,
+              departureLoc: trip.departureLoc,
+              departureDate: trip.departureDate,
+              duration: trip.duration,
+              price: trip.price,
+              capacity: trip.capacity,
+              description: trip.description,
+              attractions: trip.attractions,
+              image: trip.image,
+            }}
+            validationSchema={tripSchema}
+            onSubmit={(values) => {
+              values.departureDate = new Date(values.departureDate);
+              console.log(values);
+              props.editTrip(values, props.match.params.id);
+              props.history.push('/');
+            }}
+          >
+            {({ values }) => (
+              <Form>
+                <InputField label="Title" name="title" type="text" />
 
-            <FieldArraySection
-              label="Destination(s)"
-              name="destinations"
-              values={values}
-            />
+                <FieldArraySection
+                  label="Destination(s)"
+                  name="destinations"
+                  values={values}
+                />
 
-            <InputField
-              label="Departure Location"
-              name="departureLoc"
-              type="text"
-            />
-            <InputField
-              label="Departure Date"
-              name="departureDate"
-              type="date"
-            />
-            <InputField label="Duration" name="duration" type="number" />
-            <InputField label="Price" name="price" type="number" />
-            <InputField label="Capacity" name="capacity" type="number" />
-            <InputField
-              label="Description"
-              name="description"
-              type="text"
-              as="textarea"
-            />
-            <FieldArraySection
-              label="Attraction(s)"
-              name="attractions"
-              values={values}
-            />
-            <label htmlFor="image-section" style={{ display: 'block' }}>
-              Upload Image
-            </label>
-            <ImageSection
-              className="image-section"
-              imageName={values.image}
-              imageCategory="trip"
-              handleImgNameChange={(img) => (values.image = img)}
-            />
+                <InputField
+                  label="Departure Location"
+                  name="departureLoc"
+                  type="text"
+                />
+                <InputField
+                  label="Departure Date"
+                  name="departureDate"
+                  type="date"
+                />
+                <InputField label="Duration" name="duration" type="number" />
+                <InputField label="Price" name="price" type="number" />
+                <InputField label="Capacity" name="capacity" type="number" />
+                <InputField
+                  label="Description"
+                  name="description"
+                  type="text"
+                  as="textarea"
+                />
+                <FieldArraySection
+                  label="Attraction(s)"
+                  name="attractions"
+                  values={values}
+                />
+                <label htmlFor="image-section" style={{ display: 'block' }}>
+                  Upload Image
+                </label>
+                <ImageSection
+                  className="image-section"
+                  imageName={values.image}
+                  imageCategory="trip"
+                  handleImgNameChange={(img) => (values.image = img)}
+                />
 
-            <button
-              type="button"
-              className="btn grey lighten-1 z-depth-1"
-              onClick={() => props.history.push('/')}
-            >
-              Cancel
-            </button>
-            <button type="submit" className="btn form-rounded r-green-button">
-              Submit
-            </button>
-          </Form>
-        )}
-      </Formik>
+                <button
+                  type="submit"
+                  className="btn form-rounded r-green-button"
+                >
+                  Submit
+                </button>
+                <button
+                  type="button"
+                  className="ml-4 btn form-rounded r-red-button"
+                  onClick={() => props.history.push('/')}
+                >
+                  Cancel
+                </button>
+              </Form>
+            )}
+          </Formik>
+        </div>
+      </div>
     </div>
   );
 };
