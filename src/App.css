@@ -414,10 +414,6 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
   transform: translate(-50%, -50%);
 }
 
-.DateInput {
-  width: 18.5rem;
-}
-
 .DateInput_input__focused {
   border-bottom: 3px solid #008489;
 }
