@@ -43,7 +43,7 @@ export const editTrip = (trip, tripID) => {
     const firestore = getFirestore();
     delete trip.notUpdated; // TODO: Change this to a better method
 
-    trip.departureDate = new Date(trip.departureDate);
+    // trip.departureDate = new Date(trip.departureDate);
     // storing departures as lower case for search
     const destinationsLowerCase = trip.destinations.map((loc) =>
       loc.toLowerCase()

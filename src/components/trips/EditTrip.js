@@ -38,6 +38,7 @@ const EditTrip = (props) => {
         }}
         validationSchema={tripSchema}
         onSubmit={(values) => {
+          values.departureDate = new Date(values.departureDate);
           console.log(values);
           props.editTrip(values, props.match.params.id);
           props.history.push('/');
@@ -83,7 +84,7 @@ const EditTrip = (props) => {
             <ImageSection
               className="image-section"
               imageName={values.image}
-              imageCategory='trip'
+              imageCategory="trip"
               handleImgNameChange={(img) => (values.image = img)}
             />
 
