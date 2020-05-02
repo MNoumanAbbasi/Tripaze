@@ -70,6 +70,7 @@ const CreateTrip = (props) => {
         }}
         validationSchema={tripSchema}
         onSubmit={(values) => {
+          values.departureDate = new Date(values.departureDate);
           console.log('New Trip', values);
           props.createTrip(values, props.profile);
           props.history.push('/');
@@ -115,7 +116,7 @@ const CreateTrip = (props) => {
             <ImageSection
               className="image-section"
               imageName={values.image}
-              imageCategory='trip'
+              imageCategory="trip"
               handleImgNameChange={(img) => (values.image = img)}
             />
 

@@ -10,6 +10,7 @@ import CoverImage from '../displayImages/CoverImage';
 import { profileType } from '../../Helpers';
 import Confirmation from '../dialogBoxes/Confirmation';
 import LoadingBox from './../dashboard/LoadingBox';
+import moment from 'moment';
 import MapContainer from './MapContainer';
 
 // class container section is material
@@ -100,7 +101,8 @@ const TripDetails = (props) => {
         <div class="row align-content-center justify-content-start">
           <h4 className="col-lg-3 change-font ml-0 colored">
             <i class="fa fa-calendar fa-2x fa-fw" aria-hidden="true"></i>
-            {'     ' + trip.departureDate}
+            {'     ' +
+              moment(trip.departureDate.toDate()).format('MMM Do YYYY')}
           </h4>
           <h4 className="col-lg-2 text-uppercase change-font colored">
             <i class="fa fa-clock-o fa-2x fa-fw" aria-hidden="true"></i>
