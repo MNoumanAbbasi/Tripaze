@@ -44,7 +44,7 @@ class App extends Component {
               <Route path="/createtrip" component={CreateTrip} />
               <Route path="/trip/:id" component={TripDetails} />
               <Route path="/edittrip/:id" component={EditTrip} />
-              <Route path="/searchResults/:dest" component={SearchResults} />
+              <Route path="/searchResults/" component={SearchResults} />
               <Route path="/signupchoice" component={SignUpChoice} />
               <Route path="/companyprofile/:id" component={CompanyProfile} />
               <Route path="/editprofile/:id" component={EditProfile} />

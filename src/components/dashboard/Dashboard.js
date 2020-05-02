@@ -10,6 +10,8 @@ import background from '../../Images/HomepageImage.jpg';
 import SearchBar from '../layout/SearchBar';
 import { searchBarShow } from '../../store/actions/filterActions';
 import LoadingBox from './LoadingBox';
+import Calendar from './Calendar';
+import FilterBar from '../filterBar/FilterBar';
 
 let lastScrollY = 0;
 
@@ -65,15 +67,17 @@ class Dashboard extends Component {
               className="img-fluid mw-100"
             ></img>
             <SearchBar
-              formClass="input-group form-group home-searchbar w-50 centered"
+              formClass="input-group form-group home-searchbar searchbar-w centered"
               inputClass="form-control form-control-lg form-rounded"
               centreSearchBar={true}
             />
-            <a href="#tripcards" className="scroll-button ">
+            <Calendar />
+            <FilterBar trips={trips} />
+            {/* <a href="#tripcards" className="scroll-button ">
               <span></span>
               <span></span>
               <span></span>
-            </a>
+            </a> */}
           </div>
           <div id="tripcards">
             <hr className="greenline mw-100"></hr>
