@@ -8,12 +8,6 @@ export const createTrip = (trip, currProfile) => {
     // grabbing user's id and profile
     const authorId = getState().firebase.auth.uid;
 
-    // Storing date as long names
-    const date = new Date(trip.departureDate).toDateString(); // Wed Apr 08 2020
-    const dateSplit = date.split(' ');
-    const newDate = dateSplit[1] + ' ' + dateSplit[2] + ', ' + dateSplit[3];
-    trip.departureDate = newDate;
-
     // storing departures as lower case for search
     const destinationsLowerCase = trip.destinations.map((loc) =>
       loc.toLowerCase()
