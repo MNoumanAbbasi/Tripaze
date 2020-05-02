@@ -3,7 +3,7 @@ import storage from '../../config/fbConfig';
 
 const ImageThumb = ({ image }) => {
   return (
-    <div className="image-thumb border" style={{ width: '200px' }}>
+    <div className="image-thumb border">
       <img
         src={URL.createObjectURL(image)}
         alt={image.name}
@@ -93,24 +93,28 @@ const ImageSection = (props) => {
     );
   } else {
     return (
-      <div className="border" style={{ width: '200px' }}>
-        {isUploaded && (
-          <button
-            className="form-rounded overlay-button"
-            type="button"
-            onClick={handleDelete}
-          >
-            <i class="fa fa-times fa-2x"></i>
-          </button>
-        )}
-        <ImageThumb image={image} />
-        <div className="progress">
-          <div
-            className="progress-bar bg-success"
-            style={{ width: `${progress}%` }}
-          >
-            {isUploaded ? 'Uploaded' : `${progress}%`}
+      <div className="row">
+        <div className="">
+          <ImageThumb image={image} />
+          <div className="progress">
+            <div
+              className="progress-bar bg-success"
+              style={{ width: `${progress}%` }}
+            >
+              {isUploaded ? 'Uploaded' : `${progress}%`}
+            </div>
           </div>
+        </div>
+        <div style={{ width: '200px' }}>
+          {isUploaded && (
+            <button
+              className="btn btn-sm btn-circle ml-3 mt-0 bg-white border-danger"
+              type="button"
+              onClick={handleDelete}
+            >
+              <i class="fa fa-times text-danger"></i>
+            </button>
+          )}
         </div>
       </div>
     );

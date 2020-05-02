@@ -4,7 +4,7 @@ import { FieldArray, ErrorMessage } from 'formik';
 const FieldArraySection = ({ label, name, values }) => {
   const [newEntry, setNewEntry] = useState('');
   return (
-    <div className="container">
+    <div className="form-group">
       <label htmlFor={name} style={{ display: 'block' }}>
         {label}
       </label>
@@ -19,22 +19,31 @@ const FieldArraySection = ({ label, name, values }) => {
               {values &&
                 values[name].map((dest, ind) => {
                   return (
-                    <div key={ind}>
-                      {dest}
-                      <button type="button" onClick={() => remove(ind)}>
-                        Remove
+                    <div key={ind} className="row">
+                      <button
+                        type="button"
+                        class="mr-3 mt-0 btn btn-sm bg-white"
+                        onClick={() => remove(ind)}
+                      >
+                        <i class="fa fas fa-times text-danger fa-fw"></i>
                       </button>
+                      {dest}
                     </div>
                   );
                 })}
-              <div className="input-field">
+              <div className="form-group row">
                 <input
                   type="text"
+                  className="form-control w-50"
                   value={newEntry}
                   onChange={(e) => setNewEntry(e.target.value)}
                 />
-                <button type="button" onClick={handleAdd}>
-                  Add
+                <button
+                  type="button"
+                  class="btn ml-3 mt-0 green-button border-turq"
+                  onClick={handleAdd}
+                >
+                  <i class="fa fas fa-plus fa-fw"></i> Add
                 </button>
               </div>
               <ErrorMessage name={name} />

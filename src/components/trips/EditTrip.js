@@ -83,7 +83,7 @@ const EditTrip = (props) => {
             <ImageSection
               className="image-section"
               imageName={values.image}
-              imageCategory='trip'
+              imageCategory="trip"
               handleImgNameChange={(img) => (values.image = img)}
             />
 
