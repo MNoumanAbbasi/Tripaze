@@ -21,12 +21,12 @@ const Navbar = (props) => {
   }
 
   return (
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-      <Link to="/" class="navbar-brand">
+    <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+      <Link to="/" className="navbar-brand">
         <img alt="brand logo" src={logo} className="brand-logo left logo" />
       </Link>
       <button
-        class="navbar-toggler"
+        className="navbar-toggler"
         type="button"
         data-toggle="collapse"
         data-target="#navbarSupportedContent"
@@ -34,7 +34,7 @@ const Navbar = (props) => {
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span class="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon"></span>
       </button>
       {links}
     </nav>

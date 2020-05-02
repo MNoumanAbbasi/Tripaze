@@ -130,6 +130,7 @@ class FilterBar extends Component {
           id="min"
           class="form-control mb-4"
           placeholder="Minimum Price (PKR)"
+          required
         />
         <input
           onChange={this.handleChange}
@@ -137,6 +138,7 @@ class FilterBar extends Component {
           id="max"
           class="form-control mb-4"
           placeholder="Maximum Price (PKR)"
+          required
         />
         <Calendar
           storeDates={this.storeDates}

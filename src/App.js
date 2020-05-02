@@ -17,6 +17,7 @@ import SearchResults from './components/SearchResults/SearchResults';
 import EditTrip from './components/trips/EditTrip';
 import LoadingBox from './components/dashboard/LoadingBox';
 import EditProfile from './components/companyProfile/EditProfile';
+import ForgetPassword from './components/auth/ForgetPassword';
 
 // switch ensures that only one route is loaded at  a time
 class App extends Component {
@@ -41,6 +42,7 @@ class App extends Component {
               <Route path="/signin" component={SignIn} />
               <Route path="/signupuser" component={SignUpUser} />
               <Route path="/signupcompany" component={SignUpCompany} />
+              <Route path="/forgetpassword" component={ForgetPassword} />
               <Route path="/createtrip" component={CreateTrip} />
               <Route path="/trip/:id" component={TripDetails} />
               <Route path="/edittrip/:id" component={EditTrip} />
