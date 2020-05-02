@@ -10,7 +10,7 @@ import CoverImage from '../displayImages/CoverImage';
 import { profileType } from '../../Helpers';
 import Confirmation from '../dialogBoxes/Confirmation';
 import LoadingBox from './../dashboard/LoadingBox';
-
+import moment from 'moment';
 // class container section is material
 // class trip-details is from our own css
 // taking props to know which trip to load
@@ -100,7 +100,7 @@ function TripDetails(props) {
         <div class="row align-content-center justify-content-start">
           <h4 className="col-lg-3 change-font ml-0 colored">
             <i class="fa fa-calendar fa-2x fa-fw" aria-hidden="true"></i>
-            {'     ' + trip.departureDate}
+            {'     ' + moment(trip.departureDate).format('MMMM Do YYYY')}
           </h4>
           <h4 className="col-lg-2 text-uppercase change-font colored">
             <i class="fa fa-clock-o fa-2x fa-fw" aria-hidden="true"></i>
