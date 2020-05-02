@@ -70,6 +70,7 @@ const CreateTrip = (props) => {
         }}
         validationSchema={tripSchema}
         onSubmit={(values) => {
+          values.departureDate = new Date(values.departureDate);
           console.log('New Trip', values);
           props.createTrip(values, props.profile);
           props.history.push('/');
