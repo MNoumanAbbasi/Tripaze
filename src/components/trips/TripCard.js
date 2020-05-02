@@ -1,9 +1,9 @@
 // For modularity, creating a separate component for trip cards
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import CardImage from '../displayImages/CardImage';
 import cardbg from './card-bg.png';
+import moment from 'moment';
 
 const TripCard = ({ trip }) => {
   return (
@@ -26,7 +26,7 @@ const TripCard = ({ trip }) => {
           <hr></hr>
           <h6 className="ml-3 change-font">
             <i class="fa fa-calendar fa-fw" aria-hidden="true"></i>
-            {trip.departureDate}
+            {moment(trip.departureDate.toDate()).format('MMMM Do YYYY')}
           </h6>
           <h6 className="ml-3 change-font">
             <i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>

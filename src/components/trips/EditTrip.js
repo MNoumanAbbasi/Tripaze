@@ -38,6 +38,7 @@ const EditTrip = (props) => {
         }}
         validationSchema={tripSchema}
         onSubmit={(values) => {
+          values.departureDate = new Date(values.departureDate);
           console.log(values);
           props.editTrip(values, props.match.params.id);
           props.history.push('/');

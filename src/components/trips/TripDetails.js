@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
@@ -10,24 +10,25 @@ import CoverImage from '../displayImages/CoverImage';
 import { profileType } from '../../Helpers';
 import Confirmation from '../dialogBoxes/Confirmation';
 import LoadingBox from './../dashboard/LoadingBox';
+import moment from 'moment';
+import MapContainer from './MapContainer';
 
 // class container section is material
 // class trip-details is from our own css
 // taking props to know which trip to load
-function TripDetails(props) {
-  // TODO: Change to arrow function
+const TripDetails = (props) => {
   const { trip, isLoading, auth, profile, FAQs } = props; // getting trip category from props
 
   const isInitialized = !isLoading && trip && FAQs;
 
-  const [modalShow, setModalShow] = React.useState(false);
+  const [modalShow, setModalShow] = useState(false);
 
   if (!isInitialized) {
     return <LoadingBox />;
   }
 
-  var deleteButton = null;
-  var editButton = null;
+  let deleteButton = null;
+  let editButton = null;
   const adminMode = auth.uid === trip.companyId;
   if (adminMode) {
     editButton = (
@@ -100,7 +101,8 @@ function TripDetails(props) {
         <div class="row align-content-center justify-content-start">
           <h4 className="col-lg-3 change-font ml-0 colored">
             <i class="fa fa-calendar fa-2x fa-fw" aria-hidden="true"></i>
-            {'     ' + trip.departureDate}
+            {'     ' +
+              moment(trip.departureDate.toDate()).format('MMM Do YYYY')}
           </h4>
           <h4 className="col-lg-2 text-uppercase change-font colored">
             <i class="fa fa-clock-o fa-2x fa-fw" aria-hidden="true"></i>
@@ -127,6 +129,9 @@ function TripDetails(props) {
                 );
               })}
             </div>
+            <div className="ml-4 mt-2 row align-content-centre justify-content-between">
+              <MapContainer destinations={trip.destinations} />
+            </div>
           </div>
           <table class="mr-lg-4 mt-3 col-lg-4 table table-border tb-border border-turq table-md-responsive">
             <thead>
@@ -137,9 +142,9 @@ function TripDetails(props) {
               </tr>
             </thead>
             <tbody>
-              {trip.attractions.map((attraction) => {
+              {trip.attractions.map((attraction, index) => {
                 return (
-                  <tr className="text-center">
+                  <tr key={index} className="text-center">
                     <td>{attraction}</td>
                   </tr>
                 );
@@ -147,6 +152,7 @@ function TripDetails(props) {
             </tbody>
           </table>
         </div>
+
         <div className="row p-4 mt-5 justify-content-center align-content-centre text-turq">
           <i class="fa fa-question-circle fa-3x fa-fw" aria-hidden="false"></i>
           <h3 className="tripText">Frequently Asked Questions</h3>
@@ -160,7 +166,7 @@ function TripDetails(props) {
       </div>
     </div>
   );
-}
+};
 
 // ownProps are the props of the component before we attach anything to it
 const mapStateToProps = (state, ownProps) => {
