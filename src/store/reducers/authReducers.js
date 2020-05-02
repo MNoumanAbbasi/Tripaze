@@ -71,7 +71,7 @@ const authReducer = (state = initState, action) => {
       console.log('password reset success');
       return {
         ...state,
-        authError: null,
+        authError: 'none', // use this for changing state at forget pass page
         profileLoading: false,
       };
     case 'RESET_ERROR':

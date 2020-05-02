@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { resetPassword } from '../../store/actions/authActions';
+import { set } from 'jsonpointer';
 
 const ForgetPassword = (props) => {
   const [email, setEmail] = useState('');
-  // const [error, setError] = useState('');
-  const { auth, authEror, resetPassword } = props;
+  const [isEmailSent, setIsEmailSent] = useState(false);
+  const { authError, resetPassword } = props;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,9 +15,14 @@ const ForgetPassword = (props) => {
     resetPassword(email);
   };
 
-  if (auth.uid) {
-    return <Redirect to="/" />;
-  }
+  // Change email sent state based on authError
+  useEffect(() => {
+    if (authError == 'none') {
+      setIsEmailSent(true);
+    } else {
+      setIsEmailSent(false);
+    }
+  }, [authError]);
 
   return (
     <div className="row m-0 full-height-width">
@@ -36,17 +42,25 @@ const ForgetPassword = (props) => {
             />
           </div>
 
-          <div className="input-field">
-            <button
-              class="btn btn-lg btn-secondary light-button form-rounded btn-block text-uppercase"
-              type="submit"
-            >
-              Reset
-            </button>
-            <div className="red-text center">
-              {authEror ? <p>{authEror}</p> : null}
+          {isEmailSent ? (
+            <div className="border border-success rounded text-success m-1 p-1">
+              <i class="fa fas fa-check-circle p-2"></i>
+              Email Sent
             </div>
-          </div>
+          ) : (
+            <div className="input-field">
+              <button
+                class="btn btn-lg btn-secondary light-button form-rounded btn-block text-uppercase"
+                type="submit"
+              >
+                Reset
+              </button>
+              <div className="red-text center">
+                {!isEmailSent ? <p>{authError}</p> : null}
+              </div>
+            </div>
+          )}
+
           <hr></hr>
           <div className="text-center">
             <Link to="/signin">Return to Sign in</Link>
@@ -60,7 +74,6 @@ const ForgetPassword = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.firebase.auth,
     authError: state.auth.authError,
   };
 };
