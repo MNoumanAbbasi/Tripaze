@@ -48,7 +48,7 @@ const SearchResults = (props) => {
     if (filteredTrips.length > 0) {
       return (
         <div className="container cardslist-margin">
-          <TripsList trips={filteredTrips} />
+          <TripsList trips={filteredTrips} isCompProfile={false} />
         </div>
       );
     } else {

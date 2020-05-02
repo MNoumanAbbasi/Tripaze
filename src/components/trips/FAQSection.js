@@ -92,7 +92,7 @@ const FAQSection = (props) => {
   const [modalShow, setModalShow] = React.useState(false);
   const addQuestion = (question) => {
     // setFAQs([...FAQs, { question, answer: '' }]); // TODO: instead of updating local copy too. remount when faq added/deleted.
-    props.addQuestion(question, props.tripID);
+    props.addQuestion(question, props.tripID, props.profileType);
     setIsAddQuestionState(false);
   };
   const addAnswer = (answer, faqID) => {
@@ -166,7 +166,8 @@ const FAQSection = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addQuestion: (question, tripID) => dispatch(addQuestion(question, tripID)),
+    addQuestion: (question, tripID, userType) =>
+      dispatch(addQuestion(question, tripID, userType)),
     addAnswer: (answer, faqID) => dispatch(addAnswer(answer, faqID)),
     deleteFaq: (faqID) => dispatch(deleteFaq(faqID)),
   };

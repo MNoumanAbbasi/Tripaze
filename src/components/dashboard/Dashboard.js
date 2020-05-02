@@ -91,7 +91,7 @@ class Dashboard extends Component {
               ></img>
             </div>
             <div className="container">
-              <TripsList trips={trips} />
+              <TripsList trips={trips} isCompProfile={false} />
             </div>
           </div>
         </div>
