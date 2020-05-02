@@ -40,7 +40,13 @@ export class SearchBar extends Component {
     e.preventDefault();
     this.props.history.push({
       pathname: '/searchResults',
-      state: { dest: [this.state.destinations] },
+      state: {
+        dest: [this.state.destinations],
+        departureLocs: [],
+        comps: [],
+        priceMin: 0,
+        priceMax: 999999,
+      },
     });
   };
 
