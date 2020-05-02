@@ -60,7 +60,7 @@ const CreateTrip = (props) => {
           title: '',
           destinations: [],
           departureLoc: '',
-          departureDate: new Date(),
+          departureDate: '',
           duration: 0,
           price: 0,
           capacity: 0,
@@ -70,8 +70,8 @@ const CreateTrip = (props) => {
         }}
         validationSchema={tripSchema}
         onSubmit={(values) => {
-          console.log('New Trip', values);
-          props.createTrip(values, props.profile);
+          console.log('New Trip', tempValues);
+          props.createTrip(tempValues, props.profile);
           props.history.push('/');
         }}
       >
@@ -94,9 +94,6 @@ const CreateTrip = (props) => {
               label="Departure Date"
               name="departureDate"
               type="date"
-              handleDate={(departureDate) =>
-                (values.departureDate = Date.parse(new Date(departureDate)))
-              }
             />
             <InputField label="Duration" name="duration" type="number" />
             <InputField label="Price" name="price" type="number" />
