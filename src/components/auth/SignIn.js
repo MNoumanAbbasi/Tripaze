@@ -82,7 +82,7 @@ export class SignIn extends Component {
             </div>
             <hr></hr>
             <div className="text-center">
-              <a href="/">Forgot Password?</a>
+              <a href="/forgetpassword">Forgot Password?</a>
             </div>
           </form>
         </div>
