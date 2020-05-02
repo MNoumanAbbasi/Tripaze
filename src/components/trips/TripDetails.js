@@ -151,7 +151,7 @@ const TripDetails = (props) => {
           <i class="fa fa-question-circle fa-3x fa-fw" aria-hidden="false"></i>
           <h3 className="tripText">Frequently Asked Questions</h3>
         </div>
-        <MapContainer destinationsArray={trip.destinations} />
+        <MapContainer destinations={trip.destinations} />
         <FAQSection
           FAQs={FAQs}
           tripID={props.match.params.id}

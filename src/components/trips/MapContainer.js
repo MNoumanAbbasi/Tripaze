@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import Geocode from 'react-geocode';
 
@@ -7,58 +7,69 @@ const mapStyles = {
   height: '50%',
 };
 Geocode.setApiKey('AIzaSyAdrE2IZMrS6t9XpbPNN5gbHNwaGt2biNs');
-
 Geocode.setLanguage('en');
-
 Geocode.setRegion('pk');
 
 // Enable or disable logs. Its optional.
 Geocode.enableDebug();
 
-Geocode.fromAddress('Eiffel Tower').then(
-  (response) => {
-    const { lat, lng } = response.results[0].geometry.location;
-    console.log(lat, lng);
-  },
-  (error) => {
-    console.error(error);
-  }
-);
-
-const MapContainer = (props, destinationsArray) => {
+const MapContainer = (props) => {
   const [coordinates, setCoordinates] = useState([]);
-  const getCoordinates = (location) => {
-    Geocode.fromAddress(location).then(
-      (response) => {
-        const coords = response.results[0].geometry.location;
-        setCoordinates(coordinates.push(coords));
-        // console.log(lat, lng);
-      },
-      (error) => {
-        console.error(error);
-      }
+
+  const getCoordinates = () => {
+    return Promise.all(
+      props.destinations.map((dest) => {
+        return new Promise((resolve) => {
+          Geocode.fromAddress(dest).then(
+            (response) => {
+              const coord = response.results[0].geometry.location;
+              resolve(coord);
+            },
+            (error) => {
+              console.error(error);
+            }
+          );
+        });
+      })
     );
   };
-  // destinationsArray.forEach((destination) => {
-  //   getCoordinates(destination);
-  // });
-  console.log(coordinates);
+
+  const placeMarkers = () => {
+    return coordinates.map((coord, index) => {
+      return (
+        <Marker
+          key={index}
+          id={index}
+          position={{
+            lat: coord.lat,
+            lng: coord.lng,
+          }}
+        />
+      );
+    });
+  };
+
+  useEffect(() => {
+    getCoordinates().then((coords) => {
+      setCoordinates(coords);
+    });
+  }, []);
 
   return (
     <Map
       google={props.google}
-      zoom={14}
+      zoom={5}
       style={mapStyles}
       initialCenter={{
-        lat: 31.5204,
-        lng: 74.3587,
+        lat: 35.5204,
+        lng: 72.3587,
       }}
-    />
+    >
+      {placeMarkers()}
+    </Map>
   );
 };
 
 export default GoogleApiWrapper({
   apiKey: 'AIzaSyAdrE2IZMrS6t9XpbPNN5gbHNwaGt2biNs',
 })(MapContainer);
-
-// export default MapContainer;
