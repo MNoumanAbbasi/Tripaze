@@ -81,9 +81,7 @@ const CreateTrip = (props) => {
             validationSchema={tripSchema}
             onSubmit={(values) => {
               values.departureDate = new Date(values.departureDate);
-              // var date = new Date();
-              // var timestamp = date.getTime();
-              // values.image = timestamp.toString();
+              values.image = timeStamp;
               console.log('New Trip', values);
               props.createTrip(values, props.profile);
               props.history.push('/');
@@ -128,9 +126,9 @@ const CreateTrip = (props) => {
                 </label>
                 <ImageSection
                   className="image-section mb-5"
-                  imageName={timestamp}
+                  imageName={timeStamp}
                   imageCategory="trip"
-                  handleImgNameChange={(img) => (values.image = img)}
+                  handleImgNameChange={(img) => (values.image = timeStamp)}
                 />
 
                 <hr class="bg-turq col-10 mt-4 divider"></hr>
