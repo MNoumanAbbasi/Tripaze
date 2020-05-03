@@ -475,6 +475,20 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
   background-color: #00a99d;
 }
 
+.ant-slider-handle {
+  border: solid 2px #00a99d;
+}
+
+.ant-slider-handle:focus {
+  border: solid 2px #00a99d;
+}
+
+.ant-slider-handle:hover {
+  border: solid 2px #00a99d;
+}
+
+/*Slider Classes*/
+
 .row {
   margin-right: 0;
   margin-left: 0;
