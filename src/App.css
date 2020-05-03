@@ -454,6 +454,16 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
   margin-left: 3.5rem;
 }
 
+.ant-picker {
+  border-radius: 30px;
+  height: 3.1em;
+  border: 1px solid #00a99d;
+}
+
+.ant-picker:hover {
+  border: 1px solid #00a99d;
+}
+
 .row {
   margin-right: 0;
   margin-left: 0;
