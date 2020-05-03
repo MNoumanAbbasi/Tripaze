@@ -464,6 +464,17 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
   border: 1px solid #00a99d;
 }
 
+.ant-picker-range {
+  width: 99.5% !important;
+}
+
+.ant-slider:hover .ant-slider-track {
+  background-color: #00a99d;
+}
+.ant-slider-track {
+  background-color: #00a99d;
+}
+
 .row {
   margin-right: 0;
   margin-left: 0;
