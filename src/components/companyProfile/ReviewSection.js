@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { addReview, deleteReview } from '../../store/actions/reviewActions';
 import SignInToAccess from '../dialogBoxes/SignInToAccess';
+import RatingBar from './RatingBar.js';
 
 const Review = (props) => {
   let button = null;
@@ -54,6 +55,13 @@ const AddNewReviewForm = (props) => {
             onChange={(event) => setRating(event.target.value)}
             required
           />
+          <RatingBar
+            name="companyrating"
+            value="5"
+            editable="true"
+            className="form-control form-control-lg mt-2"
+          />
+
           <div className="form-row mr-3 justify-content-end">
             <button className="btn form-rounded r-green-button">Submit</button>
           </div>
