@@ -512,6 +512,19 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
 }
 /*Scroll Bar classes (works for chromium based browsers only)*/
 
+/* Pop Up Classes*/
+
+.mob-shadow {
+  box-shadow: 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+.apply-filter-btn {
+  /*Remove this later*/
+  margin: 0;
+  margin-top: 0.5em;
+  margin-left: 42%;
+}
+
 .row {
   margin-right: 0;
   margin-left: 0;
