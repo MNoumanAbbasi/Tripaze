@@ -593,6 +593,13 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
   overflow: auto;
 }
 
+@media screen and (max-width: 700px) {
+  .popup {
+    width: 90%;
+  }
+}
+
+/* Pop Up Classes*/
 .row {
   margin-right: 0;
   margin-left: 0;
