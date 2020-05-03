@@ -212,6 +212,7 @@ a:hover {
   position: relative;
   text-align: center;
   color: white;
+  font-size: 20px;
 }
 
 .darken-bg {
@@ -220,12 +221,13 @@ a:hover {
   height: 2.6rem;
   padding: 5px 15px 5px 15px;
   opacity: 0.7;
+  font-weight: bold;
 }
 
 /* Bottom left text */
 .bottom-left {
   position: absolute;
-  bottom: -8px;
+  bottom: 0px;
 }
 
 .card-title {
@@ -332,7 +334,7 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
 .scroll-button {
   position: absolute;
   top: 80%;
-  left: 50%;
+  left: 49%;
   width: 6vh;
   height: 6vh;
   /* background: #ffffff; */
@@ -396,7 +398,7 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
 
 .centered {
   position: absolute;
-  top: 35%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -404,21 +406,6 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
 .searchbar-w {
   width: 46%;
 }
-
-/* Calendar classes */
-
-.calendar-pos {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.DateInput_input__focused {
-  border-bottom: 3px solid #008489;
-}
-
-/* Calendar classes */
 
 .row {
   margin-right: 0;
