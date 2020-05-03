@@ -12,13 +12,6 @@ class Calendar extends Component {
     };
   }
 
-  alertStartDate = () => {
-    alert(this.state.startDate);
-  };
-  alertEndDate = () => {
-    alert(this.state.endDate);
-  };
-
   render() {
     return (
       <div className="calendar-pos">
