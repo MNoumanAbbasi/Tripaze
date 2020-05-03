@@ -127,7 +127,7 @@ const FAQSection = (props) => {
         Add Question
       </button>
     );
-  } else {
+  } else if (props.profileType === 'User') {
     button = (
       <button
         className="btn mt-3 form-rounded r-green-button"
@@ -136,7 +136,7 @@ const FAQSection = (props) => {
         Add Question
       </button>
     );
-  }
+  } else button = null;
 
   return (
     <div className="FAQSection pb-5 pr-5 pl-5">
