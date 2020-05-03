@@ -44,7 +44,7 @@ class Calendar extends Component {
           }}
           readOnly
           //   verticalHeight={370}
-          //   orientation="vertical"
+          // orientation="vertical"
           showClearDates
           hideKeyboardShortcutsPanel
           autoFocus
