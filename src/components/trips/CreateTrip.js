@@ -127,7 +127,7 @@ const CreateTrip = (props) => {
                   className="image-section mb-5"
                   imageName={timeStamp}
                   imageCategory="trip"
-                  handleImgNameChange={(img) => (values.image = timeStamp)}
+                  handleImgNameChange={(img) => (values.image = img)}
                 />
 
                 <hr class="bg-turq col-10 mt-4 divider"></hr>

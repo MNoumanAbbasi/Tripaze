@@ -62,7 +62,7 @@ const ImageSection = (props) => {
       () => {
         // Handle Successful Upload
         console.log('Successfull upload of image', image.name);
-        props.handleImgNameChange(image.name);
+        props.handleImgNameChange(props.imageName);
         setIsUploaded(true);
       }
     );
