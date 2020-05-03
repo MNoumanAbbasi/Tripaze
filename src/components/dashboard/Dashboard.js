@@ -80,11 +80,11 @@ class Dashboard extends Component {
             </a>
 
             <FilterBar trips={trips} />
-            {/* <a href="#tripcards" className="scroll-button d-md-block d-none">
+            <a href="#tripcards" className="scroll-button d-md-block d-none">
               <span></span>
               <span></span>
               <span></span>
-            </a> */}
+            </a>
           </div>
 
           <div id="tripcards">
