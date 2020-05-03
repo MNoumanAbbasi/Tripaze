@@ -80,7 +80,7 @@ const CreateTrip = (props) => {
               values.departureDate = new Date(values.departureDate);
               var date = new Date();
               var timestamp = date.getTime();
-              values.image = values.image + timestamp;
+              values.image = timestamp.toString();
               console.log('New Trip', values);
               props.createTrip(values, props.profile);
               props.history.push('/');
