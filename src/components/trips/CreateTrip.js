@@ -41,6 +41,9 @@ export const tripSchema = yup.object({
   image: yup.string(),
 });
 
+var date = new Date();
+var timeStamp = date.getTime().toString() + '.jpg';
+
 const CreateTrip = (props) => {
   const { auth, profile, isLoading } = props;
   const isInitialized = !isLoading && profile && auth;
@@ -125,7 +128,7 @@ const CreateTrip = (props) => {
                 </label>
                 <ImageSection
                   className="image-section mb-5"
-                  imageName={values.image}
+                  imageName={timestamp}
                   imageCategory="trip"
                   handleImgNameChange={(img) => (values.image = img)}
                 />
