@@ -197,7 +197,7 @@ class FilterBar extends Component {
                 required
                 autofocus
               /> */}
-              <div className="">
+              <div className="d-flex justify-content-center">
                 <button
                   className="btn btn-secondary dark-button "
                   type="submit"
