@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import storage from '../../config/fbConfig';
 
+let date = new Date();
+let fileName = date.getTime().toString + '.jpg';
+
 const ImageThumb = ({ image }) => {
   return (
     <div className="image-thumb border">
@@ -28,9 +31,7 @@ const ImageSection = (props) => {
     setImage(image);
 
     // Uploading file
-    const uploadTask = storage
-      .ref(`${folderName + props.imageName}`)
-      .put(image);
+    const uploadTask = storage.ref(`${folderName + fileName}`).put(image);
     uploadTask.on(
       'state_changed',
       (snapshot) => {
@@ -62,7 +63,7 @@ const ImageSection = (props) => {
       () => {
         // Handle Successful Upload
         console.log('Successfull upload of image', image.name);
-        props.handleImgNameChange(props.imageName);
+        props.handleImgNameChange(fileName);
         setIsUploaded(true);
       }
     );
@@ -71,7 +72,7 @@ const ImageSection = (props) => {
   const handleDelete = () => {
     setImage('');
     setIsFileChosen(false);
-    const deleteRef = storage.ref(`${folderName + props.imageName}`);
+    const deleteRef = storage.ref(`${folderName + image.name}`);
     // Delete the file
     deleteRef
       .delete()
