@@ -78,7 +78,6 @@ class Dashboard extends Component {
             >
               Advanced Search
             </a>
-            {/* <Calendar /> */}
 
             <FilterBar trips={trips} />
             <a href="#tripcards" className="scroll-button d-md-block d-none">
