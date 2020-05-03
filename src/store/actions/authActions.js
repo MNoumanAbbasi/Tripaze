@@ -122,6 +122,9 @@ export const signUpCompany = (newUser) => {
       })
       .then(() => {
         dispatch({ type: 'SIGNUP_SUCCESS' });
+      })
+      .catch((err) => {
+        dispatch({ type: 'SIGNUP_COMPANY_ERROR', err });
       });
   };
 };
@@ -140,5 +143,11 @@ export const resetPassword = (email) => {
         // An error happened.
         dispatch({ type: 'RESET_ERROR', err });
       });
+  };
+};
+
+export const clearAuthError = () => {
+  return (dispatch, getState, { getFirestore }) => {
+    dispatch({ type: 'CLEAR_AUTH_ERROR' });
   };
 };

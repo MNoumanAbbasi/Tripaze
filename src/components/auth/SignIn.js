@@ -24,10 +24,11 @@ export class SignIn extends Component {
   };
 
   render() {
-    const { auth, authError, history } = this.props;
+    const { auth, signInError, history } = this.props;
 
     if (auth.uid) {
       history.goBack();
+      // return <Redirect to="/" />;
     }
 
     return (
@@ -76,9 +77,9 @@ export class SignIn extends Component {
               >
                 Sign in
               </button>
-              {authError && (
+              {signInError && (
                 <div className="border border-danger rounded text-danger p-1">
-                  <p>{authError}</p>
+                  <p>{signInError}</p>
                 </div>
               )}
             </div>
@@ -96,7 +97,7 @@ export class SignIn extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    authError: state.auth.authError, // in root reducer check auth property and the authError in that property
+    signInError: state.auth.signInError, // in root reducer check auth property and the authError in that property
     auth: state.firebase.auth,
   };
 };
