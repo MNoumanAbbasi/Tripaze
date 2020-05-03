@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import CheckboxContainer from './CheckboxContainer';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { withRouter } from 'react-router-dom';
+import { Multiselect } from 'react-widgets';
+import 'react-widgets/dist/css/react-widgets.css';
+import RangeSlider from './Slider';
 import Calendar from './Calendar';
 
 class FilterBar extends Component {
@@ -11,6 +14,14 @@ class FilterBar extends Component {
     startDate: null,
     endDate: null,
   };
+
+  // function onChange(value) {
+  //   console.log('onChange: ', value);
+  // }
+
+  // function onAfterChange(value) {
+  //   console.log('onAfterChange: ', value);
+  // }
 
   componentDidMount() {
     this.destinationsChecked = new Set();
@@ -87,51 +98,6 @@ class FilterBar extends Component {
     });
   };
 
-  // CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
-  //   <a
-  //     href=""
-  //     ref={ref}
-  //     onClick={(e) => {
-  //       e.preventDefault();
-  //       onClick(e);
-  //     }}
-  //   >
-  //     {children}
-  //     &#x25bc;
-  //   </a>
-  // ));
-
-  // // forwardRef again here!
-  // // Dropdown needs access to the DOM of the Menu to measure it
-  // CustomMenu = React.forwardRef(
-  //   ({ children, style, className, 'aria-labelledby': labeledBy }, ref) => {
-  //     const [value, setValue] = useState('');
-
-  //     return (
-  //       <div
-  //         ref={ref}
-  //         style={style}
-  //         className={className}
-  //         aria-labelledby={labeledBy}
-  //       >
-  //         <FormControl
-  //           autoFocus
-  //           className="mx-3 my-2 w-auto"
-  //           placeholder="Type to filter..."
-  //           onChange={(e) => setValue(e.target.value)}
-  //           value={value}
-  //         />
-  //         <ul className="list-unstyled">
-  //           {React.Children.toArray(children).filter(
-  //             (child) =>
-  //               !value || child.props.children.toLowerCase().startsWith(value)
-  //           )}
-  //         </ul>
-  //       </div>
-  //     );
-  //   }
-  // );
-
   render() {
     let destinations = [];
     this.props.trips.forEach((trip) => {
@@ -151,7 +117,80 @@ class FilterBar extends Component {
     });
     return (
       <form onSubmit={this.handleFormSubmit}>
-        <DropdownButton id="dropdown-item-button" title="Destinations">
+        <div id="popup1" class="popup-overlay">
+          <div class="popup">
+            <h3 className="text-center font-weight-bold">Advanced Search</h3>
+            <a class="close" href="#">
+              &times;
+            </a>
+            <div>
+              <div className="popup-text">Dates</div>
+              <Calendar />
+              <div className="popup-text mt-3">Destinations</div>
+
+              <Multiselect
+                data={destinations}
+                placeholder="Select Locations"
+                className="mb-2"
+              />
+              <div className="popup-text mt-3">Departure Locations</div>
+
+              <Multiselect
+                data={departures}
+                placeholder="Select Locations"
+                className="mb-2"
+              />
+              <div className="popup-text mt-3">Companies</div>
+
+              <Multiselect
+                data={companies}
+                placeholder="Select Companies"
+                className="mb-2"
+              />
+              <div className="popup-text mt-3 mb-3">Price Range (PKR)</div>
+
+              <RangeSlider />
+              {/* <input
+                onChange={this.handleChange}
+                type="number"
+                id="min"
+                class="form-control mb-4"
+                placeholder="Minimum Price (PKR)"
+                required
+                autofocus
+              />
+              <input
+                onChange={this.handleChange}
+                type="number"
+                id="max"
+                class="form-control mb-4"
+                placeholder="Maximum Price (PKR)"
+                required
+                autofocus
+              /> */}
+              <div className="d-flex justify-content-center">
+                <button
+                  className="btn btn-secondary dark-button "
+                  type="submit"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+          {/* <Multiselect
+          data={destinations}
+          // onChange={(value) => this.toggleCheckboxDest({ value })}
+          placeholder="Filter by Destinations"
+        /> */}
+          {/* <Calendar2 /> */}
+          {/* <Demo /> */}
+          {/* <Multiselect
+          data={departures}
+          placeholder="Filter by Departure Locations"
+        />
+        <Multiselect data={companies} placeholder="Filter by Companies" /> */}
+          {/* <DropdownButton id="dropdown-item-button" title="Destinations">
           <CheckboxContainer
             handleCheckboxChange={this.toggleCheckboxDest}
             items={destinations}
@@ -168,8 +207,8 @@ class FilterBar extends Component {
             handleCheckboxChange={this.toggleCheckboxCompany}
             items={companies}
           />
-        </DropdownButton>
-        <input
+        </DropdownButton> */}
+          {/* <input
           onChange={this.handleChange}
           type="number"
           id="min"
@@ -184,15 +223,13 @@ class FilterBar extends Component {
           class="form-control mb-4"
           placeholder="Maximum Price (PKR)"
           required
-        />
-        <Calendar
-          storeDates={this.storeDates}
-          startDate={this.state.startDate}
-          endDate={this.state.endDate}
-        />
-        <button className="btn btn-default" type="submit">
-          Submit
-        </button>
+          autofocus
+        /> */}
+          {/* // <button className="btn btn-secondary dark-button" type="submit">
+        //   Submit
+        // </button>
+      // </form> */}
+        </div>
       </form>
     );
   }
