@@ -124,24 +124,9 @@ class FilterBar extends Component {
               &times;
             </a>
             <div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
               <div className="popup-text">Dates</div>
               <Calendar />
-=======
->>>>>>> 5b1864b... Added destinations drop down filter
-=======
-              <div className="popup-text">Dates</div>
-<<<<<<< HEAD
-              <Calendar2 />
->>>>>>> ef4228b... Added Data Range filter
-=======
-              <Calendar />
->>>>>>> ab86bad... Deleted old calendar file and updated the new one
+
               <div className="popup-text mt-3">Destinations</div>
 
               <Multiselect
@@ -149,11 +134,6 @@ class FilterBar extends Component {
                 placeholder="Select Locations"
                 className="mb-2"
               />
-<<<<<<< HEAD
-=======
->>>>>>> 06f62f2... Added departure locations drop down filter
-=======
->>>>>>> 5b1864b... Added destinations drop down filter
               <div className="popup-text mt-3">Departure Locations</div>
 
               <Multiselect
@@ -161,11 +141,7 @@ class FilterBar extends Component {
                 placeholder="Select Locations"
                 className="mb-2"
               />
-<<<<<<< HEAD
-=======
->>>>>>> 9d7e3eb... Added companies drop down filter
-=======
->>>>>>> 06f62f2... Added departure locations drop down filter
+
               <div className="popup-text mt-3">Companies</div>
 
               <Multiselect
@@ -173,16 +149,11 @@ class FilterBar extends Component {
                 placeholder="Select Companies"
                 className="mb-2"
               />
+
               <div className="popup-text mt-3 mb-3">Price Range (PKR)</div>
 
               <RangeSlider />
-=======
->>>>>>> c790511... Added submit button in filter popup
-=======
-              <div className="popup-text mt-3 mb-3">Price Range (PKR)</div>
 
-              <RangeSlider />
->>>>>>> d6a337f... Added price range slider in filiter bar
               {/* <input
                 onChange={this.handleChange}
                 type="number"
