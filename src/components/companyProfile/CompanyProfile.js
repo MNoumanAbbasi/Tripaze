@@ -8,6 +8,7 @@ import { profileType } from '../../Helpers';
 import LoadingBox from './../dashboard/LoadingBox';
 import CoverImage from '../displayImages/CoverImage';
 
+const today = new Date();
 // 6 columns on medium and 12 column on small screens
 const CompanyProfile = (props) => {
   const { trips, company, profile, isLoading, reviews, auth } = props;
@@ -129,7 +130,11 @@ export default compose(
   firestoreConnect((props) => [
     {
       collection: 'Trips',
-      where: [['companyId', '==', props.match.params.id]],
+      where: [
+        ['companyId', '==', props.match.params.id], // trips by the company in question
+        ['departureDate', '>=', today], // only upcoming trips
+      ],
+      orderBy: ['departureDate'],
     },
     { collection: 'Companies', doc: props.match.params.id },
     {
