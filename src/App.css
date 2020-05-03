@@ -212,6 +212,7 @@ a:hover {
   position: relative;
   text-align: center;
   color: white;
+  font-size: 20px;
 }
 
 .darken-bg {
@@ -220,12 +221,13 @@ a:hover {
   height: 2.6rem;
   padding: 5px 15px 5px 15px;
   opacity: 0.7;
+  font-weight: bold;
 }
 
 /* Bottom left text */
 .bottom-left {
   position: absolute;
-  bottom: -8px;
+  bottom: 0px;
 }
 
 .card-title {
@@ -332,7 +334,7 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
 .scroll-button {
   position: absolute;
   top: 80%;
-  left: 50%;
+  left: 49%;
   width: 6vh;
   height: 6vh;
   /* background: #ffffff; */
@@ -396,7 +398,7 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
 
 .centered {
   position: absolute;
-  top: 35%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -405,25 +407,199 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
   width: 46%;
 }
 
+/* Drop down checkboxes*/
+
+.rw-btn,
+.rw-input-reset,
+.rw-input,
+.rw-dropdown-list-autofill,
+.rw-filter-input {
+  font-size: 14px;
+}
+
+.rw-multiselect-tag {
+  margin-bottom: calc(0.279335em - 1px);
+  vertical-align: middle;
+  border: 1px solid #00a99d;
+  background-color: #00a99d;
+  border-radius: 20px; /* Making border radius */
+  padding: 2px 15px 2px 15px; /* Making space around letters */
+  font-size: 18px; /* Changing font size */
+  color: #ffffff;
+}
+
+.rw-widget-container {
+  border: 1px solid #00a99d;
+  background-color: #ffffff;
+  border-radius: 30px; /* Making border radius */
+  padding: 5px 15px 5px 15px; /* Making space around letters */
+  font-size: 18px; /* Changing font size */
+  /* color: #00a99d; */
+}
+/* Drop down checkboxes*/
+
+/*Slider CLasses */
+
+.ant-picker {
+  border-radius: 30px;
+  height: 3.1em;
+  border: 1px solid #00a99d;
+}
+
+.ant-picker:hover {
+  border: 1px solid #00a99d;
+}
+
+.ant-picker-range {
+  width: 99.5% !important;
+}
+
+.ant-slider:hover .ant-slider-track {
+  background-color: #00a99d;
+}
+.ant-slider-track {
+  background-color: #00a99d;
+}
+
+.ant-slider-handle {
+  border: solid 2px #00a99d;
+}
+
+.ant-slider-handle:focus {
+  border: solid 2px #00a99d;
+}
+
+.ant-slider-handle:hover {
+  border: solid 2px #00a99d;
+}
+
+/*Slider Classes*/
+
 /* Calendar classes */
 
-.calendar-pos {
+.ant-picker-range {
+  width: 43%;
+}
+
+.ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner,
+.ant-picker-cell-in-view.ant-picker-cell-range-start .ant-picker-cell-inner,
+.ant-picker-cell-in-view.ant-picker-cell-range-end .ant-picker-cell-inner {
+  color: #fff;
+  background: #00a99d;
+}
+
+/* Calendar classes */
+
+/*Scroll Bar classes (works for chromium based browsers only)*/
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+/*Scroll Bar classes (works for chromium based browsers only)*/
+
+/* Pop Up Classes*/
+
+.mob-shadow {
+  box-shadow: 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+.apply-filter-btn {
+  /*Remove this later*/
+  margin: 0;
+  margin-top: 0.5em;
+  margin-left: 42%;
+}
+
+.popup-text {
+  font-size: 1em;
+  font-family: 'Open Sans';
+  color: #585858;
+  font-weight: 645;
+}
+
+.filter-button {
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-.DateInput {
-  width: 18.5rem;
+.popup-overlay {
+  position: fixed;
+  top: 0%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  /* transition: opacity 50ms; */
+  visibility: hidden;
+  opacity: 0;
 }
 
-.DateInput_input__focused {
-  border-bottom: 3px solid #008489;
+.popup-overlay:target {
+  visibility: visible;
+  opacity: 1;
+  z-index: 1;
 }
 
-/* Calendar classes */
+.popup {
+  margin: 70px auto;
+  overflow-y: scroll;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  top: 15%;
+  width: 50%;
+  height: 82%;
+  position: relative;
+  /* transition: all 5s ease-in-out; */
+}
 
+.popup {
+  margin-top: 0;
+  color: #333;
+  font-family: 'Open Sans';
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #06d85f;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+@media screen and (max-width: 700px) {
+  .popup {
+    width: 90%;
+  }
+}
+
+/* Pop Up Classes*/
 .row {
   margin-right: 0;
   margin-left: 0;
