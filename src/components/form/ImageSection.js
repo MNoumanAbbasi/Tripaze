@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import storage from '../../config/fbConfig';
 
 let date = new Date();
-let fileName = date.getTime().toString + '.jpg';
+let fileName = date.getTime().toString() + '.jpg';
 
 const ImageThumb = ({ image }) => {
   return (
