@@ -23,7 +23,7 @@ export class SearchBar extends Component {
     });
   }
 
-  componentDidUnmount() {
+  componentWillUnmount() {
     this._isMounted = false;
     this.unlisten();
   }
