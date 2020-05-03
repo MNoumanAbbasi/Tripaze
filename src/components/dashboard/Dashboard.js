@@ -11,7 +11,6 @@ import SearchBar from '../layout/SearchBar';
 import { searchBarShow } from '../../store/actions/filterActions';
 import LoadingBox from './LoadingBox';
 import FilterBar from '../filterBar/FilterBar';
-
 let lastScrollY = 0;
 const today = new Date();
 // 6 columns on medium and 12 column on small screens
@@ -60,34 +59,54 @@ class Dashboard extends Component {
     if (isInitialized) {
       return (
         <div className="homePage">
-          <div class="d-sm-block d-none">
+          <div class="d-block">
             <img
               alt="Background"
               src={background}
-              className="img-fluid mw-100"
+              className="img-fluid mw-100 d-md-block d-none"
             ></img>
-            <SearchBar
-              formClass="input-group form-group home-searchbar searchbar-w centered"
-              inputClass="form-control form-control-lg form-rounded"
-              centreSearchBar={true}
-            />
+            <div className="d-md-block d-none">
+              <SearchBar
+                formClass="input-group form-group home-searchbar searchbar-w centered"
+                inputClass="form-control form-control-lg form-rounded"
+                centreSearchBar={true}
+              />
+            </div>
+            <a
+              class="btn dark-button btn-secondary filter-button d-md-block d-none"
+              href="#popup1"
+            >
+              Advanced Search
+            </a>
+            {/* <Calendar /> */}
+
             <FilterBar trips={trips} />
-            <a href="#tripcards" className="scroll-button ">
+            <a href="#tripcards" className="scroll-button d-md-block d-none">
               <span></span>
               <span></span>
               <span></span>
             </a>
           </div>
+
           <div id="tripcards">
-            <hr className="greenline mw-100"></hr>
+            <hr className="greenline mw-100 d-md-block d-none"></hr>
 
             <div className="row justify-content-center justify-content-around align-items-end">
               <h3 className="home-heading mt-5">ALL TRIPS</h3>
               <img
                 src={logo_wt}
-                className="logo-no-text logo-dims ml-3"
+                className="logo-no-text logo-dims ml-3 mb-3"
                 alt="Logo"
               ></img>
+            </div>
+
+            <div className="d-flex justify-content-center">
+              <a
+                class="btn dark-button btn-secondary mob-shadow d-md-none d-xs-block change-font"
+                href="#popup1"
+              >
+                Tap me to Filter Trips
+              </a>
             </div>
             <div className="container">
               <TripsList trips={trips} isCompProfile={false} />
