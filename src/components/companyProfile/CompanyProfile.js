@@ -11,9 +11,9 @@ import CoverImage from '../displayImages/CoverImage';
 // const today = new Date();
 // 6 columns on medium and 12 column on small screens
 const CompanyProfile = (props) => {
-  const { trips, company, profile, isLoading, reviews, auth } = props;
+  const { trips, company, profile, isLoading, reviews, auth, wrongID } = props;
   const isInitialized = !isLoading && trips && company && auth;
-  if (!isLoading && !company && trips && auth) props.history.push('/'); // wrong id entered
+  if (wrongID) props.history.push('/'); // wrong id entered
   const adminMode = auth.uid === props.match.params.id;
   if (isInitialized) {
     const currProfileType = profileType(auth, profile);
@@ -113,6 +113,10 @@ const mapStateToProps = (state, ownProps) => {
   const id = ownProps.match.params.id;
   const companies = state.firestore.data.Companies;
   const company = companies ? companies[id] : null;
+  let wrongID = false;
+  if (companies && !companies[id]) {
+    wrongID = true;
+  }
   const requests = state.firestore.status.requesting;
   const isLoading = requests
     ? Object.values(requests).some((value) => value === true)
@@ -124,6 +128,7 @@ const mapStateToProps = (state, ownProps) => {
     profile: state.auth.currProfile,
     isLoading: isLoading, // all must be loaded
     reviews: state.firestore.ordered.Reviews,
+    wrongID: wrongID,
   };
 };
 
@@ -132,6 +137,7 @@ export default compose(
   // tells us which collections to connect to in our firebase project whenever this component, namely dashboard, is active
   // Whenever collection trip is changed, it would call the firestore reducer which would update the state of this firestore
   firestoreConnect((props) => [
+    { collection: 'Companies', doc: props.match.params.id },
     {
       collection: 'Trips',
       where: [
@@ -140,7 +146,6 @@ export default compose(
       ],
       orderBy: ['departureDate'],
     },
-    { collection: 'Companies', doc: props.match.params.id },
     {
       collection: 'Reviews',
       where: [['companyID', '==', props.match.params.id]],
