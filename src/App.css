@@ -539,6 +539,18 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
   transform: translate(-50%, -50%);
 }
 
+.popup-overlay {
+  position: fixed;
+  top: 0%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  /* transition: opacity 50ms; */
+  visibility: hidden;
+  opacity: 0;
+}
+
 .row {
   margin-right: 0;
   margin-left: 0;
