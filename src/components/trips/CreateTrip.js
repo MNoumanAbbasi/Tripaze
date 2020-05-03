@@ -127,7 +127,7 @@ const CreateTrip = (props) => {
                   handleImgNameChange={(img) => (values.image = img)}
                 />
 
-                <hr class="bg-turq col-9 divider"></hr>
+                <hr class="bg-turq col-10 mt-4 divider"></hr>
                 <div className="row justify-content-end">
                   <button
                     type="button"

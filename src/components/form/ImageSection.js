@@ -86,9 +86,17 @@ const ImageSection = (props) => {
   if (!isFileChosen) {
     return (
       <div>
-        <em>A default image will be assigned if you don't assign your own.</em>
+        <label class="btn form-rounded r-green-button">
+          Upload{' '}
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleUpload}
+            hidden
+          ></input>
+        </label>
         <br />
-        <input type="file" accept="image/*" onChange={handleUpload} />
+        <em>A default image will be assigned if you don't assign your own.</em>
       </div>
     );
   } else {

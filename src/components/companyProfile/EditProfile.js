@@ -35,10 +35,11 @@ const EditProfile = (props) => {
   }
   console.log(company);
   return (
-    <div className="container">
+    <div className="container border mb-4 mt-5 object-shadow">
       <div className="row mt-5">
-        <div className="col-lg-12 text-center">
-          <h1 className="mt-5 text-turq">Edit Profile </h1>
+        <div className="mt-5 col-lg-12 text-center">
+          <h1 className="mt-5 text-turq">EDIT PROFILE</h1>
+          <hr class="mt-2 bg-turq col-6 divider"></hr>
         </div>
       </div>
       <div className="row justify-content-center">
@@ -99,20 +100,22 @@ const EditProfile = (props) => {
                   imageCategory="companyCover"
                   handleImgNameChange={(img) => (values.coverImage = img)}
                 />
-
-                <button
-                  type="submit"
-                  className="btn form-rounded r-green-button"
-                >
-                  Submit
-                </button>
-                <button
-                  type="button"
-                  className="ml-4 btn form-rounded r-red-button"
-                  onClick={() => props.history.push('/')}
-                >
-                  Cancel
-                </button>
+                <hr class="bg-turq col-10 mt-4 divider"></hr>
+                <div className="row justify-content-end">
+                  <button
+                    type="button"
+                    className="btn form-rounded r-red-button"
+                    onClick={() => props.history.push('/')}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="ml-4 btn form-rounded r-green-button"
+                  >
+                    Submit
+                  </button>
+                </div>
               </Form>
             )}
           </Formik>
