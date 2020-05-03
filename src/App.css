@@ -525,6 +525,20 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
   margin-left: 42%;
 }
 
+.popup-text {
+  font-size: 1em;
+  font-family: 'Open Sans';
+  color: #585858;
+  font-weight: 645;
+}
+
+.filter-button {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .row {
   margin-right: 0;
   margin-left: 0;
