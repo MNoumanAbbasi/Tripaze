@@ -27,6 +27,7 @@ const EditProfile = (props) => {
   const { auth, company, profile, isLoading } = props;
   const isInitialized = !isLoading && profile && auth;
   const adminMode = auth.uid === props.match.params.id;
+  if (!isLoading && !company && auth) props.history.push('/'); // wrong id entered
 
   if (!isInitialized) {
     return <div>Loading...</div>;

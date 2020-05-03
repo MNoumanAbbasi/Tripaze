@@ -15,7 +15,8 @@ const EditTrip = (props) => {
   const { trip, isLoading, auth } = props;
   const isInitialized = !isLoading && trip;
   const adminMode = trip && auth.uid === trip.companyId;
-
+  // wrong id entered
+  if (!isLoading && !trip && auth) props.history.push('/');
   if (!isInitialized) {
     return <div>Loading...</div>;
   } else if (!adminMode) {
