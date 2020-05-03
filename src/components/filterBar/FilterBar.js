@@ -127,6 +127,7 @@ class FilterBar extends Component {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
               <div className="popup-text">Dates</div>
               <Calendar />
               <div className="popup-text mt-3">Destinations</div>
@@ -136,6 +137,8 @@ class FilterBar extends Component {
                 placeholder="Select Locations"
                 className="mb-2"
               />
+=======
+>>>>>>> 06f62f2... Added departure locations drop down filter
               <div className="popup-text mt-3">Departure Locations</div>
 
               <Multiselect
@@ -143,8 +146,11 @@ class FilterBar extends Component {
                 placeholder="Select Locations"
                 className="mb-2"
               />
+<<<<<<< HEAD
 =======
 >>>>>>> 9d7e3eb... Added companies drop down filter
+=======
+>>>>>>> 06f62f2... Added departure locations drop down filter
               <div className="popup-text mt-3">Companies</div>
 
               <Multiselect
