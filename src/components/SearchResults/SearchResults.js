@@ -6,6 +6,7 @@ import { firestoreConnect } from 'react-redux-firebase'; // higher order
 import LoadingBox from '../dashboard/LoadingBox';
 import NoTripsFound from '../dialogBoxes/NoTripsFound';
 
+const today = new Date();
 const SearchResults = (props) => {
   const [modalShow, setModalShow] = React.useState(true);
   const { trips, isLoading } = props;
@@ -20,6 +21,9 @@ const SearchResults = (props) => {
       props.location.state.endDate
     )
       filteredTrips = trips.filter((trip) => {
+        // only show upcoming trips
+        if (trip.departureDate.toDate().getTime() < today.getTime())
+          return false;
         let show = false;
         let filteredDest;
         let filteredDep;

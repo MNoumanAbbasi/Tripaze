@@ -13,11 +13,12 @@ import LoadingBox from './LoadingBox';
 import FilterBar from '../filterBar/FilterBar';
 
 let lastScrollY = 0;
-
+const today = new Date();
 // 6 columns on medium and 12 column on small screens
 class Dashboard extends Component {
   // To detect scroll
   componentDidMount() {
+    // this.today = new Date();
     // Add search bar to navbar if in mobile mode
     if (window.innerWidth < 992) this.props.searchBarShow(true);
     else this.props.searchBarShow(false);
@@ -34,12 +35,12 @@ class Dashboard extends Component {
     // If search bar not showing but should be shown
     if (window.innerWidth < 992 && !this.props.searchBarVisible) {
       this.props.searchBarShow(true);
-    } else if (lastScrollY > 252 && !this.props.searchBarVisible) {
+    } else if (lastScrollY > 210 && !this.props.searchBarVisible) {
       this.props.searchBarShow(true);
     }
     // Else if search bar is showing but should not be shown
     else if (
-      lastScrollY <= 252 &&
+      lastScrollY <= 210 &&
       this.props.searchBarVisible &&
       window.innerWidth >= 992
     ) {
@@ -126,5 +127,13 @@ export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   // tells us which collections to connect to in our firebase project whenever this component, namely dashboard, is active
   // Whenever collection trip is changed, it would call the firestore reducer which would update the state of this firestore
-  firestoreConnect([{ collection: 'Trips' }])
+  firestoreConnect(() => {
+    return [
+      {
+        collection: 'Trips',
+        where: [['departureDate', '>=', today]], // only show upcoming trips
+        orderBy: ['departureDate'],
+      },
+    ];
+  })
 )(Dashboard);

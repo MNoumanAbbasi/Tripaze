@@ -50,6 +50,7 @@ class App extends Component {
               <Route path="/signupchoice" component={SignUpChoice} />
               <Route path="/companyprofile/:id" component={CompanyProfile} />
               <Route path="/editprofile/:id" component={EditProfile} />
+              <Route component={Dashboard} />
             </Switch>
           </div>
         </BrowserRouter>
