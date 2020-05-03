@@ -78,9 +78,9 @@ const CreateTrip = (props) => {
             validationSchema={tripSchema}
             onSubmit={(values) => {
               values.departureDate = new Date(values.departureDate);
-              var date = new Date();
-              var timestamp = date.getTime();
-              values.image = timestamp.toString();
+              // var date = new Date();
+              // var timestamp = date.getTime();
+              // values.image = timestamp.toString();
               console.log('New Trip', values);
               props.createTrip(values, props.profile);
               props.history.push('/');
