@@ -3,10 +3,6 @@ import { Slider } from 'antd';
 import 'antd/dist/antd.css';
 
 class RangeSlider extends Component {
-  //   onChange = (value) => {
-  //     console.log('onChange: ', value);
-  //   };
-
   minimum = 0;
   maximum = 50000;
   defaultVal = [5000, 20000];
