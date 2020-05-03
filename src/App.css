@@ -477,18 +477,6 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
 
 /* Calendar classes */
 
-.calendar-pos {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.DateInput_input__focused {
-  border-bottom: 3px solid #008489;
-}
-/*                           */
-
 .ant-picker-range {
   width: 43%;
 }
