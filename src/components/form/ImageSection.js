@@ -71,7 +71,7 @@ const ImageSection = (props) => {
   const handleDelete = () => {
     setImage('');
     setIsFileChosen(false);
-    const deleteRef = storage.ref(`${folderName + image.name}`);
+    const deleteRef = storage.ref(`${folderName + props.imageName}`);
     // Delete the file
     deleteRef
       .delete()
