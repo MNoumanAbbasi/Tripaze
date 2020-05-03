@@ -407,6 +407,27 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
   width: 46%;
 }
 
+/* Drop down checkboxes*/
+
+.rw-btn,
+.rw-input-reset,
+.rw-input,
+.rw-dropdown-list-autofill,
+.rw-filter-input {
+  font-size: 14px;
+}
+
+.rw-multiselect-tag {
+  margin-bottom: calc(0.279335em - 1px);
+  vertical-align: middle;
+  border: 1px solid #00a99d;
+  background-color: #00a99d;
+  border-radius: 20px; /* Making border radius */
+  padding: 2px 15px 2px 15px; /* Making space around letters */
+  font-size: 18px; /* Changing font size */
+  color: #ffffff;
+}
+
 .row {
   margin-right: 0;
   margin-left: 0;
