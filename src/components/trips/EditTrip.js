@@ -91,7 +91,7 @@ const EditTrip = (props) => {
             <button
               type="button"
               className="btn grey lighten-1 z-depth-1"
-              onClick={() => props.history.push('/')}
+              onClick={() => props.history.goBack()}
             >
               Cancel
             </button>

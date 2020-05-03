@@ -132,7 +132,7 @@ export default compose(
       collection: 'Trips',
       where: [
         ['companyId', '==', props.match.params.id], // trips by the company in question
-        ['departureDate', '>=', today], // only upcoming trips
+        // ['departureDate', '>=', today], // only upcoming trips
       ],
       orderBy: ['departureDate'],
     },
