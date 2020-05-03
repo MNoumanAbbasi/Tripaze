@@ -28,7 +28,9 @@ const ImageSection = (props) => {
     setImage(image);
 
     // Uploading file
-    const uploadTask = storage.ref(`${folderName + image.name}`).put(image);
+    const uploadTask = storage
+      .ref(`${folderName + props.imageName}`)
+      .put(image);
     uploadTask.on(
       'state_changed',
       (snapshot) => {
