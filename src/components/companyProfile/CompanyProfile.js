@@ -81,7 +81,7 @@ const CompanyProfile = (props) => {
             <h3 className="tripText">Upcoming Trips</h3>
           </div>
           <div className="container mt-4">
-            <TripsList trips={trips} />
+            <TripsList trips={trips} isCompProfile={adminMode} />
           </div>
 
           {/* Second Section */}

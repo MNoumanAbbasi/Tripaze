@@ -12,12 +12,12 @@ const SearchResults = (props) => {
   const isInitialized = !isLoading && trips;
   if (isInitialized) {
     let filteredTrips = trips;
-    console.log('filter', filteredTrips);
     // If any one of the filters have been used, then filter trips accordingly
     if (
       props.location.state.dest.length ||
       props.location.state.departureLocs.length ||
-      props.location.state.comps.length
+      props.location.state.comps.length ||
+      props.location.state.endDate
     )
       filteredTrips = trips.filter((trip) => {
         let show = false;
@@ -42,13 +42,21 @@ const SearchResults = (props) => {
             break;
           }
         }
+        // if filter for date selected
+        if (props.location.state.startDate && props.location.state.endDate) {
+          const tripDeparture = trip.departureDate.toDate().getTime();
+          const startDate = props.location.state.startDate.getTime();
+          const endDate = props.location.state.endDate.getTime();
+          // show trip only if the departure date falls in the range provided
+          show = tripDeparture >= startDate && tripDeparture <= endDate;
+        }
         return show;
       });
 
     if (filteredTrips.length > 0) {
       return (
         <div className="container cardslist-margin">
-          <TripsList trips={filteredTrips} />
+          <TripsList trips={filteredTrips} isCompProfile={false} />
         </div>
       );
     } else {
@@ -85,7 +93,6 @@ export default compose(
   // tells us which collections to connect to in our firebase project whenever this component, namely dashboard, is active
   // Whenever collection trip is changed, it would call the firestore reducer which would update the state of this firestore
   firestoreConnect((props) => {
-    console.log(props);
     return [
       {
         collection: 'Trips',

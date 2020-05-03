@@ -11,21 +11,21 @@ export class SearchBar extends Component {
   };
 
   _isMounted = false;
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
     this._isMounted = true;
+    // To remove the searched keyword when not on the searchResults page
     this.unlisten = this.props.history.listen((location, action) => {
       if (this._isMounted && !location.pathname.startsWith('/searchResults')) {
         this.setState({
-          // store the input on form fields on the state
           destinations: '',
         });
       }
     });
   }
 
-  UNSAFE_componentWillUnmount() {
-    this.unlisten();
+  componentDidUnmount() {
     this._isMounted = false;
+    this.unlisten();
   }
 
   handleChange = (e) => {

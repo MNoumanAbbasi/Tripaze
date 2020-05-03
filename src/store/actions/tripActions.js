@@ -87,3 +87,24 @@ export const deleteTrip = (tripID) => {
       });
   };
 };
+
+export const readNotification = (tripID) => {
+  // we want to return a function and halt the action dispatch until the function finishes
+  // dispatch is the funciton that dispatches an action to the reducer
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    // this variable will have a reference to our database
+    const firestore = getFirestore();
+    firestore
+      .collection('Trips')
+      .doc(tripID)
+      .update({
+        notifications: false,
+      })
+      .then(() => {
+        dispatch({ type: 'NOTIFICATION_READ', tripID: tripID });
+      })
+      .catch((err) => {
+        dispatch({ type: 'NOTIFICATION_READ_ERROR', err });
+      });
+  };
+};

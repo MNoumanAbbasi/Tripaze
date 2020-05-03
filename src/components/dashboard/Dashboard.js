@@ -10,7 +10,6 @@ import background from '../../Images/HomepageImage.jpg';
 import SearchBar from '../layout/SearchBar';
 import { searchBarShow } from '../../store/actions/filterActions';
 import LoadingBox from './LoadingBox';
-import Calendar from './Calendar';
 import FilterBar from '../filterBar/FilterBar';
 
 let lastScrollY = 0;
@@ -71,7 +70,6 @@ class Dashboard extends Component {
               inputClass="form-control form-control-lg form-rounded"
               centreSearchBar={true}
             />
-            <Calendar />
             <FilterBar trips={trips} />
             {/* <a href="#tripcards" className="scroll-button ">
               <span></span>
@@ -91,7 +89,7 @@ class Dashboard extends Component {
               ></img>
             </div>
             <div className="container">
-              <TripsList trips={trips} />
+              <TripsList trips={trips} isCompProfile={false} />
             </div>
           </div>
         </div>
@@ -103,7 +101,7 @@ class Dashboard extends Component {
 }
 // Map state from store to props in component
 const mapStateToProps = (state) => {
-  console.log(state);
+  // console.log(state);
   const requests = state.firestore.status.requesting;
   const isLoading = requests
     ? Object.values(requests).some((value) => value === true)
