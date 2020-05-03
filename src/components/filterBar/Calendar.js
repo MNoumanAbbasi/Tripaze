@@ -4,14 +4,6 @@ import { DateRangePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 
 class Calendar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      startDate: null,
-      endDate: null,
-    };
-  }
-
   render() {
     return (
       <div className="calendar-pos">
