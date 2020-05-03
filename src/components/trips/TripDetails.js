@@ -112,9 +112,9 @@ const TripDetails = (props) => {
             <i class="fa fa-clock-o fa-2x fa-fw" aria-hidden="true"></i>
             {trip.duration + ' days'}
           </h4>
-          <h4 class="ml-lg-5 col-lg-2 text-uppercase change-font col-offset-7 colored">
-            <i class="fa fa-plane fa-2x fa-fw" aria-hidden="true"></i>
-            {'' + trip.departureLoc}
+          <h4 class="ml-lg-4 col-lg-3 text-uppercase change-font col-offset-7 colored">
+            <i class="fa fa-bus fa-2x fa-fw" aria-hidden="true"></i>
+            {'  ' + trip.departureLoc}
           </h4>
         </div>
         <hr class="mb-2 col-7 ml-0 divider"></hr>
