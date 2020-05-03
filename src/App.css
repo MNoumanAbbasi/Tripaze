@@ -489,6 +489,19 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
 }
 /*                           */
 
+.ant-picker-range {
+  width: 43%;
+}
+
+.ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner,
+.ant-picker-cell-in-view.ant-picker-cell-range-start .ant-picker-cell-inner,
+.ant-picker-cell-in-view.ant-picker-cell-range-end .ant-picker-cell-inner {
+  color: #fff;
+  background: #00a99d;
+}
+
+/* Calendar classes */
+
 .row {
   margin-right: 0;
   margin-left: 0;
