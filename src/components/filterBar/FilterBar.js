@@ -125,6 +125,7 @@ class FilterBar extends Component {
             </a>
             <div>
 <<<<<<< HEAD
+<<<<<<< HEAD
               <div className="popup-text">Dates</div>
               <Calendar />
               <div className="popup-text mt-3">Destinations</div>
@@ -153,6 +154,11 @@ class FilterBar extends Component {
               <RangeSlider />
 =======
 >>>>>>> c790511... Added submit button in filter popup
+=======
+              <div className="popup-text mt-3 mb-3">Price Range (PKR)</div>
+
+              <RangeSlider />
+>>>>>>> d6a337f... Added price range slider in filiter bar
               {/* <input
                 onChange={this.handleChange}
                 type="number"
