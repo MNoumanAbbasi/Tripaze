@@ -34,12 +34,12 @@ class Dashboard extends Component {
     // If search bar not showing but should be shown
     if (window.innerWidth < 992 && !this.props.searchBarVisible) {
       this.props.searchBarShow(true);
-    } else if (lastScrollY > 252 && !this.props.searchBarVisible) {
+    } else if (lastScrollY > 210 && !this.props.searchBarVisible) {
       this.props.searchBarShow(true);
     }
     // Else if search bar is showing but should not be shown
     else if (
-      lastScrollY <= 252 &&
+      lastScrollY <= 210 &&
       this.props.searchBarVisible &&
       window.innerWidth >= 992
     ) {
