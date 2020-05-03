@@ -24,10 +24,10 @@ export class SignIn extends Component {
   };
 
   render() {
-    const { auth, authError } = this.props;
+    const { auth, authError, history } = this.props;
 
     if (auth.uid) {
-      return <Redirect to="/" />;
+      history.goBack();
     }
 
     return (
