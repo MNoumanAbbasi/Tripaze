@@ -35,36 +35,36 @@ class RangeSlider extends Component {
   render() {
     const { inputValue } = this.state;
     return (
-      <Row>
-        <Col span={4}>
-          <InputNumber
-            min={this.minimum}
-            max={this.maximum}
-            style={{ margin: '0 16px' }}
-            value={inputValue[0]}
-            onChange={this.onChange1}
-          />
-        </Col>
-        <Col span={15}>
-          <Slider
-            range
-            onChange={this.onChange}
-            defaultValue={this.defaultVal}
-            min={this.minimum}
-            max={this.maximum}
-            value={inputValue}
-          />
-        </Col>
-        <Col span={4}>
-          <InputNumber
-            min={this.minimum}
-            max={this.maximum}
-            style={{ margin: '0 16px' }}
-            value={inputValue[1]}
-            onChange={this.onChange}
-          />
-        </Col>
-      </Row>
+      //   <Row>
+      //     <Col span={4}>
+      //       <InputNumber
+      //         min={this.minimum}
+      //         max={this.maximum}
+      //         style={{ margin: '0 16px' }}
+      //         value={inputValue[0]}
+      //         onChange={this.onChange1}
+      //       />
+      //     </Col>
+      // <Col span={15}>
+      <Slider
+        range
+        onChange={this.onChange}
+        defaultValue={this.defaultVal}
+        min={this.minimum}
+        max={this.maximum}
+        value={inputValue}
+      />
+      // </Col>
+      //     <Col span={4}>
+      //       <InputNumber
+      //         min={this.minimum}
+      //         max={this.maximum}
+      //         style={{ margin: '0 16px' }}
+      //         value={inputValue[1]}
+      //         onChange={this.onChange}
+      //       />
+      //     </Col>
+      //   </Row>
     );
   }
 }
