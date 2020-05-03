@@ -136,8 +136,12 @@ class FilterBar extends Component {
 >>>>>>> 5b1864b... Added destinations drop down filter
 =======
               <div className="popup-text">Dates</div>
+<<<<<<< HEAD
               <Calendar2 />
 >>>>>>> ef4228b... Added Data Range filter
+=======
+              <Calendar />
+>>>>>>> ab86bad... Deleted old calendar file and updated the new one
               <div className="popup-text mt-3">Destinations</div>
 
               <Multiselect
