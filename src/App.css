@@ -438,21 +438,7 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
 }
 /* Drop down checkboxes*/
 
-/*Slider CLasses  (remove them) */
-
-.ant-col-4 {
-  display: block;
-  -ms-flex: 0 0 9.66666667%;
-  flex: 0 0 9.66666667%;
-  max-width: 9.666667%;
-}
-*/ .ant-col-15 {
-  display: block;
-  -ms-flex: 0 0 62.5%;
-  flex: 0 0 62.5%;
-  max-width: 62.5%;
-  margin-left: 3.5rem;
-}
+/*Slider CLasses */
 
 .ant-picker {
   border-radius: 30px;
