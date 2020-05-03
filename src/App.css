@@ -428,6 +428,16 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
   color: #ffffff;
 }
 
+.rw-widget-container {
+  border: 1px solid #00a99d;
+  background-color: #ffffff;
+  border-radius: 30px; /* Making border radius */
+  padding: 5px 15px 5px 15px; /* Making space around letters */
+  font-size: 18px; /* Changing font size */
+  /* color: #00a99d; */
+}
+/* Drop down checkboxes*/
+
 .row {
   margin-right: 0;
   margin-left: 0;
