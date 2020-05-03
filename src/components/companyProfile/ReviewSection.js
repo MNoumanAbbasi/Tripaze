@@ -22,7 +22,7 @@ const Review = (props) => {
       <h6 className="username text-white bg-turq p-4">{props.userName}</h6>
       <div className="ml-3">
         {' '}
-        <p>{props.rating} (rating bar)</p>
+        <RatingBar name="companyrating" value={props.rating} editable="false" />
         <p className="review">{props.review}</p>
       </div>
     </div>
@@ -41,6 +41,14 @@ const AddNewReviewForm = (props) => {
     <div className="border border-thin mt-3 border-turq">
       <div className="form-group">
         <form onSubmit={handleSubmit}>
+          <RatingBar
+            name="companyrating"
+            value="0"
+            editable="true"
+            // onStarClick={(event) => setRating(event.target.value)}
+            className="ml-2 mb-4"
+            required
+          />
           <input
             type="text"
             placeholder="Add Review"
@@ -48,20 +56,6 @@ const AddNewReviewForm = (props) => {
             onChange={(event) => setReview(event.target.value)}
             required
           />
-          <input
-            type="number"
-            placeholder="Add rating"
-            className="form-control form-control-lg mt-2"
-            onChange={(event) => setRating(event.target.value)}
-            required
-          />
-          <RatingBar
-            name="companyrating"
-            value="5"
-            editable="true"
-            className="form-control form-control-lg mt-2"
-          />
-
           <div className="form-row mr-3 justify-content-end">
             <button className="btn form-rounded r-green-button">Submit</button>
           </div>
