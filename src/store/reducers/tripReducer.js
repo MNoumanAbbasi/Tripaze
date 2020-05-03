@@ -21,6 +21,12 @@ const tripReducer = (state = initState, action) => {
     case 'DELETE_TRIP_ERROR':
       console.log('deleted trip error', action.err);
       return state;
+    case 'NOTIFICATION_READ':
+      console.log('notification successfully read', action.trip);
+      return state;
+    case 'NOTIFICATION_READ_ERROR':
+      console.log('unable to read notification', action.err);
+      return state;
     default:
       return state;
   }

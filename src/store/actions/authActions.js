@@ -122,6 +122,32 @@ export const signUpCompany = (newUser) => {
       })
       .then(() => {
         dispatch({ type: 'SIGNUP_SUCCESS' });
+      })
+      .catch((err) => {
+        dispatch({ type: 'SIGNUP_COMPANY_ERROR', err });
       });
+  };
+};
+
+// initiates a password reset request on firebase
+export const resetPassword = (email) => {
+  return (dispatch, getState, { getFirestore }) => {
+    firebase
+      .auth()
+      .sendPasswordResetEmail(email)
+      .then(() => {
+        // Email sent.
+        dispatch({ type: 'RESET_SUCCESS' });
+      })
+      .catch((err) => {
+        // An error happened.
+        dispatch({ type: 'RESET_ERROR', err });
+      });
+  };
+};
+
+export const clearAuthError = () => {
+  return (dispatch, getState, { getFirestore }) => {
+    dispatch({ type: 'CLEAR_AUTH_ERROR' });
   };
 };

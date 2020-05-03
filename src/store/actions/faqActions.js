@@ -1,13 +1,9 @@
-export const addQuestion = (question, tripID) => {
+export const addQuestion = (question, tripID, userType) => {
   // we want to return a function and halt the action dispatch until the function finishes
   // dispatch is the funciton that dispatches an action to the reducer
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     // this variable will have a reference to our database
     const firestore = getFirestore();
-
-    // grabbing user's id and profile // TODO: why not working here
-    // const userID = getState().firebase.auth.uid;
-    // const userName = getState().auth.currProfile.userName;
 
     firestore
       .collection('FAQs')
@@ -17,6 +13,14 @@ export const addQuestion = (question, tripID) => {
         // userName, // userName is name of person asking (user or company)
         // userID, // userID is either companyID or signed in userID
         tripID,
+      })
+      .then(() => {
+        // add notification
+        if (userType === 'User') {
+          firestore.collection('Trips').doc(tripID).update({
+            notifications: true,
+          });
+        }
       })
       .then(() => {
         window.location.reload(); // TODO: This is a hacky change. For global change, page needs to be refreshed. Find a solution to automatically update it when props change
@@ -34,10 +38,6 @@ export const addAnswer = (answer, faqID) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     // this variable will have a reference to our database
     const firestore = getFirestore();
-
-    // grabbing user's id and profile // TODO: why not working here
-    // const userID = getState().firebase.auth.uid;
-    // const userName = getState().auth.currProfile.userName;
 
     firestore
       .collection('FAQs')

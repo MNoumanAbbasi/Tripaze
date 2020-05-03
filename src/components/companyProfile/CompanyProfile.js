@@ -8,10 +8,12 @@ import { profileType } from '../../Helpers';
 import LoadingBox from './../dashboard/LoadingBox';
 import CoverImage from '../displayImages/CoverImage';
 
+// const today = new Date();
 // 6 columns on medium and 12 column on small screens
 const CompanyProfile = (props) => {
   const { trips, company, profile, isLoading, reviews, auth } = props;
   const isInitialized = !isLoading && trips && company && auth;
+  if (!isLoading && !company && trips && auth) props.history.push('/'); // wrong id entered
   const adminMode = auth.uid === props.match.params.id;
   if (isInitialized) {
     const currProfileType = profileType(auth, profile);
@@ -83,7 +85,7 @@ const CompanyProfile = (props) => {
             <h3 className="tripText">Upcoming Trips</h3>
           </div>
           <div className="container mt-4">
-            <TripsList trips={trips} />
+            <TripsList trips={trips} isCompProfile={adminMode} />
           </div>
 
           {/* Third Section */}
@@ -107,6 +109,7 @@ const CompanyProfile = (props) => {
 
 // Map state from store to props in component
 const mapStateToProps = (state, ownProps) => {
+  console.log('ASDAASDASD', state);
   const id = ownProps.match.params.id;
   const companies = state.firestore.data.Companies;
   const company = companies ? companies[id] : null;
@@ -131,7 +134,11 @@ export default compose(
   firestoreConnect((props) => [
     {
       collection: 'Trips',
-      where: [['companyId', '==', props.match.params.id]],
+      where: [
+        ['companyId', '==', props.match.params.id], // trips by the company in question
+        // ['departureDate', '>=', today], // only upcoming trips
+      ],
+      orderBy: ['departureDate'],
     },
     { collection: 'Companies', doc: props.match.params.id },
     {

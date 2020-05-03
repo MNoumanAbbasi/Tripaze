@@ -11,21 +11,21 @@ export class SearchBar extends Component {
   };
 
   _isMounted = false;
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
     this._isMounted = true;
+    // To remove the searched keyword when not on the searchResults page
     this.unlisten = this.props.history.listen((location, action) => {
       if (this._isMounted && !location.pathname.startsWith('/searchResults')) {
         this.setState({
-          // store the input on form fields on the state
           destinations: '',
         });
       }
     });
   }
 
-  UNSAFE_componentWillUnmount() {
-    this.unlisten();
+  componentWillUnmount() {
     this._isMounted = false;
+    this.unlisten();
   }
 
   handleChange = (e) => {
@@ -62,7 +62,7 @@ export class SearchBar extends Component {
           className={this.props.formClass}
         >
           <input
-            class={this.props.inputClass}
+            className={this.props.inputClass}
             type="text"
             placeholder="Search trips..."
             aria-label="Search"
@@ -71,9 +71,9 @@ export class SearchBar extends Component {
             onChange={this.handleChange}
           />
 
-          <div class="input-group-append">
+          <div className="input-group-append">
             <button
-              class="btn btn-secondary change-color adjusted-btn border-0 form-rounded"
+              className="btn btn-secondary change-color adjusted-btn border-0 form-rounded"
               type="submit"
             >
               <i class="fa fa-search"></i>

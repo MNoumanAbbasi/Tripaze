@@ -9,12 +9,14 @@ import ImageSection from '../form/ImageSection';
 import { Formik, Form } from 'formik';
 import { tripSchema } from './CreateTrip';
 import InputField from '../form/InputField';
+import moment from 'moment';
 
 const EditTrip = (props) => {
   const { trip, isLoading, auth } = props;
   const isInitialized = !isLoading && trip;
   const adminMode = trip && auth.uid === trip.companyId;
-
+  // wrong id entered
+  if (!isLoading && !trip && auth) props.history.push('/');
   if (!isInitialized) {
     return <div>Loading...</div>;
   } else if (!adminMode) {
@@ -35,7 +37,9 @@ const EditTrip = (props) => {
               title: trip.title,
               destinations: trip.destinations,
               departureLoc: trip.departureLoc,
-              departureDate: trip.departureDate,
+              departureDate: moment(trip.departureDate.toDate()).format(
+                'YYYY-MM-DD'
+              ),
               duration: trip.duration,
               price: trip.price,
               capacity: trip.capacity,
@@ -99,7 +103,7 @@ const EditTrip = (props) => {
                   <button
                     type="button"
                     className="btn form-rounded r-red-button"
-                    onClick={() => props.history.push('/')}
+                    onClick={() => props.history.goBack()}
                   >
                     Cancel
                   </button>

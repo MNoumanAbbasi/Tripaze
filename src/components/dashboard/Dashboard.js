@@ -10,15 +10,15 @@ import background from '../../Images/HomepageImage.jpg';
 import SearchBar from '../layout/SearchBar';
 import { searchBarShow } from '../../store/actions/filterActions';
 import LoadingBox from './LoadingBox';
-import Calendar from './Calendar';
 import FilterBar from '../filterBar/FilterBar';
 
 let lastScrollY = 0;
-
+const today = new Date();
 // 6 columns on medium and 12 column on small screens
 class Dashboard extends Component {
   // To detect scroll
   componentDidMount() {
+    // this.today = new Date();
     // Add search bar to navbar if in mobile mode
     if (window.innerWidth < 992) this.props.searchBarShow(true);
     else this.props.searchBarShow(false);
@@ -35,12 +35,12 @@ class Dashboard extends Component {
     // If search bar not showing but should be shown
     if (window.innerWidth < 992 && !this.props.searchBarVisible) {
       this.props.searchBarShow(true);
-    } else if (lastScrollY > 252 && !this.props.searchBarVisible) {
+    } else if (lastScrollY > 210 && !this.props.searchBarVisible) {
       this.props.searchBarShow(true);
     }
     // Else if search bar is showing but should not be shown
     else if (
-      lastScrollY <= 252 &&
+      lastScrollY <= 210 &&
       this.props.searchBarVisible &&
       window.innerWidth >= 992
     ) {
@@ -71,7 +71,6 @@ class Dashboard extends Component {
               inputClass="form-control form-control-lg form-rounded"
               centreSearchBar={true}
             />
-            <Calendar />
             <FilterBar trips={trips} />
             {/* <a href="#tripcards" className="scroll-button ">
               <span></span>
@@ -91,7 +90,7 @@ class Dashboard extends Component {
               ></img>
             </div>
             <div className="container">
-              <TripsList trips={trips} />
+              <TripsList trips={trips} isCompProfile={false} />
             </div>
           </div>
         </div>
@@ -103,7 +102,7 @@ class Dashboard extends Component {
 }
 // Map state from store to props in component
 const mapStateToProps = (state) => {
-  console.log(state);
+  // console.log(state);
   const requests = state.firestore.status.requesting;
   const isLoading = requests
     ? Object.values(requests).some((value) => value === true)
@@ -128,5 +127,13 @@ export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   // tells us which collections to connect to in our firebase project whenever this component, namely dashboard, is active
   // Whenever collection trip is changed, it would call the firestore reducer which would update the state of this firestore
-  firestoreConnect([{ collection: 'Trips' }])
+  firestoreConnect(() => {
+    return [
+      {
+        collection: 'Trips',
+        where: [['departureDate', '>=', today]], // only show upcoming trips
+        orderBy: ['departureDate'],
+      },
+    ];
+  })
 )(Dashboard);

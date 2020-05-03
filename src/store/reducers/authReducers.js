@@ -1,6 +1,8 @@
 // for intial state when app starts
 const initState = {
   authError: null,
+  signUpCompError: null,
+  signInError: null,
   currProfile: null,
   profileLoading: false,
 };
@@ -13,13 +15,14 @@ const authReducer = (state = initState, action) => {
       return {
         ...state,
         authError: null,
+        signInError: null,
         profileLoading: false,
       };
     case 'SIGNIN_ERROR':
       console.log('sign in error');
       return {
         ...state,
-        authError: action.err.message, // add autherror in addition to the currennt state to the auth property in the root reducer
+        signInError: action.err.message, // add autherror in addition to the currennt state to the auth property in the root reducer
         profileLoading: false,
       };
     case 'PROFILE_LOADING':
@@ -58,6 +61,14 @@ const authReducer = (state = initState, action) => {
       return {
         ...state,
         authError: null,
+        signUpCompError: null,
+        profileLoading: false,
+      };
+    case 'SIGNUP_COMPANY_ERROR':
+      console.log('sign up user error');
+      return {
+        ...state,
+        signUpCompError: action.err.message,
         profileLoading: false,
       };
     case 'SIGNUP_ERROR':
@@ -66,6 +77,25 @@ const authReducer = (state = initState, action) => {
         ...state,
         authError: action.err.message,
         profileLoading: false,
+      };
+    case 'RESET_SUCCESS':
+      console.log('password reset success');
+      return {
+        ...state,
+        authError: 'none', // use this for changing state at forget pass page
+        profileLoading: false,
+      };
+    case 'RESET_ERROR':
+      console.log('password reset error');
+      return {
+        ...state,
+        authError: action.err.message,
+        profileLoading: false,
+      };
+    case 'CLEAR_AUTH_ERROR':
+      return {
+        ...state,
+        authError: null,
       };
     default:
       return state;

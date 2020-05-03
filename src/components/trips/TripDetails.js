@@ -4,7 +4,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { Link } from 'react-router-dom';
 import FAQSection from './FAQSection';
-import { deleteTrip } from '../../store/actions/tripActions';
+import { deleteTrip, readNotification } from '../../store/actions/tripActions';
 import cardbg from './card-bg.png';
 import CoverImage from '../displayImages/CoverImage';
 import { profileType } from '../../Helpers';
@@ -23,6 +23,9 @@ const TripDetails = (props) => {
 
   const [modalShow, setModalShow] = useState(false);
 
+  // wrong id entered
+  if (!isLoading && !trip && auth) props.history.push('/');
+
   if (!isInitialized) {
     return <LoadingBox />;
   }
@@ -31,6 +34,7 @@ const TripDetails = (props) => {
   let editButton = null;
   const adminMode = auth.uid === trip.companyId;
   if (adminMode) {
+    props.readNotification(props.match.params.id); // read the notification
     editButton = (
       <button
         type="button"
@@ -191,6 +195,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     // so when we call props.createTrip, it's gonna perform a dispatch using the asynch middleware createTrip in src/store/actions
     deleteTrip: (tripID) => dispatch(deleteTrip(tripID)),
+    readNotification: (tripID) => dispatch(readNotification(tripID)),
   };
 };
 
