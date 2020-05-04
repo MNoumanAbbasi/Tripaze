@@ -12,6 +12,7 @@ import Confirmation from '../dialogBoxes/Confirmation';
 import LoadingBox from './../dashboard/LoadingBox';
 import moment from 'moment';
 import MapContainer from './MapContainer';
+import RatingBar from '../companyProfile/RatingBar.js';
 
 // class container section is material
 // class trip-details is from our own css
@@ -96,7 +97,10 @@ const TripDetails = (props) => {
                   {' ' + trip.companyName}
                 </Link>
               </h6>
-              <hr></hr>
+              <div className="row justify-content-around">
+                <RatingBar name="companyrating" value="3" className="ml-lg-4" />
+                <p>27 Reviews</p>
+              </div>
             </div>
           </div>
         </div>
