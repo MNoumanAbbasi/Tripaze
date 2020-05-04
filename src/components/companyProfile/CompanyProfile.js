@@ -56,7 +56,12 @@ const CompanyProfile = (props) => {
             <div className=" row ml-lg-4 col-lg-7 text-secondary">
               <hr class="mt-2 col-12 ml-0 divider"></hr>
               <h3 className="mt-5 col-12 text-secondary">Description</h3>
-              <div className="text-justify ml-3">{company.description}</div>
+              <p
+                className="new-line text-justify ml-3"
+                style={{ whiteSpace: 'pre-line' }}
+              >
+                {company.description}
+              </p>
             </div>
             {/* {Company Card } */}
             <div class="card content-box mr-5 change-card-width">

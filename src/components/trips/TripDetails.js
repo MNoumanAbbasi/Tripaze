@@ -122,7 +122,7 @@ const TripDetails = (props) => {
         <div class="mt-5 row align-content-centre justify-content-between">
           <div class="ml-lg-4 col-lg-6 text-justify text-secondary">
             <h3>Description</h3>
-            <div>{trip.description}</div>
+            <p style={{ whiteSpace: 'pre-line' }}>{trip.description}</p>
             <div>
               <h3 class="mt-5"> Destinations:</h3>
               {trip.destinations.map((dest) => {
