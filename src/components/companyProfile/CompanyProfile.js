@@ -13,7 +13,7 @@ import CoverImage from '../displayImages/CoverImage';
 const CompanyProfile = (props) => {
   const { trips, company, profile, isLoading, reviews, auth, wrongID } = props;
   const isInitialized = !isLoading && trips && company && auth;
-  if (wrongID) props.history.push('/'); // wrong id entered
+  // if (wrongID) props.history.push('/'); // wrong id entered
   const adminMode = auth.uid === props.match.params.id;
   if (isInitialized) {
     const currProfileType = profileType(auth, profile);

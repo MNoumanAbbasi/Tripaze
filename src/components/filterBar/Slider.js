@@ -5,27 +5,16 @@ import 'antd/dist/antd.css';
 class RangeSlider extends Component {
   minimum = 0;
   maximum = 50000;
-  defaultVal = [5000, 20000];
+  defaultVal = this.props.defaultVal;
   state = {
     inputValue: this.defaultVal,
-  };
-
-  onChange1 = (value) => {
-    this.setState({
-      inputValue: value,
-    });
-  };
-
-  onChange2 = (value) => {
-    this.setState({
-      inputValue: value,
-    });
   };
 
   onChange = (value) => {
     this.setState({
       inputValue: value,
     });
+    this.props.onChange(value);
   };
 
   render() {
@@ -38,6 +27,7 @@ class RangeSlider extends Component {
         min={this.minimum}
         max={this.maximum}
         value={inputValue}
+        step={100}
       />
     );
   }
