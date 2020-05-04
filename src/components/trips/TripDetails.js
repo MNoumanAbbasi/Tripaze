@@ -5,8 +5,8 @@ import { compose } from 'redux';
 import { Link } from 'react-router-dom';
 import FAQSection from './FAQSection';
 import { deleteTrip, readNotification } from '../../store/actions/tripActions';
-import cardbg from './card-bg.png';
 import CoverImage from '../displayImages/CoverImage';
+import LogoImage from '../displayImages/LogoImage';
 import { profileType } from '../../Helpers';
 import Confirmation from '../dialogBoxes/Confirmation';
 import LoadingBox from './../dashboard/LoadingBox';
@@ -96,10 +96,9 @@ const TripDetails = (props) => {
           <div class="card content-box m-4 change-card-width order-lg-2 order-1">
             <div class="card-body">
               <h6 class="card-title change-font font-weight-bold text-uppercase">
-                <img
-                  src={cardbg}
-                  alt=""
-                  class="img-fluid logo-on-card rounded-circle mr-1"
+                <LogoImage
+                  companyID={trip.companyId}
+                  className="img-fluid logo-on-card rounded-circle mr-1"
                 />
                 <Link to={'/companyProfile/' + trip.companyId}>
                   {' ' + trip.companyName}
@@ -138,7 +137,7 @@ const TripDetails = (props) => {
         <div class="mt-5 row align-content-centre justify-content-between">
           <div class="ml-lg-4 col-lg-6 text-justify text-secondary">
             <h3>Description</h3>
-            <div>{trip.description}</div>
+            <p style={{ whiteSpace: 'pre-line' }}>{trip.description}</p>
             <div>
               <h3 class="mt-5"> Destinations:</h3>
               {trip.destinations.map((dest) => {
