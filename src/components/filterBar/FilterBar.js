@@ -56,7 +56,7 @@ class FilterBar extends Component {
         companies.push(trip.companyName);
     });
     return (
-      <form onSubmit={this.handleFormSubmit}>
+      <form onSubmit={this.handleFormSubmit} className="greenline-fix">
         <div id="popup1" class="popup-overlay">
           <div class="popup">
             <h3 className="text-center font-weight-bold">Advanced Search</h3>
