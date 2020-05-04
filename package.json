@@ -6,6 +6,7 @@
   "dependencies": {
     "accepts": "^1.3.7",
     "ajv": "^4.11.8",
+    "antd": "^4.2.0",
     "babel-messages": "^6.23.0",
     "babel-plugin-check-es2015-constants": "^6.22.0",
     "babel-plugin-transform-es2015-arrow-functions": "^6.22.0",
@@ -284,7 +285,7 @@
     "minimist": "^1.2.5",
     "mixin-deep": "^1.3.2",
     "mkdirp": "^0.5.5",
-    "moment": "^2.18.1",
+    "moment": "2.24.0",
     "ms": "^2.0.0",
     "mute-stream": "^0.0.5",
     "nan": "^2.14.0",
@@ -324,14 +325,17 @@
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-bootstrap-dialog": "^0.13.0",
-    "react-dates": "^21.8.0",
     "react-dom": "^16.13.1",
     "react-geocode": "^0.2.1",
     "react-redux": "^7.2.0",
     "react-redux-firebase": "^3.3.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.4.1",
+<<<<<<< HEAD
     "react-star-rating-component": "^1.4.1",
+=======
+    "react-widgets": "^4.5.0",
+>>>>>>> origin/master
     "redux": "^4.0.5",
     "redux-firestore": "^0.13.0",
     "redux-thunk": "^2.3.0",
