@@ -93,11 +93,6 @@ const TripDetails = (props) => {
                   companyID={trip.companyId}
                   className="img-fluid logo-on-card rounded-circle mr-1"
                 />
-                {/* <img
-                  src={cardbg}
-                  alt=""
-                  class="img-fluid logo-on-card rounded-circle mr-1"
-                /> */}
                 <Link to={'/companyProfile/' + trip.companyId}>
                   {' ' + trip.companyName}
                 </Link>
