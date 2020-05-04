@@ -133,9 +133,6 @@ const TripDetails = (props) => {
                 );
               })}
             </div>
-            <div className="ml-4 mt-2 row align-content-centre justify-content-between">
-              <MapContainer destinations={trip.destinations} />
-            </div>
           </div>
           <table class="mr-lg-4 mt-3 col-lg-4 table table-border tb-border border-turq table-md-responsive">
             <thead>
@@ -157,6 +154,9 @@ const TripDetails = (props) => {
           </table>
         </div>
 
+        <div className="d-flex justify-content-center mt-5">
+          <MapContainer destinations={trip.destinations} />
+        </div>
         <div className="row p-4 mt-5 justify-content-center align-content-centre text-turq">
           <i class="fa fa-question-circle fa-3x fa-fw" aria-hidden="false"></i>
           <h3 className="tripText">Frequently Asked Questions</h3>
