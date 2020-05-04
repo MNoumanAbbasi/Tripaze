@@ -18,9 +18,17 @@ import RatingBar from '../companyProfile/RatingBar.js';
 // class trip-details is from our own css
 // taking props to know which trip to load
 const TripDetails = (props) => {
-  const { trip, isLoading, auth, profile, FAQs } = props; // getting trip category from props
-
-  const isInitialized = !isLoading && trip && FAQs;
+  const {
+    trip,
+    isLoading,
+    auth,
+    profile,
+    FAQs,
+    avgRating,
+    reviewLength,
+  } = props; // getting trip category from props
+  console.log(reviewLength);
+  const isInitialized = !isLoading && trip && FAQs && reviewLength != null;
 
   const [modalShow, setModalShow] = useState(false);
 
@@ -98,8 +106,12 @@ const TripDetails = (props) => {
                 </Link>
               </h6>
               <div className="row justify-content-around">
-                <RatingBar name="companyrating" value="3" className="ml-lg-4" />
-                <p>27 Reviews</p>
+                <RatingBar
+                  name="companyrating"
+                  value={avgRating}
+                  className="ml-lg-4"
+                />
+                <p>{reviewLength} Reviews</p>
               </div>
             </div>
           </div>
@@ -186,12 +198,27 @@ const mapStateToProps = (state, ownProps) => {
   const isLoading = requests
     ? Object.values(requests).some((value) => value === true)
     : null;
+
+  // getting number of reviews and average rating
+  const reviews = state.firestore.ordered.Reviews;
+  let avgRating = 0;
+  let reviewLength = null;
+  if (reviews) {
+    let sum = 0;
+    reviews.forEach((review) => {
+      sum += review.rating;
+    });
+    reviewLength = reviews.length;
+    avgRating = sum / reviewLength;
+  }
   return {
     trip: trip,
     profile: state.auth.currProfile,
     auth: state.firebase.auth,
     isLoading: isLoading, // all must be loaded
     FAQs: state.firestore.ordered.FAQs,
+    avgRating: avgRating,
+    reviewLength: reviewLength,
   };
 };
 
@@ -205,8 +232,20 @@ const mapDispatchToProps = (dispatch) => {
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  firestoreConnect((props) => [
-    { collection: 'Trips', doc: props.match.params.id },
-    { collection: 'FAQs', where: [['tripID', '==', props.match.params.id]] },
-  ])
+  firestoreConnect((props) => {
+    let query = [
+      { collection: 'Trips', doc: props.match.params.id },
+      {
+        collection: 'FAQs',
+        where: [['tripID', '==', props.match.params.id]],
+      },
+    ];
+    if (props.trip)
+      query.push({
+        collection: 'Reviews',
+        where: [['companyID', '==', props.trip.companyId]],
+      });
+
+    return query;
+  })
 )(TripDetails);

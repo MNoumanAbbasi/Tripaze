@@ -44,9 +44,7 @@ const AddNewReviewForm = (props) => {
         <form onSubmit={handleSubmit}>
           <RatingBarInput
             name="companyrating"
-            value="0"
-            // onStarClick={(event) => setRating(event.target.value)}
-            className="ml-2 mb-4"
+            onChange={(rating) => setRating(rating)}
             required
           />
           <input
