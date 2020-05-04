@@ -597,6 +597,8 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
   .popup {
     width: 90%;
   }
+
+  /*Map on small screen devices*/
 }
 
 /* Pop Up Classes*/
@@ -637,6 +639,20 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
 */
 
 /* Trip Details Page */
+
+.map-container {
+  position: relative;
+  height: 52vh;
+  width: 102vh;
+}
+
+.map {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
 
 .tripText {
   font-family: 'Open Sans';
