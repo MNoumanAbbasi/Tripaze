@@ -9,15 +9,14 @@ import moment from 'moment';
 const TripCard = ({ trip, isCompProfile }) => {
   let notification = null;
   if (trip.notifications && isCompProfile) {
-    console.log('NOTIFICATION');
-    notification = 'A NOTIFICATION';
+    notification = <img src={notifi} className="top-right" />;
   }
   return (
     <Link to={'/trip/' + trip.id} className="nav-link">
       <div class="card content-box m-4 change-card-width">
         <div class="trip-title">
           <CardImage img={trip.image} type="trip" />
-          <img src={notifi} className="top-right" />
+          {notification}
           <div class="bottom-left change-font darken-bg">{trip.title}</div>
           {/* <h4 class="bottom-left change-font darken-bg">{notification}</h4> */}
         </div>
