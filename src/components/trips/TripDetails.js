@@ -67,7 +67,7 @@ const TripDetails = (props) => {
           props.history.push('/');
         }}
       />
-      <CoverImage img={trip.image} type="trip" />
+      {/* <CoverImage img={trip.image} type="trip" /> */}
       <div className="container thirdDrop">
         <div className="row justify-content-lg-end justify-content-sm-around">
           {editButton}
@@ -89,7 +89,10 @@ const TripDetails = (props) => {
           <div class="card content-box m-4 change-card-width order-lg-2 order-1">
             <div class="card-body">
               <h6 class="card-title change-font font-weight-bold text-uppercase">
-                <LogoImage companyID={trip.companyId} />
+                <LogoImage
+                  companyID={trip.companyId}
+                  style={{ height: '50px', width: '50px' }}
+                />
                 <img
                   src={cardbg}
                   alt=""
