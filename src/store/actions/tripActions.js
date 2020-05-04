@@ -1,3 +1,5 @@
+import storage from '../../config/fbConfig';
+
 export const createTrip = (trip, currProfile) => {
   // we want to return a function and halt the action dispatch until the function finishes
   // dispatch is the funciton that dispatches an action to the reducer
@@ -73,6 +75,19 @@ export const deleteTrip = (img, tripID) => {
   // we want to return a function and halt the action dispatch until the function finishes
   // dispatch is the funciton that dispatches an action to the reducer
   return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const deleteRef = storage.ref(`${'tripImages/' + img}`);
+    // Delete the file
+    deleteRef
+      .delete()
+      .then(() => {
+        // File deleted successfully
+        console.log('Successfull deletion of image');
+        props.handleImgNameChange('');
+      })
+      .catch((error) => {
+        // Uh-oh, an error occurred!
+        console.log(error);
+      });
     // this variable will have a reference to our database
     const firestore = getFirestore();
     firestore
