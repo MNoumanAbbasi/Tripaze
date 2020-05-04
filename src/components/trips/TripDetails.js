@@ -61,7 +61,7 @@ const TripDetails = (props) => {
         show={modalShow}
         onHide={() => setModalShow(false)}
         onDelete={() => {
-          props.deleteTrip(props.match.params.id);
+          props.deleteTrip(trip.image, props.match.params.id);
           props.history.push('/');
         }}
       />
@@ -194,7 +194,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     // so when we call props.createTrip, it's gonna perform a dispatch using the asynch middleware createTrip in src/store/actions
-    deleteTrip: (tripID) => dispatch(deleteTrip(tripID)),
+    deleteTrip: (tripName, tripID) => dispatch(deleteTrip(tripName, tripID)),
     readNotification: (tripID) => dispatch(readNotification(tripID)),
   };
 };
