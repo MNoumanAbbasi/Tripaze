@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import CheckboxContainer from './CheckboxContainer';
-import DropdownButton from 'react-bootstrap/DropdownButton';
 import { withRouter } from 'react-router-dom';
 import { Multiselect } from 'react-widgets';
 import 'react-widgets/dist/css/react-widgets.css';
@@ -13,83 +11,25 @@ class FilterBar extends Component {
     max: 9999,
     startDate: null,
     endDate: null,
-  };
-
-  // function onChange(value) {
-  //   console.log('onChange: ', value);
-  // }
-
-  // function onAfterChange(value) {
-  //   console.log('onAfterChange: ', value);
-  // }
-
-  componentDidMount() {
-    this.destinationsChecked = new Set();
-    this.departuresChecked = new Set();
-    this.companiesChecked = new Set();
-  }
-
-  storeDates = (start, end) => {
-    this.setState({
-      startDate: start,
-      endDate: end,
-    });
-  };
-
-  handleChange = (e) => {
-    this.setState({
-      // is an email being entered or a password?
-      [e.target.id]: e.target.value,
-    });
-  };
-
-  // To store the state of checkboxes
-  toggleCheckboxDest = (label) => {
-    if (this.destinationsChecked.has(label)) {
-      this.destinationsChecked.delete(label);
-    } else {
-      this.destinationsChecked.add(label);
-    }
-  };
-  toggleCheckboxDep = (label) => {
-    if (this.departuresChecked.has(label)) {
-      this.departuresChecked.delete(label);
-    } else {
-      this.departuresChecked.add(label);
-    }
-  };
-  toggleCheckboxCompany = (label) => {
-    if (this.companiesChecked.has(label)) {
-      this.companiesChecked.delete(label);
-    } else {
-      this.companiesChecked.add(label);
-    }
+    dests: [],
+    departureLocs: [],
+    comps: [],
   };
 
   handleFormSubmit = (formSubmitEvent) => {
     formSubmitEvent.preventDefault();
-    let destinations = [];
-    for (const dest of this.destinationsChecked) {
-      destinations.push(dest);
-    }
-    let departures = [];
-    for (const dep of this.departuresChecked) {
-      departures.push(dep);
-    }
-    let companies = [];
-    for (const comp of this.companiesChecked) {
-      companies.push(comp);
-    }
+
     let end = null;
     let start = null;
+    if (this.state.startDate) start = this.state.startDate.toDate();
     if (this.state.endDate) end = this.state.endDate.toDate();
-    if (this.state.startDate) end = this.state.startDate.toDate();
+
     this.props.history.push({
       pathname: '/searchResults',
       state: {
-        dest: destinations,
-        departureLocs: departures,
-        comps: companies,
+        dest: this.state.dests,
+        departureLocs: this.state.departureLocs,
+        comps: this.state.comps,
         priceMin: parseInt(this.state.min),
         priceMax: parseInt(this.state.max),
         startDate: start,
@@ -125,53 +65,50 @@ class FilterBar extends Component {
             </a>
             <div>
               <div className="popup-text">Dates</div>
-              <Calendar />
-
+              <Calendar
+                onChange={(values) =>
+                  this.setState({ startDate: values[0], endDate: values[1] })
+                }
+              />
               <div className="popup-text mt-3">Destinations</div>
-
               <Multiselect
                 data={destinations}
                 placeholder="Select Locations"
                 className="mb-2"
+                onChange={(dests) => this.setState({ dests })}
               />
               <div className="popup-text mt-3">Departure Locations</div>
-
               <Multiselect
                 data={departures}
                 placeholder="Select Locations"
                 className="mb-2"
+                onChange={(departureLocs) => this.setState({ departureLocs })}
               />
-
               <div className="popup-text mt-3">Companies</div>
-
               <Multiselect
                 data={companies}
                 placeholder="Select Companies"
                 className="mb-2"
+                onChange={(comps) => this.setState({ comps })}
+              />
+              <div className="popup-text mt-3 mb-3">
+                Price Range (Selected: Rs{' '}
+                {this.state.min
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
+                to Rs{' '}
+                {this.state.max
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                )
+              </div>
+              <RangeSlider
+                onChange={(values) =>
+                  this.setState({ min: values[0], max: values[1] })
+                }
+                defaultVal={[this.state.min, this.state.max]}
               />
 
-              <div className="popup-text mt-3 mb-3">Price Range (PKR)</div>
-
-              <RangeSlider />
-
-              {/* <input
-                onChange={this.handleChange}
-                type="number"
-                id="min"
-                class="form-control mb-4"
-                placeholder="Minimum Price (PKR)"
-                required
-                autofocus
-              />
-              <input
-                onChange={this.handleChange}
-                type="number"
-                id="max"
-                class="form-control mb-4"
-                placeholder="Maximum Price (PKR)"
-                required
-                autofocus
-              /> */}
               <div className="d-flex justify-content-center">
                 <button
                   className="btn btn-secondary dark-button "
@@ -182,57 +119,6 @@ class FilterBar extends Component {
               </div>
             </div>
           </div>
-          {/* <Multiselect
-          data={destinations}
-          // onChange={(value) => this.toggleCheckboxDest({ value })}
-          placeholder="Filter by Destinations"
-        /> */}
-          {/* <Calendar2 /> */}
-          {/* <Demo /> */}
-          {/* <Multiselect
-          data={departures}
-          placeholder="Filter by Departure Locations"
-        />
-        <Multiselect data={companies} placeholder="Filter by Companies" /> */}
-          {/* <DropdownButton id="dropdown-item-button" title="Destinations">
-          <CheckboxContainer
-            handleCheckboxChange={this.toggleCheckboxDest}
-            items={destinations}
-          />
-        </DropdownButton>
-        <DropdownButton id="dropdown-item-button" title="Departure Locations">
-          <CheckboxContainer
-            handleCheckboxChange={this.toggleCheckboxDep}
-            items={departures}
-          />
-        </DropdownButton>
-        <DropdownButton id="dropdown-item-button" title="Companies">
-          <CheckboxContainer
-            handleCheckboxChange={this.toggleCheckboxCompany}
-            items={companies}
-          />
-        </DropdownButton> */}
-          {/* <input
-          onChange={this.handleChange}
-          type="number"
-          id="min"
-          class="form-control mb-4"
-          placeholder="Minimum Price (PKR)"
-          required
-        />
-        <input
-          onChange={this.handleChange}
-          type="number"
-          id="max"
-          class="form-control mb-4"
-          placeholder="Maximum Price (PKR)"
-          required
-          autofocus
-        /> */}
-          {/* // <button className="btn btn-secondary dark-button" type="submit">
-        //   Submit
-        // </button>
-      // </form> */}
         </div>
       </form>
     );

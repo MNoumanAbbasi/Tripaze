@@ -7,13 +7,14 @@ import ReviewSection from './ReviewSection';
 import { profileType } from '../../Helpers';
 import LoadingBox from './../dashboard/LoadingBox';
 import CoverImage from '../displayImages/CoverImage';
+import RatingBar from './RatingBar.js';
 
 // const today = new Date();
 // 6 columns on medium and 12 column on small screens
 const CompanyProfile = (props) => {
   const { trips, company, profile, isLoading, reviews, auth, wrongID } = props;
   const isInitialized = !isLoading && trips && company && auth;
-  if (wrongID) props.history.push('/'); // wrong id entered
+  // if (wrongID) props.history.push('/'); // wrong id entered
   const adminMode = auth.uid === props.match.params.id;
   if (isInitialized) {
     const currProfileType = profileType(auth, profile);
@@ -64,22 +65,23 @@ const CompanyProfile = (props) => {
               </p>
             </div>
             {/* {Company Card } */}
-            <div class="card content-box mr-5 change-card-width">
+            <div class="mr-5 change-card-width">
               <div class="card-body">
-                <h6 class="card-title change-font font-weight-bold text-uppercase colored">
+                <div className="row mt-5 mb-5">
+                  <RatingBar name="companyrating" value="3" className="ml-2" />
+                  <h6 className="ml-4">27 Reviews</h6>
+                </div>
+                <h6 class="card-title change-font font-weight-bold text-uppercase colored mt-5 mb-3">
                   <i
                     class="fa fa-map-marker fa-2x fa-fw"
                     aria-hidden="true"
                   ></i>
                   {company.location}
                 </h6>
-                <hr></hr>
-                <h6 class="card-title change-font font-weight-bold text-uppercase colored">
+                <h6 class="card-title change-font font-weight-bold text-uppercase colored mt-5">
                   <i class="fa fa-phone fa-2x fa-fw" aria-hidden="true"></i>
                   {company.contact}
                 </h6>
-                <hr></hr>
-                <h6>This is where the Rating bar will be</h6>
               </div>
             </div>
           </div>
