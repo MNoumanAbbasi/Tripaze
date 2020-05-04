@@ -91,7 +91,6 @@ const TripDetails = (props) => {
               <h6 class="card-title change-font font-weight-bold text-uppercase">
                 <LogoImage
                   companyID={trip.companyId}
-                  style={{ height: '50px', width: '50px' }}
                   className="img-fluid logo-on-card rounded-circle mr-1"
                 />
                 {/* <img
