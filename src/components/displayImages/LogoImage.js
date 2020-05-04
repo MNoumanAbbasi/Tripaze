@@ -1,39 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import storage from '../../config/fbConfig';
-import defaultLogo from '../../Images/default-logo.jpg';
+import firebase from 'firebase';
 import spinner from '../../Images/Spinner.gif';
 
-const LogoImage = (props) => {
+//
+// Logo image will always be of the company
+// CompanyID is the id of company of which logo is required
+// className includes the CSS styles to be applied to logo img
+//
+const LogoImage = ({ companyID, className }) => {
   const [url, setUrl] = useState(spinner);
-  const folderName = props.type + 'Images';
+  const folderName = 'companyLogoImages';
 
-  const getUrl = () => {
+  // Get company logo name from db using company id
+  const getImageName = () => {
+    const db = firebase.firestore();
+    const docRef = db.collection('Companies').doc(companyID);
+    docRef.get().then((doc) => {
+      if (doc.exists) {
+        const imageName = doc.data().logoImage;
+        getUrl(imageName);
+      } else {
+        console.log('Logo image name not found');
+      }
+    });
+  };
+
+  // Fetches the url of image stored in database
+  const getUrl = (imageName) => {
     return storage
       .ref(folderName)
-      .child(props.img)
+      .child(imageName)
       .getDownloadURL()
       .then((url) => {
         setUrl(url);
       });
   };
 
+  // Render the function once mounted
   useEffect(() => {
-    // if no image linked, use default logo
-    if (props.img === '') setUrl(defaultLogo);
-    // else fetch from database
-    else getUrl();
+    getImageName();
   }, []);
 
-  return (
-    <div className="overlay row justify-content-lg-end justify-content-center">
-      <img
-        alt="Trip background"
-        className="border-turq tb-border rounded-circle"
-        style={{ height: '100px', widht: '100px' }}
-        src={url}
-      />
-    </div>
-  );
+  return <img alt="Logo" src={url} className={className} />;
 };
 
 export default LogoImage;

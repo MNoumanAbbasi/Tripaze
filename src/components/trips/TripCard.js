@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import CardImage from '../displayImages/CardImage';
-import cardbg from './card-bg.png';
+import LogoImage from '../displayImages/LogoImage';
 import moment from 'moment';
 
 const TripCard = ({ trip, isCompProfile }) => {
@@ -22,10 +22,9 @@ const TripCard = ({ trip, isCompProfile }) => {
 
         <div class="card-body">
           <h6 class="card-title change-font font-weight-bold text-uppercase">
-            <img
-              src={cardbg}
-              alt=""
-              class="img-fluid logo-on-card rounded-circle mr-1"
+            <LogoImage
+              companyID={trip.companyId}
+              className="img-fluid logo-on-card rounded-circle mr-1"
             />
             {' ' + trip.companyName}
           </h6>
