@@ -194,7 +194,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     // so when we call props.createTrip, it's gonna perform a dispatch using the asynch middleware createTrip in src/store/actions
-    deleteTrip: (tripID) => dispatch(deleteTrip(tripID)),
+    deleteTrip: (tripName, tripID) => dispatch(deleteTrip(tripName, tripID)),
     readNotification: (tripID) => dispatch(readNotification(tripID)),
   };
 };

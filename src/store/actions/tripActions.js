@@ -76,17 +76,17 @@ export const deleteTrip = (img, tripID) => {
   // dispatch is the funciton that dispatches an action to the reducer
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     //Deleting trip image from our storage
-    const deleteRef = storage.ref(`${'tripImages/' + img}`);
-    // Delete the file
-    deleteRef
-      .delete()
-      .then(() => {
-        // File deleted successfully
-        console.log('Successfull deletion of image');
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // const deleteRef = storage.ref(`${'tripImages/' + img}`);
+    // // Delete the file
+    // deleteRef
+    //   .delete()
+    //   .then(() => {
+    //     // File deleted successfully
+    //     console.log('Successfull deletion of image');
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
     // this variable will have a reference to our database
     const firestore = getFirestore();
     firestore
