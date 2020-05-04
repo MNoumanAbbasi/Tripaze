@@ -197,6 +197,18 @@ a:hover {
   transform: scale(1.05);
 }
 
+/* .light-button:hover {
+  background-color: #00a99d;
+  border-color: #00a99d;
+  color: white;
+}
+
+.dark-button:hover {
+  background-color: white;
+  border-color: #00a99d;
+  color: #00a99d;
+} */
+
 .cardslist-margin {
   margin-top: 5rem !important;
 }
@@ -661,6 +673,29 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
 
 /* Trip Details Page */
 
+/* Rating Stats */
+
+.fa-star {
+  color: orange;
+}
+
+.progbar1 {
+  background-color: #5cb85c !important;
+}
+.progbar2 {
+  background-color: #5bc0de !important;
+}
+.progbar3 {
+  background-color: #4e66f0 !important;
+}
+.progbar4 {
+  background-color: #f0ad4e !important;
+}
+.progbar5 {
+  background-color: #d9534f !important;
+}
+/* Rating Stats */
+
 .map-container {
   position: relative;
   height: 52vh;
@@ -793,8 +828,9 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
 }
 
 .green-button:hover {
-  background-color: #00a99d;
+  background-color: #5a6268;
   color: white;
+  border-color: #5a6268;
 }
 
 .r-green-button {
@@ -803,9 +839,9 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
 }
 
 .r-green-button:hover {
-  background-color: white;
-  border-color: #00a99d;
-  color: #00a99d;
+  background-color: #5a6268;
+  color: white;
+  border-color: #5a6268;
 }
 
 .red-button {
