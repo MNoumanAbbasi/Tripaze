@@ -3,9 +3,15 @@ import storage from '../../config/fbConfig';
 import defaultLogo from '../../Images/default-logo.jpg';
 import spinner from '../../Images/Spinner.gif';
 
-const LogoImage = (props) => {
+// Logo image will always be of the company
+
+const LogoImage = ({ companyID }) => {
   const [url, setUrl] = useState(spinner);
-  const folderName = props.type + 'Images';
+  const folderName = 'companyLogoImages';
+
+  const getImageName = () => {
+
+  }
 
   const getUrl = () => {
     return storage
@@ -25,9 +31,9 @@ const LogoImage = (props) => {
   }, []);
 
   return (
-    <div className="overlay row justify-content-lg-end justify-content-center">
+    <div className="img-fluid overlay row justify-content-lg-end justify-content-center">
       <img
-        alt="Trip background"
+        alt="Logo"
         className="border-turq tb-border rounded-circle"
         style={{ height: '100px', widht: '100px' }}
         src={url}

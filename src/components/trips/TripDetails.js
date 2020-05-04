@@ -87,6 +87,7 @@ const TripDetails = (props) => {
           <div class="card content-box m-4 change-card-width order-lg-2 order-1">
             <div class="card-body">
               <h6 class="card-title change-font font-weight-bold text-uppercase">
+                <LogoImage companyID={trip.companyId} />
                 <img
                   src={cardbg}
                   alt=""
