@@ -8,6 +8,7 @@ import { profileType } from '../../Helpers';
 import LoadingBox from './../dashboard/LoadingBox';
 import CoverImage from '../displayImages/CoverImage';
 import RatingBar from './RatingBar.js';
+import ReviewStats from './ReviewStats';
 
 // const today = new Date();
 // 6 columns on medium and 12 column on small screens
@@ -113,6 +114,7 @@ const CompanyProfile = (props) => {
             profileType={currProfileType}
             id={auth.uid}
           />
+          <ReviewStats />
         </div>
       </div>
     );
