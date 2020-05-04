@@ -75,6 +75,7 @@ export const deleteTrip = (img, tripID) => {
   // we want to return a function and halt the action dispatch until the function finishes
   // dispatch is the funciton that dispatches an action to the reducer
   return (dispatch, getState, { getFirebase, getFirestore }) => {
+    //Deleting trip image from our storage
     const deleteRef = storage.ref(`${'tripImages/' + img}`);
     // Delete the file
     deleteRef
@@ -82,10 +83,8 @@ export const deleteTrip = (img, tripID) => {
       .then(() => {
         // File deleted successfully
         console.log('Successfull deletion of image');
-        props.handleImgNameChange('');
       })
       .catch((error) => {
-        // Uh-oh, an error occurred!
         console.log(error);
       });
     // this variable will have a reference to our database
