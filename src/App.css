@@ -230,6 +230,13 @@ a:hover {
   bottom: 0px;
 }
 
+.top-right {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  height: 52px;
+}
+
 .card-title {
   color: black;
 }
@@ -537,6 +544,11 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
   top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.greenline-fix {
+  padding: 0 !important;
+  margin-top: 0 !important;
 }
 
 .popup-overlay {
