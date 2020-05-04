@@ -259,6 +259,10 @@ a:hover {
   font-family: 'Open Sans';
 }
 
+.btn.focus,
+.btn:focus {
+  box-shadow: none !important;
+}
 .change-card-width {
   width: 18rem;
 }
