@@ -92,12 +92,13 @@ const TripDetails = (props) => {
                 <LogoImage
                   companyID={trip.companyId}
                   style={{ height: '50px', width: '50px' }}
+                  className="img-fluid logo-on-card rounded-circle mr-1"
                 />
-                <img
+                {/* <img
                   src={cardbg}
                   alt=""
                   class="img-fluid logo-on-card rounded-circle mr-1"
-                />
+                /> */}
                 <Link to={'/companyProfile/' + trip.companyId}>
                   {' ' + trip.companyName}
                 </Link>

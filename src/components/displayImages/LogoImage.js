@@ -3,10 +3,12 @@ import storage from '../../config/fbConfig';
 import firebase from 'firebase';
 import spinner from '../../Images/Spinner.gif';
 
+//
 // Logo image will always be of the company
 // CompanyID is the id of company of which logo is required
-// Style includes the CSS styles for logo size
-const LogoImage = ({ companyID, style }) => {
+// className includes the CSS styles to be applied to logo img
+//
+const LogoImage = ({ companyID, className }) => {
   const [url, setUrl] = useState(spinner);
   const folderName = 'companyLogoImages';
 
@@ -40,35 +42,7 @@ const LogoImage = ({ companyID, style }) => {
     getImageName();
   }, []);
 
-  return (
-    <div className="img-fluid overlay row justify-content-lg-end justify-content-center">
-      <img
-        alt="Logo"
-        className="border-turq tb-border rounded-circle"
-        style={style}
-        src={url}
-      />
-    </div>
-  );
+  return <img alt="Logo" src={url} className={className} />;
 };
 
-// Map state from store to props in component
-// const mapStateToProps = (state, ownProps) => {
-//   const companies = state.firestore.data.Companies;
-//   const company = companies ? companies['3OAS4ZfMJmXpTWnko9tJBUYfijj2'] : null;
-//   const image = company ? company.logoImage : '';
-//   const requests = state.firestore.status.requesting;
-//   const isLoading = requests;
-//   return {
-//     image: image,
-//     isLoading: isLoading,
-//   };
-// };
-
 export default LogoImage;
-// export default compose(
-//   connect(mapStateToProps),
-//   firestoreConnect((props) => [
-//     { collection: 'Companies', doc: '3OAS4ZfMJmXpTWnko9tJBUYfijj2' },
-//   ])
-// )(LogoImage);
