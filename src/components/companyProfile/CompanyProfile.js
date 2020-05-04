@@ -7,6 +7,7 @@ import ReviewSection from './ReviewSection';
 import { profileType } from '../../Helpers';
 import LoadingBox from './../dashboard/LoadingBox';
 import CoverImage from '../displayImages/CoverImage';
+import LogoImage from '../displayImages/LogoImage';
 import RatingBar from './RatingBar.js';
 
 // const today = new Date();
@@ -21,16 +22,16 @@ const CompanyProfile = (props) => {
     return (
       <div className="row m-0 justify-content-center">
         <CoverImage img={company.coverImage} type="companyCover" />
-        {/* Logo Image for Overlapping
-          <div className="overlay row w-100 justify-content-lg-end justify-content-center">
-          <img
+        {/* Logo Image for Overlapping */}
+        <div className="overlay row w-100 justify-content-lg-end justify-content-center">
+          {/* <LogoImage companyID={props.match.params.id} className="" /> */}
+          {/* <img
           class="border-turq tb-border"
           alt="100x100"
           src={defaultLogo}
           data-holder-rendered="true"
-          />
-        </div> */}
-        {/* <LogoImage img={company.logoImage} type="companyLogo" /> */}
+          /> */}
+        </div>
         <div className="container thirdDrop">
           <div className="row justify-content-lg-end justify-content-sm-around">
             {adminMode && (
