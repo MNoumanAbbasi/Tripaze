@@ -69,7 +69,7 @@ export const editTrip = (trip, tripID) => {
   };
 };
 
-export const deleteTrip = (tripID) => {
+export const deleteTrip = (img, tripID) => {
   // we want to return a function and halt the action dispatch until the function finishes
   // dispatch is the funciton that dispatches an action to the reducer
   return (dispatch, getState, { getFirebase, getFirestore }) => {
