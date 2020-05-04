@@ -13,6 +13,7 @@ import LoadingBox from './../dashboard/LoadingBox';
 import moment from 'moment';
 import MapContainer from './MapContainer';
 import RatingBar from '../companyProfile/RatingBar.js';
+import ReviewStats from './ReviewStats';
 
 // class container section is material
 // class trip-details is from our own css
@@ -114,6 +115,7 @@ const TripDetails = (props) => {
                 <p>{reviewLength} Reviews</p>
               </div>
             </div>
+            <ReviewStats />
           </div>
         </div>
         {/* Second row */}
