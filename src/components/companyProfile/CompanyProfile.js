@@ -143,7 +143,6 @@ const mapStateToProps = (state, ownProps) => {
     });
     avgRating = sum / reviews.length;
   }
-  console.log(avgRating);
   return {
     trips: state.firestore.ordered.Trips,
     company: company,
