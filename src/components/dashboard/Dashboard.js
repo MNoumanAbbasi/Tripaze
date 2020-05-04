@@ -104,7 +104,7 @@ class Dashboard extends Component {
                 class="btn dark-button btn-secondary mob-shadow d-md-none d-xs-block change-font"
                 href="#popup1"
               >
-                Tap me to Filter Trips
+                Advanced Search
               </a>
             </div>
             <div className="container">
