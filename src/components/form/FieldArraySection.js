@@ -22,7 +22,7 @@ const FieldArraySection = ({ label, name, values }) => {
                     <div key={ind} className="row">
                       <button
                         type="button"
-                        class="mr-3 mt-0 btn btn-sm bg-white"
+                        class="mr-1 mt-0 btn btn-sm bg-white"
                         onClick={() => remove(ind)}
                       >
                         <i class="fa fas fa-times text-danger fa-fw"></i>

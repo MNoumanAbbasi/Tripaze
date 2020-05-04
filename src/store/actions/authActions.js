@@ -9,8 +9,7 @@ export const signIn = (credentials) => {
       .auth()
       .signInWithEmailAndPassword(credentials.email, credentials.password)
       .then((doc) => {
-        const currProfile = doc.data();
-        dispatch({ type: 'SIGNIN_SUCCESS', currProfile });
+        dispatch({ type: 'SIGNIN_SUCCESS' });
       })
       .catch((err) => {
         dispatch({ type: 'SIGNIN_ERROR', err });
