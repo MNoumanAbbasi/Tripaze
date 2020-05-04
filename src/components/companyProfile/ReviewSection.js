@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { addReview, deleteReview } from '../../store/actions/reviewActions';
 import SignInToAccess from '../dialogBoxes/SignInToAccess';
 import RatingBar from './RatingBar.js';
+import RatingBarInput from './RatingBarInput.js';
 
 const Review = (props) => {
   let button = null;
@@ -22,7 +23,7 @@ const Review = (props) => {
       <h6 className="username text-white bg-turq p-4">{props.userName}</h6>
       <div className="ml-3">
         {' '}
-        <RatingBar name="companyrating" value={props.rating} editable="false" />
+        <RatingBar name="companyrating" value={props.rating} />
         <p className="review">{props.review}</p>
       </div>
     </div>
@@ -41,10 +42,9 @@ const AddNewReviewForm = (props) => {
     <div className="border border-thin mt-3 border-turq">
       <div className="form-group">
         <form onSubmit={handleSubmit}>
-          <RatingBar
+          <RatingBarInput
             name="companyrating"
             value="0"
-            editable="true"
             // onStarClick={(event) => setRating(event.target.value)}
             className="ml-2 mb-4"
             required

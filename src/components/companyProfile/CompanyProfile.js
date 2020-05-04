@@ -63,12 +63,7 @@ const CompanyProfile = (props) => {
             <div class="mr-5 change-card-width">
               <div class="card-body">
                 <div className="row mt-5 mb-5">
-                  <RatingBar
-                    name="companyrating"
-                    value="3"
-                    editable="false"
-                    className="ml-2"
-                  />
+                  <RatingBar name="companyrating" value="3" className="ml-2" />
                   <h6 className="ml-4">27 Reviews</h6>
                 </div>
                 <h6 class="card-title change-font font-weight-bold text-uppercase colored mt-5 mb-3">

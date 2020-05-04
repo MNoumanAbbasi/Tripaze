@@ -98,12 +98,7 @@ const TripDetails = (props) => {
                 </Link>
               </h6>
               <div className="row justify-content-around">
-                <RatingBar
-                  name="companyrating"
-                  value="3"
-                  editable="false"
-                  className="ml-lg-4"
-                />
+                <RatingBar name="companyrating" value="3" className="ml-lg-4" />
                 <p>27 Reviews</p>
               </div>
             </div>
