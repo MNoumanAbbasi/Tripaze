@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TripsList from '../trips/TripsList';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -22,13 +22,21 @@ const CompanyProfile = (props) => {
     auth,
     avgRating,
   } = props;
-  const isInitialized = !isLoading && trips && company && auth;
+  const isInitialized = !isLoading && trips && company && auth && reviews;
   // if (wrongID) props.history.push('/'); // wrong id entered
   const adminMode = auth.uid === props.match.params.id;
+  const [reviewModalShow, setReviewModalShow] = useState(false);
+
   if (isInitialized) {
     const currProfileType = profileType(auth, profile);
     return (
       <div className="row m-0 justify-content-center">
+        <ReviewStats
+          show={reviewModalShow}
+          onHide={() => setReviewModalShow(false)}
+          reviews={reviews}
+          avgRating={avgRating}
+        />
         <CoverImage img={company.coverImage} type="companyCover" />
         {/* Logo Image for Overlapping
           <div className="overlay row w-100 justify-content-lg-end justify-content-center">
@@ -71,11 +79,15 @@ const CompanyProfile = (props) => {
             {/* {Company Card } */}
             <div class="mr-5 change-card-width">
               <div class="card-body">
-                <div className="row mt-5 mb-5">
+                <div
+                  className="row mt-5 mb-5 hasOnClick"
+                  onClick={() => setReviewModalShow(true)}
+                >
                   <RatingBar
                     name="companyrating"
                     value={avgRating}
                     className="ml-2"
+                    editing={true}
                   />
                   <h6 className="ml-4">{reviews.length} Reviews</h6>
                 </div>
@@ -114,7 +126,6 @@ const CompanyProfile = (props) => {
             profileType={currProfileType}
             id={auth.uid}
           />
-          <ReviewStats avgRating={avgRating} reviews={reviews} />
         </div>
       </div>
     );

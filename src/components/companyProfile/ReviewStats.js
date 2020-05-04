@@ -2,8 +2,17 @@ import React, { Component } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import RatingBar from '../companyProfile/RatingBar.js';
 
-function MyVerticallyCenteredModal(props) {
-  const { avgRating, ratingStats } = props;
+function ReviewStats(props) {
+  const { avgRating, reviews } = props;
+  let ratingStats = [0, 0, 0, 0, 0];
+  reviews.forEach((review) => {
+    ratingStats[review.rating]++;
+  });
+  ratingStats = ratingStats.map((rating) => {
+    if (reviews.length <= 0) return 0;
+    let ratingPercentage = (rating * 100) / reviews.length;
+    return ratingPercentage.toString() + '%';
+  });
   return (
     <Modal
       {...props}
@@ -30,8 +39,8 @@ function MyVerticallyCenteredModal(props) {
               />
               <p className="ml-2">
                 {' '}
-                <i class="fa fa-user" aria-hidden="true"></i> {' ' + '5'}{' '}
-                Reviews
+                <i class="fa fa-user" aria-hidden="true"></i>{' '}
+                {' ' + reviews.length} Reviews
               </p>
             </div>
           </div>
@@ -130,34 +139,6 @@ function MyVerticallyCenteredModal(props) {
         </div>
       </Modal.Body>
     </Modal>
-  );
-}
-
-function ReviewStats({ reviews, avgRating }) {
-  const [modalShow, setModalShow] = React.useState(false);
-  let ratingStats = [0, 0, 0, 0, 0];
-  reviews.forEach((review) => {
-    ratingStats[review.rating]++;
-  });
-  ratingStats = ratingStats.map((rating) => {
-    if (reviews.length <= 0) return 0;
-    let ratingPercentage = (rating * 100) / reviews.length;
-    return ratingPercentage.toString() + '%';
-  });
-  console.log(ratingStats);
-  return (
-    <>
-      <Button variant="primary" onClick={() => setModalShow(true)}>
-        Launch vertically centered modal
-      </Button>
-
-      <MyVerticallyCenteredModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        ratingStats={ratingStats}
-        avgRating={avgRating}
-      />
-    </>
   );
 }
 

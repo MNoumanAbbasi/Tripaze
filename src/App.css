@@ -905,3 +905,7 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
 .fix-width {
   min-width: 5em;
 }
+
+.hasOnClick {
+  cursor: pointer;
+}
