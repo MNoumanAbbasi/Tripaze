@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import storage from '../../config/fbConfig';
 
-// const getTime = () => {
-//   return Date.now().toString() + '.jpg';
-// };
-// // const getTime
 const ImageThumb = ({ image }) => {
   return (
     <div className="image-thumb border">
@@ -25,6 +21,7 @@ const ImageSection = (props) => {
   const [progress, setProgress] = useState(0);
   const [isUploaded, setIsUploaded] = useState(false);
   const folderName = props.imageCategory + 'Images/';
+  const fileName = new Date().getTime().toString() + '.jpg'; // Set filename to current time
 
   const handleUpload = (e) => {
     setIsFileChosen(true);
@@ -32,7 +29,6 @@ const ImageSection = (props) => {
     setImage(image);
 
     // Uploading file
-    let fileName = Date.now().toString() + '.jpg'; // Set filename to current time
     const uploadTask = storage.ref(`${folderName + fileName}`).put(image);
     uploadTask.on(
       'state_changed',
