@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import CardImage from '../displayImages/CardImage';
 import cardbg from './card-bg.png';
+import notifi from './notifi.png';
 import moment from 'moment';
 
 const TripCard = ({ trip, isCompProfile }) => {
@@ -16,6 +17,7 @@ const TripCard = ({ trip, isCompProfile }) => {
       <div class="card content-box m-4 change-card-width">
         <div class="trip-title">
           <CardImage img={trip.image} type="trip" />
+          <img src={notifi} className="top-right" />
           <div class="bottom-left change-font darken-bg">{trip.title}</div>
           {/* <h4 class="bottom-left change-font darken-bg">{notification}</h4> */}
         </div>
