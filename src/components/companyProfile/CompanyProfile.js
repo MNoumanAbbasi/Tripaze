@@ -13,7 +13,15 @@ import RatingBar from './RatingBar.js';
 // const today = new Date();
 // 6 columns on medium and 12 column on small screens
 const CompanyProfile = (props) => {
-  const { trips, company, profile, isLoading, reviews, auth, wrongID } = props;
+  const {
+    trips,
+    company,
+    profile,
+    isLoading,
+    reviews,
+    auth,
+    avgRating,
+  } = props;
   const isInitialized = !isLoading && trips && company && auth;
   // if (wrongID) props.history.push('/'); // wrong id entered
   const adminMode = auth.uid === props.match.params.id;
@@ -69,19 +77,23 @@ const CompanyProfile = (props) => {
             <div class="mr-5 change-card-width">
               <div class="card-body">
                 <div className="row mt-5 mb-5">
-                  <RatingBar name="companyrating" value="3" className="ml-2" />
-                  <h6 className="ml-4">27 Reviews</h6>
+                  <RatingBar
+                    name="companyrating"
+                    value={avgRating}
+                    className="ml-2"
+                  />
+                  <h6 className="ml-4">{reviews.length} Reviews</h6>
                 </div>
+                <h6 class="card-title change-font font-weight-bold text-uppercase colored mt-5">
+                  <i class="fa fa-phone fa-2x fa-fw" aria-hidden="true"></i>
+                  {company.contact}
+                </h6>
                 <h6 class="card-title change-font font-weight-bold text-uppercase colored mt-5 mb-3">
                   <i
                     class="fa fa-map-marker fa-2x fa-fw"
                     aria-hidden="true"
                   ></i>
                   {company.location}
-                </h6>
-                <h6 class="card-title change-font font-weight-bold text-uppercase colored mt-5">
-                  <i class="fa fa-phone fa-2x fa-fw" aria-hidden="true"></i>
-                  {company.contact}
                 </h6>
               </div>
             </div>
@@ -117,7 +129,6 @@ const CompanyProfile = (props) => {
 
 // Map state from store to props in component
 const mapStateToProps = (state, ownProps) => {
-  console.log('ASDAASDASD', state);
   const id = ownProps.match.params.id;
   const companies = state.firestore.data.Companies;
   const company = companies ? companies[id] : null;
@@ -129,13 +140,23 @@ const mapStateToProps = (state, ownProps) => {
   const isLoading = requests
     ? Object.values(requests).some((value) => value === true)
     : null;
+  const reviews = state.firestore.ordered.Reviews;
+  let avgRating = 0;
+  if (reviews) {
+    let sum = 0;
+    reviews.forEach((review) => {
+      sum += review.rating;
+    });
+    avgRating = sum / reviews.length;
+  }
   return {
     trips: state.firestore.ordered.Trips,
     company: company,
     auth: state.firebase.auth,
     profile: state.auth.currProfile,
     isLoading: isLoading, // all must be loaded
-    reviews: state.firestore.ordered.Reviews,
+    reviews: reviews,
+    avgRating: avgRating,
     wrongID: wrongID,
   };
 };
