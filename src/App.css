@@ -599,6 +599,11 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
   }
 
   /*Map on small screen devices*/
+
+  .map-container {
+    height: 48vh !important;
+    width: 42vh !important;
+  }
 }
 
 /* Pop Up Classes*/
