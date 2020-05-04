@@ -7,6 +7,7 @@ import FAQSection from './FAQSection';
 import { deleteTrip, readNotification } from '../../store/actions/tripActions';
 import cardbg from './card-bg.png';
 import CoverImage from '../displayImages/CoverImage';
+import LogoImage from '../displayImages/LogoImage';
 import { profileType } from '../../Helpers';
 import Confirmation from '../dialogBoxes/Confirmation';
 import LoadingBox from './../dashboard/LoadingBox';
