@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, ErrorMessage } from 'formik';
 
-const InputField = ({ label, name, type, className, as = '' }) => {
+const InputField = ({ label, name, type, as = '' }) => {
   return (
     <div className="form-group">
       <label>{label}</label>
