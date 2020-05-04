@@ -5,7 +5,6 @@ import { compose } from 'redux';
 import { Link } from 'react-router-dom';
 import FAQSection from './FAQSection';
 import { deleteTrip, readNotification } from '../../store/actions/tripActions';
-import cardbg from './card-bg.png';
 import CoverImage from '../displayImages/CoverImage';
 import LogoImage from '../displayImages/LogoImage';
 import { profileType } from '../../Helpers';
@@ -67,7 +66,7 @@ const TripDetails = (props) => {
           props.history.push('/');
         }}
       />
-      {/* <CoverImage img={trip.image} type="trip" /> */}
+      <CoverImage img={trip.image} type="trip" />
       <div className="container thirdDrop">
         <div className="row justify-content-lg-end justify-content-sm-around">
           {editButton}
