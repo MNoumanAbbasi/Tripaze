@@ -114,7 +114,7 @@ const CompanyProfile = (props) => {
             profileType={currProfileType}
             id={auth.uid}
           />
-          <ReviewStats />
+          <ReviewStats avgRating={avgRating} reviews={reviews} />
         </div>
       </div>
     );
