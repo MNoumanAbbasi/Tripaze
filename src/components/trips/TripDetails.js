@@ -73,7 +73,7 @@ const TripDetails = (props) => {
       />
       <CoverImage img={trip.image} type="trip" />
       <div className="container thirdDrop">
-        <div className="row justify-content-lg-start justify-content-sm-around bg-info">
+        <div className="row justify-content-lg-start justify-content-sm-around">
           {editButton}
           {deleteButton}
         </div>

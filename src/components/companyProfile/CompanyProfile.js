@@ -51,7 +51,7 @@ const CompanyProfile = (props) => {
           /> */}
         </div>
         <div className="container thirdDrop">
-          <div className="row justify-content-lg-start justify-content-sm-around bg-info mb-3">
+          <div className="row justify-content-lg-start justify-content-sm-around mb-3">
             {adminMode && (
               <button
                 type="button"
