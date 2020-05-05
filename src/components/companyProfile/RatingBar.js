@@ -1,16 +1,16 @@
 import React from 'react';
 import StarRatingComponent from 'react-star-rating-component';
 
-const RatingBar = ({ value, name, className }) => {
+const RatingBar = ({ value, name, className, editing }) => {
   return (
     <StarRatingComponent
       name={name}
-      editing={false}
+      editing={editing}
       starCount={5}
       value={value}
       className={className}
       emptyStarColor={'#D3D3D3'}
-      renderStarIcon={(index, value) => {
+      renderStarIcon={() => {
         return (
           <span>
             {' '}
