@@ -6,7 +6,7 @@ import { firestoreConnect } from 'react-redux-firebase'; // higher order
 import { Redirect } from 'react-router-dom';
 import { profileType } from '../../Helpers';
 import logo_wt from '../../Images/logo-without-text.jpg';
-import background from '../../Images/HomepageImage.jpg';
+import background from '../../Images/bg.gif';
 import SearchBar from '../layout/SearchBar';
 import { searchBarShow } from '../../store/actions/filterActions';
 import LoadingBox from './LoadingBox';
@@ -34,12 +34,12 @@ class Dashboard extends Component {
     // If search bar not showing but should be shown
     if (window.innerWidth < 992 && !this.props.searchBarVisible) {
       this.props.searchBarShow(true);
-    } else if (lastScrollY > 240 && !this.props.searchBarVisible) {
+    } else if (lastScrollY > 295 && !this.props.searchBarVisible) {
       this.props.searchBarShow(true);
     }
     // Else if search bar is showing but should not be shown
     else if (
-      lastScrollY <= 240 &&
+      lastScrollY <= 295 &&
       this.props.searchBarVisible &&
       window.innerWidth >= 992
     ) {
@@ -63,7 +63,7 @@ class Dashboard extends Component {
             <img
               alt="Background"
               src={background}
-              className="img-fluid mw-100 d-md-block d-none"
+              className="img-fluid mw-100 w-100 d-md-block d-none"
             ></img>
             <div className="d-md-block d-none">
               <SearchBar

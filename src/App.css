@@ -355,6 +355,10 @@ a:hover {
 /* Scroll Animation 
 Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
 
+.top-margin {
+  margin-top: 15%;
+}
+
 .scroll-button {
   position: absolute;
   top: 80%;
@@ -416,8 +420,8 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
 }
 
 .logo-dims {
-  height: 5rem;
-  width: 5rem;
+  height: 4.5rem;
+  width: 4.5rem;
 }
 
 .centered {
