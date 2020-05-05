@@ -9,6 +9,7 @@ export const addQuestion = (question, tripID, userType) => {
       .collection('FAQs')
       .add({
         question,
+        timestamp: new Date(),
         answer: '',
         // userName, // userName is name of person asking (user or company)
         // userID, // userID is either companyID or signed in userID

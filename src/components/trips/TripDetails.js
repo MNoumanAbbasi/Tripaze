@@ -234,6 +234,7 @@ export default compose(
       {
         collection: 'FAQs',
         where: [['tripID', '==', props.match.params.id]],
+        orderBy: ['timestamp', 'desc'],
       },
     ];
     if (props.trip)
