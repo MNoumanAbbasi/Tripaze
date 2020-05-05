@@ -1,4 +1,3 @@
-import React from 'react';
 import swal from 'sweetalert';
 
 export const alreadyReviewedModal = () => {
@@ -25,7 +24,7 @@ export const deleteReviewModal = (props) => {
   }).then((willDelete) => {
     if (willDelete) {
       props.removeReview(props.id);
-      swal('The review has successfully been deleted!', {
+      swal('The review has been successfully deleted!', {
         icon: 'success',
       });
     }

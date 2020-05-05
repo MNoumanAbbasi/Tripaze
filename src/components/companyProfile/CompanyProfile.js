@@ -30,6 +30,18 @@ const CompanyProfile = (props) => {
   const [reviewModalShow, setReviewModalShow] = useState(false);
 
   if (isInitialized) {
+    const noTrips =
+      trips.length != 0 ? null : (
+        <p className="text-center text-secondary">
+          No Trips have been posted yet
+        </p>
+      );
+    const noReviews =
+      reviews.length != 0 ? null : (
+        <p className="text-center text-secondary">
+          No Reviews have been posted yet
+        </p>
+      );
     const currProfileType = profileType(auth, profile);
     return (
       <div className="row m-0 justify-content-center">
@@ -119,9 +131,7 @@ const CompanyProfile = (props) => {
             <h3 className="tripText"> Upcoming Trips</h3>
           </div>
           {/* ONLY SHOW IF NO TRIPS */}
-          <p className="text-center text-secondary">
-            No Trips have been posted yet
-          </p>
+          {noTrips}
           {/* ------------- */}
           <div className="container mt-4">
             <TripsList trips={trips} isCompProfile={adminMode} />
@@ -133,9 +143,7 @@ const CompanyProfile = (props) => {
             <h3 className="tripText"> Company Reviews</h3>
           </div>
           {/* ONLY SHOW IF NO Reviews */}
-          <p className="text-center text-secondary">
-            No Reviews have been posted yet
-          </p>
+          {noReviews}
           {/* ------------- */}
           <ReviewSection
             companyID={props.match.params.id}
@@ -209,7 +217,7 @@ export default compose(
     {
       collection: 'Reviews',
       where: [['companyID', '==', props.match.params.id]],
-      orderBy: ['timestamp', 'desc'],
+      orderBy: ['timestamp', 'asc'],
     },
   ])
 )(CompanyProfile);
