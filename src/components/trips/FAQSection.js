@@ -5,7 +5,7 @@ import {
   addAnswer,
   deleteFaq,
 } from '../../store/actions/faqActions';
-import SignInToAccess from '../dialogBoxes/SignInToAccess';
+import SignInToAccess from '../modals/SignInToAccess';
 import { deleteFAQModal, succesfulFAQModal } from '../modals/FAQModals';
 
 const FAQ = (props) => {

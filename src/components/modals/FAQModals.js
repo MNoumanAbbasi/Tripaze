@@ -1,4 +1,3 @@
-import React from 'react';
 import swal from 'sweetalert';
 
 export const succesfulFAQModal = () => {
@@ -16,7 +15,7 @@ export const deleteFAQModal = (props) => {
   }).then((willDelete) => {
     if (willDelete) {
       props.removeFaq(props.id);
-      swal('The question has successfully been deleted!', {
+      swal('The question has been successfully deleted!', {
         icon: 'success',
       });
     }
