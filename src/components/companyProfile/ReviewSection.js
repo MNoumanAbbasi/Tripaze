@@ -10,21 +10,26 @@ const Review = (props) => {
   if (props.profileType === 'User' && props.profileID === props.userID) {
     button = (
       <button
-        className="btn btn-sm bg-turq form-rounded float-right mr-3"
+        className="btn btn-sm bg-turq form-rounded float-right"
         onClick={() => props.removeReview(props.id)}
       >
-        <i className="fa fa-times fa-2x text-danger"></i>
+        <i
+          className="fa fa-times-circle fa-resize"
+          style={{ color: '#ffff' }}
+        ></i>
       </button>
     );
   }
   return (
     <div className="faq tb-border-0 mt-3 border-turq ">
       {button}
-      <h6 className="username text-white bg-turq p-4">{props.userName}</h6>
+      <h6 className="username text-white bg-turq p-2">{props.userName}</h6>
+
       <div className="ml-3">
         {' '}
         <RatingBar name="companyrating" value={props.rating} editing={false} />
-        <p className="review">{props.review}</p>
+        <h6 className="review">{props.review}</h6>
+        <p className="review">Posted : A month ago</p>
       </div>
     </div>
   );
