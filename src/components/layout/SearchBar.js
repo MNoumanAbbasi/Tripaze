@@ -64,7 +64,7 @@ export class SearchBar extends Component {
           <input
             className={this.props.inputClass}
             type="text"
-            placeholder="Search trips..."
+            placeholder="Where to?"
             aria-label="Search"
             id="destinations"
             value={this.state.destinations}
