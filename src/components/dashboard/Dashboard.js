@@ -11,6 +11,8 @@ import SearchBar from '../layout/SearchBar';
 import { searchBarShow } from '../../store/actions/filterActions';
 import LoadingBox from './LoadingBox';
 import FilterBar from '../filterBar/FilterBar';
+import bgvid from '../../Images/vid.mp4';
+
 let lastScrollY = 0;
 const today = new Date();
 // 6 columns on medium and 12 column on small screens
@@ -60,11 +62,21 @@ class Dashboard extends Component {
       return (
         <div className="homePage">
           <div class="d-block">
-            <img
+            {/* <img
               alt="Background"
               src={background}
               className="img-fluid mw-100 d-md-block d-none"
-            ></img>
+            ></img> */}
+            <video
+              id="background-video"
+              loop
+              autoPlay
+              className="img-fluid mw-100 d-md-block d-none"
+              style={{width: '100%'}}
+            >
+              <source src={bgvid} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
             <div className="d-md-block d-none">
               <SearchBar
                 formClass="input-group form-group home-searchbar searchbar-w centered"
