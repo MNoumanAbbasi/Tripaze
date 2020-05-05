@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase'; // higher order
 import LoadingBox from '../dashboard/LoadingBox';
-import NoTripsFound from '../dialogBoxes/NoTripsFound';
+import NoTripsFound from '../modals/NoTripsFound';
 
 const today = new Date();
 const SearchResults = (props) => {
