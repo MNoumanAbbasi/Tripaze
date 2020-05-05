@@ -47,7 +47,7 @@ function ReviewStats(props) {
           <div class="flex-grow-1">
             <div class="row align-items-center">
               <div class="col-4 text-right">
-                <i aria-hidden="true" class="fa fa-star"></i>
+                <i aria-hidden="true" class="fa fa-star gold"></i>
                 {' ' + '5'}
               </div>
               <div class="col-8">
@@ -65,7 +65,7 @@ function ReviewStats(props) {
             </div>
             <div class="row align-items-center">
               <div class="col-4 text-right">
-                <i aria-hidden="true" class="fa fa-star"></i>
+                <i aria-hidden="true" class="fa fa-star gold"></i>
                 {' ' + '4'}
               </div>
               <div class="col-8">
@@ -83,7 +83,7 @@ function ReviewStats(props) {
             </div>
             <div class="row align-items-center">
               <div class="col-4 text-right">
-                <i aria-hidden="true" class="fa fa-star"></i>
+                <i aria-hidden="true" class="fa fa-star gold"></i>
                 {' ' + '3'}
               </div>
               <div class="col-8">
@@ -101,7 +101,7 @@ function ReviewStats(props) {
             </div>
             <div class="row align-items-center">
               <div class="col-4 text-right">
-                <i aria-hidden="true" class="fa fa-star"></i>
+                <i aria-hidden="true" class="fa fa-star gold"></i>
                 {' ' + '2'}
               </div>
               <div class="col-8">
@@ -119,7 +119,7 @@ function ReviewStats(props) {
             </div>
             <div class="row align-items-center">
               <div class="col-4 text-right">
-                <i aria-hidden="true" class="fa fa-star"></i>
+                <i aria-hidden="true" class="fa fa-star gold"></i>
                 {' ' + '1'}
               </div>
               <div class="col-8">
