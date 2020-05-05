@@ -90,7 +90,7 @@ const TripDetails = (props) => {
             </div>
           </div>
           {/* {Company Card} */}
-          <div class="card content-box m-4 change-card-width order-lg-2 order-1">
+          <div class="card content-box m-4 mt-lg-5 change-card-width order-lg-2 order-1">
             <div class="card-body">
               <h6 class="card-title change-font font-weight-bold text-uppercase">
                 <LogoImage
@@ -133,10 +133,10 @@ const TripDetails = (props) => {
         {/* Description Box */}
         <div class="mt-5 row align-content-centre justify-content-between">
           <div class="ml-lg-4 col-lg-6 text-justify text-secondary">
-            <h3>Description</h3>
+            <h3 className="text-secondary">Description</h3>
             <p style={{ whiteSpace: 'pre-line' }}>{trip.description}</p>
             <div>
-              <h3 class="mt-5"> Destinations:</h3>
+              <h3 class="mt-5 text-secondary"> Destinations:</h3>
               {trip.destinations.map((dest) => {
                 return (
                   <li key={dest} class=" ml-lg-4 text-secondary">
@@ -146,7 +146,7 @@ const TripDetails = (props) => {
               })}
             </div>
           </div>
-          <table class="mr-lg-4 mt-3 col-lg-4 table table-border tb-border border-turq table-md-responsive">
+          <table class="mr-lg-4 mt-lg-1 mt-4 col-lg-4 table table-border tb-border border-turq table-md-responsive">
             <thead>
               <tr class="bg-turq">
                 <th class="text-white text-center" scope="col">
@@ -166,13 +166,22 @@ const TripDetails = (props) => {
           </table>
         </div>
 
+        <div className="row p-4 mt-5 justify-content-center align-content-centre text-turq">
+          <i class="fa fa-map-marker fa-3x fa-fw" aria-hidden="false"></i>
+          <h3 className="tripText"> Map</h3>
+        </div>
         <div className="d-flex justify-content-center mt-5">
           <MapContainer destinations={trip.destinations} />
         </div>
-        <div className="row p-4 mt-5 justify-content-center align-content-centre text-turq">
+        <div className="row p-4 mt-5 justify-content-center align-content-centre text-turq bigscreen">
           <i class="fa fa-question-circle fa-3x fa-fw" aria-hidden="false"></i>
           <h3 className="tripText">Frequently Asked Questions</h3>
         </div>
+        <div className="row p-4 mt-5 justify-content-center align-content-centre text-turq smallscreen">
+          <i class="fa fa-question-circle fa-3x fa-fw" aria-hidden="false"></i>
+          <h3 className="tripText">Frequently Asked Questions</h3>
+        </div>
+
         <FAQSection
           FAQs={FAQs}
           tripID={props.match.params.id}
