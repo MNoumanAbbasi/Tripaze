@@ -164,7 +164,7 @@ const mapStateToProps = (state, ownProps) => {
   // To get the rating bar
   const reviews = state.firestore.ordered.Reviews;
   let avgRating = 0;
-  if (reviews) {
+  if (reviews && reviews.length > 0) {
     let sum = 0;
     reviews.forEach((review) => {
       sum += review.rating;
@@ -199,6 +199,7 @@ export default compose(
     {
       collection: 'Reviews',
       where: [['companyID', '==', props.match.params.id]],
+      orderBy: ['timestamp', 'desc'],
     },
   ])
 )(CompanyProfile);
