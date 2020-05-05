@@ -199,6 +199,7 @@ export default compose(
     {
       collection: 'Reviews',
       where: [['companyID', '==', props.match.params.id]],
+      orderBy: ['timestamp', 'desc'],
     },
   ])
 )(CompanyProfile);
