@@ -10,6 +10,10 @@ export class SignIn extends Component {
     password: '',
   };
 
+  componentDidMount() {
+    console.log('Mounted');
+  }
+
   handleChange = (e) => {
     this.setState({
       // is an email being entered or a password?
@@ -24,11 +28,10 @@ export class SignIn extends Component {
   };
 
   render() {
-    const { auth, signInError, history } = this.props;
+    const { auth, authError, history } = this.props;
 
     if (auth.uid) {
       history.goBack();
-      // return <Redirect to="/" />;
     }
 
     return (
@@ -77,9 +80,9 @@ export class SignIn extends Component {
               >
                 Sign in
               </button>
-              {signInError && (
+              {authError && (
                 <div className="border border-danger rounded text-danger p-1">
-                  <p>{signInError}</p>
+                  <p>{authError}</p>
                 </div>
               )}
             </div>
@@ -97,7 +100,7 @@ export class SignIn extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    signInError: state.auth.signInError, // in root reducer check auth property and the authError in that property
+    authError: state.auth.authError, // in root reducer check auth property and the authError in that property
     auth: state.firebase.auth,
   };
 };

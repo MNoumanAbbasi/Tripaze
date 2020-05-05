@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { editTrip } from '../../store/actions/tripActions';
 import { Redirect } from 'react-router-dom';
@@ -10,20 +10,32 @@ import { Formik, Form } from 'formik';
 import { tripSchema } from './CreateTrip';
 import InputField from '../form/InputField';
 import moment from 'moment';
+import EditTripConfirmation from '../dialogBoxes/EditTripConfirmation';
 
 const EditTrip = (props) => {
   const { trip, isLoading, auth } = props;
   const isInitialized = !isLoading && trip;
   const adminMode = trip && auth.uid === trip.companyId;
+  const [modalShow, setModalShow] = useState(false);
+  const [values, setValues] = useState(false);
+
   // wrong id entered
   if (!isLoading && !trip && auth) props.history.push('/');
   if (!isInitialized) {
     return <div>Loading...</div>;
   } else if (!adminMode) {
-    return <Redirect to="/" />;
+    props.history.goBack();
   }
   return (
     <div className="container border mb-4 mt-5 object-shadow">
+      <EditTripConfirmation
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        onDelete={() => {
+          props.editTrip(values, props.match.params.id);
+          props.history.goBack();
+        }}
+      />
       <div className="row mt-5">
         <div className="mt-5 col-lg-12 text-center">
           <h1 className="mt-5 text-turq">EDIT TRIP</h1>
@@ -51,8 +63,8 @@ const EditTrip = (props) => {
             onSubmit={(values) => {
               values.departureDate = new Date(values.departureDate);
               console.log(values);
-              props.editTrip(values, props.match.params.id);
-              props.history.push('/');
+              setValues(values);
+              setModalShow(true);
             }}
           >
             {({ values }) => (

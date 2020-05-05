@@ -22,9 +22,10 @@ const CompanyProfile = (props) => {
     reviews,
     auth,
     avgRating,
+    wrongID,
   } = props;
   const isInitialized = !isLoading && trips && company && auth && reviews;
-  // if (wrongID) props.history.push('/'); // wrong id entered
+  if (wrongID) props.history.push('/'); // wrong id entered
   const adminMode = auth.uid === props.match.params.id;
   const [reviewModalShow, setReviewModalShow] = useState(false);
 
@@ -142,17 +143,25 @@ const CompanyProfile = (props) => {
 
 // Map state from store to props in component
 const mapStateToProps = (state, ownProps) => {
+  console.log(state);
   const id = ownProps.match.params.id;
   const companies = state.firestore.data.Companies;
   const company = companies ? companies[id] : null;
   let wrongID = false;
-  if (companies && !companies[id]) {
-    wrongID = true;
-  }
   const requests = state.firestore.status.requesting;
-  const isLoading = requests
+  const isLoading = state.firestore.status.requesting
     ? Object.values(requests).some((value) => value === true)
     : null;
+  // in case a wrong id has been entered in the trip details page
+  const requested = state.firestore.status.requested;
+  const initiatedRequests = requested
+    ? Object.values(requested).every((value) => value === true)
+    : null;
+  if (companies && initiatedRequests && companies[id] == null) {
+    wrongID = true;
+  }
+
+  // To get the rating bar
   const reviews = state.firestore.ordered.Reviews;
   let avgRating = 0;
   if (reviews) {
@@ -184,7 +193,6 @@ export default compose(
       collection: 'Trips',
       where: [
         ['companyId', '==', props.match.params.id], // trips by the company in question
-        // ['departureDate', '>=', today], // only upcoming trips
       ],
       orderBy: ['departureDate'],
     },

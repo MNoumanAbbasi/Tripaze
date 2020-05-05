@@ -22,6 +22,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import LoadingBox from './components/dashboard/LoadingBox';
+import { BrowserRouter } from 'react-router-dom';
 
 // Multiple reducers for multiple actions
 // Thunk with extra arguments takes in an object
@@ -63,7 +64,9 @@ ReactDOM.render(
   <Provider store={store}>
     <ReactReduxFirebaseProvider {...rrfProps}>
       <AuthIsLoaded>
-        <App />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </AuthIsLoaded>
     </ReactReduxFirebaseProvider>
   </Provider>,

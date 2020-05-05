@@ -27,7 +27,7 @@ export class SignUpCompany extends Component {
   };
 
   render() {
-    const { auth, signUpCompError } = this.props;
+    const { auth, authError } = this.props;
 
     if (auth.uid) {
       return <Redirect to="/" />;
@@ -100,9 +100,9 @@ export class SignUpCompany extends Component {
               </button>
 
               {/* To display sign up error */}
-              {signUpCompError && (
+              {authError && (
                 <div className="border border-danger rounded text-danger p-1">
-                  <p>{signUpCompError}</p>
+                  <p>{authError}</p>
                 </div>
               )}
             </div>
@@ -122,7 +122,7 @@ export class SignUpCompany extends Component {
 const mapStateToProps = (state) => {
   return {
     auth: state.firebase.auth,
-    signUpCompError: state.auth.signUpCompError,
+    authError: state.auth.authError,
   };
 };
 

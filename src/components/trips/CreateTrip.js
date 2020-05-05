@@ -132,7 +132,7 @@ const CreateTrip = (props) => {
                   <button
                     type="button"
                     className="btn form-rounded r-red-button"
-                    onClick={() => props.history.push('/')}
+                    onClick={() => props.history.goBack()}
                   >
                     Cancel
                   </button>

@@ -32,9 +32,6 @@ const TripDetails = (props) => {
 
   const [modalShow, setModalShow] = useState(false);
 
-  // wrong id entered
-  // if (!isLoading && !trip && auth) props.history.push('/');
-
   if (!isInitialized) {
     return <LoadingBox />;
   }
