@@ -8,7 +8,7 @@ function NoTripsFound(props) {
       <button
         type="button"
         key="GoBack"
-        class="btn btn-lg r-green-button form-rounded fix-width"
+        class="btn btn-secondary dark-button mr-lg-3 my-2 my-lg-0 form-rounded"
         onClick={props.onHide}
       >
         Go Back
