@@ -17,7 +17,6 @@ export const addReview = (review, companyID) => {
         userID: userID,
       })
       .then(() => {
-        window.location.reload(); // TODO: This is a hacky change. For global change, page needs to be refreshed. Find a solution to automatically update it when props change
         dispatch({ type: 'ADD_REVIEW', review: review });
       })
       .catch((err) => {
@@ -37,7 +36,6 @@ export const deleteReview = (reviewID) => {
       .doc(reviewID)
       .delete()
       .then(() => {
-        window.location.reload(); // TODO: This is a hacky change. For global change, page needs to be refreshed. Find a solution to automatically update it when props change
         dispatch({ type: 'DELETE_REVIEW', reviewID: reviewID });
       })
       .catch((err) => {

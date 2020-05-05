@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import {
   addQuestion,
@@ -87,6 +87,9 @@ const AddAnswerForm = (props) => {
 const FAQSection = (props) => {
   // State to store all FAQs
   const [FAQs, setFAQs] = useState(props.FAQs);
+  useEffect(() => {
+    setFAQs(props.FAQs);
+  }, [props.FAQs]);
   // State to check if the Add new question form is open or not
   const [isAddQuestionState, setIsAddQuestionState] = useState(false);
   const [modalShow, setModalShow] = useState(false);
@@ -95,18 +98,12 @@ const FAQSection = (props) => {
     props.addQuestion(question, props.tripID, props.profileType);
     setIsAddQuestionState(false);
   };
+
   const addAnswer = (answer, faqID) => {
-    const ind = FAQs.findIndex((faq) => faq.id === faqID);
-    // Making copy to try and fix issue
-    let newFAQs = [...FAQs];
-    console.log(newFAQs[ind]);
-    newFAQs[ind]['answer'] = answer;
     props.addAnswer(answer, faqID);
-    setFAQs(newFAQs);
     setIsAddQuestionState(false);
   };
   const removeFaq = (faqID) => {
-    setFAQs(FAQs.filter((faq) => faq.id !== faqID));
     props.deleteFaq(faqID);
   };
 

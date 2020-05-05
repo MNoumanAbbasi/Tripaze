@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { addReview, deleteReview } from '../../store/actions/reviewActions';
 import SignInToAccess from '../dialogBoxes/SignInToAccess';
@@ -65,13 +65,16 @@ const AddNewReviewForm = (props) => {
 
 const ReviewSection = (props) => {
   // State to store all Reviews
-  const [reviews] = useState(props.reviews); // display reviews passed from parent
+  const [reviews, setReviews] = useState(props.reviews); // display reviews passed from parent
+  // To update page on props change
+  useEffect(() => {
+    setReviews(props.reviews);
+  }, [props.reviews]);
   // State to check if the Add new review form is open or not
   const [isAddReviewState, setIsAddReviewState] = useState(false);
 
   const addNewReview = (newReview) => {
     props.addReview(newReview, props.companyID);
-    // TODO: Currently, the page needs to reload to have the changes appear on screen (see review actions)
     setIsAddReviewState(false);
   };
   const removeReview = (id) => {
