@@ -23,7 +23,7 @@ const Review = (props) => {
       <h6 className="username text-white bg-turq p-4">{props.userName}</h6>
       <div className="ml-3">
         {' '}
-        <RatingBar name="companyrating" value={props.rating} />
+        <RatingBar name="companyrating" value={props.rating} editing={false} />
         <p className="review">{props.review}</p>
       </div>
     </div>

@@ -197,6 +197,18 @@ a:hover {
   transform: scale(1.05);
 }
 
+/* .light-button:hover {
+  background-color: #00a99d;
+  border-color: #00a99d;
+  color: white;
+}
+
+.dark-button:hover {
+  background-color: white;
+  border-color: #00a99d;
+  color: #00a99d;
+} */
+
 .cardslist-margin {
   margin-top: 5rem !important;
 }
@@ -230,6 +242,13 @@ a:hover {
   bottom: 0px;
 }
 
+.top-right {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  height: 52px;
+}
+
 .card-title {
   color: black;
 }
@@ -252,6 +271,10 @@ a:hover {
   font-family: 'Open Sans';
 }
 
+.btn.focus,
+.btn:focus {
+  box-shadow: none !important;
+}
 .change-card-width {
   width: 18rem;
 }
@@ -539,6 +562,11 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
   transform: translate(-50%, -50%);
 }
 
+.greenline-fix {
+  padding: 0 !important;
+  margin-top: 0 !important;
+}
+
 .popup-overlay {
   position: fixed;
   top: 0%;
@@ -644,6 +672,29 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
 */
 
 /* Trip Details Page */
+
+/* Rating Stats */
+
+.fa-star {
+  color: orange;
+}
+
+.progbar1 {
+  background-color: #5cb85c !important;
+}
+.progbar2 {
+  background-color: #5bc0de !important;
+}
+.progbar3 {
+  background-color: #4e66f0 !important;
+}
+.progbar4 {
+  background-color: #f0ad4e !important;
+}
+.progbar5 {
+  background-color: #d9534f !important;
+}
+/* Rating Stats */
 
 .map-container {
   position: relative;
@@ -777,8 +828,9 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
 }
 
 .green-button:hover {
-  background-color: #00a99d;
+  background-color: #5a6268;
   color: white;
+  border-color: #5a6268;
 }
 
 .r-green-button {
@@ -787,9 +839,9 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
 }
 
 .r-green-button:hover {
-  background-color: white;
-  border-color: #00a99d;
-  color: #00a99d;
+  background-color: #5a6268;
+  color: white;
+  border-color: #5a6268;
 }
 
 .red-button {
@@ -852,4 +904,8 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
 
 .fix-width {
   min-width: 5em;
+}
+
+.hasOnClick {
+  cursor: pointer;
 }

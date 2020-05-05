@@ -33,7 +33,7 @@ const TripDetails = (props) => {
   const [modalShow, setModalShow] = useState(false);
 
   // wrong id entered
-  if (!isLoading && !trip && auth) props.history.push('/');
+  // if (!isLoading && !trip && auth) props.history.push('/');
 
   if (!isInitialized) {
     return <LoadingBox />;
@@ -47,7 +47,7 @@ const TripDetails = (props) => {
     editButton = (
       <button
         type="button"
-        class="btn mr-5 btn-lg green-button form-rounded"
+        class="btn mr-5 btn-lg green-button form-rounded border-turq"
         onClick={() => props.history.push('/edittrip/' + props.match.params.id)}
       >
         EDIT TRIP <i class="fa fas fa-edit fa-fw"></i>
@@ -56,7 +56,7 @@ const TripDetails = (props) => {
     deleteButton = (
       <button
         type="button"
-        class="btn btn-lg mr-1 red-button form-rounded"
+        class="btn btn-lg mr-1 red-button form-rounded border-danger"
         onClick={() => setModalShow(true)}
       >
         DELETE <i class="fa fas fa-trash fa-fw"></i>
@@ -76,7 +76,7 @@ const TripDetails = (props) => {
       />
       <CoverImage img={trip.image} type="trip" />
       <div className="container thirdDrop">
-        <div className="row justify-content-lg-end justify-content-sm-around">
+        <div className="row justify-content-lg-start justify-content-sm-around">
           {editButton}
           {deleteButton}
         </div>
@@ -119,16 +119,16 @@ const TripDetails = (props) => {
         <hr class="mt-3 col-7 ml-0 divider"></hr>
         <div class="row align-content-center justify-content-start">
           <h4 className="col-lg-3 change-font ml-0 colored">
-            <i class="fa fa-calendar fa-2x fa-fw" aria-hidden="true"></i>
+            <i class="fa fa-calendar fa-lg fa-fw" aria-hidden="true"></i>
             {'     ' +
               moment(trip.departureDate.toDate()).format('MMM Do YYYY')}
           </h4>
           <h4 className="col-lg-2 text-uppercase change-font colored">
-            <i class="fa fa-clock-o fa-2x fa-fw" aria-hidden="true"></i>
+            <i class="fa fa-clock-o fa-lg fa-fw" aria-hidden="true"></i>
             {trip.duration + ' days'}
           </h4>
           <h4 class="ml-lg-4 col-lg-3 text-uppercase change-font col-offset-7 colored">
-            <i class="fa fa-bus fa-2x fa-fw" aria-hidden="true"></i>
+            <i class="fa fa-bus fa-lg fa-fw" aria-hidden="true"></i>
             {'  ' + trip.departureLoc}
           </h4>
         </div>
