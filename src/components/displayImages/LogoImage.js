@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import storage from '../../config/fbConfig';
 import firebase from 'firebase';
 import spinner from '../../Images/Spinner.gif';
-import defaultLogo from '../../Images/coverPhoto.jpg';
+import defaultLogo from '../../Images/image-unavailable.png';
 
 //
 // Logo image will always be of the company
