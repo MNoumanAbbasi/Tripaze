@@ -1,8 +1,6 @@
 // for intial state when app starts
 const initState = {
   authError: null,
-  signUpCompError: null,
-  signInError: null,
   currProfile: null,
   profileLoading: false,
 };
@@ -15,15 +13,20 @@ const authReducer = (state = initState, action) => {
       return {
         ...state,
         authError: null,
-        signInError: null,
         profileLoading: false,
       };
     case 'SIGNIN_ERROR':
       console.log('sign in error');
       return {
         ...state,
-        signInError: action.err.message, // add autherror in addition to the currennt state to the auth property in the root reducer
+        authError: action.err.message, // add autherror in addition to the currennt state to the auth property in the root reducer
         profileLoading: false,
+      };
+    case 'CLEAR_AUTH_ERROR':
+      console.log('clearing auth errors');
+      return {
+        ...state,
+        authError: null,
       };
     case 'PROFILE_LOADING':
       console.log('profile is being loaded');
@@ -61,14 +64,13 @@ const authReducer = (state = initState, action) => {
       return {
         ...state,
         authError: null,
-        signUpCompError: null,
         profileLoading: false,
       };
     case 'SIGNUP_COMPANY_ERROR':
       console.log('sign up user error');
       return {
         ...state,
-        signUpCompError: action.err.message,
+        authError: action.err.message,
         profileLoading: false,
       };
     case 'SIGNUP_ERROR':
@@ -91,11 +93,6 @@ const authReducer = (state = initState, action) => {
         ...state,
         authError: action.err.message,
         profileLoading: false,
-      };
-    case 'CLEAR_AUTH_ERROR':
-      return {
-        ...state,
-        authError: null,
       };
     default:
       return state;

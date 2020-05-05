@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
+import { compose } from 'redux';
 import Navbar from './components/layout/Navbar';
 import Dashboard from './components/dashboard/Dashboard';
 import TripDetails from './components/trips/TripDetails';
@@ -11,7 +12,7 @@ import SignUpChoice from './components/auth/SignUpChoice';
 import CompanyProfile from './components/companyProfile/CompanyProfile';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
-import { authProfileLoad } from './store/actions/authActions';
+import { authProfileLoad, clearAuthError } from './store/actions/authActions';
 import './App.css';
 import SearchResults from './components/SearchResults/SearchResults';
 import EditTrip from './components/trips/EditTrip';
@@ -29,31 +30,36 @@ class App extends Component {
     });
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      console.log('ROUTE CHANGE');
+      this.props.clearAuthError();
+    }
+  }
+
   render() {
     const { profileLoading } = this.props;
     if (profileLoading) return <LoadingBox />;
     else
       return (
-        <BrowserRouter>
-          <div className="App">
-            <Navbar />
-            <Switch>
-              <Route exact path="/" component={Dashboard} />
-              <Route path="/signin" component={SignIn} />
-              <Route path="/signupuser" component={SignUpUser} />
-              <Route path="/signupcompany" component={SignUpCompany} />
-              <Route path="/forgetpassword" component={ForgetPassword} />
-              <Route path="/createtrip" component={CreateTrip} />
-              <Route path="/trip/:id" component={TripDetails} />
-              <Route path="/edittrip/:id" component={EditTrip} />
-              <Route path="/searchResults/" component={SearchResults} />
-              <Route path="/signupchoice" component={SignUpChoice} />
-              <Route path="/companyprofile/:id" component={CompanyProfile} />
-              <Route path="/editprofile/:id" component={EditProfile} />
-              <Route component={Dashboard} />
-            </Switch>
-          </div>
-        </BrowserRouter>
+        <div className="App">
+          <Navbar />
+          <Switch>
+            <Route exact path="/" component={Dashboard} />
+            <Route path="/signin" component={SignIn} />
+            <Route path="/signupuser" component={SignUpUser} />
+            <Route path="/signupcompany" component={SignUpCompany} />
+            <Route path="/forgetpassword" component={ForgetPassword} />
+            <Route path="/createtrip" component={CreateTrip} />
+            <Route path="/trip/:id" component={TripDetails} />
+            <Route path="/edittrip/:id" component={EditTrip} />
+            <Route path="/searchResults/" component={SearchResults} />
+            <Route path="/signupchoice" component={SignUpChoice} />
+            <Route path="/companyprofile/:id" component={CompanyProfile} />
+            <Route path="/editprofile/:id" component={EditProfile} />
+            <Route component={Dashboard} />
+          </Switch>
+        </div>
       );
   }
 }
@@ -66,8 +72,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    authProfileLoad: (user) => dispatch(authProfileLoad(user)), // pass this to the actions
+    authProfileLoad: (user) => dispatch(authProfileLoad(user)),
+    clearAuthError: () => dispatch(clearAuthError()),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withRouter
+)(App);
