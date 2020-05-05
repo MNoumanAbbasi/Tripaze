@@ -4,7 +4,6 @@ import StarRatingComponent from 'react-star-rating-component';
 class RatingBarInput extends React.Component {
   constructor() {
     super();
-
     this.state = {
       hoverRating: 1,
       rating: 1,
