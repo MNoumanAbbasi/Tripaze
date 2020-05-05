@@ -6,7 +6,7 @@ import { firestoreConnect } from 'react-redux-firebase'; // higher order
 import { Redirect } from 'react-router-dom';
 import { profileType } from '../../Helpers';
 import logo_wt from '../../Images/logo-without-text.jpg';
-import background from '../../Images/HomepageImage.jpg';
+import background from '../../Images/bg.gif';
 import SearchBar from '../layout/SearchBar';
 import { searchBarShow } from '../../store/actions/filterActions';
 import LoadingBox from './LoadingBox';
@@ -36,12 +36,12 @@ class Dashboard extends Component {
     // If search bar not showing but should be shown
     if (window.innerWidth < 992 && !this.props.searchBarVisible) {
       this.props.searchBarShow(true);
-    } else if (lastScrollY > 240 && !this.props.searchBarVisible) {
+    } else if (lastScrollY > 295 && !this.props.searchBarVisible) {
       this.props.searchBarShow(true);
     }
     // Else if search bar is showing but should not be shown
     else if (
-      lastScrollY <= 240 &&
+      lastScrollY <= 295 &&
       this.props.searchBarVisible &&
       window.innerWidth >= 992
     ) {
@@ -62,21 +62,11 @@ class Dashboard extends Component {
       return (
         <div className="homePage">
           <div class="d-block">
-            {/* <img
+            <img
               alt="Background"
               src={background}
-              className="img-fluid mw-100 d-md-block d-none"
-            ></img> */}
-            <video
-              id="background-video"
-              loop
-              autoPlay
-              className="img-fluid mw-100 d-md-block d-none"
-              style={{width: '100%'}}
-            >
-              <source src={bgvid} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+              className="img-fluid mw-100 w-100 d-md-block d-none"
+            ></img>
             <div className="d-md-block d-none">
               <SearchBar
                 formClass="input-group form-group home-searchbar searchbar-w centered"
@@ -102,7 +92,7 @@ class Dashboard extends Component {
           <div id="tripcards">
             <hr className="greenline mw-100 d-md-block d-none"></hr>
 
-            <div className="row justify-content-center justify-content-around align-items-end">
+            <div className="row justify-content-center justify-content-around mt-5 align-items-end">
               <h3 className="home-heading mt-5">ALL TRIPS</h3>
               <img
                 src={logo_wt}

@@ -15,6 +15,7 @@ export const addReview = (review, companyID) => {
         companyID: companyID,
         userName: userName,
         userID: userID,
+        timestamp: new Date(),
       })
       .then(() => {
         dispatch({ type: 'ADD_REVIEW', review: review });

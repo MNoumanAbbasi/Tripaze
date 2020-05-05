@@ -4,16 +4,20 @@ import { addReview, deleteReview } from '../../store/actions/reviewActions';
 import SignInToAccess from '../dialogBoxes/SignInToAccess';
 import RatingBar from './RatingBar.js';
 import RatingBarInput from './RatingBarInput.js';
+import moment from 'moment';
 
 const Review = (props) => {
   let button = null;
   if (props.profileType === 'User' && props.profileID === props.userID) {
     button = (
       <button
-        className="btn btn-sm bg-turq form-rounded float-right mr-3"
+        className="btn btn-sm bg-turq form-rounded float-right"
         onClick={() => props.removeReview(props.id)}
       >
-        <i className="fa fa-times fa-2x text-danger"></i>
+        <i
+          className="fa fa-times-circle fa-resize"
+          style={{ color: '#ffff' }}
+        ></i>
       </button>
     );
   }
@@ -24,7 +28,11 @@ const Review = (props) => {
       <div className="ml-3">
         {' '}
         <RatingBar name="companyrating" value={props.rating} editing={false} />
-        <p className="review">{props.review}</p>
+        <h6 className="review">{props.review}</h6>
+        <p className="review">
+          Posted on:
+          {' ' + moment(props.timestamp.toDate()).format('MMMM Do YYYY')}
+        </p>
       </div>
     </div>
   );
@@ -82,7 +90,8 @@ const ReviewSection = (props) => {
   };
 
   const [modalShow, setModalShow] = React.useState(false);
-
+  // Users should be allowed to post only one review
+  const alreadyReviewed = reviews.some((review) => review.userID === props.id);
   // Button to display (add new or cancel) based on if add new faq form is open or not
   let button;
   if (isAddReviewState) {
@@ -103,7 +112,7 @@ const ReviewSection = (props) => {
         Add Review
       </button>
     );
-  } else if (props.profileType !== 'User') {
+  } else if (props.profileType !== 'User' || alreadyReviewed) {
     button = null;
   } else {
     button = (
