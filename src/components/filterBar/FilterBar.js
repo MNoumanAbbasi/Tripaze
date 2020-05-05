@@ -45,16 +45,19 @@ class FilterBar extends Component {
         if (!destinations.includes(dest)) destinations.push(dest);
       });
     });
+    destinations = destinations.sort(); // to display locations alphabetically
     let departures = [];
     this.props.trips.forEach((trip) => {
       if (!departures.includes(trip.departureLoc))
         departures.push(trip.departureLoc);
     });
+    departures = departures.sort(); // to display locations alphabetically
     let companies = [];
     this.props.trips.forEach((trip) => {
       if (!companies.includes(trip.companyName))
         companies.push(trip.companyName);
     });
+    companies = companies.sort(); // to display companies alphabetically
     return (
       <form onSubmit={this.handleFormSubmit} className="greenline-fix">
         <div id="popup1" class="popup-overlay">
