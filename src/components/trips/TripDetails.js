@@ -73,6 +73,7 @@ const TripDetails = (props) => {
           props.history.push('/');
         }}
       />
+      {/* Image and Buttons  */}
       <CoverImage img={trip.image} type="trip" />
       <div className="container thirdDrop">
         <div className="row justify-content-lg-start justify-content-sm-around">
@@ -183,7 +184,11 @@ const TripDetails = (props) => {
           <i class="fa fa-question-circle fa-3x fa-fw" aria-hidden="false"></i>
           <h3 className="tripText">FAQ</h3>
         </div>
-
+        {/* ONLY SHOW IF NO QUESTIONS */}
+        <p className="text-center text-secondary">
+          No Questions have been posted yet
+        </p>
+        {/* ------------- */}
         <FAQSection
           FAQs={FAQs}
           tripID={props.match.params.id}

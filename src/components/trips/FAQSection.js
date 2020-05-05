@@ -43,8 +43,8 @@ const AddQuestionForm = (props) => {
   };
 
   return (
-    <div className="border border-thin mt-3 border-turq">
-      <div className="form-group">
+    <div className="">
+      <div className="form-group border">
         <form onSubmit={handleSubmit}>
           <input
             type="text"
