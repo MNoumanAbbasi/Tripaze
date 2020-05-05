@@ -31,8 +31,7 @@ export class SignIn extends Component {
     const { auth, authError, history } = this.props;
 
     if (auth.uid) {
-      // history.goBack();
-      // return <Redirect to="/" />;
+      history.goBack();
     }
 
     return (
