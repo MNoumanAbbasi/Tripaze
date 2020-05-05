@@ -185,6 +185,7 @@ a:hover {
 
 .change-font {
   font-family: 'Segoe UI';
+  color: #6c757d;
 }
 
 .card {
@@ -262,7 +263,7 @@ a:hover {
 }
 
 .card-body {
-  color: #808080;
+  color: #6c757d;
   padding-bottom: 0rem;
 }
 
@@ -421,7 +422,7 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
 
 .centered {
   position: absolute;
-  top: 45%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -557,7 +558,7 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
 
 .filter-button {
   position: absolute;
-  top: 55%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
