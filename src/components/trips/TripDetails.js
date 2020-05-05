@@ -12,29 +12,7 @@ import LoadingBox from './../dashboard/LoadingBox';
 import moment from 'moment';
 import MapContainer from './MapContainer';
 import RatingBar from '../companyProfile/RatingBar.js';
-import swal from 'sweetalert';
-
-// class container section is material
-// class trip-details is from our own css
-// taking props to know which trip to load
-
-const deleteModal = (props, img) => {
-  swal({
-    title: 'Are you sure?',
-    text: 'Once deleted, you will not be able to recover this trip!',
-    icon: 'warning',
-    buttons: true,
-    dangerMode: true,
-  }).then((willDelete) => {
-    if (willDelete) {
-      props.deleteTrip(img, props.match.params.id);
-      props.history.push('/');
-      swal('Poof! The trip has been deleted!', {
-        icon: 'success',
-      });
-    }
-  });
-};
+import { deleteModal } from '../modals/TripModals';
 
 const TripDetails = (props) => {
   const {
@@ -82,7 +60,12 @@ const TripDetails = (props) => {
       </button>
     );
   }
-
+  const noQuestions =
+    FAQs.length != 0 ? null : (
+      <p className="text-center text-secondary">
+        No Questions have been posted yet
+      </p>
+    );
   return (
     <div className="row m-0 tripDetails justify-content-center">
       <CoverImage img={trip.image} type="trip" />
@@ -196,9 +179,7 @@ const TripDetails = (props) => {
           <h3 className="tripText">FAQ</h3>
         </div>
         {/* ONLY SHOW IF NO QUESTIONS */}
-        <p className="text-center text-secondary">
-          No Questions have been posted yet
-        </p>
+        {noQuestions}
         {/* ------------- */}
         <FAQSection
           FAQs={FAQs}
@@ -261,7 +242,7 @@ export default compose(
       {
         collection: 'FAQs',
         where: [['tripID', '==', props.match.params.id]],
-        orderBy: ['timestamp', 'desc'],
+        orderBy: ['timestamp', 'asc'],
       },
     ];
     if (props.trip)

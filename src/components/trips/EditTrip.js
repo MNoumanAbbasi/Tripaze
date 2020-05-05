@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { editTrip } from '../../store/actions/tripActions';
-import { Redirect } from 'react-router-dom';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import FieldArraySection from '../form/FieldArraySection';
@@ -10,24 +9,7 @@ import { Formik, Form } from 'formik';
 import { tripSchema } from './CreateTrip';
 import InputField from '../form/InputField';
 import moment from 'moment';
-import swal from 'sweetalert';
-
-const confirmEdit = (values, props) => {
-  swal({
-    title: 'Are you sure?',
-    text: 'The edited changes will be permanent!',
-    icon: 'warning',
-    buttons: true,
-  }).then((willEdit) => {
-    if (willEdit) {
-      props.editTrip(values, props.match.params.id);
-      props.history.goBack();
-      swal('The trip has successfully been edited!', {
-        icon: 'success',
-      });
-    }
-  });
-};
+import { confirmEditModal } from '../modals/TripModals';
 
 const EditTrip = (props) => {
   const { trip, isLoading, auth } = props;
@@ -71,7 +53,7 @@ const EditTrip = (props) => {
             onSubmit={(values) => {
               values.departureDate = new Date(values.departureDate);
               setValues(values);
-              confirmEdit(values, props);
+              confirmEditModal(values, props);
             }}
           >
             {({ values }) => (

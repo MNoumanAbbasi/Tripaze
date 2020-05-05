@@ -8,6 +8,7 @@ import InputField from '../form/InputField';
 import ImageSection from '../form/ImageSection';
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
+import { succesfulCreateTripModal } from '../modals/TripModals';
 
 export const tripSchema = yup.object({
   title: yup.string().max(20, 'Max 20 characters').required('Required'),
@@ -81,6 +82,7 @@ const CreateTrip = (props) => {
               console.log('New Trip', values);
               props.createTrip(values, props.profile);
               props.history.push('/');
+              succesfulCreateTripModal();
             }}
           >
             {({ values }) => (
