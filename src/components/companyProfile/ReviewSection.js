@@ -6,33 +6,11 @@ import RatingBar from './RatingBar.js';
 import RatingBarInput from './RatingBarInput.js';
 import moment from 'moment';
 import swal from 'sweetalert';
-
-const alreadyReviewedModal = () => {
-  swal({
-    title: 'Already reviewed',
-    text:
-      'You have already reviewed this company. You can only review a company once.',
-    buttons: true,
-  });
-};
-
-const deleteReviewModal = (props) => {
-  swal({
-    title: 'Are you sure?',
-    text:
-      'You are about to delete your review. Once deleted, you will not be able to recover this review!',
-    icon: 'warning',
-    buttons: true,
-    dangerMode: true,
-  }).then((willDelete) => {
-    if (willDelete) {
-      props.removeReview(props.id);
-      swal('The review has successfully been deleted!', {
-        icon: 'success',
-      });
-    }
-  });
-};
+import {
+  alreadyReviewedModal,
+  deleteReviewModal,
+  succesfulReviewModal,
+} from '../modals/ReviewModals';
 
 const Review = (props) => {
   let button = null;
@@ -68,7 +46,7 @@ const Review = (props) => {
 
 const AddNewReviewForm = (props) => {
   const [review, setReview] = useState('');
-  const [rating, setRating] = useState('');
+  const [rating, setRating] = useState(1);
   const handleSubmit = (event) => {
     event.preventDefault();
     props.onSubmit({ review, rating });
@@ -108,6 +86,7 @@ const ReviewSection = (props) => {
   const addNewReview = (newReview) => {
     props.addReview(newReview, props.companyID);
     // TODO: Currently, the page needs to reload to have the changes appear on screen (see review actions)
+    succesfulReviewModal();
     setIsAddReviewState(false);
   };
   const removeReview = (id) => {
