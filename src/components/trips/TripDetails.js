@@ -28,7 +28,7 @@ const TripDetails = (props) => {
     reviewLength,
   } = props; // getting trip category from props
   console.log(reviewLength);
-  const isInitialized = !isLoading && trip && FAQs && reviewLength;
+  const isInitialized = !isLoading && trip && FAQs && reviewLength != null;
 
   const [modalShow, setModalShow] = useState(false);
 
