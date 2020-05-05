@@ -79,7 +79,8 @@ const ReviewSection = (props) => {
   };
 
   const [modalShow, setModalShow] = React.useState(false);
-
+  // Users should be allowed to post only one review
+  const alreadyReviewed = reviews.some((review) => review.userID === props.id);
   // Button to display (add new or cancel) based on if add new faq form is open or not
   let button;
   if (isAddReviewState) {
@@ -100,7 +101,7 @@ const ReviewSection = (props) => {
         Add Review
       </button>
     );
-  } else if (props.profileType !== 'User') {
+  } else if (props.profileType !== 'User' || alreadyReviewed) {
     button = null;
   } else {
     button = (
