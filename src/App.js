@@ -30,9 +30,12 @@ class App extends Component {
     });
   }
 
+  // to remove auth error messages after page redirects
   componentDidUpdate(prevProps) {
-    if (this.props.location.pathname !== prevProps.location.pathname) {
-      console.log('ROUTE CHANGE');
+    if (
+      this.props.location.pathname !== prevProps.location.pathname &&
+      this.props.authError
+    ) {
       this.props.clearAuthError();
     }
   }
@@ -67,6 +70,7 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return {
     profileLoading: state.auth.profileLoading,
+    authError: state.auth.authError,
   };
 };
 
