@@ -4,6 +4,7 @@ import { addReview, deleteReview } from '../../store/actions/reviewActions';
 import SignInToAccess from '../dialogBoxes/SignInToAccess';
 import RatingBar from './RatingBar.js';
 import RatingBarInput from './RatingBarInput.js';
+import moment from 'moment';
 
 const Review = (props) => {
   let button = null;
@@ -21,6 +22,9 @@ const Review = (props) => {
     <div className="faq tb-border-0 mt-3 border-turq ">
       {button}
       <h6 className="username text-white bg-turq p-4">{props.userName}</h6>
+      <h6 className="username text-white bg-turq p-4">
+        {moment(props.timestamp.toDate()).format('MMMM Do YYYY')}
+      </h6>
       <div className="ml-3">
         {' '}
         <RatingBar name="companyrating" value={props.rating} editing={false} />

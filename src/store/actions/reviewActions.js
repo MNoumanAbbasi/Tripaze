@@ -15,6 +15,7 @@ export const addReview = (review, companyID) => {
         companyID: companyID,
         userName: userName,
         userID: userID,
+        timestamp: new Date(),
       })
       .then(() => {
         window.location.reload(); // TODO: This is a hacky change. For global change, page needs to be refreshed. Find a solution to automatically update it when props change
