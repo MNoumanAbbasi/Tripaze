@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import storage from '../../config/fbConfig';
 import firebase from 'firebase';
 import spinner from '../../Images/Spinner.gif';
+import defaultLogo from '../../Images/coverPhoto.jpg';
 
 //
 // Logo image will always be of the company
@@ -19,7 +20,11 @@ const LogoImage = ({ companyID, className }) => {
     docRef.get().then((doc) => {
       if (doc.exists) {
         const imageName = doc.data().logoImage;
-        getUrl(imageName);
+        if (imageName == '') {
+          setUrl(defaultLogo);
+        } else {
+          getUrl(imageName);
+        }
       } else {
         console.log('Logo image name not found');
       }
@@ -34,6 +39,10 @@ const LogoImage = ({ companyID, className }) => {
       .getDownloadURL()
       .then((url) => {
         setUrl(url);
+      })
+      .catch((err) => {
+        setUrl(defaultLogo);
+        console.log('Logo image name not found in store');
       });
   };
 
