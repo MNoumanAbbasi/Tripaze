@@ -9,6 +9,7 @@ const RatingBar = ({ value, name, className }) => {
       starCount={5}
       value={value}
       className={className}
+      emptyStarColor={'#D3D3D3'}
       renderStarIcon={(index, value) => {
         return (
           <span>
