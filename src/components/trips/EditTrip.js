@@ -114,14 +114,14 @@ const EditTrip = (props) => {
                 <div className="row justify-content-end">
                   <button
                     type="button"
-                    className="btn form-rounded r-red-button"
+                    className="btn form-rounded red-button border-red"
                     onClick={() => props.history.goBack()}
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    className="ml-4 btn form-rounded r-green-button"
+                    className="ml-3 btn form-rounded r-green-button"
                   >
                     Submit
                   </button>
