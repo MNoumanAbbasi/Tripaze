@@ -89,7 +89,7 @@ const FAQSection = (props) => {
   const [FAQs, setFAQs] = useState(props.FAQs);
   // State to check if the Add new question form is open or not
   const [isAddQuestionState, setIsAddQuestionState] = useState(false);
-  const [modalShow, setModalShow] = React.useState(false);
+  const [modalShow, setModalShow] = useState(false);
   const addQuestion = (question) => {
     // setFAQs([...FAQs, { question, answer: '' }]); // TODO: instead of updating local copy too. remount when faq added/deleted.
     props.addQuestion(question, props.tripID, props.profileType);
@@ -97,9 +97,12 @@ const FAQSection = (props) => {
   };
   const addAnswer = (answer, faqID) => {
     const ind = FAQs.findIndex((faq) => faq.id === faqID);
-    FAQs[ind].answer = answer;
-    // setFAQs(newFAQs); // TODO: instead of updating local copy too. remount when faq added/deleted.
+    // Making copy to try and fix issue
+    let newFAQs = [...FAQs];
+    console.log(newFAQs[ind]);
+    newFAQs[ind]['answer'] = answer;
     props.addAnswer(answer, faqID);
+    setFAQs(newFAQs);
     setIsAddQuestionState(false);
   };
   const removeFaq = (faqID) => {
