@@ -723,10 +723,16 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
   font-family: 'Open Sans';
   font-size: 2rem;
   font-weight: 660;
+  color: #868e96;
 }
 
 .divider {
-  height: 0.2vh;
+  height: 1px;
+  background-color: dimgray;
+}
+
+.divider2 {
+  height: 2px;
   background-color: dimgray;
 }
 

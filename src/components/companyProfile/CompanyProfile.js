@@ -51,11 +51,11 @@ const CompanyProfile = (props) => {
           /> */}
         </div>
         <div className="container thirdDrop">
-          <div className="row justify-content-lg-end justify-content-sm-around">
+          <div className="row justify-content-lg-start justify-content-sm-around mb-3">
             {adminMode && (
               <button
                 type="button"
-                class="btn mt-lg-5 mr-5 btn-lg green-button form-rounded"
+                class="btn mt-lg-4 mr-5 btn-lg green-button form-rounded border-turq"
                 onClick={() =>
                   props.history.push('/editprofile/' + props.match.params.id)
                 }
@@ -74,7 +74,7 @@ const CompanyProfile = (props) => {
             </div>
             {/* Description + Card */}
             <div className=" row ml-lg-4 col-lg-7 text-secondary">
-              <hr class="mt-2 col-12 ml-0 divider"></hr>
+              <hr class="mt-2 col-12 ml-0 divider2"></hr>
               <h3 className="mt-5 col-12 text-secondary">Description</h3>
               <p
                 className="new-line text-justify ml-3"
@@ -116,7 +116,7 @@ const CompanyProfile = (props) => {
           {/* Second Section */}
           <div className="row p-4 mt-5 justify-content-center align-content-centre text-turq">
             <i class="fa fa-th fa-3x fa-fw" aria-hidden="false"></i>
-            <h3 className="tripText">Upcoming Trips</h3>
+            <h3 className="tripText"> Upcoming Trips</h3>
           </div>
           <div className="container mt-4">
             <TripsList trips={trips} isCompProfile={adminMode} />
@@ -125,7 +125,7 @@ const CompanyProfile = (props) => {
           {/* Third Section */}
           <div className="row p-4 mt-5 justify-content-center align-content-centre text-turq">
             <i class="fa fa-th fa-3x fa-fw" aria-hidden="false"></i>
-            <h3 className="tripText">Company Reviews</h3>
+            <h3 className="tripText"> Company Reviews</h3>
           </div>
           <ReviewSection
             companyID={props.match.params.id}
