@@ -16,21 +16,23 @@ const FieldArraySection = ({ label, name, values }) => {
           };
           return (
             <div>
-              {values &&
-                values[name].map((dest, ind) => {
-                  return (
-                    <div key={ind} className="row">
-                      <button
-                        type="button"
-                        class="mr-1 mt-0 btn btn-sm bg-white"
-                        onClick={() => remove(ind)}
-                      >
-                        <i class="fa fas fa-times text-danger fa-fw"></i>
-                      </button>
-                      {dest}
-                    </div>
-                  );
-                })}
+              <div className="row">
+                {values &&
+                  values[name].map((dest, ind) => {
+                    return (
+                      <div key={ind}>
+                        <button
+                          type="button"
+                          class="btn r-green-button form-rounded ml-3"
+                          onClick={() => remove(ind)}
+                        >
+                          {dest}
+                          <i class="fa fas fa-times-circle ml-1 text-white fa-fw"></i>
+                        </button>
+                      </div>
+                    );
+                  })}
+              </div>
               <div className="form-group row">
                 <input
                   type="text"
