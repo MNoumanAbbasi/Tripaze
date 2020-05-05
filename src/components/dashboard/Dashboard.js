@@ -11,7 +11,7 @@ import SearchBar from '../layout/SearchBar';
 import { searchBarShow } from '../../store/actions/filterActions';
 import LoadingBox from './LoadingBox';
 import FilterBar from '../filterBar/FilterBar';
-import bgvid from '../../Images/vid.mp4';
+// import bgvid from '../../Images/vid.mp4';
 
 let lastScrollY = 0;
 const today = new Date();
