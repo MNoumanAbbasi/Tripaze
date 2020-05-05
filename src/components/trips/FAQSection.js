@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import {
   addQuestion,
@@ -45,8 +45,8 @@ const AddQuestionForm = (props) => {
   };
 
   return (
-    <div className="border border-thin mt-3 border-turq">
-      <div className="form-group">
+    <div className="">
+      <div className="form-group border">
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -92,23 +92,23 @@ const AddAnswerForm = (props) => {
 const FAQSection = (props) => {
   // State to store all FAQs
   const [FAQs, setFAQs] = useState(props.FAQs);
+  useEffect(() => {
+    setFAQs(props.FAQs);
+  }, [props.FAQs]);
   // State to check if the Add new question form is open or not
   const [isAddQuestionState, setIsAddQuestionState] = useState(false);
-  const [modalShow, setModalShow] = React.useState(false);
+  const [modalShow, setModalShow] = useState(false);
   const addQuestion = (question) => {
     // setFAQs([...FAQs, { question, answer: '' }]); // TODO: instead of updating local copy too. remount when faq added/deleted.
     props.addQuestion(question, props.tripID, props.profileType);
     setIsAddQuestionState(false);
   };
+
   const addAnswer = (answer, faqID) => {
-    const ind = FAQs.findIndex((faq) => faq.id === faqID);
-    FAQs[ind].answer = answer;
-    // setFAQs(newFAQs); // TODO: instead of updating local copy too. remount when faq added/deleted.
     props.addAnswer(answer, faqID);
     setIsAddQuestionState(false);
   };
   const removeFaq = (faqID) => {
-    setFAQs(FAQs.filter((faq) => faq.id !== faqID));
     props.deleteFaq(faqID);
   };
 

@@ -54,16 +54,18 @@ const TripDetails = (props) => {
   if (!isInitialized) {
     return <LoadingBox />;
   }
-
   let deleteButton = null;
   let editButton = null;
   const adminMode = auth.uid === trip.companyId;
+  // Route guarding
+  if (profile && profileType(auth, profile) === 'Company' && !adminMode)
+    props.history.push('/');
   if (adminMode) {
     props.readNotification(props.match.params.id); // read the notification
     editButton = (
       <button
         type="button"
-        class="btn mr-4 btn-lg green-button form-rounded border-turq"
+        class="btn mr-4 btn-lg green-button form-rounded border-turq mt-4"
         onClick={() => props.history.push('/edittrip/' + props.match.params.id)}
       >
         EDIT TRIP <i class="fa fas fa-edit fa-fw"></i>
@@ -72,7 +74,7 @@ const TripDetails = (props) => {
     deleteButton = (
       <button
         type="button"
-        class="btn btn-lg red-button form-rounded border-red"
+        class="btn btn-lg red-button form-rounded border-red mt-4"
         onClick={() => deleteModal(props, trip.img)}
         // onClick={() => setModalShow(true)}
       >
@@ -193,7 +195,11 @@ const TripDetails = (props) => {
           <i class="fa fa-question-circle fa-3x fa-fw" aria-hidden="false"></i>
           <h3 className="tripText">FAQ</h3>
         </div>
-
+        {/* ONLY SHOW IF NO QUESTIONS */}
+        <p className="text-center text-secondary">
+          No Questions have been posted yet
+        </p>
+        {/* ------------- */}
         <FAQSection
           FAQs={FAQs}
           tripID={props.match.params.id}
@@ -255,6 +261,7 @@ export default compose(
       {
         collection: 'FAQs',
         where: [['tripID', '==', props.match.params.id]],
+        orderBy: ['timestamp', 'desc'],
       },
     ];
     if (props.trip)

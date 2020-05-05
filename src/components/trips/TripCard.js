@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import CardImage from '../displayImages/CardImage';
-import notifi from './notifi.png';
+import notifi from '../../Images/notifi.png';
 import LogoImage from '../displayImages/LogoImage';
 import moment from 'moment';
 

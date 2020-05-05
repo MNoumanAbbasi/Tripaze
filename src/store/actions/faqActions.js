@@ -9,6 +9,7 @@ export const addQuestion = (question, tripID, userType) => {
       .collection('FAQs')
       .add({
         question,
+        timestamp: new Date(),
         answer: '',
         // userName, // userName is name of person asking (user or company)
         // userID, // userID is either companyID or signed in userID
@@ -23,7 +24,6 @@ export const addQuestion = (question, tripID, userType) => {
         }
       })
       .then(() => {
-        window.location.reload(); // TODO: This is a hacky change. For global change, page needs to be refreshed. Find a solution to automatically update it when props change
         dispatch({ type: 'ADD_QUESTION', question });
       })
       .catch((err) => {
@@ -49,7 +49,6 @@ export const addAnswer = (answer, faqID) => {
         // tripID,
       })
       .then(() => {
-        // window.location.reload(); // TODO: This is a hacky change. For global change, page needs to be refreshed. Find a solution to automatically update it when props change
         dispatch({ type: 'ADD_ANSWER', answer });
       })
       .catch((err) => {
