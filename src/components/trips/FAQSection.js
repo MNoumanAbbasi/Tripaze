@@ -6,6 +6,25 @@ import {
   deleteFaq,
 } from '../../store/actions/faqActions';
 import SignInToAccess from '../dialogBoxes/SignInToAccess';
+import swal from 'sweetalert';
+
+const deleteFAQModal = (props) => {
+  swal({
+    title: 'Are you sure?',
+    text:
+      'You are about to delete this question. Once deleted, you will not be able to recover this question!',
+    icon: 'warning',
+    buttons: true,
+    dangerMode: true,
+  }).then((willDelete) => {
+    if (willDelete) {
+      props.removeFaq(props.id);
+      swal('The question has successfully been deleted!', {
+        icon: 'success',
+      });
+    }
+  });
+};
 
 const FAQ = (props) => {
   const isOwnCompanyProfile = props.profileType === 'Company';
@@ -15,7 +34,7 @@ const FAQ = (props) => {
       {isOwnCompanyProfile && (
         <button
           className="btn btn-sm bg-turq form-rounded float-right"
-          onClick={() => props.removeFaq(props.id)}
+          onClick={() => deleteFAQModal(props)}
         >
           <i
             class="fa fa-times-circle fa-resize"

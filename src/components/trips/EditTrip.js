@@ -10,13 +10,29 @@ import { Formik, Form } from 'formik';
 import { tripSchema } from './CreateTrip';
 import InputField from '../form/InputField';
 import moment from 'moment';
-import EditTripConfirmation from '../dialogBoxes/EditTripConfirmation';
+import swal from 'sweetalert';
+
+const confirmEdit = (values, props) => {
+  swal({
+    title: 'Are you sure?',
+    text: 'The edited changes will be permanent!',
+    icon: 'warning',
+    buttons: true,
+  }).then((willEdit) => {
+    if (willEdit) {
+      props.editTrip(values, props.match.params.id);
+      props.history.goBack();
+      swal('The trip has successfully been edited!', {
+        icon: 'success',
+      });
+    }
+  });
+};
 
 const EditTrip = (props) => {
   const { trip, isLoading, auth } = props;
   const isInitialized = !isLoading && trip;
   const adminMode = trip && auth.uid === trip.companyId;
-  const [modalShow, setModalShow] = useState(false);
   const [values, setValues] = useState(false);
 
   // wrong id entered
@@ -28,14 +44,6 @@ const EditTrip = (props) => {
   }
   return (
     <div className="container border mb-4 mt-5 object-shadow">
-      <EditTripConfirmation
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        onDelete={() => {
-          props.editTrip(values, props.match.params.id);
-          props.history.goBack();
-        }}
-      />
       <div className="row mt-5">
         <div className="mt-5 col-lg-12 text-center">
           <h1 className="mt-5 text-turq">EDIT TRIP</h1>
@@ -62,9 +70,8 @@ const EditTrip = (props) => {
             validationSchema={tripSchema}
             onSubmit={(values) => {
               values.departureDate = new Date(values.departureDate);
-              console.log(values);
               setValues(values);
-              setModalShow(true);
+              confirmEdit(values, props);
             }}
           >
             {({ values }) => (

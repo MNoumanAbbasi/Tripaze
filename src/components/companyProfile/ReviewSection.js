@@ -5,6 +5,34 @@ import SignInToAccess from '../dialogBoxes/SignInToAccess';
 import RatingBar from './RatingBar.js';
 import RatingBarInput from './RatingBarInput.js';
 import moment from 'moment';
+import swal from 'sweetalert';
+
+const alreadyReviewedModal = () => {
+  swal({
+    title: 'Already reviewed',
+    text:
+      'You have already reviewed this company. You can only review a company once.',
+    buttons: true,
+  });
+};
+
+const deleteReviewModal = (props) => {
+  swal({
+    title: 'Are you sure?',
+    text:
+      'You are about to delete your review. Once deleted, you will not be able to recover this review!',
+    icon: 'warning',
+    buttons: true,
+    dangerMode: true,
+  }).then((willDelete) => {
+    if (willDelete) {
+      props.removeReview(props.id);
+      swal('The review has successfully been deleted!', {
+        icon: 'success',
+      });
+    }
+  });
+};
 
 const Review = (props) => {
   let button = null;
@@ -12,7 +40,7 @@ const Review = (props) => {
     button = (
       <button
         className="btn btn-sm bg-turq form-rounded float-right"
-        onClick={() => props.removeReview(props.id)}
+        onClick={() => deleteReviewModal(props)}
       >
         <i
           className="fa fa-times-circle fa-resize"
@@ -109,8 +137,17 @@ const ReviewSection = (props) => {
         Add Review
       </button>
     );
-  } else if (props.profileType !== 'User' || alreadyReviewed) {
+  } else if (props.profileType !== 'User') {
     button = null;
+  } else if (alreadyReviewed) {
+    button = (
+      <button
+        className="btn mt-3 form-rounded r-green-button"
+        onClick={() => alreadyReviewedModal()}
+      >
+        Add Review
+      </button>
+    );
   } else {
     button = (
       <button

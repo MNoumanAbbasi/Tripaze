@@ -8,15 +8,34 @@ import { deleteTrip, readNotification } from '../../store/actions/tripActions';
 import CoverImage from '../displayImages/CoverImage';
 import LogoImage from '../displayImages/LogoImage';
 import { profileType } from '../../Helpers';
-import Confirmation from '../dialogBoxes/Confirmation';
 import LoadingBox from './../dashboard/LoadingBox';
 import moment from 'moment';
 import MapContainer from './MapContainer';
 import RatingBar from '../companyProfile/RatingBar.js';
+import swal from 'sweetalert';
 
 // class container section is material
 // class trip-details is from our own css
 // taking props to know which trip to load
+
+const deleteModal = (props, img) => {
+  swal({
+    title: 'Are you sure?',
+    text: 'Once deleted, you will not be able to recover this trip!',
+    icon: 'warning',
+    buttons: true,
+    dangerMode: true,
+  }).then((willDelete) => {
+    if (willDelete) {
+      props.deleteTrip(img, props.match.params.id);
+      props.history.push('/');
+      swal('Poof! The trip has been deleted!', {
+        icon: 'success',
+      });
+    }
+  });
+};
+
 const TripDetails = (props) => {
   const {
     trip,
@@ -54,7 +73,8 @@ const TripDetails = (props) => {
       <button
         type="button"
         class="btn btn-lg red-button form-rounded border-red"
-        onClick={() => setModalShow(true)}
+        onClick={() => deleteModal(props, trip.img)}
+        // onClick={() => setModalShow(true)}
       >
         DELETE <i class="fa fas fa-trash fa-fw"></i>
       </button>
@@ -63,14 +83,6 @@ const TripDetails = (props) => {
 
   return (
     <div className="row m-0 tripDetails justify-content-center">
-      <Confirmation
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        onDelete={() => {
-          props.deleteTrip(trip.image, props.match.params.id);
-          props.history.push('/');
-        }}
-      />
       <CoverImage img={trip.image} type="trip" />
       <div className="container thirdDrop">
         <div className="row justify-content-lg-start justify-content-sm-around">
