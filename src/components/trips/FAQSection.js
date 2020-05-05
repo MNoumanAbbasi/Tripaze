@@ -17,7 +17,10 @@ const FAQ = (props) => {
           className="btn btn-sm bg-turq form-rounded float-right m-2"
           onClick={() => props.removeFaq(props.id)}
         >
-          <i class="fa fa-times fa-2x text-danger"></i>
+          <i
+            class="fa fa-times-circle fa-resize"
+            style={{ color: '#ffff' }}
+          ></i>
         </button>
       )}
       <h6 className="question bg-turq text-white p-3">Q. {props.question}</h6>
