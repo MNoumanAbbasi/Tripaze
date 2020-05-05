@@ -16,6 +16,7 @@ const TripCard = ({ trip, isCompProfile }) => {
       <div class="card content-box m-4 change-card-width">
         <div class="trip-title">
           <CardImage img={trip.image} type="trip" />
+          {/* Notification will only appear if there are unread questions and admin mode is on */}
           {notification}
           <div class="bottom-left change-font text-white darken-bg">
             {trip.title}
