@@ -51,11 +51,11 @@ const CompanyProfile = (props) => {
           /> */}
         </div>
         <div className="container thirdDrop">
-          <div className="row justify-content-lg-end justify-content-sm-around">
+          <div className="row justify-content-lg-start justify-content-sm-around bg-info mb-3">
             {adminMode && (
               <button
                 type="button"
-                class="btn mt-lg-5 mr-5 btn-lg green-button form-rounded"
+                class="btn mt-lg-4 mr-5 btn-lg green-button form-rounded border-turq"
                 onClick={() =>
                   props.history.push('/editprofile/' + props.match.params.id)
                 }

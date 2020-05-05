@@ -44,7 +44,7 @@ const TripDetails = (props) => {
     editButton = (
       <button
         type="button"
-        class="btn mr-5 btn-lg green-button form-rounded border-turq"
+        class="btn mr-4 btn-lg green-button form-rounded border-turq"
         onClick={() => props.history.push('/edittrip/' + props.match.params.id)}
       >
         EDIT TRIP <i class="fa fas fa-edit fa-fw"></i>
@@ -53,7 +53,7 @@ const TripDetails = (props) => {
     deleteButton = (
       <button
         type="button"
-        class="btn btn-lg mr-1 red-button form-rounded border-danger"
+        class="btn btn-lg red-button form-rounded border-red"
         onClick={() => setModalShow(true)}
       >
         DELETE <i class="fa fas fa-trash fa-fw"></i>
@@ -73,7 +73,7 @@ const TripDetails = (props) => {
       />
       <CoverImage img={trip.image} type="trip" />
       <div className="container thirdDrop">
-        <div className="row justify-content-lg-start justify-content-sm-around">
+        <div className="row justify-content-lg-start justify-content-sm-around bg-info">
           {editButton}
           {deleteButton}
         </div>
