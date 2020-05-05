@@ -35,10 +35,12 @@ const TripDetails = (props) => {
   if (!isInitialized) {
     return <LoadingBox />;
   }
-
   let deleteButton = null;
   let editButton = null;
   const adminMode = auth.uid === trip.companyId;
+  // Route guarding
+  if (profile && profileType(auth, profile) === 'Company' && !adminMode)
+    props.history.push('/');
   if (adminMode) {
     props.readNotification(props.match.params.id); // read the notification
     editButton = (
@@ -248,6 +250,7 @@ export default compose(
       {
         collection: 'FAQs',
         where: [['tripID', '==', props.match.params.id]],
+        orderBy: ['timestamp', 'desc'],
       },
     ];
     if (props.trip)
