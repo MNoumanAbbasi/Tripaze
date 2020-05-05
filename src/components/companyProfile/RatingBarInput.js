@@ -34,6 +34,7 @@ class RatingBarInput extends React.Component {
           starCount={5}
           value={hoverRating}
           className="ml-2 mb-4"
+          emptyStarColor={'#D3D3D3'}
           renderStarIcon={(index, value) => {
             return (
               <span>
