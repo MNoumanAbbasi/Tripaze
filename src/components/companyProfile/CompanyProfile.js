@@ -7,7 +7,6 @@ import ReviewSection from './ReviewSection';
 import { profileType } from '../../Helpers';
 import LoadingBox from './../dashboard/LoadingBox';
 import CoverImage from '../displayImages/CoverImage';
-import LogoImage from '../displayImages/LogoImage';
 import RatingBar from './RatingBar.js';
 import ReviewStats from './ReviewStats';
 

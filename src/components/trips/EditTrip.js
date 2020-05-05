@@ -9,7 +9,7 @@ import { Formik, Form } from 'formik';
 import { tripSchema } from './CreateTrip';
 import InputField from '../form/InputField';
 import moment from 'moment';
-import { confirmEditModal } from '../modals/TripModals';
+import { confirmEditModal, cancelModal } from '../modals/TripModals';
 
 const EditTrip = (props) => {
   const { trip, isLoading, auth } = props;
@@ -104,7 +104,7 @@ const EditTrip = (props) => {
                   <button
                     type="button"
                     className="btn form-rounded red-button border-red"
-                    onClick={() => props.history.goBack()}
+                    onClick={() => cancelModal(props.history)}
                   >
                     Cancel
                   </button>

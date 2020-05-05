@@ -6,7 +6,11 @@ import {
   deleteFaq,
 } from '../../store/actions/faqActions';
 import SignInToAccess from '../modals/SignInToAccess';
-import { deleteFAQModal, succesfulFAQModal } from '../modals/FAQModals';
+import {
+  deleteFAQModal,
+  succesfulQuestionModal,
+  succesfulAnswerModal,
+} from '../modals/FAQModals';
 
 const FAQ = (props) => {
   const isOwnCompanyProfile = props.profileType === 'Company';
@@ -41,7 +45,7 @@ const AddQuestionForm = (props) => {
     // console.log('asd', question);
     event.preventDefault();
     props.onSubmit(question);
-    succesfulFAQModal();
+    succesfulQuestionModal();
   };
 
   return (
@@ -107,6 +111,7 @@ const FAQSection = (props) => {
   const addAnswer = (answer, faqID) => {
     props.addAnswer(answer, faqID);
     setIsAddQuestionState(false);
+    succesfulAnswerModal();
   };
   const removeFaq = (faqID) => {
     props.deleteFaq(faqID);

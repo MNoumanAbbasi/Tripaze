@@ -8,6 +8,7 @@ import { Formik, Form } from 'formik';
 import InputField from '../form/InputField';
 import { editProfile } from '../../store/actions/profileActions';
 import * as yup from 'yup';
+import { cancelModal, confirmEditModal } from '../modals/EditProfileModals';
 
 const profileSchema = yup.object({
   companyName: yup.string().max(20, 'Max 20 characters').required('Required'),
@@ -34,7 +35,6 @@ const EditProfile = (props) => {
   } else if (!adminMode) {
     return <Redirect to="/" />;
   }
-  console.log(company);
   return (
     <div className="container border mb-4 mt-5 object-shadow">
       <div className="row mt-5">
@@ -57,9 +57,7 @@ const EditProfile = (props) => {
             }}
             validationSchema={profileSchema}
             onSubmit={(values) => {
-              console.log('New Profile', values);
-              props.editProfile(values, props.match.params.id);
-              props.history.push('/');
+              confirmEditModal(values, props);
             }}
           >
             {({ values }) => (
@@ -106,7 +104,7 @@ const EditProfile = (props) => {
                   <button
                     type="button"
                     className="btn form-rounded red-button border-red"
-                    onClick={() => props.history.push('/')}
+                    onClick={() => cancelModal(props.history)}
                   >
                     Cancel
                   </button>

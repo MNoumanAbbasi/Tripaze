@@ -1,7 +1,11 @@
 import swal from 'sweetalert';
 
-export const succesfulFAQModal = () => {
+export const succesfulQuestionModal = () => {
   swal('Question Posted', 'The question has been posted!', 'success');
+};
+
+export const succesfulAnswerModal = () => {
+  swal('Answer Posted', 'The answer has been posted!', 'success');
 };
 
 export const deleteFAQModal = (props) => {

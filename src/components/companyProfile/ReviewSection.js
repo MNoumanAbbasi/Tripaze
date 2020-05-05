@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { addReview, deleteReview } from '../../store/actions/reviewActions';
-import SignInToAccess from '../dialogBoxes/SignInToAccess';
+import SignInToAccess from '../modals/SignInToAccess';
 import RatingBar from './RatingBar.js';
 import RatingBarInput from './RatingBarInput.js';
 import moment from 'moment';
