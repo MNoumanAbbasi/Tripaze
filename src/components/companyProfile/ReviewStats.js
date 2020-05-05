@@ -6,7 +6,7 @@ function ReviewStats(props) {
   const { avgRating, reviews } = props;
   let ratingStats = [0, 0, 0, 0, 0];
   reviews.forEach((review) => {
-    ratingStats[review.rating]++;
+    ratingStats[review.rating - 1]++;
   });
   ratingStats = ratingStats.map((rating) => {
     if (reviews.length <= 0) return 0;
