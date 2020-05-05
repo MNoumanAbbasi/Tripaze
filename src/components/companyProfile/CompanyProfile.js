@@ -118,6 +118,11 @@ const CompanyProfile = (props) => {
             <i class="fa fa-th fa-3x fa-fw" aria-hidden="false"></i>
             <h3 className="tripText"> Upcoming Trips</h3>
           </div>
+          {/* ONLY SHOW IF NO TRIPS */}
+          <p className="text-center text-secondary">
+            No Trips have been posted yet
+          </p>
+          {/* ------------- */}
           <div className="container mt-4">
             <TripsList trips={trips} isCompProfile={adminMode} />
           </div>
@@ -127,6 +132,11 @@ const CompanyProfile = (props) => {
             <i class="fa fa-th fa-3x fa-fw" aria-hidden="false"></i>
             <h3 className="tripText"> Company Reviews</h3>
           </div>
+          {/* ONLY SHOW IF NO Reviews */}
+          <p className="text-center text-secondary">
+            No Reviews have been posted yet
+          </p>
+          {/* ------------- */}
           <ReviewSection
             companyID={props.match.params.id}
             reviews={reviews}
