@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import { validatePassword } from '../../Helpers';
 
 export const signIn = (credentials) => {
   // getFirebase is to communicate with our firebase project to sign a use
@@ -12,7 +13,7 @@ export const signIn = (credentials) => {
         dispatch({ type: 'SIGNIN_SUCCESS' });
       })
       .catch((err) => {
-        dispatch({ type: 'SIGNIN_ERROR', err });
+        dispatch({ type: 'SIGNIN_ERROR', err: err.message });
       });
   };
 };
@@ -40,7 +41,7 @@ export const authProfileLoad = (user) => {
         dispatch({ type: 'PROFILE_LOAD_SUCCESS', currProfile });
       })
       .catch((err) => {
-        dispatch({ type: 'PROFILE_LOAD_ERROR', err });
+        dispatch({ type: 'PROFILE_LOAD_ERROR', err: err.message });
       });
   };
 };
@@ -66,29 +67,34 @@ export const signUpUser = (newUser) => {
     dispatch({ type: 'PROFILE_LOADING' });
     var uid;
     const firestore = getFirestore();
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(newUser.email, newUser.password)
-      .then((resp) => {
-        // Note: we are not using add over here like we did for creating trips because we want to assign the id given by firebase auth (i.e. resp.user.uid)
-        uid = resp.user.uid;
-        return firestore.collection('UserTypes').doc(uid).set({
-          userType: 'User',
+    const isPassValid = validatePassword(newUser.password);
+    if (isPassValid === 'Valid') {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(newUser.email, newUser.password)
+        .then((resp) => {
+          // Note: we are not using add over here like we did for creating trips because we want to assign the id given by firebase auth (i.e. resp.user.uid)
+          uid = resp.user.uid;
+          return firestore.collection('UserTypes').doc(uid).set({
+            userType: 'User',
+          });
+        })
+        .then((resp) => {
+          // Note: we are not using add over here like we did for creating trips because we want to assign the id given by firebase auth (i.e. resp.user.uid)
+          return firestore.collection('Users').doc(uid).set({
+            userName: newUser.userName,
+            type: 'User',
+          });
+        })
+        .then(() => {
+          dispatch({ type: 'SIGNUP_SUCCESS' });
+        })
+        .catch((err) => {
+          dispatch({ type: 'SIGNUP_ERROR', err: err.message });
         });
-      })
-      .then((resp) => {
-        // Note: we are not using add over here like we did for creating trips because we want to assign the id given by firebase auth (i.e. resp.user.uid)
-        return firestore.collection('Users').doc(uid).set({
-          userName: newUser.userName,
-          type: 'User',
-        });
-      })
-      .then(() => {
-        dispatch({ type: 'SIGNUP_SUCCESS' });
-      })
-      .catch((err) => {
-        dispatch({ type: 'SIGNUP_ERROR', err });
-      });
+    } else {
+      dispatch({ type: 'SIGNUP_ERROR', err: isPassValid });
+    }
   };
 };
 
@@ -98,33 +104,38 @@ export const signUpCompany = (newUser) => {
     dispatch({ type: 'PROFILE_LOADING' });
     var uid;
     const firestore = getFirestore();
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(newUser.email, newUser.password)
-      .then((resp) => {
-        // Note: we are not using add over here like we did for creating trips because we want to assign the id given by firebase auth (i.e. resp.user.uid)
-        uid = resp.user.uid;
-        return firestore.collection('UserTypes').doc(uid).set({
-          companyName: newUser.companyName,
-          userType: 'Company',
+    const isPassValid = validatePassword(newUser.password);
+    if (isPassValid === 'Valid') {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(newUser.email, newUser.password)
+        .then((resp) => {
+          // Note: we are not using add over here like we did for creating trips because we want to assign the id given by firebase auth (i.e. resp.user.uid)
+          uid = resp.user.uid;
+          return firestore.collection('UserTypes').doc(uid).set({
+            companyName: newUser.companyName,
+            userType: 'Company',
+          });
+        })
+        .then((resp) => {
+          // Note: we are not using add over here like we did for creating trips because we want to assign the id given by firebase auth (i.e. resp.user.uid)
+          return firestore.collection('Companies').doc(uid).set({
+            companyName: newUser.companyName,
+            contact: newUser.contact,
+            type: 'Company',
+            coverImage: '',
+            logoImage: '',
+          });
+        })
+        .then(() => {
+          dispatch({ type: 'SIGNUP_SUCCESS' });
+        })
+        .catch((err) => {
+          dispatch({ type: 'SIGNUP_COMPANY_ERROR', err: err.message });
         });
-      })
-      .then((resp) => {
-        // Note: we are not using add over here like we did for creating trips because we want to assign the id given by firebase auth (i.e. resp.user.uid)
-        return firestore.collection('Companies').doc(uid).set({
-          companyName: newUser.companyName,
-          contact: newUser.contact,
-          type: 'Company',
-          coverImage: '',
-          logoImage: '',
-        });
-      })
-      .then(() => {
-        dispatch({ type: 'SIGNUP_SUCCESS' });
-      })
-      .catch((err) => {
-        dispatch({ type: 'SIGNUP_COMPANY_ERROR', err });
-      });
+    } else {
+      dispatch({ type: 'SIGNUP_ERROR', err: isPassValid });
+    }
   };
 };
 
@@ -140,7 +151,7 @@ export const resetPassword = (email) => {
       })
       .catch((err) => {
         // An error happened.
-        dispatch({ type: 'RESET_ERROR', err });
+        dispatch({ type: 'RESET_ERROR', err: err.message });
       });
   };
 };

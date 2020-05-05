@@ -19,7 +19,7 @@ const authReducer = (state = initState, action) => {
       console.log('sign in error');
       return {
         ...state,
-        authError: action.err.message, // add autherror in addition to the currennt state to the auth property in the root reducer
+        authError: action.err, // add autherror in addition to the currennt state to the auth property in the root reducer
         profileLoading: false,
       };
     case 'CLEAR_AUTH_ERROR':
@@ -47,7 +47,7 @@ const authReducer = (state = initState, action) => {
       console.log('profile load error');
       return {
         ...state,
-        authError: action.err.message, // add autherror in addition to the currennt state to the auth property in the root reducer
+        authError: action.err, // add autherror in addition to the currennt state to the auth property in the root reducer
         currProfile: null,
         profileLoading: false,
       };
@@ -70,14 +70,14 @@ const authReducer = (state = initState, action) => {
       console.log('sign up user error');
       return {
         ...state,
-        authError: action.err.message,
+        authError: action.err,
         profileLoading: false,
       };
     case 'SIGNUP_ERROR':
       console.log('sign up user error');
       return {
         ...state,
-        authError: action.err.message,
+        authError: action.err,
         profileLoading: false,
       };
     case 'RESET_SUCCESS':
@@ -91,7 +91,7 @@ const authReducer = (state = initState, action) => {
       console.log('password reset error');
       return {
         ...state,
-        authError: action.err.message,
+        authError: action.err,
         profileLoading: false,
       };
     default:
