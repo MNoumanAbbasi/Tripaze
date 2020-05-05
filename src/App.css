@@ -675,6 +675,10 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
 
 /* Rating Stats */
 
+.fa-resize {
+  font-size: 1.45rem;
+}
+
 .gold {
   color: orange;
 }
