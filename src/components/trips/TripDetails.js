@@ -46,7 +46,7 @@ const TripDetails = (props) => {
     editButton = (
       <button
         type="button"
-        class="btn mr-4 btn-lg green-button form-rounded border-turq"
+        class="btn mr-4 btn-lg green-button form-rounded border-turq mt-4"
         onClick={() => props.history.push('/edittrip/' + props.match.params.id)}
       >
         EDIT TRIP <i class="fa fas fa-edit fa-fw"></i>
@@ -55,7 +55,7 @@ const TripDetails = (props) => {
     deleteButton = (
       <button
         type="button"
-        class="btn btn-lg red-button form-rounded border-red"
+        class="btn btn-lg red-button form-rounded border-red mt-4"
         onClick={() => setModalShow(true)}
       >
         DELETE <i class="fa fas fa-trash fa-fw"></i>
