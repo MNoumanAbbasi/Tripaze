@@ -28,17 +28,19 @@ const TripDetails = (props) => {
     reviewLength,
   } = props; // getting trip category from props
   console.log(reviewLength);
-  const isInitialized = !isLoading && trip && FAQs && reviewLength != null;
+  const isInitialized = !isLoading && trip && FAQs && reviewLength;
 
   const [modalShow, setModalShow] = useState(false);
 
   if (!isInitialized) {
     return <LoadingBox />;
   }
-
   let deleteButton = null;
   let editButton = null;
   const adminMode = auth.uid === trip.companyId;
+  // Route guarding
+  if (profile && profileType(auth, profile) === 'Company' && !adminMode)
+    props.history.push('/');
   if (adminMode) {
     props.readNotification(props.match.params.id); // read the notification
     editButton = (
