@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { compose } from 'redux';
 import { signUpCompany } from '../../store/actions/authActions';
 import { Link } from 'react-router-dom';
-
+import { succesfulSignUp } from '../modals/AuthModals';
 // TODO: CHANGE THIS TO MAKE IT A USER
 // all css are from the materialized CSS class
 export class SignUpCompany extends Component {
@@ -30,7 +31,8 @@ export class SignUpCompany extends Component {
     const { auth, authError } = this.props;
 
     if (auth.uid) {
-      return <Redirect to="/" />;
+      succesfulSignUp();
+      this.props.history.goBack();
     }
 
     return (
@@ -51,7 +53,7 @@ export class SignUpCompany extends Component {
             <div>
               <input
                 onChange={this.handleChange}
-                type="text" //might need to change this
+                type="number"
                 id="contact"
                 class="form-control mb-4"
                 placeholder="Contact Number"
@@ -132,4 +134,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpCompany);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withRouter
+)(SignUpCompany);

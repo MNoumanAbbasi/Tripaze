@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { compose } from 'redux';
 import { signUpUser } from '../../store/actions/authActions';
 import { Link } from 'react-router-dom';
+import { succesfulSignUp } from '../modals/AuthModals';
 
 // all css are from the materialized CSS class
 export class SignUpUser extends Component {
@@ -29,7 +31,8 @@ export class SignUpUser extends Component {
     const { auth, authError } = this.props;
 
     if (auth.uid) {
-      return <Redirect to="/" />;
+      succesfulSignUp();
+      this.props.history.goBack();
     }
 
     return (
@@ -111,4 +114,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpUser);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withRouter
+)(SignUpUser);
