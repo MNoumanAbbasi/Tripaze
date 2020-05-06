@@ -10,12 +10,12 @@ import logo from '../../logo.png';
 import { profileType } from '../../Helpers';
 
 const Navbar = (props) => {
-  const { auth, profile } = props;
+  const { auth, profile, verified } = props;
 
   let links = <GuestUserLinks />;
 
   if (profileType(auth, profile) === 'Company') {
-    links = <SignedInCompanyLinks profile={profile} />;
+    links = <SignedInCompanyLinks profile={profile} verified={verified} />;
   } else if (profileType(auth, profile) === 'User') {
     links = <SignedInUserLinks profile={profile} />;
   }
@@ -42,7 +42,9 @@ const Navbar = (props) => {
 };
 
 const mapStateToProps = (state) => {
+  const verified = state.firebase ? state.firebase.auth.emailVerified : null;
   return {
+    verified: verified,
     auth: state.firebase.auth,
     profile: state.auth.currProfile,
   };

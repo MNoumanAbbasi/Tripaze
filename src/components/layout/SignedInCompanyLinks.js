@@ -5,17 +5,23 @@ import { withRouter, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signOut } from '../../store/actions/authActions';
 import { compose } from 'redux';
+import { verifyEmail } from '../modals/EditProfileModals';
 
 // this is a functional component, not a class, so we need to pass the props as argument
 const SignedInCompanyLinks = (props) => {
+  const handleOnClick = () => {
+    if (props.verified) props.history.push('/createtrip');
+    else verifyEmail();
+  };
+
   const initial = props.profile ? props.profile.companyName : null;
   return (
     <div class="collapse navbar-collapse " id="navbarSupportedContent">
       <ul class="navbar-nav navbar-fonts ml-auto justify-content-end">
         <li class="nav-item">
-          <NavLink to="/createtrip" class="nav-link">
+          <div onClick={handleOnClick} className="nav-link hasOnClick">
             Create Trip
-          </NavLink>
+          </div>
         </li>
         <li class="nav-item">
           <NavLink to="/" class="nav-link">

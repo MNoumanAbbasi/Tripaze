@@ -18,7 +18,6 @@ export const confirmEditModal = (values, props) => {
 };
 
 export const cancelModal = (history) => {
-  console.log('Asd');
   swal({
     title: 'Leave page?',
     text: 'Changes you made may not be saved.',
@@ -28,5 +27,13 @@ export const cancelModal = (history) => {
     if (willLeave) {
       history.goBack();
     }
+  });
+};
+
+export const verifyEmail = () => {
+  swal({
+    title: 'Verify Account',
+    text: 'You need to verify your email to be able to create trips',
+    buttons: true,
   });
 };
