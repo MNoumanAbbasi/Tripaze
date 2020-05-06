@@ -86,7 +86,7 @@ const AddAnswerForm = (props) => {
           required
         />
         <div className="form-row mr-3 justify-content-end">
-          <button className="btn form-rounded r-green-button">Post</button>
+          <button className="btn form-rounded r-green-button">Add</button>
         </div>
       </form>
     </div>
