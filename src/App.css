@@ -194,6 +194,10 @@ a:hover {
   transition: transform 0.5s;
 }
 
+.cardcompany {
+  box-shadow: 0 7px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+}
 .card:hover {
   transform: scale(1.05);
 }
@@ -800,10 +804,6 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
 /* Re-usable for background, text color and borders */
 .colored {
   color: gray;
-  /* color: #00a99d; */
-}
-.colored:hover {
-  color: #00a99d;
   /* color: #00a99d; */
 }
 
