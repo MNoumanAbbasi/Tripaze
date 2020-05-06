@@ -9,6 +9,7 @@ import InputField from '../form/InputField';
 import { editProfile } from '../../store/actions/profileActions';
 import * as yup from 'yup';
 import { cancelModal, confirmEditModal } from '../modals/EditProfileModals';
+import OnSubmitValidationError from '../form/OnSubmitValidationError';
 
 const profileSchema = yup.object({
   companyName: yup.string().max(20, 'Max 20 characters').required('Required'),
@@ -60,8 +61,9 @@ const EditProfile = (props) => {
               confirmEditModal(values, props);
             }}
           >
-            {({ values }) => (
+            {({ values, errors }) => (
               <Form>
+                <OnSubmitValidationError errors={errors} />
                 <InputField
                   label="Company name"
                   name="companyName"
