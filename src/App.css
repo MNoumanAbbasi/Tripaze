@@ -267,6 +267,71 @@ a:hover {
   padding-bottom: 0rem;
 }
 
+/*Dialogue buttons*/
+
+.swal-button {
+  border: 1px solid #00a99d;
+  background-color: #00a99d;
+  border-radius: 20px; /* Making border radius */
+  padding: 5px 15px 5px 15px; /* Making space around letters */
+  font-size: 18px; /* Changing font size */
+  color: #ffffff;
+}
+
+.swal-button:not([disabled]):hover {
+  background-color: #5a6268;
+  color: white;
+  border-color: #5a6268;
+}
+
+.swal-button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.swal-button--cancel {
+  border: 1px solid #00a99d;
+  background-color: #ffffff;
+  border-radius: 20px; /* Making border radius */
+  padding: 5px 15px 5px 15px; /* Making space around letters */
+  font-size: 18px; /* Changing font size */
+  color: #00a99d;
+}
+
+.swal-button--cancel:not([disabled]):hover {
+  background-color: #5a6268;
+  color: white;
+  border-color: #5a6268;
+}
+
+.swal-button--cancel:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.swal-button--danger {
+  background-color: #ffffff !important;
+  border: 1px solid #e64942 !important;
+  background-color: #ffffff !important;
+  border-radius: 20px; /* Making border radius */
+  padding: 5px 15px 5px 15px; /* Making space around letters */
+  font-size: 18px; /* Changing font size */
+  color: #e64942 !important;
+}
+
+.swal-button--danger:not([disabled]):hover {
+  background-color: #e64942 !important;
+  color: white !important;
+  border: 1px solid #e64942 !important;
+}
+
+.swal-button--danger:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/*Dialogue buttons*/
+
 /* Change btn to body since Open Sans is the default for all components */
 .btn {
   font-family: 'Open Sans';
@@ -312,8 +377,6 @@ a:hover {
   border: 1px solid #00a99d;
   background-color: #00a99d;
   border-radius: 20px; /* Making border radius */
-  /* width: auto; Making auto-sizable width */
-  /* height: auto; Making auto-sizable height */
   padding: 5px 15px 5px 15px; /* Making space around letters */
   font-size: 18px; /* Changing font size */
   color: #ffffff;
@@ -348,6 +411,17 @@ a:hover {
   }
 }
 
+/*Search results*/
+
+.search-results {
+  margin-top: 7rem;
+}
+.font-color-grey {
+  color: #6c757d !important;
+}
+
+/*Search Results*/
+
 /* Home Page elements */
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:700');
@@ -376,8 +450,8 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
   display: block;
   width: 100%;
   height: 100%;
-  border-bottom: 4px solid #ffff;
-  border-right: 4px solid #ffff;
+  border-bottom: 4px solid #00a99d;
+  border-right: 4px solid #00a99d;
   animation: animate 1.5s linear infinite;
   opacity: 0;
 }
