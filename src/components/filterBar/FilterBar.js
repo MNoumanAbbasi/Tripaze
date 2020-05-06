@@ -95,6 +95,7 @@ class FilterBar extends Component {
                 onChange={(comps) => this.setState({ comps })}
               />
               <div className="popup-text mt-3 mb-3">
+                {/* The code separationg for thousands is taken from: https://answers.acrobatusers.com/How-to-separate-thousands-with-space-and-adding-2-decimal-places-q282162.aspx */}
                 Price Range (Selected: Rs{' '}
                 {this.state.min
                   .toString()
