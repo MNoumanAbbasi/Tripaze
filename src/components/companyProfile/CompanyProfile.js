@@ -32,13 +32,13 @@ const CompanyProfile = (props) => {
     const noTrips =
       trips.length != 0 ? null : (
         <p className="text-center text-secondary">
-          No Trips have been posted yet
+          No Trips have been added yet
         </p>
       );
     const noReviews =
       reviews.length != 0 ? null : (
         <p className="text-center text-secondary">
-          No Reviews have been posted yet
+          No Reviews have been added yet
         </p>
       );
     const currProfileType = profileType(auth, profile);
