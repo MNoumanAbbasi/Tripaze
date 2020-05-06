@@ -48,7 +48,9 @@ const TripCard = ({ trip, isCompProfile }) => {
                 {trip.departureLoc}
               </h6>
               <h6 class="list-inline-item change-color change-font text-light form-round">
-                Rs. {trip.price}
+                {/* The code separationg for thousands is taken from: https://answers.acrobatusers.com/How-to-separate-thousands-with-space-and-adding-2-decimal-places-q282162.aspx */}
+                Rs.{' '}
+                {trip.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
               </h6>
             </ul>
           </div>
