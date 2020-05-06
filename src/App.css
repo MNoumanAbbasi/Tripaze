@@ -348,6 +348,17 @@ a:hover {
   }
 }
 
+/*Search results*/
+
+.search-results {
+  margin-top: 7rem;
+}
+.font-color-grey {
+  color: #6c757d !important;
+}
+
+/*Search Results*/
+
 /* Home Page elements */
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:700');
@@ -376,8 +387,8 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
   display: block;
   width: 100%;
   height: 100%;
-  border-bottom: 4px solid #ffff;
-  border-right: 4px solid #ffff;
+  border-bottom: 4px solid #00a99d;
+  border-right: 4px solid #00a99d;
   animation: animate 1.5s linear infinite;
   opacity: 0;
 }
