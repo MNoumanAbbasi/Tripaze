@@ -102,7 +102,7 @@ export const signUpUser = (newUser) => {
 export const signUpCompany = (newUser) => {
   return (dispatch, getState, { getFirestore }) => {
     dispatch({ type: 'PROFILE_LOADING' });
-    var uid;
+    let uid;
     const firestore = getFirestore();
     const isPassValid = validatePassword(newUser.password);
     if (isPassValid === 'Valid') {
@@ -110,8 +110,11 @@ export const signUpCompany = (newUser) => {
         .auth()
         .createUserWithEmailAndPassword(newUser.email, newUser.password)
         .then((resp) => {
-          // Note: we are not using add over here like we did for creating trips because we want to assign the id given by firebase auth (i.e. resp.user.uid)
+          resp.user.sendEmailVerification();
           uid = resp.user.uid;
+        })
+        .then(() => {
+          // Note: we are not using add over here like we did for creating trips because we want to assign the id given by firebase auth (i.e. resp.user.uid)
           return firestore.collection('UserTypes').doc(uid).set({
             companyName: newUser.companyName,
             userType: 'Company',
