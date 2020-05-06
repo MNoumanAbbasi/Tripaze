@@ -10,7 +10,7 @@ export const alreadyReviewedModal = () => {
 };
 
 export const succesfulReviewModal = () => {
-  swal('Review Posted', 'The review has been posted!', 'success');
+  swal('Review added', 'The review has been added!', 'success');
 };
 
 export const deleteReviewModal = (props) => {
