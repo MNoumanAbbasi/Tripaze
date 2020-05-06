@@ -63,7 +63,7 @@ const TripDetails = (props) => {
   const noQuestions =
     FAQs.length != 0 ? null : (
       <p className="text-center text-secondary">
-        No Questions have been posted yet
+        No Questions have been added yet
       </p>
     );
   return (
@@ -88,7 +88,7 @@ const TripDetails = (props) => {
             </div>
           </div>
           {/* {Company Card} */}
-          <div class="card content-box m-4 mt-lg-5 change-card-width order-lg-2 order-1">
+          <div class="cardcompany content-box m-4 mt-lg-5 change-card-width2 order-lg-2 order-1">
             <div class="card-body">
               <h6 class="card-title change-font font-weight-bold text-uppercase">
                 <LogoImage
@@ -111,23 +111,23 @@ const TripDetails = (props) => {
           </div>
         </div>
         {/* Second row */}
-        <hr class="mt-3 col-7 ml-0 divider"></hr>
+        <hr class="mt-2 col-7 ml-0 divider"></hr>
         <div class="row align-content-center justify-content-start">
-          <h4 className="col-lg-3 change-font ml-0 colored">
+          <h5 className="col-lg-3 change-font ml-0 colored">
             <i class="fa fa-calendar fa-lg fa-fw" aria-hidden="true"></i>
             {'     ' +
               moment(trip.departureDate.toDate()).format('MMM Do YYYY')}
-          </h4>
-          <h4 className="col-lg-2 text-uppercase change-font colored">
+          </h5>
+          <h5 className="col-lg-2 text-uppercase change-font colored">
             <i class="fa fa-clock-o fa-lg fa-fw" aria-hidden="true"></i>
             {trip.duration + ' days'}
-          </h4>
-          <h4 class="ml-lg-4 col-lg-3 text-uppercase change-font col-offset-7 colored">
+          </h5>
+          <h5 class="ml-lg-4 col-lg-3 text-uppercase change-font col-offset-7 colored">
             <i class="fa fa-bus fa-lg fa-fw" aria-hidden="true"></i>
             {'  ' + trip.departureLoc}
-          </h4>
+          </h5>
         </div>
-        <hr class="mb-2 col-7 ml-0 divider"></hr>
+        <hr class="mb-3 col-7 ml-0 divider2"></hr>
         {/* Description Box */}
         <div class="mt-5 row align-content-centre justify-content-between">
           <div class="ml-lg-4 col-lg-6 text-justify text-secondary">

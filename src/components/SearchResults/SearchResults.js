@@ -60,6 +60,9 @@ const SearchResults = (props) => {
     if (filteredTrips.length > 0) {
       return (
         <div className="container cardslist-margin">
+          <div className="d-flex justify-content-center search-results ">
+            <h2 className="font-color-grey change-font">Search Results</h2>
+          </div>
           <TripsList trips={filteredTrips} isCompProfile={false} />
         </div>
       );

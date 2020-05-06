@@ -30,13 +30,13 @@ const Review = (props) => {
   return (
     <div className="faq tb-border-0 mt-3 border-turq ">
       {button}
-      <h6 className="username text-white bg-turq p-4">{props.userName}</h6>
+      <h6 className="username text-white bg-turq p-2">{props.userName}</h6>
       <div className="ml-3">
         {' '}
         <RatingBar name="companyrating" value={props.rating} editing={false} />
         <h6 className="review">{props.review}</h6>
         <p className="review">
-          Posted on:
+          Added on:
           {' ' + moment(props.timestamp.toDate()).format('MMMM Do YYYY')}
         </p>
       </div>
@@ -69,7 +69,7 @@ const AddNewReviewForm = (props) => {
             required
           />
           <div className="form-row mr-3 justify-content-end">
-            <button className="btn form-rounded r-green-button">Submit</button>
+            <button className="btn form-rounded r-green-button">Add</button>
           </div>
         </form>
       </div>
