@@ -57,6 +57,7 @@ const AddQuestionForm = (props) => {
             placeholder="Add question"
             className="form-control form-control-lg"
             onChange={(event) => setQuestion(event.target.value)}
+            maxLength={200}
             required
           />
           <div className="form-row mr-3 justify-content-end">
