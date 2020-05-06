@@ -283,6 +283,9 @@ a:hover {
 .change-card-width {
   width: 18rem;
 }
+.change-card-width2 {
+  width: 22rem;
+}
 
 .content-box {
   box-sizing: content-box;

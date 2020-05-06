@@ -87,7 +87,7 @@ const TripDetails = (props) => {
             </div>
           </div>
           {/* {Company Card} */}
-          <div class="cardcompany content-box m-4 mt-lg-5 change-card-width order-lg-2 order-1">
+          <div class="cardcompany content-box m-4 mt-lg-5 change-card-width2 order-lg-2 order-1">
             <div class="card-body">
               <h6 class="card-title change-font font-weight-bold text-uppercase">
                 <LogoImage
@@ -110,7 +110,7 @@ const TripDetails = (props) => {
           </div>
         </div>
         {/* Second row */}
-        <hr class="mt-3 col-7 ml-0 divider"></hr>
+        <hr class="mt-2 col-7 ml-0 divider"></hr>
         <div class="row align-content-center justify-content-start">
           <h5 className="col-lg-3 change-font ml-0 colored">
             <i class="fa fa-calendar fa-lg fa-fw" aria-hidden="true"></i>
@@ -126,7 +126,7 @@ const TripDetails = (props) => {
             {'  ' + trip.departureLoc}
           </h5>
         </div>
-        <hr class="mb-2 col-7 ml-0 divider"></hr>
+        <hr class="mb-3 col-7 ml-0 divider2"></hr>
         {/* Description Box */}
         <div class="mt-5 row align-content-centre justify-content-between">
           <div class="ml-lg-4 col-lg-6 text-justify text-secondary">
