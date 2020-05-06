@@ -63,7 +63,7 @@ const TripDetails = (props) => {
   const noQuestions =
     FAQs.length != 0 ? null : (
       <p className="text-center text-secondary">
-        No Questions have been posted yet
+        No Questions have been added yet
       </p>
     );
   return (
