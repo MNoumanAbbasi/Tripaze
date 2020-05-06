@@ -9,6 +9,7 @@ import LoadingBox from './../dashboard/LoadingBox';
 import CoverImage from '../displayImages/CoverImage';
 import RatingBar from './RatingBar.js';
 import ReviewStats from './ReviewStats';
+import LogoImage from '../displayImages/LogoImage';
 
 // const today = new Date();
 // 6 columns on medium and 12 column on small screens
@@ -62,18 +63,26 @@ const CompanyProfile = (props) => {
           /> */}
         </div>
         <div className="container thirdDrop">
-          <div className="row justify-content-lg-start justify-content-sm-around mb-3">
-            {adminMode && (
-              <button
-                type="button"
-                class="btn mt-lg-4 mr-5 btn-lg green-button form-rounded border-turq"
-                onClick={() =>
-                  props.history.push('/editprofile/' + props.match.params.id)
-                }
-              >
-                EDIT PROFILE <i class="fa fas fa-edit fa-fw"></i>
-              </button>
-            )}
+          <div className="row justify-content-lg-between justify-content-sm-start mb-3">
+            <div>
+              {adminMode && (
+                <button
+                  type="button"
+                  class="btn mt-lg-4 mt-3 ml-5 btn-lg green-button form-rounded border-turq"
+                  onClick={() =>
+                    props.history.push('/editprofile/' + props.match.params.id)
+                  }
+                >
+                  EDIT PROFILE <i class="fa fas fa-edit fa-fw"></i>
+                </button>
+              )}
+            </div>
+            <div className="logo-forward responsive bigscreen mr-1">
+              <LogoImage
+                companyID={props.match.params.id}
+                className="img-fluid logo-on-profile rounded-circle mr-5"
+              />
+            </div>
           </div>
         </div>
         <div className="container align-self-start bg-white frontDrop">
@@ -81,7 +90,13 @@ const CompanyProfile = (props) => {
           <div className="row justify-content-between align-content-center">
             {/* Heading */}
             <div className="ml-lg-4 col-lg-7 text-secondary">
-              <h1 className="mt-5 tripText">{company.companyName}</h1>
+              <h1 className="mt-5 tripText justify-content-end">
+                <LogoImage
+                  companyID={props.match.params.id}
+                  className="img-fluid logo-on-profile2 rounded-circle mr-4 smallscreen"
+                />
+                {company.companyName}
+              </h1>
             </div>
             {/* Description + Card */}
             <div className=" row ml-lg-4 col-lg-7 text-secondary">
