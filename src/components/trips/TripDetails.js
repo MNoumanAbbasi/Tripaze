@@ -104,6 +104,7 @@ const TripDetails = (props) => {
                   name="companyrating"
                   value={avgRating}
                   className="ml-lg-4"
+                  editing={false}
                 />
                 <p>{reviewLength} Reviews</p>
               </div>
