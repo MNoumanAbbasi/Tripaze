@@ -38,25 +38,3 @@ export const deleteModal = (props, img) => {
     }
   });
 };
-
-export const cancelModal = (history) => {
-  swal({
-    title: 'Leave page?',
-    text: 'Changes you made may not be saved.',
-    icon: 'warning',
-    buttons: ['Cancel', 'Leave'],
-  }).then((willLeave) => {
-    if (willLeave) {
-      history.goBack();
-    }
-  });
-};
-
-export const errorsModal = (err) => {
-  swal({
-    title: 'Errors on fields',
-    text: 'Sorry, some fields have errors. Please check your input again.',
-    icon: 'warning',
-    buttons: true,
-  });
-};

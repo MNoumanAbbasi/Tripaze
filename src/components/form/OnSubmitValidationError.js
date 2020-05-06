@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'formik';
-import { errorsModal } from '../modals/TripModals';
+import { errorsModal } from '../modals/StandardModals';
 
 const OnSubmitValidationError = (props) => {
   const { errors, formik } = props;

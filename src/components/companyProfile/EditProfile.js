@@ -8,7 +8,8 @@ import { Formik, Form } from 'formik';
 import InputField from '../form/InputField';
 import { editProfile } from '../../store/actions/profileActions';
 import * as yup from 'yup';
-import { cancelModal, confirmEditModal } from '../modals/EditProfileModals';
+import { confirmEditModal } from '../modals/EditProfileModals';
+import { cancelModal } from '../modals/StandardModals';
 import OnSubmitValidationError from '../form/OnSubmitValidationError';
 
 const profileSchema = yup.object({
