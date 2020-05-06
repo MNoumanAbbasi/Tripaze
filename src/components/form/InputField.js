@@ -6,7 +6,7 @@ const InputField = ({ label, name, type, as = '' }) => {
     <div className="form-group">
       <label>{label}</label>
       <Field name={name} type={type} min="0" as={as} className="form-control" />
-      <ErrorMessage name={name} />
+      <ErrorMessage name={name} component="div" className="text-danger" />
     </div>
   );
 };
