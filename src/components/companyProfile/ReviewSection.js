@@ -13,6 +13,7 @@ import {
 
 const Review = (props) => {
   let button = null;
+  // if user is of type User not Company
   if (props.profileType === 'User' && props.profileID === props.userID) {
     button = (
       <button
@@ -48,6 +49,7 @@ const AddNewReviewForm = (props) => {
   const [rating, setRating] = useState(1);
   const handleSubmit = (event) => {
     event.preventDefault();
+    // Upload rating and review to database
     props.onSubmit({ review, rating });
   };
 
@@ -82,18 +84,22 @@ const AddNewReviewForm = (props) => {
 const ReviewSection = (props) => {
   // State to store all Reviews
   const [reviews, setReviews] = useState(props.reviews); // display reviews passed from parent
-  // To update page on props change
-  useEffect(() => {
-    setReviews(props.reviews);
-  }, [props.reviews]);
   // State to check if the Add new review form is open or not
   const [isAddReviewState, setIsAddReviewState] = useState(false);
 
+  // To update page on any change to reviews
+  useEffect(() => {
+    setReviews(props.reviews);
+  }, [props.reviews]);
+
+  // Adds review to review section and store in database
   const addNewReview = (newReview) => {
     props.addReview(newReview, props.companyID);
     setIsAddReviewState(false);
     succesfulReviewModal();
   };
+
+  // Remove review in review section and delete in database
   const removeReview = (id) => {
     props.deleteReview(id);
   };
@@ -101,6 +107,7 @@ const ReviewSection = (props) => {
   const [modalShow, setModalShow] = React.useState(false);
   // Users should be allowed to post only one review
   const alreadyReviewed = reviews.some((review) => review.userID === props.id);
+
   // Button to display (add new or cancel) based on if add new faq form is open or not
   let button;
   if (isAddReviewState) {
