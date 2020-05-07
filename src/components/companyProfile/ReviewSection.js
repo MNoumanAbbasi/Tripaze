@@ -66,6 +66,7 @@ const AddNewReviewForm = (props) => {
             placeholder="Add Review"
             className="form-control form-control-lg"
             onChange={(event) => setReview(event.target.value)}
+            maxLength={400}
             required
           />
           <div className="form-row mr-3 justify-content-end">

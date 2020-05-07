@@ -837,9 +837,9 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
   }
 
   .thirdDrop {
-    z-index: 2;
+    z-index: 3;
     position: absolute;
-    margin-top: 17vw;
+    margin-top: 16vw;
   }
 }
 
@@ -1000,4 +1000,33 @@ Source : https://www.youtube.com/watch?v=UaYXrbNDqXM */
 
 .hasOnClick {
   cursor: pointer;
+}
+
+.logo-on-profile {
+  /* width: 100%;
+  height: 100%;
+  max-width: 15rem;
+  max-height: 15rem;
+  min-width: 15rem;
+  min-height: 15rem; */
+  width: 15rem;
+  height: 15rem;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 1.5);
+  border: 6px solid #c7c6c6;
+  border-color: #00a99d;
+  object-fit: cover;
+}
+
+.logo-on-profile2 {
+  width: 4rem;
+  height: 4rem;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 1.5);
+  border: 1px solid #c7c6c6;
+  border-color: #00a99d;
+  object-fit: cover;
+}
+
+.logo-forward {
+  position: relative;
+  z-index: 3;
 }

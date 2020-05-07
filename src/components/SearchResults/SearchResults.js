@@ -4,11 +4,10 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase'; // higher order
 import LoadingBox from '../dashboard/LoadingBox';
-import NoTripsFound from '../modals/NoTripsFound';
+import { NoTripsFound } from '../modals/StandardModals';
 
 const today = new Date();
 const SearchResults = (props) => {
-  const [modalShow, setModalShow] = React.useState(true);
   const { trips, isLoading } = props;
   const isInitialized = !isLoading && trips;
   if (isInitialized) {
@@ -58,23 +57,29 @@ const SearchResults = (props) => {
       });
 
     if (filteredTrips.length > 0) {
+      // Show plural "trips" when more than one trip returned
+      const message =
+        filteredTrips.length == 1
+          ? filteredTrips.length + ' trip matched the search'
+          : filteredTrips.length + ' trips matched the search';
       return (
         <div className="container cardslist-margin">
           <div className="d-flex justify-content-center search-results ">
-            <h2 className="font-color-grey change-font">Search Results</h2>
+            <h2 className="font-color-grey change-font">
+              {'Search Results: ' + message}
+            </h2>
           </div>
           <TripsList trips={filteredTrips} isCompProfile={false} />
         </div>
       );
     } else {
+      NoTripsFound(props.history);
       return (
-        <NoTripsFound
-          show={modalShow}
-          onHide={() => {
-            setModalShow(false);
-            props.history.push('/');
-          }}
-        />
+        <div className="container cardslist-margin">
+          <div className="d-flex justify-content-center search-results ">
+            <h2 className="font-color-grey change-font">Search Results</h2>
+          </div>
+        </div>
       );
     }
   } else {
@@ -100,12 +105,16 @@ export default compose(
   // tells us which collections to connect to in our firebase project whenever this component, namely dashboard, is active
   // Whenever collection trip is changed, it would call the firestore reducer which would update the state of this firestore
   firestoreConnect((props) => {
+    const priceMin = props.location.state ? props.location.state.priceMin : 0;
+    const priceMax = props.location.state
+      ? props.location.state.priceMax
+      : 50000;
     return [
       {
         collection: 'Trips',
         where: [
-          ['price', '>=', props.location.state.priceMin],
-          ['price', '<=', props.location.state.priceMax],
+          ['price', '>=', priceMin],
+          ['price', '<=', priceMax],
         ],
       },
     ];
