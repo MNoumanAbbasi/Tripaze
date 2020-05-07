@@ -40,7 +40,7 @@ const TripDetails = (props) => {
   if (profile && profileType(auth, profile) === 'Company' && !adminMode)
     props.history.push('/');
 
-  // Buttons and actions for page when adminMode is true
+  // Edit and delete trip buttons shown for page when adminMode is true
   if (adminMode) {
     props.readNotification(props.match.params.id); // read the notification
     editButton = (
