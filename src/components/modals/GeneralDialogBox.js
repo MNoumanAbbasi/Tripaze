@@ -1,6 +1,7 @@
 import Modal from 'react-bootstrap/Modal';
 import React from 'react';
 
+// Reusable bootstrap dialog box
 function GeneralDialogBox(props) {
   return (
     <Modal
@@ -15,7 +16,6 @@ function GeneralDialogBox(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {/* <h4>{props.heading}</h4> */}
         <p>{props.message}</p>
       </Modal.Body>
       <Modal.Footer>
