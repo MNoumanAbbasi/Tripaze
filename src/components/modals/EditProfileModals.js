@@ -17,19 +17,6 @@ export const confirmEditModal = (values, props) => {
   });
 };
 
-export const cancelModal = (history) => {
-  swal({
-    title: 'Leave page?',
-    text: 'Changes you made may not be saved.',
-    icon: 'warning',
-    buttons: ['Cancel', 'Leave'],
-  }).then((willLeave) => {
-    if (willLeave) {
-      history.goBack();
-    }
-  });
-};
-
 export const verifyEmail = () => {
   swal({
     title: 'Verify Account',

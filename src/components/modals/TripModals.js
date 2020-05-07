@@ -38,17 +38,3 @@ export const deleteModal = (props, img) => {
     }
   });
 };
-
-export const cancelModal = (history) => {
-  console.log('Asd');
-  swal({
-    title: 'Leave page?',
-    text: 'Changes you made may not be saved.',
-    icon: 'warning',
-    buttons: ['Cancel', 'Leave'],
-  }).then((willLeave) => {
-    if (willLeave) {
-      history.goBack();
-    }
-  });
-};

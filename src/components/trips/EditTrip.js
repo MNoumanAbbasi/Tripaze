@@ -9,7 +9,9 @@ import { Formik, Form } from 'formik';
 import { tripSchema } from './CreateTrip';
 import InputField from '../form/InputField';
 import moment from 'moment';
-import { confirmEditModal, cancelModal } from '../modals/TripModals';
+import { confirmEditModal } from '../modals/TripModals';
+import { cancelModal } from '../modals/StandardModals';
+import OnSubmitValidationError from '../form/OnSubmitValidationError';
 
 const EditTrip = (props) => {
   const { trip, isLoading, auth } = props;
@@ -56,8 +58,10 @@ const EditTrip = (props) => {
               confirmEditModal(values, props);
             }}
           >
-            {({ values }) => (
+            {({ values, errors }) => (
               <Form>
+                <OnSubmitValidationError errors={errors} />
+
                 <InputField label="Title" name="title" type="text" />
 
                 <FieldArraySection

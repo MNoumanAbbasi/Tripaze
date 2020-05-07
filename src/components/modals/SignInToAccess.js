@@ -25,7 +25,7 @@ function SignInToAccess(props) {
     </NavLink>
   );
 
-  const buttons = [signUpButton, signInButton];
+  const buttons = [signInButton, signUpButton];
   return (
     <GeneralDialogBox
       show={props.show}

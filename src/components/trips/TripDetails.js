@@ -83,7 +83,8 @@ const TripDetails = (props) => {
               {trip.title}
             </h1>
             <div className="text-turq tripText align-self-center">
-              Rs. {trip.price}
+              {/* The code separationg for thousands is taken from: https://answers.acrobatusers.com/How-to-separate-thousands-with-space-and-adding-2-decimal-places-q282162.aspx */}
+              Rs. {trip.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
             </div>
           </div>
           {/* {Company Card} */}
@@ -103,6 +104,7 @@ const TripDetails = (props) => {
                   name="companyrating"
                   value={avgRating}
                   className="ml-lg-4"
+                  editing={false}
                 />
                 <p>{reviewLength} Reviews</p>
               </div>

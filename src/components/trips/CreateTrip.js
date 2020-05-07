@@ -9,6 +9,7 @@ import ImageSection from '../form/ImageSection';
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import { succesfulCreateTripModal } from '../modals/TripModals';
+import OnSubmitValidationError from '../form/OnSubmitValidationError';
 
 export const tripSchema = yup.object({
   title: yup.string().max(20, 'Max 20 characters').required('Required'),
@@ -32,11 +33,7 @@ export const tripSchema = yup.object({
     .positive('Invalid price')
     .max(99999, 'Max price 99999')
     .required('Required'),
-  capacity: yup
-    .number()
-    .positive('Invalid capactiy')
-    .max(1000, 'Max 1000')
-    .required('Required'),
+  capacity: yup.number().positive('Invalid capactiy').max(1000, 'Max 1000'),
   description: yup.string(),
   attractions: yup.array().of(yup.string()),
   image: yup.string(),
@@ -85,8 +82,10 @@ const CreateTrip = (props) => {
               succesfulCreateTripModal();
             }}
           >
-            {({ values }) => (
+            {({ values, errors }) => (
               <Form>
+                <OnSubmitValidationError errors={errors} />
+
                 <InputField label="Title" name="title" type="text" />
 
                 <FieldArraySection
