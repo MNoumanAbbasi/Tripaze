@@ -43,7 +43,9 @@ const AddQuestionForm = (props) => {
   const [question, setQuestion] = useState('');
   const handleSubmit = (event) => {
     event.preventDefault();
+    // Upload question to database
     props.onSubmit(question);
+    // Display success dialog box
     succesfulQuestionModal();
   };
 
@@ -74,6 +76,7 @@ const AddAnswerForm = (props) => {
   const [answer, setAnswer] = useState('');
   const handleSubmit = (event) => {
     event.preventDefault();
+    // Upload answer to database
     props.onSubmit(answer, props.faqID);
   };
 
@@ -98,23 +101,31 @@ const AddAnswerForm = (props) => {
 const FAQSection = (props) => {
   // State to store all FAQs
   const [FAQs, setFAQs] = useState(props.FAQs);
+  // State to check if the Add new question form is open or not
+  const [isAddQuestionState, setIsAddQuestionState] = useState(false);
+  // State to check if dialog box is open or not
+  const [modalShow, setModalShow] = useState(false);
+
+  // Rerender the FAQ section on any change to FAQs
   useEffect(() => {
     setFAQs(props.FAQs);
   }, [props.FAQs]);
-  // State to check if the Add new question form is open or not
-  const [isAddQuestionState, setIsAddQuestionState] = useState(false);
-  const [modalShow, setModalShow] = useState(false);
+
+  // Adds question to FAQ section and store in database
   const addQuestion = (question) => {
-    // setFAQs([...FAQs, { question, answer: '' }]); // TODO: instead of updating local copy too. remount when faq added/deleted.
     props.addQuestion(question, props.tripID, props.profileType);
     setIsAddQuestionState(false);
   };
 
+  // Adds answer to a FAQ (question) and store in database
   const addAnswer = (answer, faqID) => {
     props.addAnswer(answer, faqID);
     setIsAddQuestionState(false);
+    // Display success dialog box for answer added
     succesfulAnswerModal();
   };
+
+  // Removes FAQ (along with answer) from display and database
   const removeFaq = (faqID) => {
     props.deleteFaq(faqID);
   };
