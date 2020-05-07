@@ -7,6 +7,7 @@ const CardImage = (props) => {
   const [url, setUrl] = useState(spinner);
   const folderName = props.type + 'Images';
 
+  // Fetch the url from of image from storage
   const getUrl = () => {
     return storage
       .ref(folderName)

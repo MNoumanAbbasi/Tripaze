@@ -2,13 +2,14 @@ import React from 'react';
 import TripsList from '../trips/TripsList';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { firestoreConnect } from 'react-redux-firebase'; // higher order
+import { firestoreConnect } from 'react-redux-firebase';
 import LoadingBox from '../dashboard/LoadingBox';
 import { NoTripsFound } from '../modals/StandardModals';
 
-const today = new Date();
 const SearchResults = (props) => {
   const { trips, isLoading } = props;
+
+  // if data has completely been fetched from Firestore, display the search results page
   const isInitialized = !isLoading && trips;
   if (isInitialized) {
     let filteredTrips = trips;
@@ -19,49 +20,66 @@ const SearchResults = (props) => {
       props.location.state.comps.length ||
       props.location.state.endDate
     )
+      // Filtering trips
       filteredTrips = trips.filter((trip) => {
         // only show upcoming trips
+        const today = new Date();
         if (trip.departureDate.toDate().getTime() < today.getTime())
           return false;
-        let show = false;
-        let filteredDest;
-        let filteredDep;
+
+        let showTrip = false;
+        let filteredDestinations;
+        let filteredDepartures;
         let filteredCompanies;
-        for (filteredDest of props.location.state.dest) {
-          if (trip.destinationsLowerCase.includes(filteredDest.toLowerCase())) {
-            show = true;
+
+        // Check each destination in filters and check if they match the lower case versions in the database
+        for (filteredDestinations of props.location.state.dest) {
+          if (
+            trip.destinationsLowerCase.includes(
+              filteredDestinations.toLowerCase()
+            )
+          ) {
+            showTrip = true;
             break;
           }
         }
-        for (filteredDep of props.location.state.departureLocs) {
-          if (trip.departureLoc === filteredDep) {
-            show = true;
+
+        // Check each departure location in filters and check if they match the the departure location of the trip
+        for (filteredDepartures of props.location.state.departureLocs) {
+          if (trip.departureLoc === filteredDepartures) {
+            showTrip = true;
             break;
           }
         }
+
+        // Check each comapny in filters and check if they match the the company of the trip
         for (filteredCompanies of props.location.state.comps) {
           if (trip.companyName === filteredCompanies) {
-            show = true;
+            showTrip = true;
             break;
           }
         }
+
         // if filter for date selected
         if (props.location.state.startDate && props.location.state.endDate) {
           const tripDeparture = trip.departureDate.toDate().getTime();
           const startDate = props.location.state.startDate.getTime();
           const endDate = props.location.state.endDate.getTime();
           // show trip only if the departure date falls in the range provided
-          show = tripDeparture >= startDate && tripDeparture <= endDate;
+          showTrip = tripDeparture >= startDate && tripDeparture <= endDate;
         }
-        return show;
+        return showTrip;
       });
 
+    // If any trips found
     if (filteredTrips.length > 0) {
       // Show plural "trips" when more than one trip returned
       const message =
-        filteredTrips.length == 1
+        filteredTrips.length === 1
           ? filteredTrips.length + ' trip found'
           : filteredTrips.length + ' trips found';
+
+      // display the filtered trips as trip cards
       return (
         <div className="container cardslist-margin">
           <div className="d-flex justify-content-center search-results ">
@@ -73,6 +91,7 @@ const SearchResults = (props) => {
         </div>
       );
     } else {
+      // Else if no trips found, display dialog box indicating so
       NoTripsFound(props.history);
       return (
         <div className="container cardslist-margin">
@@ -84,12 +103,13 @@ const SearchResults = (props) => {
         </div>
       );
     }
-  } else {
+  }
+  // Show a loading box if firesstore has not responded to the initial query yet
+  else {
     return <LoadingBox />;
   }
 };
 
-// Map state from store to props in component
 const mapStateToProps = (state, ownprops) => {
   const requests = state.firestore.status.requesting;
   const isLoading = requests
@@ -114,6 +134,7 @@ export default compose(
     return [
       {
         collection: 'Trips',
+        // Do price filtering at the backend
         where: [
           ['price', '>=', priceMin],
           ['price', '<=', priceMax],

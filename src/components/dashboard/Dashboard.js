@@ -11,17 +11,19 @@ import SearchBar from '../layout/SearchBar';
 import { searchBarShow } from '../../store/actions/filterActions';
 import LoadingBox from './LoadingBox';
 import FilterBar from '../filterBar/FilterBar';
-// import bgvid from '../../Images/vid.mp4';
 
-let lastScrollY = 0;
-const today = new Date();
-// 6 columns on medium and 12 column on small screens
+let lastScrollY = 0; // get scroll position
+const today = new Date(); // get today's date to only load upcoming trips
+
+// Constants necessary to implement search bar toggle
+const DESKTOP_WIDTH = 992;
+const SCROLL_TOGGLE_LOCATION = 295;
+
 class Dashboard extends Component {
   // To detect scroll
   componentDidMount() {
-    // this.today = new Date();
     // Add search bar to navbar if in mobile mode
-    if (window.innerWidth < 992) this.props.searchBarShow(true);
+    if (window.innerWidth < DESKTOP_WIDTH) this.props.searchBarShow(true);
     else this.props.searchBarShow(false);
     window.addEventListener('scroll', this.handleScroll, false);
   }
@@ -33,17 +35,22 @@ class Dashboard extends Component {
 
   handleScroll = () => {
     lastScrollY = window.scrollY;
-    // If search bar not showing but should be shown
-    if (window.innerWidth < 992 && !this.props.searchBarVisible) {
-      this.props.searchBarShow(true);
-    } else if (lastScrollY > 295 && !this.props.searchBarVisible) {
+    // If in mobile mode, search bar should be shown (if it is not visible already)
+    if (window.innerWidth < DESKTOP_WIDTH && !this.props.searchBarVisible) {
       this.props.searchBarShow(true);
     }
-    // Else if search bar is showing but should not be shown
+    // If search bar not showing on a desktop but should be shown
     else if (
-      lastScrollY <= 295 &&
+      lastScrollY > SCROLL_TOGGLE_LOCATION &&
+      !this.props.searchBarVisible
+    ) {
+      this.props.searchBarShow(true);
+    }
+    // If search bar is showing on a desktop but should not be shown
+    else if (
+      lastScrollY <= SCROLL_TOGGLE_LOCATION &&
       this.props.searchBarVisible &&
-      window.innerWidth >= 992
+      window.innerWidth >= DESKTOP_WIDTH
     ) {
       this.props.searchBarShow(false);
     }
@@ -51,37 +58,42 @@ class Dashboard extends Component {
 
   render() {
     const { trips, profile, auth, isLoading } = this.props;
-    const isInitialized = trips && !isLoading;
 
-    // If company is logged in, redirect to company profile
+    // Route Guarding: If company is logged in, redirect to company profile
     if (profileType(auth, profile) === 'Company') {
       return <Redirect to={'/companyprofile/' + auth.uid} />;
     }
 
+    // if data has completely been fetched from Firestore, display the homepage
+    const isInitialized = trips && !isLoading;
     if (isInitialized) {
       return (
         <div className="homePage">
           <div class="d-block">
+            {/* Homepage background */}
             <img
               alt="Background"
               src={background}
               className="img-fluid mw-100 w-100 d-md-block d-none"
             ></img>
             <div className="d-md-block d-none">
+              {/* Homepage searchbar */}
               <SearchBar
                 formClass="input-group form-group home-searchbar searchbar-w centered"
                 inputClass="form-control form-control-lg form-rounded"
                 centreSearchBar={true}
               />
             </div>
+            {/* Advanced search (filterbar) option on desktops */}
             <a
               class="btn dark-button btn-secondary filter-button d-md-block d-none"
-              href="#popup1"
+              href="#advancedSearch"
             >
               Advanced Search
             </a>
-
             <FilterBar trips={trips} />
+
+            {/* Scroll button */}
             <a href="#tripcards" className="scroll-button d-md-block d-none">
               <span></span>
               <span></span>
@@ -89,9 +101,9 @@ class Dashboard extends Component {
             </a>
           </div>
 
+          {/* Headings for trip cards display */}
           <div id="tripcards">
             <hr className="greenline mw-100 d-md-block d-none"></hr>
-
             <div className="row justify-content-center justify-content-around mt-5 align-items-end">
               <h3 className="home-heading mt-5">ALL TRIPS</h3>
               <img
@@ -101,29 +113,35 @@ class Dashboard extends Component {
               ></img>
             </div>
 
+            {/* Advanced search option on mobile */}
             <div className="d-flex justify-content-center">
               <a
                 class="btn dark-button btn-secondary mob-shadow d-md-none d-xs-block change-font"
-                href="#popup1"
+                href="#advancedSearch"
               >
                 Advanced Search
               </a>
             </div>
+
+            {/* Display trip cards */}
             <div className="container">
               <TripsList trips={trips} isCompProfile={false} />
             </div>
           </div>
         </div>
       );
-    } else {
+    }
+    // Else if data has not been fetched yet, show loading screen
+    else {
       return <LoadingBox />;
     }
   }
 }
-// Map state from store to props in component
+
+// Importing state from redux store
 const mapStateToProps = (state) => {
-  // console.log(state);
   const requests = state.firestore.status.requesting;
+  // Checking if any of the requess are being fetched
   const isLoading = requests
     ? Object.values(requests).some((value) => value === true)
     : null;
@@ -136,23 +154,24 @@ const mapStateToProps = (state) => {
   };
 };
 
+// Importing actions from redux store
 const mapDispatchToProps = (dispatch) => {
   return {
-    // so when we call props.createTrip, it's gonna perform a dispatch using the asynch middleware createTrip in src/store/actions
     searchBarShow: (show) => dispatch(searchBarShow(show)),
   };
 };
 
+// Connecting redux store with Dashboard component
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  // tells us which collections to connect to in our firebase project whenever this component, namely dashboard, is active
-  // Whenever collection trip is changed, it would call the firestore reducer which would update the state of this firestore
+
+  // An abstraction for the usage of redux with firebase. Loads the data from firestore in realtime
   firestoreConnect(() => {
     return [
       {
         collection: 'Trips',
         where: [['departureDate', '>=', today]], // only show upcoming trips
-        orderBy: ['departureDate'],
+        orderBy: ['departureDate'], // order by departure date
       },
     ];
   })

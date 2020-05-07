@@ -11,8 +11,6 @@ import RatingBar from './RatingBar.js';
 import ReviewStats from './ReviewStats';
 import LogoImage from '../displayImages/LogoImage';
 
-// const today = new Date();
-// 6 columns on medium and 12 column on small screens
 const CompanyProfile = (props) => {
   const {
     trips,
@@ -24,46 +22,47 @@ const CompanyProfile = (props) => {
     avgRating,
     wrongID,
   } = props;
-  const isInitialized = !isLoading && trips && company && auth && reviews;
-  if (wrongID) props.history.push('/'); // wrong id entered
-  const adminMode = auth.uid === props.match.params.id;
+
+  if (wrongID) props.history.push('/'); // If wrong id entered in the url, redirect to homepage
+  const adminMode = auth.uid === props.match.params.id; // Is this page being viewed by a logged in company?
+
   const [reviewModalShow, setReviewModalShow] = useState(false);
 
+  // if data has completely been fetched from Firestore, display the company profile
+  const isInitialized = !isLoading && trips && company && auth && reviews;
   if (isInitialized) {
+    // Messages showing that no reviews or trips are there for display
     const noTrips =
-      trips.length != 0 ? null : (
+      trips.length !== 0 ? null : (
         <p className="text-center text-secondary">
           No Trips have been added yet
         </p>
       );
     const noReviews =
-      reviews.length != 0 ? null : (
+      reviews.length !== 0 ? null : (
         <p className="text-center text-secondary">
           No Reviews have been added yet
         </p>
       );
+
     const currProfileType = profileType(auth, profile);
     return (
       <div className="row m-0 justify-content-center">
+        {/* Review statistics opens when the rating is clicked */}
         <ReviewStats
           show={reviewModalShow}
           onHide={() => setReviewModalShow(false)}
           reviews={reviews}
           avgRating={avgRating}
         />
+
+        {/* Show company cover photo */}
         <CoverImage img={company.coverImage} type="companyCover" />
-        {/* Logo Image for Overlapping */}
-        <div className="overlay row w-100 justify-content-lg-end justify-content-center">
-          {/* <LogoImage companyID={props.match.params.id} className="" /> */}
-          {/* <img
-          class="border-turq tb-border"
-          alt="100x100"
-          src={defaultLogo}
-          data-holder-rendered="true"
-          /> */}
-        </div>
+
+        {/* Company logo and edit profile button */}
         <div className="container thirdDrop">
           <div className="row justify-content-lg-between justify-content-sm-start mb-3">
+            {/* If we are in admin mode, display edit profile button */}
             <div>
               {adminMode && (
                 <button
@@ -77,6 +76,8 @@ const CompanyProfile = (props) => {
                 </button>
               )}
             </div>
+
+            {/* Show company logo */}
             <div className="logo-forward responsive bigscreen mr-1">
               <LogoImage
                 companyID={props.match.params.id}
@@ -85,12 +86,15 @@ const CompanyProfile = (props) => {
             </div>
           </div>
         </div>
+
+        {/* Company details */}
         <div className="container align-self-start bg-white frontDrop">
-          {/* First section */}
+          {/* FIRST SECTION (Company Details) */}
           <div className="row justify-content-between align-content-center">
             {/* Heading */}
             <div className="ml-lg-4 col-lg-7 text-secondary">
               <h1 className="mt-5 tripText justify-content-end">
+                {/*logo for small screens */}
                 <LogoImage
                   companyID={props.match.params.id}
                   className="img-fluid logo-on-profile2 rounded-circle mr-4 smallscreen"
@@ -98,7 +102,8 @@ const CompanyProfile = (props) => {
                 {company.companyName}
               </h1>
             </div>
-            {/* Description + Card */}
+
+            {/* Company Description */}
             <div className=" row ml-lg-4 col-lg-7 text-secondary">
               <hr class="mt-2 col-12 ml-0 divider2"></hr>
               <h3 className="mt-5 col-12 text-secondary">Description</h3>
@@ -109,7 +114,8 @@ const CompanyProfile = (props) => {
                 {company.description}
               </p>
             </div>
-            {/* {Company Card } */}
+
+            {/* Company Card with rating */}
             <div class="mr-5 change-card-width">
               <div class="card-body">
                 <div
@@ -124,7 +130,7 @@ const CompanyProfile = (props) => {
                   />
                   <h6 className="ml-4">
                     {' '}
-                    {reviews.length == 1
+                    {reviews.length === 1
                       ? reviews.length + ' Review'
                       : reviews.length + ' Reviews'}
                   </h6>
@@ -144,7 +150,7 @@ const CompanyProfile = (props) => {
             </div>
           </div>
 
-          {/* Second Section */}
+          {/* Second Section (Upcoming trips)*/}
           <div className="row p-4 mt-5 justify-content-center align-content-centre text-turq">
             <i class="fa fa-th fa-3x fa-fw" aria-hidden="false"></i>
             <h3 className="tripText"> Upcoming Trips</h3>
@@ -156,7 +162,7 @@ const CompanyProfile = (props) => {
             <TripsList trips={trips} isCompProfile={adminMode} />
           </div>
 
-          {/* Third Section */}
+          {/* Third Section (Company Reviews) */}
           <div className="row p-4 mt-5 justify-content-center align-content-centre text-turq">
             <i class="fa fa-th fa-3x fa-fw" aria-hidden="false"></i>
             <h3 className="tripText"> Company Reviews</h3>
@@ -180,16 +186,18 @@ const CompanyProfile = (props) => {
 
 // Map state from store to props in component
 const mapStateToProps = (state, ownProps) => {
-  console.log(state);
   const id = ownProps.match.params.id;
   const companies = state.firestore.data.Companies;
   const company = companies ? companies[id] : null;
   let wrongID = false;
+
+  // Checking if any of the requess are being fetched
   const requests = state.firestore.status.requesting;
   const isLoading = state.firestore.status.requesting
     ? Object.values(requests).some((value) => value === true)
     : null;
-  // in case a wrong id has been entered in the trip details page
+
+  // Checking if a wrong id has been entered in the trip details page (i.e. all requests are pending)
   const requested = state.firestore.status.requested;
   const initiatedRequests = requested
     ? Object.values(requested).every((value) => value === true)
@@ -198,7 +206,7 @@ const mapStateToProps = (state, ownProps) => {
     wrongID = true;
   }
 
-  // To get the rating bar
+  // To get the rating bar and calculate average rating
   const reviews = state.firestore.ordered.Reviews;
   let avgRating = 0;
   if (reviews && reviews.length > 0) {
@@ -208,6 +216,7 @@ const mapStateToProps = (state, ownProps) => {
     });
     avgRating = sum / reviews.length;
   }
+
   return {
     trips: state.firestore.ordered.Trips,
     company: company,
@@ -220,10 +229,11 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
+// Connecting redux store with Dashboard component
 export default compose(
   connect(mapStateToProps),
-  // tells us which collections to connect to in our firebase project whenever this component, namely dashboard, is active
-  // Whenever collection trip is changed, it would call the firestore reducer which would update the state of this firestore
+
+  // An abstraction for the usage of redux with firebase. Loads the data from firestore in realtime
   firestoreConnect((props) => [
     { collection: 'Companies', doc: props.match.params.id },
     {
