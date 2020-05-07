@@ -60,7 +60,7 @@ class FilterBar extends Component {
     companies = companies.sort(); // to display companies alphabetically
     return (
       <form onSubmit={this.handleFormSubmit} className="greenline-fix">
-        <div id="popup1" class="popup-overlay">
+        <div id="advancedSearch" class="popup-overlay">
           <div class="popup">
             <h3 className="text-center font-weight-bold">Advanced Search</h3>
             <a class="close" href="#">
