@@ -59,7 +59,7 @@ class Dashboard extends Component {
   render() {
     const { trips, profile, auth, isLoading } = this.props;
 
-    // If company is logged in, redirect to company profile
+    // Route Guarding: If company is logged in, redirect to company profile
     if (profileType(auth, profile) === 'Company') {
       return <Redirect to={'/companyprofile/' + auth.uid} />;
     }

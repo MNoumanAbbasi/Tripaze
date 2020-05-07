@@ -3,33 +3,28 @@ import { connect } from 'react-redux';
 import { signIn } from '../../store/actions/authActions';
 import { Link } from 'react-router-dom';
 
-// all css are from the materialized CSS class
 export class SignIn extends Component {
   state = {
     email: '',
     password: '',
   };
 
-  componentDidMount() {
-    console.log('Mounted');
-  }
-
   handleChange = (e) => {
     this.setState({
-      // is an email being entered or a password?
+      // set email or a password depending on the input id
       [e.target.id]: e.target.value,
     });
   };
 
   handleSubmit = (e) => {
-    // dont want the default action of page being reloaded
-    e.preventDefault();
-    this.props.signIn(this.state);
+    e.preventDefault(); // prevent the default action of a page reload on from submission
+    this.props.signIn(this.state); // call the sign in action on form submission
   };
 
   render() {
     const { auth, authError, history } = this.props;
 
+    // Route Guarding: If a user or company is logged in, this page should be inaccessible
     if (auth.uid) {
       history.push('/');
     }
@@ -41,6 +36,7 @@ export class SignIn extends Component {
             <h3 class="mt-20 mb-4 text-center">Sign In</h3>
 
             <div>
+              {/* Enter Email */}
               <input
                 onChange={this.handleChange}
                 type="email"
@@ -53,6 +49,7 @@ export class SignIn extends Component {
             </div>
 
             <div class="form-label-group">
+              {/* Enter Password */}
               <input
                 onChange={this.handleChange}
                 type="password"
@@ -64,6 +61,7 @@ export class SignIn extends Component {
             </div>
 
             <div class="custom-control custom-checkbox mb-3">
+              {/* Remember Password checkbox*/}
               <input
                 type="checkbox"
                 class="custom-control-input"
@@ -73,13 +71,17 @@ export class SignIn extends Component {
                 Remember password
               </label>
             </div>
+
             <div className="input-field">
+              {/* Sign in button*/}
               <button
                 class="btn btn-lg btn-secondary light-button form-rounded btn-block text-uppercase"
                 type="submit"
               >
                 Sign in
               </button>
+
+              {/* To display sign in error */}
               {authError && (
                 <div className="border border-danger rounded text-danger p-1">
                   <p>{authError}</p>
@@ -87,6 +89,8 @@ export class SignIn extends Component {
               )}
             </div>
             <hr></hr>
+
+            {/* Link to forget password page */}
             <div className="text-center">
               <Link to="/forgetpassword">Forgot Password?</Link>
             </div>
