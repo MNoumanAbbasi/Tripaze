@@ -48,8 +48,9 @@ const MapContainer = (props) => {
   };
 
   const placeMarkers = () => {
-    return coordinates.map((coord, index) => {
-      if (isInCountry(coord, countryLimits)) {
+    return coordinates
+      .filter((coord) => isInCountry(coord, countryLimits))
+      .map((coord, index) => {
         return (
           <Marker
             key={index}
@@ -60,8 +61,7 @@ const MapContainer = (props) => {
             }}
           />
         );
-      }
-    });
+      });
   };
 
   useEffect(() => {

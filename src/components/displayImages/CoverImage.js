@@ -19,11 +19,10 @@ const CoverImage = (props) => {
 
   useEffect(() => {
     // if no image linked, use default coverPhoto
-    console.log(props.img);
     if (!props.img || props.img === '') setUrl(defaultCover);
     // else fetch from database
     else getUrl();
-  }, []);
+  }, [props.img]);
 
   return (
     <img alt={`${props.type} Cover`} src={url} className="w-100 backDrop"></img>

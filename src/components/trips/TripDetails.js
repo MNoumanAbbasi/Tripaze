@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
@@ -23,21 +23,24 @@ const TripDetails = (props) => {
     FAQs,
     avgRating,
     reviewLength,
-  } = props; // getting trip category from props
-  console.log(reviewLength);
+  } = props;
+
+  // show loading box while the data is fetched from database
   const isInitialized = !isLoading && trip && FAQs && reviewLength != null;
-
-  const [modalShow, setModalShow] = useState(false);
-
   if (!isInitialized) {
     return <LoadingBox />;
   }
+
+  // True if the trip in question is owned by the logged in company
+  const adminMode = auth.uid === trip.companyId;
   let deleteButton = null;
   let editButton = null;
-  const adminMode = auth.uid === trip.companyId;
+
   // Route guarding
   if (profile && profileType(auth, profile) === 'Company' && !adminMode)
     props.history.push('/');
+
+  // Edit and delete trip buttons shown for page when adminMode is true
   if (adminMode) {
     props.readNotification(props.match.params.id); // read the notification
     editButton = (
@@ -54,14 +57,13 @@ const TripDetails = (props) => {
         type="button"
         class="btn btn-lg red-button form-rounded border-red mt-4"
         onClick={() => deleteModal(props, trip.img)}
-        // onClick={() => setModalShow(true)}
       >
         DELETE <i class="fa fas fa-trash fa-fw"></i>
       </button>
     );
   }
   const noQuestions =
-    FAQs.length != 0 ? null : (
+    FAQs.length !== 0 ? null : (
       <p className="text-center text-secondary">
         No Questions have been added yet
       </p>
@@ -107,7 +109,7 @@ const TripDetails = (props) => {
                   editing={false}
                 />
                 <p>
-                  {reviewLength == 1
+                  {reviewLength === 1
                     ? reviewLength + ' Review'
                     : reviewLength + ' Reviews'}
                 </p>
@@ -200,10 +202,9 @@ const TripDetails = (props) => {
 
 // ownProps are the props of the component before we attach anything to it
 const mapStateToProps = (state, ownProps) => {
-  // console.log('trip', state);
   const id = ownProps.match.params.id;
   const trips = state.firestore.data.Trips; // using data instead of ordered here since we are interested in referencing specific trips (hash table)
-  const trip = trips ? trips[id] : null; // if there are any projects, find the project with the given data
+  const trip = trips ? trips[id] : null; // if there are any trips, find the trip with the given id
   const requests = state.firestore.status.requesting;
   const isLoading = requests
     ? Object.values(requests).some((value) => value === true)
@@ -234,7 +235,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // so when we call props.createTrip, it's gonna perform a dispatch using the asynch middleware createTrip in src/store/actions
     deleteTrip: (tripName, tripID) => dispatch(deleteTrip(tripName, tripID)),
     readNotification: (tripID) => dispatch(readNotification(tripID)),
   };

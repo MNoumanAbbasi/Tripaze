@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { resetPassword } from '../../store/actions/authActions';
-import { set } from 'jsonpointer';
 
 const ForgetPassword = (props) => {
   const [email, setEmail] = useState('');
@@ -17,7 +16,8 @@ const ForgetPassword = (props) => {
 
   // Change email sent state based on authError
   useEffect(() => {
-    if (authError == 'none') {
+    // If no error in sending email, set email sent state to true
+    if (authError === 'none') {
       setIsEmailSent(true);
     } else {
       setIsEmailSent(false);
@@ -41,7 +41,7 @@ const ForgetPassword = (props) => {
               autoFocus
             />
           </div>
-
+          {/* If email sent then display success otherwise reset button */}
           {isEmailSent ? (
             <div className="border border-success rounded text-success m-1 p-1">
               <i class="fa fas fa-check-circle p-2"></i>

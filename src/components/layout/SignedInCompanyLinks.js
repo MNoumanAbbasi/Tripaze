@@ -9,7 +9,6 @@ import { verifyEmail } from '../modals/EditProfileModals';
 
 // this is a functional component, not a class, so we need to pass the props as argument
 const SignedInCompanyLinks = (props) => {
-  console.log(props);
   const handleOnClick = () => {
     if (props.verified) props.history.push('/createtrip');
     else verifyEmail();

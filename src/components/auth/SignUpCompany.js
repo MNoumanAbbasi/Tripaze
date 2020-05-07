@@ -5,8 +5,7 @@ import { compose } from 'redux';
 import { signUpCompany } from '../../store/actions/authActions';
 import { Link } from 'react-router-dom';
 import { succesfulSignUp } from '../modals/AuthModals';
-// TODO: CHANGE THIS TO MAKE IT A USER
-// all css are from the materialized CSS class
+
 export class SignUpCompany extends Component {
   state = {
     email: '',
@@ -16,23 +15,22 @@ export class SignUpCompany extends Component {
 
   handleChange = (e) => {
     this.setState({
-      // is an email being entered or a password?
+      // set state depending on the input id
       [e.target.id]: e.target.value,
     });
   };
 
   handleSubmit = (e) => {
-    // dont want the default action of page being reloaded
-    e.preventDefault();
-    this.props.signUp(this.state);
+    e.preventDefault(); // prevent the default action of a page reload on from submission
+    this.props.signUp(this.state); // call the sign in action on form submission
   };
 
   render() {
     const { auth, authError } = this.props;
 
     if (auth.uid) {
-      succesfulSignUp();
-      this.props.history.goBack();
+      succesfulSignUp(); // display a sign up successful page after sign up complete (so auth uid is not null)
+      this.props.history.push('/'); // Route Guarding: If a user or company is logged in, this page should be inaccessible
     }
 
     return (
@@ -40,6 +38,8 @@ export class SignUpCompany extends Component {
         <div className="col-lg-3 col-md-4 col-sm-6 center-align">
           <form onSubmit={this.handleSubmit} className="change-font-opensans ">
             <h3 class="mt-20 mb-4 text-center">Sign Up as Company</h3>
+
+            {/* Enter company name */}
             <div>
               <input
                 onChange={this.handleChange}
@@ -50,6 +50,8 @@ export class SignUpCompany extends Component {
                 required
               />
             </div>
+
+            {/* Enter company number */}
             <div>
               <input
                 onChange={this.handleChange}
@@ -60,6 +62,8 @@ export class SignUpCompany extends Component {
                 required
               />
             </div>
+
+            {/* Enter company email */}
             <div>
               <input
                 onChange={this.handleChange}
@@ -70,6 +74,8 @@ export class SignUpCompany extends Component {
                 required
               />
             </div>
+
+            {/* Enter password */}
             <div class="form-label-group">
               <input
                 onChange={this.handleChange}
@@ -80,6 +86,8 @@ export class SignUpCompany extends Component {
                 required
               />
             </div>
+
+            {/* Check box to accept that the company is a registered one */}
             <div class="custom-control custom-checkbox mb-3">
               <input
                 type="checkbox"
@@ -93,6 +101,7 @@ export class SignUpCompany extends Component {
               </label>
             </div>
 
+            {/* Sign up button */}
             <div>
               <button
                 class="btn btn-lg btn-secondary light-button form-rounded btn-block text-uppercase"
@@ -109,6 +118,8 @@ export class SignUpCompany extends Component {
               )}
             </div>
             <hr></hr>
+
+            {/* Link to sign up as user */}
             <div className="text-center">
               <h5 class="m-0 ">Are you a User?</h5>
               <Link to="/signupuser">Sign Up here</Link>
@@ -136,5 +147,5 @@ const mapDispatchToProps = (dispatch) => {
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  withRouter
+  withRouter // to access route-router props for url redirections
 )(SignUpCompany);

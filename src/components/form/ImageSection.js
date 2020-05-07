@@ -40,27 +40,10 @@ const ImageSection = (props) => {
       },
       (error) => {
         // Handle Errors
-        switch (error.code) {
-          case 'storage/unauthorized':
-            // User doesn't have permission to access the object
-            console.log(error.code);
-            break;
-          case 'storage/canceled':
-            // User canceled the upload
-            console.log(error.code);
-            break;
-          case 'storage/unknown':
-            // Unknown error occurred, inspect error.serverResponse
-            console.log(error.code);
-            break;
-          default:
-            console.log(error.code);
-            break;
-        }
+        console.log(error.code);
       },
       () => {
         // Handle Successful Upload
-        console.log('Successfull upload of image', fileName);
         props.handleImgNameChange(fileName);
         setIsUploaded(true);
       }
@@ -77,7 +60,6 @@ const ImageSection = (props) => {
       .delete()
       .then(() => {
         // File deleted successfully
-        console.log('Successfull deletion of image');
         props.handleImgNameChange('');
       })
       .catch((error) => {

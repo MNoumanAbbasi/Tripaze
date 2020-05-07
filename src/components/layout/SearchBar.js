@@ -76,7 +76,7 @@ export class SearchBar extends Component {
               className="btn btn-secondary change-color adjusted-btn border-0 form-rounded"
               type="submit"
             >
-              <i class="fa fa-search"></i>
+              <i className="fa fa-search"></i>
             </button>
           </div>
         </form>
