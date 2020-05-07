@@ -23,18 +23,24 @@ const TripDetails = (props) => {
     FAQs,
     avgRating,
     reviewLength,
-  } = props; // getting trip category from props
-  const isInitialized = !isLoading && trip && FAQs && reviewLength != null;
+  } = props;
 
+  // show loading box while the data is fetched from database
+  const isInitialized = !isLoading && trip && FAQs && reviewLength != null;
   if (!isInitialized) {
     return <LoadingBox />;
   }
+
+  // True if the trip in question is owned by the logged in company
+  const adminMode = auth.uid === trip.companyId;
   let deleteButton = null;
   let editButton = null;
-  const adminMode = auth.uid === trip.companyId;
+
   // Route guarding
   if (profile && profileType(auth, profile) === 'Company' && !adminMode)
     props.history.push('/');
+
+  // Buttons and actions for page when adminMode is true
   if (adminMode) {
     props.readNotification(props.match.params.id); // read the notification
     editButton = (
@@ -198,7 +204,7 @@ const TripDetails = (props) => {
 const mapStateToProps = (state, ownProps) => {
   const id = ownProps.match.params.id;
   const trips = state.firestore.data.Trips; // using data instead of ordered here since we are interested in referencing specific trips (hash table)
-  const trip = trips ? trips[id] : null; // if there are any projects, find the project with the given data
+  const trip = trips ? trips[id] : null; // if there are any trips, find the trip with the given id
   const requests = state.firestore.status.requesting;
   const isLoading = requests
     ? Object.values(requests).some((value) => value === true)
@@ -229,7 +235,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // so when we call props.createTrip, it's gonna perform a dispatch using the asynch middleware createTrip in src/store/actions
     deleteTrip: (tripName, tripID) => dispatch(deleteTrip(tripName, tripID)),
     readNotification: (tripID) => dispatch(readNotification(tripID)),
   };
