@@ -58,14 +58,14 @@ class Dashboard extends Component {
 
   render() {
     const { trips, profile, auth, isLoading } = this.props;
-    const isInitialized = trips && !isLoading;
 
     // If company is logged in, redirect to company profile
     if (profileType(auth, profile) === 'Company') {
       return <Redirect to={'/companyprofile/' + auth.uid} />;
     }
 
-    // if data has been fetched from Firestore, display the homepage
+    // if data has completely been fetched from Firestore, display the homepage
+    const isInitialized = trips && !isLoading;
     if (isInitialized) {
       return (
         <div className="homePage">
@@ -161,8 +161,10 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
+// Connecting redux store with Dashboard component
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
+
   // An abstraction for the usage of redux with firebase. Loads the data from firestore in realtime
   firestoreConnect(() => {
     return [
