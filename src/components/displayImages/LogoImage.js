@@ -20,7 +20,7 @@ const LogoImage = ({ companyID, className }) => {
     docRef.get().then((doc) => {
       if (doc.exists) {
         const imageName = doc.data().logoImage;
-        if (imageName == '') {
+        if (imageName === '') {
           setUrl(defaultLogo);
         } else {
           getUrl(imageName);

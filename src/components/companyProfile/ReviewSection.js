@@ -5,7 +5,6 @@ import SignInToAccess from '../modals/SignInToAccess';
 import RatingBar from './RatingBar.js';
 import RatingBarInput from './RatingBarInput.js';
 import moment from 'moment';
-import swal from 'sweetalert';
 import {
   alreadyReviewedModal,
   deleteReviewModal,

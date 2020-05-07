@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import React from 'react';
+import { Modal } from 'react-bootstrap';
 import RatingBar from '../companyProfile/RatingBar.js';
 
 function ReviewStats(props) {
@@ -48,7 +48,7 @@ function ReviewStats(props) {
             <div class="row align-items-center">
               <div class="col-4 text-right">
                 <i aria-hidden="true" class="fa fa-star gold"></i>
-                {' ' + '5'}
+                {' 5'}
               </div>
               <div class="col-8">
                 <div class="progress" style={{ height: '15px' }}>
@@ -66,7 +66,7 @@ function ReviewStats(props) {
             <div class="row align-items-center">
               <div class="col-4 text-right">
                 <i aria-hidden="true" class="fa fa-star gold"></i>
-                {' ' + '4'}
+                {' 4'}
               </div>
               <div class="col-8">
                 <div class="progress" style={{ height: '15px' }}>
@@ -84,7 +84,7 @@ function ReviewStats(props) {
             <div class="row align-items-center">
               <div class="col-4 text-right">
                 <i aria-hidden="true" class="fa fa-star gold"></i>
-                {' ' + '3'}
+                {' 3'}
               </div>
               <div class="col-8">
                 <div class="progress" style={{ height: '15px' }}>
@@ -102,7 +102,7 @@ function ReviewStats(props) {
             <div class="row align-items-center">
               <div class="col-4 text-right">
                 <i aria-hidden="true" class="fa fa-star gold"></i>
-                {' ' + '2'}
+                {' 2'}
               </div>
               <div class="col-8">
                 <div class="progress" style={{ height: '15px' }}>
@@ -120,7 +120,7 @@ function ReviewStats(props) {
             <div class="row align-items-center">
               <div class="col-4 text-right">
                 <i aria-hidden="true" class="fa fa-star gold"></i>
-                {' ' + '1'}
+                {' 1'}
               </div>
               <div class="col-8">
                 <div class="progress" style={{ height: '15px' }}>
