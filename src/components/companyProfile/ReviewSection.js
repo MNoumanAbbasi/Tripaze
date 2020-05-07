@@ -69,6 +69,8 @@ const AddNewReviewForm = (props) => {
             maxLength={400}
             required
           />
+          <p></p>
+          <p className="review">{+review === '' ? 0 : review.length}/400</p>
           <div className="form-row mr-3 justify-content-end">
             <button className="btn form-rounded r-green-button">Add</button>
           </div>
