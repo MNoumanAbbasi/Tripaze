@@ -22,7 +22,7 @@ const CardImage = (props) => {
     if (props.img === '') setUrl(coverPhoto);
     // else fetch from database
     else getUrl();
-  }, [props.img]);
+  }, []);
 
   return <img alt={`${props.type} Card`} className="card-img-top" src={url} />;
 };
