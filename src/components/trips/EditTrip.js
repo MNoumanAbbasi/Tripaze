@@ -9,6 +9,7 @@ import { Formik, Form } from 'formik';
 import { tripSchema } from './CreateTrip';
 import InputField from '../form/InputField';
 import moment from 'moment';
+import LoadingBox from './../dashboard/LoadingBox';
 import { confirmEditModal } from '../modals/TripModals';
 import { cancelModal } from '../modals/StandardModals';
 import OnSubmitValidationError from '../form/OnSubmitValidationError';
@@ -16,13 +17,17 @@ import OnSubmitValidationError from '../form/OnSubmitValidationError';
 const EditTrip = (props) => {
   const { trip, isLoading, auth } = props;
   const isInitialized = !isLoading && trip;
+  // if user is the owner of the trip
   const adminMode = trip && auth.uid === trip.companyId;
 
-  // wrong id entered
+  // if wrong id entered
   if (!isLoading && !trip && auth) props.history.push('/');
+
+  // Page not loaded
   if (!isInitialized) {
-    return <div>Loading...</div>;
+    return <LoadingBox />;
   } else if (!adminMode) {
+    // if user not owner, we go back
     props.history.goBack();
   }
   return (
@@ -58,6 +63,7 @@ const EditTrip = (props) => {
           >
             {({ values, errors }) => (
               <Form>
+                {/* Display error dialog box on validation errors */}
                 <OnSubmitValidationError errors={errors} />
 
                 <InputField label="Title" name="title" type="text" />
