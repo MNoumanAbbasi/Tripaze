@@ -12,6 +12,7 @@ import { confirmEditModal } from '../modals/EditProfileModals';
 import { cancelModal } from '../modals/StandardModals';
 import OnSubmitValidationError from '../form/OnSubmitValidationError';
 
+// Schema for validating input for edit profile page
 const profileSchema = yup.object({
   companyName: yup.string().max(20, 'Max 20 characters').required('Required'),
   contact: yup
@@ -33,7 +34,6 @@ const EditProfile = (props) => {
   const { auth, company, profile, isLoading } = props;
   const isInitialized = !isLoading && profile && auth;
   const adminMode = auth.uid === props.match.params.id;
-  if (!isLoading && !company && auth) props.history.push('/'); // wrong id entered
 
   if (!isInitialized) {
     return <div>Loading...</div>;
@@ -67,6 +67,7 @@ const EditProfile = (props) => {
           >
             {({ values, errors }) => (
               <Form>
+                {/* Dialog box if there are errors in the form */}
                 <OnSubmitValidationError errors={errors} />
                 <InputField
                   label="Company name"
@@ -131,6 +132,7 @@ const EditProfile = (props) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
+  // Pre-loading previous information
   const id = ownProps.match.params.id;
   const companies = state.firestore.data.Companies;
   const company = companies ? companies[id] : null;
