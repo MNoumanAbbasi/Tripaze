@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
@@ -27,8 +27,6 @@ const TripDetails = (props) => {
   console.log(reviewLength);
   const isInitialized = !isLoading && trip && FAQs && reviewLength != null;
 
-  const [modalShow, setModalShow] = useState(false);
-
   if (!isInitialized) {
     return <LoadingBox />;
   }
@@ -54,14 +52,13 @@ const TripDetails = (props) => {
         type="button"
         class="btn btn-lg red-button form-rounded border-red mt-4"
         onClick={() => deleteModal(props, trip.img)}
-        // onClick={() => setModalShow(true)}
       >
         DELETE <i class="fa fas fa-trash fa-fw"></i>
       </button>
     );
   }
   const noQuestions =
-    FAQs.length != 0 ? null : (
+    FAQs.length !== 0 ? null : (
       <p className="text-center text-secondary">
         No Questions have been added yet
       </p>
@@ -107,7 +104,7 @@ const TripDetails = (props) => {
                   editing={false}
                 />
                 <p>
-                  {reviewLength == 1
+                  {reviewLength === 1
                     ? reviewLength + ' Review'
                     : reviewLength + ' Reviews'}
                 </p>

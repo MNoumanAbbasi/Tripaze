@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { signIn } from '../../store/actions/authActions';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // all css are from the materialized CSS class
 export class SignIn extends Component {

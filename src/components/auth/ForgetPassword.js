@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { resetPassword } from '../../store/actions/authActions';
-import { set } from 'jsonpointer';
 
 const ForgetPassword = (props) => {
   const [email, setEmail] = useState('');
@@ -17,7 +16,7 @@ const ForgetPassword = (props) => {
 
   // Change email sent state based on authError
   useEffect(() => {
-    if (authError == 'none') {
+    if (authError === 'none') {
       setIsEmailSent(true);
     } else {
       setIsEmailSent(false);

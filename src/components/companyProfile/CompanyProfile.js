@@ -124,7 +124,7 @@ const CompanyProfile = (props) => {
                   />
                   <h6 className="ml-4">
                     {' '}
-                    {reviews.length == 1
+                    {reviews.length === 1
                       ? reviews.length + ' Review'
                       : reviews.length + ' Reviews'}
                   </h6>

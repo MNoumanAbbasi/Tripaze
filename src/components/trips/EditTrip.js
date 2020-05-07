@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { editTrip } from '../../store/actions/tripActions';
 import { firestoreConnect } from 'react-redux-firebase';
@@ -17,7 +17,6 @@ const EditTrip = (props) => {
   const { trip, isLoading, auth } = props;
   const isInitialized = !isLoading && trip;
   const adminMode = trip && auth.uid === trip.companyId;
-  const [values, setValues] = useState(false);
 
   // wrong id entered
   if (!isLoading && !trip && auth) props.history.push('/');
@@ -54,7 +53,6 @@ const EditTrip = (props) => {
             validationSchema={tripSchema}
             onSubmit={(values) => {
               values.departureDate = new Date(values.departureDate);
-              setValues(values);
               confirmEditModal(values, props);
             }}
           >
