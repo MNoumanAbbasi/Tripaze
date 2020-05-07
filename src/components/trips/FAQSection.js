@@ -42,7 +42,6 @@ const FAQ = (props) => {
 const AddQuestionForm = (props) => {
   const [question, setQuestion] = useState('');
   const handleSubmit = (event) => {
-    // console.log('asd', question);
     event.preventDefault();
     props.onSubmit(question);
     succesfulQuestionModal();

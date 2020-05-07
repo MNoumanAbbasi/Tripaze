@@ -9,7 +9,6 @@ const initState = {
 const authReducer = (state = initState, action) => {
   switch (action.type) {
     case 'SIGNIN_SUCCESS':
-      console.log('sign in success');
       return {
         ...state,
         authError: null,
@@ -29,14 +28,12 @@ const authReducer = (state = initState, action) => {
         authError: null,
       };
     case 'PROFILE_LOADING':
-      console.log('profile is being loaded');
       return {
         ...state,
         authError: null,
         profileLoading: true,
       };
     case 'PROFILE_LOAD_SUCCESS':
-      console.log('profile loaded successfully');
       return {
         ...state,
         authError: null,
@@ -52,7 +49,6 @@ const authReducer = (state = initState, action) => {
         profileLoading: false,
       };
     case 'SIGNOUT_SUCCESS':
-      console.log('signout success');
       return {
         ...state,
         profile: null,
@@ -60,7 +56,6 @@ const authReducer = (state = initState, action) => {
         profileLoading: false,
       };
     case 'SIGNUP_SUCCESS':
-      console.log('sign up success');
       return {
         ...state,
         authError: null,
@@ -81,7 +76,6 @@ const authReducer = (state = initState, action) => {
         profileLoading: false,
       };
     case 'RESET_SUCCESS':
-      console.log('password reset success');
       return {
         ...state,
         authError: 'none', // use this for changing state at forget pass page

@@ -43,7 +43,6 @@ const Navbar = (props) => {
 
 const mapStateToProps = (state) => {
   const verified = state.firebase ? state.firebase.auth.emailVerified : null;
-  console.log(state);
   return {
     verified: verified,
     auth: state.firebase.auth,

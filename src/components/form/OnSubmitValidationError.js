@@ -7,7 +7,6 @@ const OnSubmitValidationError = (props) => {
 
   const effect = () => {
     if (formik.submitCount > 0 && !formik.isSubmitting && !formik.isValid) {
-      console.log('errors', errors);
       errorsModal(errors);
     }
   };

@@ -60,7 +60,6 @@ const ImageSection = (props) => {
       },
       () => {
         // Handle Successful Upload
-        console.log('Successfull upload of image', fileName);
         props.handleImgNameChange(fileName);
         setIsUploaded(true);
       }
@@ -77,7 +76,6 @@ const ImageSection = (props) => {
       .delete()
       .then(() => {
         // File deleted successfully
-        console.log('Successfull deletion of image');
         props.handleImgNameChange('');
       })
       .catch((error) => {

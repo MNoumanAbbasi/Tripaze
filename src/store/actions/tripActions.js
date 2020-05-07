@@ -82,7 +82,6 @@ export const deleteTrip = (img, tripID) => {
       .delete()
       .then(() => {
         // File deleted successfully
-        console.log('Successfull deletion of image');
       })
       .catch((error) => {
         console.log(error);
