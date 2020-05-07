@@ -34,8 +34,8 @@ const Review = (props) => {
       <div className="ml-3">
         {' '}
         <RatingBar name="companyrating" value={props.rating} editing={false} />
-        <h6 className="review">{props.review}</h6>
-        <p className="review">
+        <h6 className="review text-secondary">{props.review}</h6>
+        <p className="review text-secondary">
           Added on:
           {' ' + moment(props.timestamp.toDate()).format('MMMM Do YYYY')}
         </p>
