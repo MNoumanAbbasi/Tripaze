@@ -77,7 +77,9 @@ const SearchResults = (props) => {
       return (
         <div className="container cardslist-margin">
           <div className="d-flex justify-content-center search-results ">
-            <h2 className="font-color-grey change-font">Search Results</h2>
+            <h2 className="font-color-grey change-font">
+              Search Results: No trips found
+            </h2>
           </div>
         </div>
       );
