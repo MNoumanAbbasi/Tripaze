@@ -31,13 +31,13 @@ const CompanyProfile = (props) => {
 
   if (isInitialized) {
     const noTrips =
-      trips.length != 0 ? null : (
+      trips.length !== 0 ? null : (
         <p className="text-center text-secondary">
           No Trips have been added yet
         </p>
       );
     const noReviews =
-      reviews.length != 0 ? null : (
+      reviews.length !== 0 ? null : (
         <p className="text-center text-secondary">
           No Reviews have been added yet
         </p>

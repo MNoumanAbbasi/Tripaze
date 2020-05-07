@@ -9,7 +9,9 @@ import moment from 'moment';
 const TripCard = ({ trip, isCompProfile }) => {
   let notification = null;
   if (trip.notifications && isCompProfile) {
-    notification = <img src={notifi} className="top-right" />;
+    notification = (
+      <img src={notifi} alt="Notification" className="top-right" />
+    );
   }
   return (
     <Link to={'/trip/' + trip.id} className="nav-link">

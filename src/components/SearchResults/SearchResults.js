@@ -59,7 +59,7 @@ const SearchResults = (props) => {
     if (filteredTrips.length > 0) {
       // Show plural "trips" when more than one trip returned
       const message =
-        filteredTrips.length == 1
+        filteredTrips.length === 1
           ? filteredTrips.length + ' trip found'
           : filteredTrips.length + ' trips found';
       return (
