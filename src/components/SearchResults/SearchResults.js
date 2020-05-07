@@ -60,8 +60,8 @@ const SearchResults = (props) => {
       // Show plural "trips" when more than one trip returned
       const message =
         filteredTrips.length == 1
-          ? filteredTrips.length + ' trip matched the search'
-          : filteredTrips.length + ' trips matched the search';
+          ? filteredTrips.length + ' trip found'
+          : filteredTrips.length + ' trips found';
       return (
         <div className="container cardslist-margin">
           <div className="d-flex justify-content-center search-results ">
@@ -77,7 +77,9 @@ const SearchResults = (props) => {
       return (
         <div className="container cardslist-margin">
           <div className="d-flex justify-content-center search-results ">
-            <h2 className="font-color-grey change-font">Search Results</h2>
+            <h2 className="font-color-grey change-font">
+              Search Results: No trips found
+            </h2>
           </div>
         </div>
       );
