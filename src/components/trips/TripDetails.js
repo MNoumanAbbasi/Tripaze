@@ -24,7 +24,6 @@ const TripDetails = (props) => {
     avgRating,
     reviewLength,
   } = props; // getting trip category from props
-  console.log(reviewLength);
   const isInitialized = !isLoading && trip && FAQs && reviewLength != null;
 
   if (!isInitialized) {
@@ -197,7 +196,6 @@ const TripDetails = (props) => {
 
 // ownProps are the props of the component before we attach anything to it
 const mapStateToProps = (state, ownProps) => {
-  // console.log('trip', state);
   const id = ownProps.match.params.id;
   const trips = state.firestore.data.Trips; // using data instead of ordered here since we are interested in referencing specific trips (hash table)
   const trip = trips ? trips[id] : null; // if there are any projects, find the project with the given data
