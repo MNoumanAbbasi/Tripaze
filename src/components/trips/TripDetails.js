@@ -106,7 +106,11 @@ const TripDetails = (props) => {
                   className="ml-lg-4"
                   editing={false}
                 />
-                <p>{reviewLength} Reviews</p>
+                <p>
+                  {reviewLength == 1
+                    ? reviewLength + ' Review'
+                    : reviewLength + ' Reviews'}
+                </p>
               </div>
             </div>
           </div>

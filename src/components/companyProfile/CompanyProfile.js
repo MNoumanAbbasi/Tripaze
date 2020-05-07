@@ -122,7 +122,12 @@ const CompanyProfile = (props) => {
                     className="ml-2"
                     editing={true}
                   />
-                  <h6 className="ml-4">{reviews.length} Reviews</h6>
+                  <h6 className="ml-4">
+                    {' '}
+                    {reviews.length == 1
+                      ? reviews.length + ' Review'
+                      : reviews.length + ' Reviews'}
+                  </h6>
                 </div>
                 <h6 class="card-title change-font font-weight-bold text-uppercase colored mt-5">
                   <i class="fa fa-phone fa-2x fa-fw" aria-hidden="true"></i>

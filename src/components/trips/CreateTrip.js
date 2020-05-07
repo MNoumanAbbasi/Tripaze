@@ -34,7 +34,7 @@ export const tripSchema = yup.object({
     .max(99999, 'Max price 99999')
     .required('Required'),
   capacity: yup.number().positive('Invalid capactiy').max(1000, 'Max 1000'),
-  description: yup.string(),
+  description: yup.string().max(1500, 'Max 1500 characters'),
   attractions: yup.array().of(yup.string()),
   image: yup.string(),
 });

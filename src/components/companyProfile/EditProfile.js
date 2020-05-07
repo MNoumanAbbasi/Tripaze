@@ -21,7 +21,10 @@ const profileSchema = yup.object({
     .max(11, 'Too long')
     .required('Required'),
   location: yup.string().max(20, 'Max 20 characters').required('Required'),
-  description: yup.string().max(1000, 'Max 15 characters').required('Required'),
+  description: yup
+    .string()
+    .max(1000, 'Max 1000 characters')
+    .required('Required'),
   logoImage: yup.string(),
   coverImage: yup.string(),
 });
