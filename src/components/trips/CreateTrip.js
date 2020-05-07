@@ -8,9 +8,14 @@ import InputField from '../form/InputField';
 import ImageSection from '../form/ImageSection';
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
+import LoadingBox from './../dashboard/LoadingBox';
 import { succesfulCreateTripModal } from '../modals/TripModals';
 import OnSubmitValidationError from '../form/OnSubmitValidationError';
 
+/**
+ * Validation schema for trip details. Used for both create and
+ * edit trip forms.
+ */
 export const tripSchema = yup.object({
   title: yup.string().max(20, 'Max 20 characters').required('Required'),
   destinations: yup
@@ -43,13 +48,16 @@ const CreateTrip = (props) => {
   const { auth, profile, isLoading } = props;
   const isInitialized = !isLoading && profile && auth;
 
+  // If this user is not authorized to create trip
   if (isInitialized && profileType(auth, profile) !== 'Company') {
     return <Redirect to="/" />;
   }
 
+  // Page not loaded
   if (!isInitialized) {
-    return <div>Loading...</div>; // TODO: Display loading box
+    return <LoadingBox />;
   }
+  // Else page loaded
   return (
     <div className="container border mb-4 mt-5 object-shadow">
       <div className="row mt-5">
@@ -84,6 +92,7 @@ const CreateTrip = (props) => {
           >
             {({ values, errors }) => (
               <Form>
+                {/* Display error dialog box on validation errors */}
                 <OnSubmitValidationError errors={errors} />
 
                 <InputField label="Title" name="title" type="text" />
@@ -162,10 +171,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // so when we call props.createTrip, it's gonna perform a dispatch using the asynch middleware createTrip in src/store/actions
     createTrip: (trip, profile) => dispatch(createTrip(trip, profile)),
   };
 };
 
-// passing null since mapStateToProps = null
 export default connect(mapStateToProps, mapDispatchToProps)(CreateTrip);
