@@ -16,6 +16,7 @@ const ForgetPassword = (props) => {
 
   // Change email sent state based on authError
   useEffect(() => {
+    // If no error in sending email, set email sent state to true
     if (authError === 'none') {
       setIsEmailSent(true);
     } else {
@@ -40,7 +41,7 @@ const ForgetPassword = (props) => {
               autoFocus
             />
           </div>
-
+          {/* If email sent then display success otherwise reset button */}
           {isEmailSent ? (
             <div className="border border-success rounded text-success m-1 p-1">
               <i class="fa fas fa-check-circle p-2"></i>

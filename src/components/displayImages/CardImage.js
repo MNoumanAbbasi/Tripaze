@@ -7,6 +7,7 @@ const CardImage = (props) => {
   const [url, setUrl] = useState(spinner);
   const folderName = props.type + 'Images';
 
+  // Fetch the url from of image from storage
   const getUrl = () => {
     return storage
       .ref(folderName)
@@ -22,7 +23,7 @@ const CardImage = (props) => {
     if (props.img === '') setUrl(coverPhoto);
     // else fetch from database
     else getUrl();
-  }, [props.img]);
+  }, []);
 
   return <img alt={`${props.type} Card`} className="card-img-top" src={url} />;
 };
