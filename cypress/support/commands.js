@@ -35,3 +35,31 @@ Cypress.Commands.add('signout', () => {
     }
   });
 });
+
+// -- This will sign in a user --
+Cypress.Commands.add('signinUser', () => {
+  const email = 'qakjcdwwxzgrpyjwld@awdrt.org';
+  const password = 'password123';
+  cy.visit('/signin');
+  cy.wait(500);
+  cy.get('body').then(($body) => {
+    if ($body.find('Sign In').length) {
+      cy.get('#email').clear().type(email);
+      cy.get('#password').clear().type(password).type('{enter}');
+    }
+  });
+});
+
+// -- This will sign in a verfied company --
+Cypress.Commands.add('signinCompany', () => {
+  const email = 'mnsxirqsoiawfqxhhz@ttirv.com';
+  const password = 'password123';
+  cy.visit('/signin');
+  cy.wait(500);
+  cy.get('body').then(($body) => {
+    if ($body.find('Sign In').length) {
+      cy.get('#email').clear().type(email);
+      cy.get('#password').clear().type(password).type('{enter}');
+    }
+  });
+});
