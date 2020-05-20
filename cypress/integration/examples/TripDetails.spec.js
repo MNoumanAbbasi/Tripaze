@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('Company Profile', () => {
+describe('Trip details', () => {
   before(() => {
     cy.visit('http://localhost:3000/trip/loDX1WxLBxRgV2UyQYqh');
   });
