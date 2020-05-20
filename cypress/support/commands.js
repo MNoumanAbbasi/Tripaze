@@ -23,3 +23,15 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+// -- This will sign out the user if signed in --
+Cypress.Commands.add('signout', () => {
+  cy.visit('/');
+  cy.wait(500);
+  cy.get('#navbarSupportedContent').then(($navbar) => {
+    if ($navbar.find('[data-cy=signout]').length) {
+      cy.get('[data-cy=signout]').click();
+      cy.wait(500);
+    }
+  });
+});

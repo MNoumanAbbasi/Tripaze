@@ -5,7 +5,8 @@
  */
 describe('Sign in User', () => {
   before(() => {
-    cy.clearCookies();
+    // Sign out if already signed in
+    cy.signout();
     cy.visit('/signin');
     setTimeout(2000);
   });

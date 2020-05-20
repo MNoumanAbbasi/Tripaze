@@ -36,6 +36,7 @@ const SignedInCompanyLinks = (props) => {
               onClick={() => {
                 props.signOut(props.history);
               }}
+              data-cy="signout"
             >
               Sign Out
             </NavLink>

@@ -5,8 +5,10 @@
  */
 describe('Sign in Company', () => {
   before(() => {
+    // Sign out if already signed in
+    cy.signout();
     cy.visit('/signin');
-    setTimeout(2000);
+    cy.wait(2000);
   });
   const email = 'company@tripaze.com';
   const password = 'password';
