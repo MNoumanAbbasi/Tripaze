@@ -9,6 +9,7 @@ function SignInToAccess(props) {
         class="btn btn-secondary light-button mr-lg-3 my-2 my-lg-0 form-rounded"
         type="button"
         data-cy="signinBtn"
+        data-cy2="signinBtnDialog"
       >
         SIGN IN
       </button>
@@ -20,6 +21,7 @@ function SignInToAccess(props) {
       <button
         class="btn btn-secondary dark-button mr-lg-3 my-2 my-lg-0 form-rounded"
         type="button"
+        data-cy="signupBtnDialog"
       >
         SIGN UP
       </button>

@@ -69,12 +69,14 @@ export class SearchBar extends Component {
             id="destinations"
             value={this.state.destinations}
             onChange={this.handleChange}
+            data-cy="searchDest"
           />
 
           <div className="input-group-append">
             <button
               className="btn btn-secondary change-color adjusted-btn border-0 form-rounded"
               type="submit"
+              data-cy="searchButton"
             >
               <i className="fa fa-search"></i>
             </button>

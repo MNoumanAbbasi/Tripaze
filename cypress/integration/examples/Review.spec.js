@@ -64,7 +64,22 @@ describe('Review Company', () => {
       .get('button[data-cy=remove]')
       .click({ force: true });
     cy.get('.swal-overlay');
+  });
+
+  it('Clicking on cancel on the confirmation dialog box should not do any changes', () => {
+    cy.get('.swal-button--cancel').click();
+    cy.get('.ReviewSection').should('contain', 'UserTest'); // default Username for signin user
+    cy.get('.ReviewSection').should('contain', review);
+  });
+
+  it('Clicking on delete on the confirmation dialog box should delete the review', () => {
+    cy.get('.ReviewSection')
+      .get('button[data-cy=remove]')
+      .click({ force: true });
+    cy.get('.swal-overlay');
     cy.get('.swal-button--confirm').click();
     cy.get('.swal-overlay').should('contain', 'success');
+    cy.get('.ReviewSection').not('contain', 'UserTest'); // default Username for signin user
+    cy.get('.ReviewSection').not('contain', review);
   });
 });
