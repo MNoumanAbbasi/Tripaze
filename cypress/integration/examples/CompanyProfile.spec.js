@@ -3,9 +3,9 @@
 describe('Company Profile', () => {
   before(() => {
     cy.visit('/companyProfile/3OAS4ZfMJmXpTWnko9tJBUYfijj2/');
+    setTimeout(5000);
   });
-  setTimeout(5000);
-
+  
   it('company name displayed', () => {
     cy.get('[data-cy=company-name]').should('not.be.empty');
   });
