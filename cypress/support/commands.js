@@ -27,11 +27,11 @@
 // -- This will sign out the user if signed in --
 Cypress.Commands.add('signout', () => {
   cy.visit('/');
-  cy.wait(500);
+  cy.wait(2000);
   cy.get('#navbarSupportedContent').then(($navbar) => {
     if ($navbar.find('[data-cy=signout]').length) {
       cy.get('[data-cy=signout]').click();
-      cy.wait(500);
+      cy.wait(1000);
     }
   });
 });
@@ -46,6 +46,7 @@ Cypress.Commands.add('signinUser', () => {
     if ($body.find('Sign In').length) {
       cy.get('#email').clear().type(email);
       cy.get('#password').clear().type(password).type('{enter}');
+      cy.wait(1000);
     }
   });
 });
@@ -56,10 +57,9 @@ Cypress.Commands.add('signinCompany', () => {
   const password = 'password123';
   cy.visit('/signin');
   cy.wait(500);
-  cy.get('body').then(($body) => {
-    if ($body.find('Sign In').length) {
-      cy.get('#email').clear().type(email);
-      cy.get('#password').clear().type(password).type('{enter}');
-    }
+  cy.get('form').then(($form) => {
+    cy.get('#email').clear().type(email);
+    cy.get('#password').clear().type(password).type('{enter}');
+    cy.wait(1000);
   });
 });

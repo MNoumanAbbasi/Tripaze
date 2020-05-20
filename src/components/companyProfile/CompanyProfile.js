@@ -71,6 +71,7 @@ const CompanyProfile = (props) => {
                   onClick={() =>
                     props.history.push('/editprofile/' + props.match.params.id)
                   }
+                  data-cy="editProfileBtn"
                 >
                   EDIT PROFILE <i class="fa fas fa-edit fa-fw"></i>
                 </button>
