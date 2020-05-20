@@ -19,6 +19,7 @@ const Review = (props) => {
       <button
         className="btn btn-sm bg-turq form-rounded float-right"
         onClick={() => deleteReviewModal(props)}
+        data-cy="remove"
       >
         <i
           className="fa fa-times-circle fa-resize"
@@ -68,12 +69,15 @@ const AddNewReviewForm = (props) => {
             className="form-control form-control-lg"
             onChange={(event) => setReview(event.target.value)}
             maxLength={400}
+            data-cy="review-input"
             required
           />
           <p></p>
           <p className="review">{+review === '' ? 0 : review.length}/400</p>
           <div className="form-row mr-3 justify-content-end">
-            <button className="btn form-rounded r-green-button">Add</button>
+            <button className="btn form-rounded r-green-button" data-cy="add">
+              Add
+            </button>
           </div>
         </form>
       </div>
