@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('Testing FAQ section', () => {
+describe('Testing FAQ section as a user', () => {
   const trip = '/trip/PJjYUEIGlE4mEmS0MSyu';
   const question = 'This is a test question';
 
@@ -44,14 +44,14 @@ describe('Testing FAQ section', () => {
     cy.get('.swal-button--confirm').click({ force: true });
   });
 
-  it('New question is displayed on profile', () => {
+  it('New question is displayed on Trip page', () => {
     cy.get('.FAQSection').should('contain', question);
     cy.wait(3000);
     cy.signout();
   });
 });
 
-describe('Testing as a signed in company', () => {
+describe('Testing FAQ section as a signed in company', () => {
   const trip = '/trip/PJjYUEIGlE4mEmS0MSyu';
   const question = 'This is a test question';
   const answer = 'This is a test answer to the test question';
@@ -82,7 +82,7 @@ describe('Testing as a signed in company', () => {
     cy.get('.swal-button--confirm').click({ force: true });
   });
 
-  it('New answer is displayed on profile', () => {
+  it('New answer is displayed on trip page', () => {
     cy.get('.FAQSection').should('contain', answer);
   });
 
@@ -104,7 +104,7 @@ describe('Testing as a signed in company', () => {
     cy.get('.FAQSection').get('[data-cy=add-answer]').click({ force: true });
   });
 
-  it('New answer is displayed on profile', () => {
+  it('New answer is displayed on trip page', () => {
     cy.get('.FAQSection').should('contain', companyAnswer);
   });
 });
