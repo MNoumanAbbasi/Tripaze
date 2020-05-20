@@ -48,4 +48,9 @@ describe('Company Profile', () => {
   it('FAQ section displayed', () => {
     cy.get('[data-cy=faq-section]').should('not.be.empty');
   });
+  it('Clicking on company name redirects to company profile', () => {
+    cy.get('[data-cy=company-link]').click({ force: true });
+    cy.wait(2000);
+    cy.url().should('contain', '/companyProfile/');
+  });
 });
