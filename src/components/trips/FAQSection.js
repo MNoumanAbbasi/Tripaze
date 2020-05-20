@@ -21,6 +21,7 @@ const FAQ = (props) => {
         <button
           className="btn btn-sm bg-turq form-rounded float-right"
           onClick={() => deleteFAQModal(props)}
+          data-cy="delete-question"
         >
           <i
             class="fa fa-times-circle fa-resize"
@@ -60,11 +61,17 @@ const AddQuestionForm = (props) => {
             onChange={(event) => setQuestion(event.target.value)}
             maxLength={200}
             required
+            data-cy="question-input"
           />
           <p></p>
           <p className="review">{+question === '' ? 0 : question.length}/200</p>
           <div className="form-row mr-3 justify-content-end">
-            <button className="btn  form-rounded r-green-button">Add</button>
+            <button
+              className="btn  form-rounded r-green-button"
+              data-cy="add-question"
+            >
+              Add
+            </button>
           </div>
         </form>
       </div>
@@ -89,9 +96,15 @@ const AddAnswerForm = (props) => {
           className="form-control form-control-lg"
           onChange={(event) => setAnswer(event.target.value)}
           required
+          data-cy="answer-input"
         />
         <div className="form-row mr-3 justify-content-end">
-          <button className="btn form-rounded r-green-button">Add</button>
+          <button
+            className="btn form-rounded r-green-button"
+            data-cy="add-answer"
+          >
+            Add
+          </button>
         </div>
       </form>
     </div>
