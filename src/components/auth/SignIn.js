@@ -32,7 +32,11 @@ export class SignIn extends Component {
     return (
       <div className="row m-0 full-height-width">
         <div className="col-lg-3 col-md-4 col-sm-6 center-align">
-          <form onSubmit={this.handleSubmit} className="change-font-opensans ">
+          <form
+            onSubmit={this.handleSubmit}
+            className="change-font-opensans"
+            data-cy="signinForm"
+          >
             <h3 class="mt-20 mb-4 text-center">Sign In</h3>
 
             <div>

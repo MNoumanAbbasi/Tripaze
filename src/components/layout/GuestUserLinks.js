@@ -18,6 +18,7 @@ const GuestUserLinks = () => {
             <button
               class="btn btn-secondary light-button mr-lg-3 my-2 my-lg-0 form-rounded"
               type="button"
+              data-cy="signinBtn"
             >
               SIGN IN
             </button>

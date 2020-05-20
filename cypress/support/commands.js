@@ -43,7 +43,7 @@ Cypress.Commands.add('signinUser', () => {
   cy.visit('/signin');
   cy.wait(500);
   cy.get('body').then(($body) => {
-    if ($body.find('Sign In').length) {
+    if ($body.find('[data-cy=signinForm]').length) {
       cy.get('#email').clear().type(email);
       cy.get('#password').clear().type(password).type('{enter}');
       cy.wait(1000);
@@ -57,9 +57,11 @@ Cypress.Commands.add('signinCompany', () => {
   const password = 'password123';
   cy.visit('/signin');
   cy.wait(500);
-  cy.get('form').then(($form) => {
-    cy.get('#email').clear().type(email);
-    cy.get('#password').clear().type(password).type('{enter}');
-    cy.wait(1000);
+  cy.get('body').then(($body) => {
+    if ($body.find('[data-cy=signinForm]').length) {
+      cy.get('#email').clear().type(email);
+      cy.get('#password').clear().type(password).type('{enter}');
+      cy.wait(1000);
+    }
   });
 });
