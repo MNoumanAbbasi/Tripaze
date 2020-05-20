@@ -124,6 +124,7 @@ const ReviewSection = (props) => {
       <button
         className="btn mt-3 form-rounded r-green-button"
         onClick={() => setModalShow(true)}
+        data-cy="addreview"
       >
         Add Review
       </button>
