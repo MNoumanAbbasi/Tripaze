@@ -6,17 +6,18 @@ describe('Company Profile', () => {
       'http://localhost:3000/companyProfile/3OAS4ZfMJmXpTWnko9tJBUYfijj2/'
     );
   });
-  setTimeout(4000);
+  setTimeout(5000);
+
   it('company name displayed', () => {
-    cy.contains('TripCompany');
+    cy.get('[data-cy=company-name]').should('not.be.empty');
   });
   it('phone number displayed', () => {
-    cy.contains('TripCompany');
+    cy.get('[data-cy=contact]').should('not.be.empty');
   });
   it('address displayed', () => {
-    cy.contains('TripCompany');
+    cy.get('[data-cy=address]').should('not.be.empty');
   });
-  it('company name displayed', () => {
-    cy.contains('TripCompany');
+  it('reviews displayed', () => {
+    cy.get('[data-cy=rating-bar]').should('not.be.empty');
   });
 });

@@ -93,7 +93,7 @@ const CompanyProfile = (props) => {
           <div className="row justify-content-between align-content-center">
             {/* Heading */}
             <div className="ml-lg-4 col-lg-7 text-secondary">
-              <h1 className="mt-5 tripText justify-content-end">
+              <h1 className="mt-5 tripText justify-content-end" data-cy="company-name">
                 {/*logo for small screens */}
                 <LogoImage
                   companyID={props.match.params.id}
@@ -121,6 +121,7 @@ const CompanyProfile = (props) => {
                 <div
                   className="row mt-5 mb-5 hasOnClick"
                   onClick={() => setReviewModalShow(true)}
+                  data-cy="rating-bar"
                 >
                   <RatingBar
                     name="companyrating"
@@ -135,7 +136,7 @@ const CompanyProfile = (props) => {
                       : reviews.length + ' Reviews'}
                   </h6>
                 </div>
-                <h6 class="card-title change-font font-weight-bold text-uppercase colored mt-5">
+                <h6 class="card-title change-font font-weight-bold text-uppercase colored mt-5" data-cy="conta">
                   <i class="fa fa-phone fa-2x fa-fw" aria-hidden="true"></i>
                   {company.contact}
                 </h6>
