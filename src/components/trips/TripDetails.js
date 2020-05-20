@@ -81,10 +81,16 @@ const TripDetails = (props) => {
         {/* First row */}
         <div className="row justify-content-around">
           <div className="col-lg-7 row justify-content-between order-lg-1 order-2">
-            <h1 className="text-secondary tripText align-self-center mt-2">
+            <h1
+              className="text-secondary tripText align-self-center mt-2"
+              data-cy="trip-title"
+            >
               {trip.title}
             </h1>
-            <div className="text-turq tripText align-self-center">
+            <div
+              className="text-turq tripText align-self-center"
+              data-cy="trip-price"
+            >
               {/* The code separationg for thousands is taken from: https://answers.acrobatusers.com/How-to-separate-thousands-with-space-and-adding-2-decimal-places-q282162.aspx */}
               Rs. {trip.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
             </div>
@@ -92,12 +98,18 @@ const TripDetails = (props) => {
           {/* {Company Card} */}
           <div class="cardcompany content-box m-4 mt-lg-5 change-card-width2 order-lg-2 order-1">
             <div class="card-body">
-              <h6 class="card-title change-font font-weight-bold text-uppercase">
+              <h6
+                class="card-title change-font font-weight-bold text-uppercase"
+                data-cy="company-name"
+              >
                 <LogoImage
                   companyID={trip.companyId}
                   className="img-fluid logo-on-card rounded-circle mr-1"
                 />
-                <Link to={'/companyProfile/' + trip.companyId}>
+                <Link
+                  to={'/companyProfile/' + trip.companyId}
+                  data-cy="company-link"
+                >
                   {' ' + trip.companyName}
                 </Link>
               </h6>
@@ -107,8 +119,9 @@ const TripDetails = (props) => {
                   value={avgRating}
                   className="ml-lg-4"
                   editing={false}
+                  data-cy="company-rating"
                 />
-                <p>
+                <p data-cy="number-reviews">
                   {reviewLength === 1
                     ? reviewLength + ' Review'
                     : reviewLength + ' Reviews'}
@@ -120,23 +133,35 @@ const TripDetails = (props) => {
         {/* Second row */}
         <hr class="mt-2 col-7 ml-0 divider"></hr>
         <div class="row align-content-center justify-content-start">
-          <h5 className="col-lg-3 change-font ml-0 colored">
+          <h5
+            className="col-lg-3 change-font ml-0 colored"
+            data-cy="departure-date"
+          >
             <i class="fa fa-calendar fa-lg fa-fw" aria-hidden="true"></i>
             {'     ' +
               moment(trip.departureDate.toDate()).format('MMM Do YYYY')}
           </h5>
-          <h5 className="col-lg-2 text-uppercase change-font colored">
+          <h5
+            className="col-lg-2 text-uppercase change-font colored"
+            data-cy="trip-duration"
+          >
             <i class="fa fa-clock-o fa-lg fa-fw" aria-hidden="true"></i>
             {trip.duration + ' days'}
           </h5>
-          <h5 class="ml-lg-4 col-lg-3 text-uppercase change-font col-offset-7 colored">
+          <h5
+            class="ml-lg-4 col-lg-3 text-uppercase change-font col-offset-7 colored"
+            data-cy="departure-location"
+          >
             <i class="fa fa-bus fa-lg fa-fw" aria-hidden="true"></i>
             {'  ' + trip.departureLoc}
           </h5>
         </div>
         <hr class="mb-3 col-7 ml-0 divider2"></hr>
         {/* Description Box */}
-        <div class="mt-5 row align-content-centre justify-content-between">
+        <div
+          class="mt-5 row align-content-centre justify-content-between"
+          data-cy="trip-description"
+        >
           <div class="ml-lg-4 col-lg-6 text-justify text-secondary">
             <h3 className="text-secondary">Description</h3>
             <p style={{ whiteSpace: 'pre-line' }}>{trip.description}</p>
@@ -151,7 +176,10 @@ const TripDetails = (props) => {
               })}
             </div>
           </div>
-          <table class="mr-lg-4 mt-lg-1 mt-4 col-lg-4 table table-border tb-border border-turq table-md-responsive">
+          <table
+            class="mr-lg-4 mt-lg-1 mt-4 col-lg-4 table table-border tb-border border-turq table-md-responsive"
+            data-cy="main-attractions"
+          >
             <thead>
               <tr class="bg-turq">
                 <th class="text-white text-center" scope="col">
@@ -176,7 +204,7 @@ const TripDetails = (props) => {
           <h3 className="tripText"> Map</h3>
         </div>
         <div className="d-flex justify-content-center mt-5">
-          <MapContainer destinations={trip.destinations} />
+          <MapContainer destinations={trip.destinations} data-cy="trip-map" />
         </div>
         <div className="row p-4 mt-5 justify-content-center align-content-centre text-turq bigscreen">
           <i class="fa fa-question-circle fa-3x fa-fw" aria-hidden="false"></i>
@@ -194,6 +222,7 @@ const TripDetails = (props) => {
           tripID={props.match.params.id}
           profileType={profileType(auth, profile)}
           profileID={auth.uid}
+          data-cy="faq-section"
         />
       </div>
     </div>
