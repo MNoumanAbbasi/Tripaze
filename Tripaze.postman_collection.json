@@ -1,0 +1,157 @@
+{
+	"info": {
+		"_postman_id": "12d387b6-b22f-4f6d-9ef2-ff0d83fb7953",
+		"name": "Tripaze",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://maps.googleapis.com/maps/api/geocode/json?address=Swat&key=AIzaSyAdrE2IZMrS6t9XpbPNN5gbHNwaGt2biNs&region=pk",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b793e493-2abe-4705-bc44-2e1994302da3",
+						"exec": [
+							"tests[\"Status code is 200 - Request Succeeded\"] = responseCode.code === 200;\r",
+							"\r",
+							"var jsonData = JSON.parse(responseBody);\r",
+							"tests[\"Region is Pakistan\"] = jsonData.results[0].address_components[2].long_name === \"Pakistan\";\r",
+							"\r",
+							"tests[\"API Response “address” matches the “address passed as a parameter” \"] = jsonData.results[0].address_components[0].long_name === \"Swat\";\r",
+							"\r",
+							"pm.test(\"Status code name has string OK\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"var schema1 = {\r",
+							"        \"items\": {\r",
+							"            \"type\": [\"intger\", \"intger\"]\r",
+							"        }\r",
+							"    };\r",
+							"\r",
+							"    pm.test('Longitude and Latitude - Successfully Received', function () {\r",
+							"        pm.expect(tv4.validate(jsonData.results[0].geometry, schema1)).to.be.true;\r",
+							"    });\r",
+							"\r",
+							"pm.test(\"API Response time is less than 500ms\", function () {\r",
+							"\r",
+							"    var schema = {\r",
+							"        \"items\": {\r",
+							"            \"type\": [\"administrative_area_level_2\",\r",
+							"                \"political\"]\r",
+							"        }\r",
+							"    };\r",
+							"\r",
+							"    pm.test('API response Schema is valid', function () {\r",
+							"        pm.expect(tv4.validate(jsonData, schema)).to.be.true;\r",
+							"    });\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"API Response Header Check: Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://maps.googleapis.com/maps/api/geocode/json?address=Swat&key=AIzaSyAdrE2IZMrS6t9XpbPNN5gbHNwaGt2biNs&region=pk",
+					"protocol": "https",
+					"host": [
+						"maps",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"maps",
+						"api",
+						"geocode",
+						"json"
+					],
+					"query": [
+						{
+							"key": "address",
+							"value": "Swat"
+						},
+						{
+							"key": "key",
+							"value": "AIzaSyAdrE2IZMrS6t9XpbPNN5gbHNwaGt2biNs"
+						},
+						{
+							"key": "region",
+							"value": "pk"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://maps.googleapis.com/maps/api/js?destination=Swat&key=AIzaSyAdrE2IZMrS6t9XpbPNN5gbHNwaGt2biNs",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1d37c65d-0c44-4687-9075-dcf284b83d9b",
+						"exec": [
+							"tests[\"Status code is 200 - Request Succeeded\"] = responseCode.code === 200;\r",
+							"\r",
+							"pm.test(\"API Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"API Response Header Check: Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string OK\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://maps.googleapis.com/maps/api/js?destination=Swat&key=AIzaSyAdrE2IZMrS6t9XpbPNN5gbHNwaGt2biNs",
+					"protocol": "https",
+					"host": [
+						"maps",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"maps",
+						"api",
+						"js"
+					],
+					"query": [
+						{
+							"key": "destination",
+							"value": "Swat"
+						},
+						{
+							"key": "key",
+							"value": "AIzaSyAdrE2IZMrS6t9XpbPNN5gbHNwaGt2biNs"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
