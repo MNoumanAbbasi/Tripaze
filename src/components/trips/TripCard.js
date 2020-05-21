@@ -11,7 +11,12 @@ const TripCard = ({ trip, isCompProfile }) => {
   let notification = null;
   if (trip.notifications && isCompProfile) {
     notification = (
-      <img src={notifi} alt="Notification" className="top-right" />
+      <img
+        data-cy="notification"
+        src={notifi}
+        alt="Notification"
+        className="top-right"
+      />
     );
   }
 

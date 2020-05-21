@@ -3,7 +3,6 @@
 describe('Testing FAQ section as a user', () => {
   const trip = '/trip/PJjYUEIGlE4mEmS0MSyu';
   const question = 'This is a test question';
-
   it('Guest User can see add question button', () => {
     cy.signout();
     cy.wait(2000);
@@ -11,7 +10,6 @@ describe('Testing FAQ section as a user', () => {
     cy.wait(3000);
     cy.get('.FAQSection').get('button').contains('Add Question');
   });
-
   it('Guest User cannot add question', () => {
     cy.get('.FAQSection')
       .get('button')
@@ -19,7 +17,6 @@ describe('Testing FAQ section as a user', () => {
       .click({ force: true });
     cy.get('.modal-content');
   });
-
   it('Signed in User can see Add Question button', () => {
     cy.signinUser();
     cy.wait(2000);
@@ -27,7 +24,6 @@ describe('Testing FAQ section as a user', () => {
     cy.wait(3000);
     cy.get('.FAQSection').get('button').contains('Add Question');
   });
-
   it('Signed in User can add Question', () => {
     cy.get('.FAQSection')
       .get('button')
@@ -38,12 +34,10 @@ describe('Testing FAQ section as a user', () => {
       .type(question, { force: true });
     cy.get('.FAQSection').get('[data-cy=add-question]').click({ force: true });
   });
-
   it('Confirmation dialog box on successfully adding question', () => {
     cy.get('.swal-overlay').should('contain', 'added');
     cy.get('.swal-button--confirm').click({ force: true });
   });
-
   it('New question is displayed on Trip page', () => {
     cy.get('.FAQSection').should('contain', question);
     cy.wait(3000);
@@ -53,17 +47,22 @@ describe('Testing FAQ section as a user', () => {
 
 describe('Testing FAQ section as a signed in company', () => {
   const trip = '/trip/PJjYUEIGlE4mEmS0MSyu';
+  const companyProfile = '/companyProfile/MnABr3SQtYVZ7437Acc1jIN8f7S2';
   const question = 'This is a test question';
   const answer = 'This is a test answer to the test question';
   const companyQuestion = 'This is a test question by the company';
   const companyAnswer =
     'This is a test answer to the test question by the company';
-  it('Signed in Company can see user question', () => {
+  it('Signed in Company sees a notification', () => {
     cy.wait(3000);
     cy.signinCompany();
     cy.wait(2000);
+    cy.get('[data-cy=notification]');
+  });
+
+  it('Signed in Company can see user question', () => {
     cy.visit(trip);
-    cy.wait(3000);
+    cy.wait(2000);
     cy.get('.FAQSection').should('contain', question);
   });
 
@@ -86,6 +85,16 @@ describe('Testing FAQ section as a signed in company', () => {
     cy.get('.FAQSection').should('contain', answer);
   });
 
+  it('Deleting User Question', () => {
+    cy.get('.FAQSection')
+      .get('button[data-cy=delete-question]')
+      .click({ force: true });
+    cy.get('.swal-overlay');
+    cy.get('.swal-button--confirm').click();
+    cy.get('.swal-overlay').should('contain', 'success');
+    cy.get('.FAQSection').not('contain', answer); // default Username for signin user
+  });
+
   it('Signed in company can add Question', () => {
     cy.get('.FAQSection')
       .get('button')
@@ -106,5 +115,21 @@ describe('Testing FAQ section as a signed in company', () => {
 
   it('New answer is displayed on trip page', () => {
     cy.get('.FAQSection').should('contain', companyAnswer);
+  });
+
+  it('Deleting Comapny Question', () => {
+    cy.get('.FAQSection')
+      .get('button[data-cy=delete-question]')
+      .click({ force: true });
+    cy.get('.swal-overlay');
+    cy.get('.swal-button--confirm').click();
+    cy.get('.swal-overlay').should('contain', 'success');
+    cy.get('.FAQSection').not('contain', companyAnswer);
+  });
+
+  it('Notification on trip disappears', () => {
+    cy.visit(companyProfile);
+    cy.wait(2000);
+    cy.contains('Fairy Meadows').not('contain', '[data-cy=notification]');
   });
 });
