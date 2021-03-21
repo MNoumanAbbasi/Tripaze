@@ -220,7 +220,7 @@
     "is-primitive": "^2.0.0",
     "is-property": "^1.0.2",
     "is-resolvable": "^1.1.0",
-    "is-svg": "^2.1.0",
+    "is-svg": "^4.2.2",
     "is-typedarray": "^1.0.0",
     "is-utf8": "^0.2.1",
     "is-windows": "^1.0.2",
