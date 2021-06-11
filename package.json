@@ -168,7 +168,7 @@
     "get-value": "^2.0.6",
     "getpass": "^0.1.7",
     "glob-base": "^0.3.0",
-    "glob-parent": "^2.0.0",
+    "glob-parent": "^5.1.2",
     "globals": "^9.18.0",
     "google-maps-react": "^2.0.6",
     "graceful-fs": "^4.2.3",
