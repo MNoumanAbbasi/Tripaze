@@ -240,7 +240,7 @@
     "json-stable-stringify": "^1.0.1",
     "json-stringify-safe": "^5.0.1",
     "json3": "^3.3.3",
-    "json5": "^0.5.1",
+    "json5": "^1.0.2",
     "jsonfile": "^2.4.0",
     "jsonify": "^0.0.0",
     "jsonpointer": "^4.0.1",
